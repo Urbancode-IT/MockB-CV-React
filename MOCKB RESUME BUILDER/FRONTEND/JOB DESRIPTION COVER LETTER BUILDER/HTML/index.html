@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Description Cover Letter Builder | MockB CV</title>
+    <meta name="description" content="Generate a precision-targeted, ATS-friendly cover letter based on any job description using MockB AI.">
+    <!-- Google Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- External Styles -->
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!-- Shared Styles for Navbar/Footer -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+</head>
+<body class="bg-dark text-white">
+
+    <!-- Header / Navbar from Home Page -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD COVER LETTER GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#use-cases">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-up">
+
+                    <h1>Build Cover Letters from Any <span>Job Description</span></h1>
+                    <p>Stop sending generic applications. Our advanced AI engine performs a deep semantic analysis of your target job description to build a narrative that proves you are the perfect match. Higher response rates, guaranteed.</p>
+                    <div class="hero-btns">
+                        <a href="#builder-section" class="btn btn-primary btn-lg">Start Building <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#how-it-works" class="btn btn-outline btn-lg">How it works</a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left">
+                    <div class="visual-card glass">
+                        <div class="card-header">
+                            <div class="dots"><span></span><span></span><span></span></div>
+                            <div class="title-bar">AI ANALYZER</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="placeholder-line"></div>
+                            <div class="placeholder-line"></div>
+                            <div class="placeholder-line short"></div>
+                            <div class="ai-pulse">
+                                <i class="fa-solid fa-robot"></i>
+                                <span>Scanning JD for Keywords...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Deep Analysis Content -->
+        <section class="details-section container" data-aos="fade-up">
+            <div class="glass" style="padding: 4rem; margin-top: 20px; position: relative; z-index: 5; margin-bottom: 5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                    <div>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">The Science of <span>AI-Driven</span> Matching</h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2rem;">Our engine doesn't just copy-paste keywords. It understands the context, the required seniority level, and the unique culture of the company described in the JD.</p>
+                        <ul style="list-style: none; color: var(--text-gray);">
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> <strong>Semantic Keyword Mapping:</strong> We map your skills to the specific synonyms used by the company's ATS.</li>
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> <strong>Tone & Voice Alignment:</strong> If the JD is formal, we write formally. If it's a startup vibe, we adjust the narrative.</li>
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> <strong>Value Proposition:</strong> We highlight the exact metrics in your experience that solve the company's pain points.</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(238, 195, 12, 0.05); padding: 2.5rem; border-radius: 20px; border: 1px dashed var(--primary-color); backdrop-filter: blur(5px);">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary-color); font-size: 1.2rem;">Recruiter Insight</h4>
+                        <p style="font-size: 1.1rem; font-style: italic; line-height: 1.6;">"A cover letter that explicitly references the needs mentioned in the job description has a 75% higher chance of being read fully by a human recruiter after passing the initial ATS scan."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Content Section -->
+        <section id="how-it-works" class="features-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Why Use Our <span>JD-Based</span> Builder?</h2>
+                    <p>A generic cover letter is a missed opportunity. Our tool ensures your application stands out.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card glass" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <h3>ATS Optimization</h3>
+                        <p>We automatically extract keywords from the JD and weave them into your cover letter naturally.</p>
+                    </div>
+                    <div class="feature-card glass" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        <h3>Perfect Grammar</h3>
+                        <p>Built-in checks for grammar, spelling, and professional tone to ensure zero errors.</p>
+                    </div>
+                    <div class="feature-card glass" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fa-solid fa-file-export"></i>
+                        <h3>Ready to Export</h3>
+                        <p>Download your tailored cover letter in polished PDF or Word formats instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Builder Section -->
+        <section id="builder-section" class="builder-section container">
+            <div class="section-title" data-aos="fade-up">
+                <span style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; font-size: 0.8rem; color: var(--primary-color); display: block; margin-bottom: 10px;">The Semantic Match</span>
+                <h2>Tailored <span>Cover Letters</span> Built From Your Target JD</h2>
+                <p>Bridge the gap between your expertise and the recruiter's needs with high-precision semantic matching.</p>
+            </div>
+            <div class="builder-layout">
+                <!-- Form Side -->
+                <div class="builder-form-side">
+                    <div class="step-card glass" data-aos="fade-right">
+                        <div class="step-num">01</div>
+                        <h3>The Job Description</h3>
+                        <p>Paste the job description you are targeting. Our AI will analyze it for key requirements.</p>
+                        <textarea id="job-description" class="form-input" placeholder="Paste the job description here..."></textarea>
+                    </div>
+
+                    <div class="step-card glass" data-aos="fade-right" data-aos-delay="100">
+                        <div class="step-num">02</div>
+                        <h3>Your Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="user-name" class="form-input" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Target Job Title</label>
+                                <input type="text" id="target-title" class="form-input" placeholder="Frontend Developer">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Key Experience (Summary)</label>
+                                <textarea id="user-experience" class="form-input" placeholder="e.g., 5 years of React development, led a team of 3..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Education</label>
+                                <input type="text" id="user-education" class="form-input" placeholder="B.S. in Computer Science">
+                            </div>
+                            <div class="form-group">
+                                <label>Top Skills</label>
+                                <input type="text" id="user-skills" class="form-input" placeholder="React, Node.js, AWS">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card glass" data-aos="fade-right" data-aos-delay="200">
+                        <div class="step-num">03</div>
+                        <h3>Old Cover Letter (Optional)</h3>
+                        <p>If you have an existing cover letter, upload it and our AI will improve it based on the JD.</p>
+                        <div class="upload-box" id="upload-box">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Click or drag to upload (.pdf, .doc)</span>
+                            <input type="file" id="file-upload" hidden>
+                        </div>
+                    </div>
+
+                    <div class="step-card glass" data-aos="fade-right" data-aos-delay="300">
+                        <div class="step-num">04</div>
+                        <h3>Choose Template (Optional)</h3>
+                        <p>Select a visual style for your cover letter. Default is Modern.</p>
+                        <div class="template-selector-grid">
+                            <div class="template-option active" data-template="modern">
+                                <div class="template-thumb modern"></div>
+                                <span>Modern</span>
+                            </div>
+                            <div class="template-option" data-template="classic">
+                                <div class="template-thumb classic"></div>
+                                <span>Classic</span>
+                            </div>
+                            <div class="template-option" data-template="minimal">
+                                <div class="template-thumb minimal"></div>
+                                <span>Minimal</span>
+                            </div>
+                            <div class="template-option" data-template="creative">
+                                <div class="template-thumb creative"></div>
+                                <span>Creative</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="builder-actions" data-aos="fade-up">
+                        <button id="generate-btn" class="btn btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate AI Cover Letter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Side -->
+                <div class="builder-preview-side">
+                    <div class="preview-container glass sticky-preview" id="preview-section">
+                        <div class="preview-header">
+                            <span><i class="fa-solid fa-eye"></i> Live Preview</span>
+                            <div class="preview-actions">
+                                <button class="btn-icon" id="download-pdf" title="Download PDF"><i class="fa-solid fa-file-pdf"></i></button>
+                                <button class="btn-icon" id="download-word" title="Download Word"><i class="fa-solid fa-file-word"></i></button>
+                            </div>
+                        </div>
+                        <div class="preview-content scroll-hide" id="preview-body">
+                            <div class="preview-placeholder">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <p>Fill in the details and click generate to see your AI-crafted cover letter here.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Loading Overlay -->
+                        <div class="ai-loader-overlay" id="ai-loader">
+                            <div class="loader-content">
+                                <div class="ai-brain">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <h4>MockB AI is Writing...</h4>
+                                <div class="typing-status">Analyzing requirements...</div>
+                                <div class="progress-bar"><div class="progress-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Success Stories Section -->
+        <section class="success-stories features-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Real <span>Success</span> Stories</h2>
+                    <p>See how our JD-based builder has helped professionals land their dream roles.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card glass" data-aos="fade-up" data-aos-delay="100">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: 900;">JS</div>
+                            <div>
+                                <h4 style="margin: 0;">James Smith</h4>
+                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-gray);">Software Engineer @ Google</p>
+                            </div>
+                        </div>
+                        <p style="font-style: italic; color: var(--text-gray);">"The AI analyzed the complex job description and highlighted my cloud experience in a way I couldn't have phrased myself. Got the interview in 2 days!"</p>
+                    </div>
+                    <div class="feature-card glass" data-aos="fade-up" data-aos-delay="200">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: 900;">ML</div>
+                            <div>
+                                <h4 style="margin: 0;">Maria Lopez</h4>
+                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-gray);">Product Manager @ Amazon</p>
+                            </div>
+                        </div>
+                        <p style="font-style: italic; color: var(--text-gray);">"I was struggling to tailor my letters. This tool made it so easy. The template choice also helped me match the company's formal vibe perfectly."</p>
+                    </div>
+                    <div class="feature-card glass" data-aos="fade-up" data-aos-delay="300">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: 900;">RB</div>
+                            <div>
+                                <h4 style="margin: 0;">Robert Brown</h4>
+                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-gray);">Data Analyst @ Deloitte</p>
+                            </div>
+                        </div>
+                        <p style="font-style: italic; color: var(--text-gray);">"ATS-friendly indeed! My response rate went from 10% to nearly 60% after I started using JD-based cover letters."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section container" style="padding: 100px 0;">
+            <div class="section-title" data-aos="fade-up">
+                <h2><span>FAQs</span></h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="glass" style="padding: 30px;" data-aos="fade-right">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">How does the AI analyze the JD?</h4>
+                    <p style="color: var(--text-gray); font-size: 0.95rem;">Our AI uses Natural Language Processing (NLP) to identify core competencies, required technical stacks, and even the "hidden" requirements implied by the job responsibilities.</p>
+                </div>
+                <div class="glass" style="padding: 30px;" data-aos="fade-left">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">Is the cover letter really ATS-friendly?</h4>
+                    <p style="color: var(--text-gray); font-size: 0.95rem;">Yes. We prioritize keyword density and formatting that standard ATS systems (like Workday, Greenhouse, or Lever) can easily parse and rank highly.</p>
+                </div>
+                <div class="glass" style="padding: 30px;" data-aos="fade-right">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">Can I edit the generated letter?</h4>
+                    <p style="color: var(--text-gray); font-size: 0.95rem;">Absolutely! You can download it as a Word document (.doc) to make any personal manual tweaks before sending it off.</p>
+                </div>
+                <div class="glass" style="padding: 30px;" data-aos="fade-left">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">Does it work for all industries?</h4>
+                    <p style="color: var(--text-gray); font-size: 0.95rem;">Our AI is trained on over 50,000 job descriptions across tech, finance, healthcare, marketing, and more, making it versatile for any career path.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Home Page Script for Navbar functionality -->
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    <!-- Page Specific Script -->
+    <script src="../JAVA SCRIPT/script.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

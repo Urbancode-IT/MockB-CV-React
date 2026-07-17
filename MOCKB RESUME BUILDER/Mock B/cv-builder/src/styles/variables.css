@@ -1,0 +1,62 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap');
+
+:root {
+    --primary-color: #EEC30C;
+    --bg-dark: #0D0D0D;
+    --bg-card: #1A1A1A;
+    --text-white: #FFFFFF;
+    --text-gray: #A0A0A0;
+    --font-main: 'Satoshi', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+/* Common container and reset classes for imported pages */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #D4B00B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(238, 195, 12, 0.3);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-white {
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    padding: 0.8rem 2rem;
+}
+
+.btn-white:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}

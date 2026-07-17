@@ -1,0 +1,55 @@
+/* Highlight/Showcase Section Styles */
+.highlight-section {
+    margin: 4rem 0;
+    background: var(--primary-color, #EEC30C);
+    border-radius: 40px;
+    padding: 6rem 4rem;
+    color: #000;
+    text-align: center;
+    overflow: hidden;
+}
+
+.highlight-section h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.extra-large {
+    font-size: 9rem !important;
+    display: block;
+    margin-bottom: 2rem !important;
+}
+
+.highlight-section p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.mock-ui {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.mock-ui img {
+    width: 100%;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .extra-large { font-size: 6rem !important; }
+}
+
+@media (max-width: 768px) {
+    .highlight-section { padding: 4rem 1.5rem; }
+    .highlight-section h2 { font-size: 2rem; }
+    .extra-large { font-size: 4rem !important; margin-bottom: 1rem !important; }
+}

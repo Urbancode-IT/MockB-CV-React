@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockBee | Premium AI Resume Builder</title>
+    <meta name="description" content="Build your professional, ATS-friendly resume in minutes with MockBee AI Resume Builder.">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../RESUME CUSTOMIZER/HTML/index.html"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="portfolio-trigger">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="portfolio-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../PORTFOLIO BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <div class="item-text">
+                                            <h4>Build Portfolio</h4>
+                                            <p>Generate professional web portfolios with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../WHY MOCKB PORTFOLIO AND ITS USES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-circle-question"></i></div>
+                                        <div class="item-text">
+                                            <h4>Why Portfolio and its Uses</h4>
+                                            <p>Discover the power and key benefits of a professional portfolio.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="templates-trigger">Templates <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="templates-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../RESUME TEMPLATES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-lines"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume Templates</h4>
+                                            <p>Explore our collection of professional resume templates.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter Templates</h4>
+                                            <p>Browse cover letter templates designed to get you hired.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Resume Templates Content -->
+        <section class="rt-hero">
+            <div class="container rt-hero-container">
+                <div class="rt-hero-content">
+                    <h1>Browse Resume <span>Templates</span></h1>
+                    <p>Choose from professionally designed resumes for every industry and career stage.</p>
+                    <div class="rt-search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search templates by title or keyword...">
+                    </div>
+                    <div class="rt-popular-tags">
+                        <span>Popular searches:</span>
+                        <a href="#" class="rt-tag">Modern</a>
+                        <a href="#" class="rt-tag">ATS Friendly</a>
+                        <a href="#" class="rt-tag">Manager</a>
+                        <a href="#" class="rt-tag">Developer</a>
+                    </div>
+                </div>
+                <div class="rt-hero-images">
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" alt="Resume Template 1" class="rt-hero-img-1">
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000b96072089bcf803d41ea89ff.png" alt="Resume Template 2" class="rt-hero-img-2">
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f3207208b912c6c636a195a1.png" alt="Resume Template 3" class="rt-hero-img-3">
+                </div>
+            </div>
+        </section>
+
+
+        <section class="rt-featured container">
+            <div class="rt-section-header">
+                <div>
+                    <h2>Featured Templates</h2>
+                    <p>Most used by job seekers and recruiters</p>
+                </div>
+                <a href="#" class="rt-view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="rt-featured-slider">
+                <button class="rt-slider-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="rt-slider-track">
+                    <!-- Cards -->
+                    <div class="rt-card">
+                        <div class="rt-card-img">
+                            <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000b96072089bcf803d41ea89ff.png" alt="Modern Professional">
+                        </div>
+                        <div class="rt-card-info">
+                            <h3>Modern Professional</h3>
+                            <p>ATS Friendly</p>
+                        </div>
+                    </div>
+                    <div class="rt-card">
+                        <div class="rt-card-img">
+                            <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" alt="Clean & Modern">
+                        </div>
+                        <div class="rt-card-info">
+                            <h3>Clean & Modern</h3>
+                            <p>Popular</p>
+                        </div>
+                    </div>
+                    <div class="rt-card">
+                        <div class="rt-card-img">
+                            <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f3207208b912c6c636a195a1.png" alt="Executive">
+                        </div>
+                        <div class="rt-card-info">
+                            <h3>Executive</h3>
+                            <p>Professional</p>
+                        </div>
+                    </div>
+                    <div class="rt-card">
+                        <div class="rt-card-img">
+                            <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f19472089c50ad245caa766f.png" alt="Creative Designer">
+                        </div>
+                        <div class="rt-card-info">
+                            <h3>Creative Designer</h3>
+                            <p>Modern</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="rt-slider-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="rt-all-templates container">
+            <!-- Advanced Filter Bar -->
+            <div class="rt-adv-filters">
+                <!-- Row 1: Category Tabs -->
+                <div class="rt-filter-row-1">
+                    <button class="rt-filter-pill active" id="filter-all" data-filter="all">
+                        <i class="fa-solid fa-grip"></i> All
+                    </button>
+                    <button class="rt-filter-pill" id="filter-top" data-filter="top">
+                        <i class="fa-solid fa-star"></i> Top Picks
+                    </button>
+                    <button class="rt-filter-pill" id="filter-ats" data-filter="ats">
+                        <i class="fa-solid fa-robot"></i> ATS
+                    </button>
+                    <div class="rt-filter-dropdown-wrap">
+                        <button class="rt-filter-pill has-dropdown" id="filter-styles">
+                            <i class="fa-solid fa-droplet"></i> Styles <i class="fa-solid fa-chevron-down rt-dd-arrow"></i>
+                        </button>
+                        <div class="rt-dropdown-menu" id="dd-styles">
+                            <a href="#" class="rt-dd-item" data-filter="style-all">All Styles</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-modern">Modern</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-traditional">Traditional</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-simple">Simple</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-creative">Creative</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-minimalist">Minimalist</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-infographic">Infographic</a>
+                            <a href="#" class="rt-dd-item" data-filter="style-photo">Photo</a>
+                        </div>
+                    </div>
+                    <div class="rt-filter-dropdown-wrap">
+                        <button class="rt-filter-pill has-dropdown" id="filter-layout">
+                            <i class="fa-solid fa-table-columns"></i> Layout <i class="fa-solid fa-chevron-down rt-dd-arrow"></i>
+                        </button>
+                        <div class="rt-dropdown-menu" id="dd-layout">
+                            <a href="#" class="rt-dd-item" data-filter="layout-all">All Layouts</a>
+                            <a href="#" class="rt-dd-item" data-filter="layout-one-page">One Page</a>
+                            <a href="#" class="rt-dd-item" data-filter="layout-two-page">Two Page</a>
+                            <a href="#" class="rt-dd-item" data-filter="layout-one-column">One Column</a>
+                            <a href="#" class="rt-dd-item" data-filter="layout-two-column">Two Column</a>
+                            <a href="#" class="rt-dd-item" data-filter="layout-timeline">Timeline</a>
+                        </div>
+                    </div>
+                    <div class="rt-filter-dropdown-wrap">
+                        <button class="rt-filter-pill has-dropdown" id="filter-experience">
+                            <i class="fa-solid fa-briefcase"></i> Experience <i class="fa-solid fa-chevron-down rt-dd-arrow"></i>
+                        </button>
+                        <div class="rt-dropdown-menu" id="dd-experience">
+                            <a href="#" class="rt-dd-item" data-filter="exp-all">All Levels</a>
+                            <a href="#" class="rt-dd-item" data-filter="exp-entry">Entry Level</a>
+                            <a href="#" class="rt-dd-item" data-filter="exp-mid">Mid Level</a>
+                            <a href="#" class="rt-dd-item" data-filter="exp-senior">Senior</a>
+                        </div>
+                    </div>
+                    <div class="rt-filter-dropdown-wrap">
+                        <button class="rt-filter-pill has-dropdown" id="filter-format">
+                            <i class="fa-solid fa-file-lines"></i> Format <i class="fa-solid fa-chevron-down rt-dd-arrow"></i>
+                        </button>
+                        <div class="rt-dropdown-menu" id="dd-format">
+                            <a href="#" class="rt-dd-item" data-filter="fmt-all">All Formats</a>
+                            <a href="#" class="rt-dd-item" data-filter="fmt-chronological">Chronological</a>
+                            <a href="#" class="rt-dd-item" data-filter="fmt-functional">Functional</a>
+                            <a href="#" class="rt-dd-item" data-filter="fmt-hybrid">Hybrid</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Sub-Filters -->
+                <div class="rt-filter-row-2">
+                    <!-- Color -->
+                    <div class="rt-sub-filter-group">
+                        <span class="rt-sub-label">Color</span>
+                        <div class="rt-color-options">
+                            <button class="rt-color-btn active" id="color-all" data-color="all" title="All Colors">All</button>
+                            <button class="rt-color-btn" id="color-blue" data-color="blue" title="Blue" style="background-color:#4A90D9;"></button>
+                            <button class="rt-color-btn" id="color-gray" data-color="gray" title="Gray" style="background-color:#888888;"></button>
+                            <button class="rt-color-btn" id="color-green" data-color="green" title="Green" style="background-color:#27AE60;"></button>
+                            <button class="rt-color-btn" id="color-red" data-color="red" title="Red" style="background-color:#E74C3C;"></button>
+                            <button class="rt-color-btn" id="color-navy" data-color="navy" title="Navy" style="background-color:#1A3A5C;"></button>
+                        </div>
+                    </div>
+
+                    <!-- Photo -->
+                    <div class="rt-sub-filter-group">
+                        <span class="rt-sub-label">Photo</span>
+                        <div class="rt-toggle-group">
+                            <button class="rt-toggle-btn active" id="photo-all" data-photo="all">All</button>
+                            <button class="rt-toggle-btn" id="photo-yes" data-photo="photo">Photo</button>
+                            <button class="rt-toggle-btn" id="photo-no" data-photo="nophoto">No Photo</button>
+                        </div>
+                    </div>
+
+                    <!-- Columns -->
+                    <div class="rt-sub-filter-group">
+                        <span class="rt-sub-label">Columns</span>
+                        <div class="rt-toggle-group">
+                            <button class="rt-toggle-btn active" id="col-all" data-col="all">All</button>
+                            <button class="rt-toggle-btn" id="col-single" data-col="single">Single</button>
+                            <button class="rt-toggle-btn" id="col-double" data-col="double">Double</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rt-grid">
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000fe2872088873cdc9244f32f0.png" alt="Isabella Clark">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Isabella Clark</h3>
+                            <p>Marketing Specialist</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>ATS Friendly</span><span>Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000006a3472089ff3c13bafb8cd20.png" alt="Daniel Martin">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Daniel Martin</h3>
+                            <p>Product Manager</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>Professional</span><span>ATS Friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000009a2872089daf10c7b99ee68d.png" alt="Olivia White">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Olivia White</h3>
+                            <p>Data Analyst</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>Minimal</span><span>ATS Friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000009ea472089cfaeb69b3d89ae4.png" alt="Ethan Williams">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Ethan Williams</h3>
+                            <p>Software Engineer</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>Modern</span><span>Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_0000000071d07208b294120670a628c3.png" alt="Chloe Anderson">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Chloe Anderson</h3>
+                            <p>HR Manager</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>Professional</span><span>ATS Friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rt-card">
+                    <div class="rt-card-img">
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000057072088accbabd51e86f76.png" alt="Benjamin Thomas">
+                        <div class="rt-card-overlay">
+                            <button class="btn btn-secondary">Preview</button>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <div class="rt-card-info">
+                        <div class="rt-card-header">
+                            <h3>Benjamin Thomas</h3>
+                            <p>Sales Manager</p>
+                        </div>
+                        <div class="rt-card-tags">
+                            <span>Popular</span><span>ATS Friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rt-pagination">
+                <button class="rt-page-btn active">1</button>
+                <button class="rt-page-btn">2</button>
+                <button class="rt-page-btn">3</button>
+                <span class="rt-page-dots">...</span>
+                <button class="rt-page-btn">12</button>
+                <button class="rt-page-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+        <!-- Footer Section -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-cta">
+                    <h2>Land what's next</h2>
+                    <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                    <button class="btn btn-dark">Get started today</button>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Plans and Pricing</a></li>
+                            <li><a href="#">AI Cover Letters</a></li>
+                            <li><a href="#">AI Resume Checker</a></li>
+                            <li><a href="#">Resume Templates</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Sell Templates</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Features</h4>
+                        <ul>
+                            <li><a href="#">AI Cover Letter Generator</a></li>
+                            <li><a href="#">Resume Keyword Optimizer</a></li>
+                            <li><a href="#">ATS Resume Checker</a></li>
+                            <li><a href="#">Resume Design Templates</a></li>
+                            <li><a href="#">AI Connection Request Writer</a></li>
+                            <li><a href="#">AI Resignation Letter Writer</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                            <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                            <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                            <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                            <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <p>support@mockbee.com</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>Â© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    <script src="../JAVA SCRIPT/script.js"></script>
+    
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

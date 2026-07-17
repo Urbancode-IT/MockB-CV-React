@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockB CV | Premium AI Portfolio Builder</title>
+    <meta name="description" content="Generate stunning, professional, and SEO-optimized web portfolios with MockB AI. Showcase your work and stand out instantly.">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar (Identical layout to Home Page, all paths updated relatively) -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD COVER LETTER GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="portfolio-trigger">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="portfolio-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../PORTFOLIO BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <div class="item-text">
+                                            <h4>Build Portfolio</h4>
+                                            <p>Generate professional web portfolios with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../WHY MOCKB PORTFOLIO AND ITS USES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-circle-question"></i></div>
+                                        <div class="item-text">
+                                            <h4>Why Portfolio and its Uses</h4>
+                                            <p>Discover the power and key benefits of a professional portfolio.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#about">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="portfolio-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-reveal">Stand Out Instantly with <span>AI Web Portfolios</span></h1>
+                    <p class="animate-reveal">Transform your achievements and projects into a stunning, responsive personal website. Optimized for SEO, ATS keyword compliance, and recruiters’ attention.</p>
+                    
+                    <div class="hero-buttons animate-reveal">
+                        <a href="#templates-showcase" class="btn btn-primary">Build Your Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#how-it-works" class="btn btn-secondary">See How it Works</a>
+                    </div>
+
+                    <div class="trust-stats animate-reveal">
+                        <div class="stat-item">
+                            <h3>1-Click</h3>
+                            <p>Sync from Resume</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>SEO & Search Optimized</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <h3>99.9%</h3>
+                            <p>Hosted Uptime</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Animated Interactive UI Showcase Moved Down -->
+        <section class="showcase-section" style="padding-bottom: 8rem; text-align: center;">
+            <div class="container">
+                <div class="hero-showcase animate-reveal" style="animation-delay: 0.2s;">
+                    <div class="showcase-window">
+                        <div class="window-bar">
+                            <div class="window-dot red"></div>
+                            <div class="window-dot yellow"></div>
+                            <div class="window-dot green"></div>
+                            <div class="window-url">mockb.cv/alex-dev</div>
+                        </div>
+                        <div class="window-body">
+                            <div class="mock-nav">
+                                <div class="mock-logo">AD</div>
+                                <div class="mock-links"><span>Projects</span><span>Experience</span><span>Contact</span></div>
+                            </div>
+                            <div class="mock-hero">
+                                <div class="mock-avatar">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <h2>Alex Carter</h2>
+                                <p>Senior Fullstack Engineer & Tech Blogger</p>
+                                <div class="mock-tags">
+                                    <span>React</span><span>NodeJS</span><span>AWS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explanation Section -->
+        <section class="explanation-section" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why a Modern Digital Portfolio is <span>Critical</span></h2>
+                    <p>In today's competitive job market, a static PDF is no longer enough. Recruiters seek dynamic proof of your expertise and real-time project hosting.</p>
+                </div>
+
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+                        <h3>Interactive Live Showcase</h3>
+                        <p>Allow hiring managers to run your live software demos, view github commits, and interact directly with your UI/UX designs right from their browser.</p>
+                    </div>
+
+                    <div class="explanation-card">
+                        <div class="card-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                        <h3>Professional Personal Brand</h3>
+                        <p>Own a unified link (mockb.cv/yourname) containing your resume, achievements, social handles, and articles that looks breathtaking on any device.</p>
+                    </div>
+
+                    <div class="explanation-card">
+                        <div class="card-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                        <h3>SEO & Hiring Advantage</h3>
+                        <p>Get discovered organically on Google Search by indexers looking for talent in your zip code. Fully integrated with automated resume linking.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Templates Section (Filterable: Style-wise and Role-wise) -->
+        <section class="templates-section" id="templates-showcase">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Select Your <span>Portfolio Template</span></h2>
+                    <p>Explore gorgeous layouts fully compatible with your custom background themes, tailored by design style or career industry.</p>
+                </div>
+
+                <!-- Tabs Filter Controls -->
+                <div class="filter-tabs">
+                    <button class="tab-btn active" onclick="filterCategory('styles')">Style-wise Designs</button>
+                    <button class="tab-btn" onclick="filterCategory('roles')">Job Role-wise Designs</button>
+                </div>
+
+                <!-- Templates Display Grid -->
+                <div class="templates-grid" id="templates-display-grid">
+                    <!-- Cards will be populated dynamically by JS to handle seamless filters -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1 Below Showcase: Interactive Layout Builder Panel -->
+        <section class="layout-builder-section">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-content text-left">
+                        <span class="accent-tag">Real-Time Customizer</span>
+                        <h2>Drag-and-Drop <span>Live Customization</span></h2>
+                        <p>Fine-tune every aspect of your digital portfolio without writing a single line of code. Swap stylesheets, alter layouts, rearrange sections, and customize typography on the fly using our sleek WYSIWYG editor panel.</p>
+                        
+                        <ul class="feature-bullets">
+                            <li><i class="fa-solid fa-square-check"></i> <strong>Sleek Glassmorphic Overlays:</strong> Toggle premium frosted glass controls.</li>
+                            <li><i class="fa-solid fa-square-check"></i> <strong>Harmonious HSL Palettes:</strong> Choose tailored, brand-tested color tokens.</li>
+                            <li><i class="fa-solid fa-square-check"></i> <strong>Grid & Block Layouts:</strong> Align items in developer monospace grids.</li>
+                        </ul>
+                    </div>
+                    <div class="split-media">
+                        <div class="media-container glass-card">
+                            <div class="panel-header">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>MockB Customizer Panel</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="slider-row">
+                                    <label>Glass Blur</label>
+                                    <div class="slider-track"><div class="slider-fill" style="width: 75%;"></div><div class="slider-handle" style="left: 75%;"></div></div>
+                                </div>
+                                <div class="slider-row">
+                                    <label>Theme Glow</label>
+                                    <div class="slider-track"><div class="slider-fill" style="width: 90%;"></div><div class="slider-handle" style="left: 90%;"></div></div>
+                                </div>
+                                <div class="color-swatches">
+                                    <span class="swatch gold active"></span>
+                                    <span class="swatch blue"></span>
+                                    <span class="swatch purple"></span>
+                                    <span class="swatch red"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 Below Showcase: ATS & SEO Search Visibility -->
+        <section class="ats-seo-section">
+            <div class="container">
+                <div class="split-layout reverse-row">
+                    <div class="split-content text-left">
+                        <span class="accent-tag">Hiring Advantage</span>
+                        <h2>Engineered for <span>ATS & SEO Discovery</span></h2>
+                        <p>Our personal web templates are generated with 100% semantic HTML5 tags and search-optimized schema markers. When a hiring manager searches on Google or when ATS crawlers parse your linked resume, your high-fidelity portfolio scores peak marks automatically.</p>
+                        
+                        <div class="metric-row">
+                            <div class="metric-card">
+                                <h4>100%</h4>
+                                <p>Google Lighthouse Core Web Vitals</p>
+                            </div>
+                            <div class="metric-card">
+                                <h4>95+</h4>
+                                <p>Hiring Manager SEO Discoverability</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-media">
+                        <div class="seo-card glass-card">
+                            <div class="seo-header">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span>Google Search Result Preview</span>
+                            </div>
+                            <div class="seo-body">
+                                <h3>Alex Carter | Professional Senior Software Engineer</h3>
+                                <div class="seo-url">https://mockb.cv/alex-carter</div>
+                                <p>Explore Alex's modern developer portfolio, live responsive projects, system architectural designs, and developer case studies. Hire Alex today.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 Below Showcase: Step-by-Step Roadmap / FAQ -->
+        <section class="publishing-roadmap-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Go Live in <span>3 Easy Steps</span></h2>
+                    <p>Generating your digital presence with MockB takes under 5 minutes from start to finish. Host your assets completely free.</p>
+                </div>
+
+                <div class="roadmap-grid">
+                    <div class="roadmap-step">
+                        <div class="step-badge">01</div>
+                        <h3>Import Your Resume</h3>
+                        <p>Sync your existing MockB resume or upload a PDF to automatically fill skills, experience, and educational background parameters.</p>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-badge">02</div>
+                        <h3>Choose Design Theme</h3>
+                        <p>Pick from our premium, high-impact glassmorphic, developer grid, or minimalist portfolio styles that align with your career goal.</p>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-badge">03</div>
+                        <h3>Publish and Share</h3>
+                        <p>Deploy to our cloud server instantly. Connect your personal custom domain name with automatic high-speed SSL protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section (Identical to Home Page) -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-cta">
+                    <h2>Land what's next</h2>
+                    <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                    <button class="btn btn-dark">Get started today</button>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Plans and Pricing</a></li>
+                            <li><a href="#">AI Cover Letters</a></li>
+                            <li><a href="#">AI Resume Checker</a></li>
+                            <li><a href="#">Resume Templates</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Sell Templates</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Features</h4>
+                        <ul>
+                            <li><a href="#">AI Cover Letter Generator</a></li>
+                            <li><a href="#">Resume Keyword Optimizer</a></li>
+                            <li><a href="#">ATS Resume Checker</a></li>
+                            <li><a href="#">Resume Design Templates</a></li>
+                            <li><a href="#">AI Connection Request Writer</a></li>
+                            <li><a href="#">AI Resignation Letter Writer</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                            <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                            <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                            <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                            <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <p>support@mockbee.com</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="../JS/script.js"></script>
+</body>
+</html>

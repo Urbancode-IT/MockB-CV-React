@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        var errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.height = '100%';
+        errorDiv.style.backgroundColor = 'rgba(255,0,0,0.9)';
+        errorDiv.style.color = 'white';
+        errorDiv.style.zIndex = '999999';
+        errorDiv.style.padding = '20px';
+        errorDiv.style.overflow = 'auto';
+        errorDiv.style.fontSize = '18px';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.innerText = 'CRASH REPORT:\n' + message + '\n\nSource: ' + source + ':' + lineno + ':' + colno + '\n\nStack:\n' + (error ? error.stack : 'No stack trace');
+        var btn = document.createElement('button');
+        btn.innerText = 'Dismiss';
+        btn.onclick = function() { document.body.removeChild(errorDiv); };
+        errorDiv.appendChild(document.createElement('br'));
+        errorDiv.appendChild(btn);
+        document.body.appendChild(errorDiv);
+        return false;
+      };
+      window.onunhandledrejection = function(event) {
+        window.onerror('Unhandled Promise Rejection: ' + event.reason, '', 0, 0, event.reason);
+      };
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockB CV | Premium AI Resume Builder</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amatic+SC:wght@400;700&family=Bungee+Shade&family=Caveat:wght@400..700&family=Caveat+Brush&family=Comfortaa:wght@300..700&family=Elsie:wght@400;900&family=Lobster&family=Pacifico&family=Parisienne&family=Vibu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=PT+Serif&family=Cormorant+Garamond&family=Crimson+Text&family=Source+Serif+Pro&family=Literata&family=Aleo&family=Vollkorn&family=Alegreya&family=Zilla+Slab&family=EB+Garamond&family=Crimson+Pro&family=Amiri&family=Inter&family=Lato&family=Barlow&family=Roboto&family=Nunito&family=Karla&family=Titillium+Web&family=Jost&family=Rubik&family=Open+Sans&family=Mulish&family=Work+Sans&family=Fira+Sans&family=Asap&family=IBM+Plex+Sans&family=Inconsolata&family=Overpass+Mono&family=Source+Code+Pro&family=Space+Mono&family=IBM+Plex+Mono&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body style="background-color: #0D0D0D; color: #FFFFFF;">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>

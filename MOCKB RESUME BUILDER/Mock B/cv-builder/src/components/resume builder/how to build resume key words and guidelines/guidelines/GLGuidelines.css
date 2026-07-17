@@ -1,0 +1,156 @@
+.gl-infographic-wrapper {
+    padding: 100px 0;
+    overflow-x: clip;
+}
+
+.gl-steps-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.gl-step-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px; 
+    position: relative;
+}
+
+.gl-step-row.animate .gl-folder-tab,
+.gl-step-row.animate .gl-content-bar {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.gl-step-row:hover {
+    transform: translateY(-5px);
+    z-index: 100 !important;
+}
+
+/* Colors and staggering matching the reference image */
+.gl-step-row:nth-child(1) { margin-left: 0; z-index: 5; --step-bg: #FACC15; --progress: 25%; }
+.gl-step-row:nth-child(2) { margin-left: 40px; z-index: 4; --step-bg: #EAB308; --progress: 50%; }
+.gl-step-row:nth-child(3) { margin-left: 80px; z-index: 3; --step-bg: #A16207; --progress: 75%; }
+.gl-step-row:nth-child(4) { margin-left: 120px; z-index: 2; --step-bg: #525252; --progress: 90%; color: white !important; }
+.gl-step-row:nth-child(5) { margin-left: 160px; z-index: 1; --step-bg: #262626; --progress: 100%; color: white !important; }
+
+.gl-step-row:nth-child(4) .gl-folder-tab, 
+.gl-step-row:nth-child(5) .gl-folder-tab { color: white; }
+
+.gl-folder-tab {
+    width: 250px;
+    min-height: 160px;
+    background: var(--step-bg);
+    border-radius: 0 16px 16px 16px;
+    padding: 30px;
+    position: relative;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    z-index: 2;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transition-delay: inherit;
+}
+
+.gl-folder-tab::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100px;
+    height: 20px;
+    background: inherit;
+    border-radius: 12px 12px 0 0;
+}
+
+.gl-folder-tab .gl-step-label {
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
+.gl-folder-tab .gl-step-id {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.gl-folder-tab .gl-step-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.gl-folder-tab .gl-step-progress::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; height: 100%;
+    width: var(--progress);
+    background: rgba(0,0,0,0.3);
+}
+
+.gl-content-bar {
+    flex: 1;
+    background: #141414;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-left: -20px;
+    padding: 30px 40px 30px 60px;
+    border-radius: 20px;
+    z-index: 1;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transition-delay: inherit;
+}
+
+.gl-content-main { flex: 1; }
+.gl-content-main h3 { 
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    color: var(--primary-color); 
+    margin-bottom: 10px; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.gl-content-main p { font-size: 0.95rem; margin-bottom: 0; color: #A0A0A0; line-height: 1.7; }
+
+.gl-content-icon {
+    width: 60px; height: 60px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.gl-badge-tag {
+    display: inline-block; background: rgba(238,195,12,0.1);
+    border: 1px solid rgba(238,195,12,0.2); color: var(--primary-color);
+    padding: 4px 12px; border-radius: 50px; font-size: 0.8rem;
+    font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .gl-step-row { margin-left: 0 !important; margin-bottom: 20px; flex-direction: column; align-items: flex-start; }
+    .gl-folder-tab { width: 100%; border-radius: 20px 20px 0 0; min-height: auto; padding: 20px; }
+    .gl-folder-tab::before { display: none; }
+    .gl-content-bar { margin-left: 0; width: 100%; border-radius: 0 0 20px 20px; padding: 30px; }
+}

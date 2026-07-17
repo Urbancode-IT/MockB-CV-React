@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master the Art of Resume Building | MockB CV Guidelines</title>
+    <meta name="description" content="Learn how to build a professional, ATS-friendly resume that catches a recruiter's eye in seconds.">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="solid-nav">
+    <!-- Navbar -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="guide-hero">
+            <div class="hero-content container" data-aos>
+                <h1>Master the Art of <span>Resume Building</span></h1>
+                <p>Unlock the secrets of hiring managers. From ATS optimization to high-impact content, learn how to craft a resume that actually lands interviews.</p>
+            </div>
+        </section>
+
+        <!-- Infographic Guidelines Section -->
+        <section class="infographic-wrapper">
+            <div class="container">
+                <div class="steps-container">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-row" data-aos>
+                        <div class="folder-tab">
+                            <div class="step-label">Step</div>
+                            <div class="step-id">01</div>
+                            <div class="step-progress"></div>
+                        </div>
+                        <div class="content-bar">
+                            <div class="content-icon"><i class="fa-solid fa-eye"></i></div>
+                            <div class="content-main">
+                                <h3>What Recruiters Actually Look For</h3>
+                                <p>Recruiters scan resumes in <strong>6–8 seconds</strong>. You must grab their attention instantly with job relevance, skills match, and clean formatting.</p>
+                            </div>
+                            <div class="content-action">
+                                <span class="badge-tag">Scan-Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-row" data-aos>
+                        <div class="folder-tab">
+                            <div class="step-label">Step</div>
+                            <div class="step-id">02</div>
+                            <div class="step-progress"></div>
+                        </div>
+                        <div class="content-bar">
+                            <div class="content-icon"><i class="fa-solid fa-sitemap"></i></div>
+                            <div class="content-main">
+                                <h3>Perfect Resume Structure</h3>
+                                <p>Stick to a standard hierarchy: Header, Summary, Skills, Experience, Projects, and Education. Avoid fancy graphics that confuse ATS.</p>
+                            </div>
+                            <div class="content-action">
+                                <span class="badge-tag">ATS Friendly</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-row" data-aos>
+                        <div class="folder-tab">
+                            <div class="step-label">Step</div>
+                            <div class="step-id">03</div>
+                            <div class="step-progress"></div>
+                        </div>
+                        <div class="content-bar">
+                            <div class="content-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                            <div class="content-main">
+                                <h3>How to Write Strong Content</h3>
+                                <p>Focus on results using the formula: <strong>Action Verb + Task + Result</strong>. Turn responsibilities into measurable achievements.</p>
+                            </div>
+                            <div class="content-action">
+                                <span class="badge-tag">Result-Driven</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-row" data-aos>
+                        <div class="folder-tab">
+                            <div class="step-label">Step</div>
+                            <div class="step-id">04</div>
+                            <div class="step-progress"></div>
+                        </div>
+                        <div class="content-bar">
+                            <div class="content-icon"><i class="fa-solid fa-key"></i></div>
+                            <div class="content-main">
+                                <h3>Keywords (ATS Optimization)</h3>
+                                <p>Identify repeated terms in the Job Description and include them naturally. Match exact phrasing like "React.js" instead of just "React".</p>
+                            </div>
+                            <div class="content-action">
+                                <span class="badge-tag">Optimized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-row" data-aos>
+                        <div class="folder-tab">
+                            <div class="step-label">Step</div>
+                            <div class="step-id">05</div>
+                            <div class="step-progress"></div>
+                        </div>
+                        <div class="content-bar">
+                            <div class="content-icon"><i class="fa-solid fa-award"></i></div>
+                            <div class="content-main">
+                                <h3>Recruiter Mindset (Golden Tips)</h3>
+                                <p>Customize every resume, keep it concise (1-2 pages), and quantify everything with numbers. Save your file professionally as Name_Role.pdf.</p>
+                            </div>
+                            <div class="content-action">
+                                <span class="badge-tag">Pro Tip</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Box -->
+        <section class="guide-section container" style="padding-top: 0; padding-bottom: 8rem;">
+            <div class="guide-card" style="text-align: center; border-style: dashed; border-color: var(--primary); background: rgba(238, 195, 12, 0.03);">
+                <i class="fa-solid fa-rocket" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h3>Ready to Build Your Winning Resume?</h3>
+                <p>Apply all these expert rules automatically with our AI-powered builder.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="btn btn-primary">Start Building Now</a>
+                </div>
+            </div>
+        </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+    </main>
+
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        // Scroll Animations
+        const guideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            guideObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

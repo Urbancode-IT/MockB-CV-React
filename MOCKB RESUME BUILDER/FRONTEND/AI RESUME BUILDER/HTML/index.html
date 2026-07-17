@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder ATS Friendly | MockB CV</title>
+    <meta name="description" content="Create a professional, ATS-friendly resume in minutes using AI. Just describe yourself and our AI builds a polished, error-free resume for you.">
+    <link rel="stylesheet" href="../CSS/ai-builder.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ NAVBAR (copied from home page) ============ -->
+<header id="header">
+    <div class="container">
+        <nav>
+            <a href="../../index.html" class="logo">
+                <i class="fa-solid fa-bee logo-icon"></i>
+                <span>MockB CV</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                <li class="has-mega-menu">
+                    <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="mega-menu" id="resume-mega-menu">
+                        <div class="container">
+                            <div class="mega-menu-grid">
+                                <a href="index.html" class="mega-menu-item active-item">
+                                    <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                    <div class="item-text">
+                                        <h4>AI Resume Builder ATS Friendly</h4>
+                                        <p>Generate professional resumes with AI power.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                    <div class="item-text">
+                                        <h4>Resume ATS Score Checker</h4>
+                                        <p>Analyze your resume against ATS algorithms.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                    <div class="item-text">
+                                        <h4>Resume Examples</h4>
+                                        <p>Create resumes that pass automated screening.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                    <div class="item-text">
+                                        <h4>Role-based Resume Building</h4>
+                                        <p>Tailored templates for specific job roles.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                    <div class="item-text">
+                                        <h4>Create Resume Based on Job Description</h4>
+                                        <p>Match your resume to specific job requirements.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                    <div class="item-text">
+                                        <h4>How to Build Resume: Keywords and Guideline</h4>
+                                        <p>Expert tips on keywords and formatting.</p>
+                                    </div>
+                                </a>
+                                <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                    <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                    <div class="item-text">
+                                        <h4>Resume Upgrader</h4>
+                                        <p>Enhance and elevate your existing resume.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">Resume <span class="hover-prefix">Customizer</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li><a href="#">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li><a href="#">Languages <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="aib-hero">
+        <div class="container">
+            <div class="hero-badge"><i class="fa-solid fa-robot"></i> Powered by Advanced AI</div>
+            <h1>Build Your <span class="gold">ATS-Friendly</span> Resume<br>With One Prompt</h1>
+            <p class="hero-sub">Just describe yourself — your experience, skills, and goals. Our AI crafts a spotless, grammar-checked, keyword-optimized resume tailored to get you hired.</p>
+            <div class="hero-trust">
+                <div class="trust-pill"><i class="fa-solid fa-circle-check"></i> ATS Optimized</div>
+                <div class="trust-pill"><i class="fa-solid fa-circle-check"></i> Grammar & Spelling Corrected</div>
+                <div class="trust-pill"><i class="fa-solid fa-circle-check"></i> AI Enhanced Content</div>
+                <div class="trust-pill"><i class="fa-solid fa-circle-check"></i> PDF & Word Download</div>
+            </div>
+            <a href="#prompt-section" class="btn btn-primary btn-lg hero-cta">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Start Building Free
+            </a>
+        </div>
+        <div class="hero-glow"></div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="how-section">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-circle-info"></i> How It Works</div>
+            <h2 class="section-title">Three steps to your perfect resume</h2>
+            <p class="section-sub">No forms, no confusing editors — just tell the AI about yourself.</p>
+            <div class="steps-row">
+                <div class="step-box">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <h3>Enter Your Details</h3>
+                    <p>Type everything about yourself in the prompt — name, role, experience, education, skills, achievements. The more detail, the better your resume.</p>
+                </div>
+                <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="step-box">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h3>AI Generates Resume</h3>
+                    <p>Our AI processes your input, fixes all grammar and spelling, adds relevant content, and formats it as an ATS-friendly professional resume.</p>
+                </div>
+                <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="step-box">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fa-solid fa-download"></i></div>
+                    <h3>Preview & Download</h3>
+                    <p>Preview your resume instantly. Request changes via follow-up prompts. Download as PDF or Word when you're happy with the result.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FEATURES EXPLAINER ============ -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-sparkles"></i> What Our AI Does</div>
+            <h2 class="section-title">More than just a resume generator</h2>
+            <div class="features-grid-ai">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-spell-check"></i></div>
+                    <h3>Grammar & Spelling Fix</h3>
+                    <p>Every word is analyzed and corrected. No typos, no awkward phrasing — just clean, professional language that impresses recruiters.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>ATS Keyword Optimization</h3>
+                    <p>Our AI strategically embeds industry-relevant keywords so your resume clears ATS filters and lands in front of human recruiters.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>AI Content Enhancement</h3>
+                    <p>The AI adds relevant achievements, action verbs, and industry-specific content that makes your experience shine beyond what you described.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-rotate"></i></div>
+                    <h3>Iterative Refinement</h3>
+                    <p>Not happy with a section? Simply type your change request in the follow-up prompt and the AI updates only what you need.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Live Preview</h3>
+                    <p>See your resume rendered in real time as the AI builds it. Review every section before downloading to ensure perfection.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-file-arrow-down"></i></div>
+                    <h3>PDF & Word Export</h3>
+                    <p>Download your final resume as a professionally formatted PDF or an editable Word document — your choice, your format.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ AI PROMPT SECTION ============ -->
+    <section class="prompt-section" id="prompt-section">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-robot"></i> AI Resume Builder</div>
+            <h2 class="section-title">Tell the AI about yourself</h2>
+            <p class="section-sub">Describe your background in detail below. Include your name, job title, years of experience, companies you've worked at, education, skills, and any achievements. The AI will handle the rest.</p>
+
+            <div class="builder-layout">
+
+                <!-- LEFT: Prompt Input -->
+                <div class="prompt-panel">
+                    <div class="prompt-card">
+                        <div class="prompt-card-header">
+                            <span><i class="fa-solid fa-pen-to-square"></i> Your Details Prompt</span>
+                            <span class="char-count" id="char-count">0 / 3000</span>
+                        </div>
+                        <textarea
+                            id="user-prompt"
+                            class="prompt-textarea"
+                            maxlength="3000"
+                            placeholder="Example: My name is Arjun Kumar. I am a Senior Software Engineer with 5 years of experience. I worked at Infosys from 2019 to 2022 as a Backend Developer where I built REST APIs using Java and Spring Boot. Then I joined TCS in 2022 as a Senior Engineer working on microservices architecture. I have a B.Tech in Computer Science from Anna University 2019. My skills include Java, Python, Spring Boot, AWS, Docker, Kubernetes, MySQL. I want to apply for a Senior Software Engineer role..."
+                        ></textarea>
+
+                        <div class="prompt-tips">
+                            <p><i class="fa-solid fa-lightbulb"></i> <strong>Tips for best results:</strong></p>
+                            <ul>
+                                <li>Include your full name and current job title</li>
+                                <li>List all companies with dates and your role there</li>
+                                <li>Mention specific technologies, tools, and achievements</li>
+                                <li>Include your education, certifications, and skills</li>
+                                <li>Mention the target job role you're applying for</li>
+                            </ul>
+                        </div>
+
+                        <button class="btn-generate" id="btn-generate">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span id="btn-generate-text">Generate My Resume</span>
+                        </button>
+                    </div>
+
+                    <!-- Follow-up prompt (shown after generation) -->
+                    <div class="followup-card" id="followup-card" style="display:none;">
+                        <div class="prompt-card-header">
+                            <span><i class="fa-solid fa-rotate"></i> Request Changes</span>
+                        </div>
+                        <textarea
+                            id="followup-prompt"
+                            class="prompt-textarea small"
+                            maxlength="1000"
+                            placeholder="Example: Change my job title to Lead Engineer. Add more achievements to my TCS experience. Make the summary more impactful..."
+                        ></textarea>
+                        <button class="btn-generate secondary" id="btn-update">
+                            <i class="fa-solid fa-rotate"></i> Update Resume
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Preview Panel -->
+                <div class="preview-panel" id="preview-panel">
+
+                    <!-- Empty state -->
+                    <div class="preview-empty" id="preview-empty">
+                        <div class="empty-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
+                        <h3>Your resume will appear here</h3>
+                        <p>Fill in your details in the prompt on the left and click "Generate My Resume" to see your AI-generated resume.</p>
+                    </div>
+
+                    <!-- Loading state -->
+                    <div class="preview-loading" id="preview-loading" style="display:none;">
+                        <div class="ai-loader">
+                            <div class="loader-ring"></div>
+                            <div class="loader-ring"></div>
+                            <div class="loader-ring"></div>
+                        </div>
+                        <h3>AI is crafting your resume...</h3>
+                        <div class="loading-steps" id="loading-steps">
+                            <div class="load-step active" id="ls1"><i class="fa-solid fa-check-circle"></i> Analyzing your details</div>
+                            <div class="load-step" id="ls2"><i class="fa-solid fa-circle-notch fa-spin"></i> Fixing grammar & spelling</div>
+                            <div class="load-step" id="ls3"><i class="fa-solid fa-circle-notch fa-spin"></i> Optimizing ATS keywords</div>
+                            <div class="load-step" id="ls4"><i class="fa-solid fa-circle-notch fa-spin"></i> Enhancing content</div>
+                            <div class="load-step" id="ls5"><i class="fa-solid fa-circle-notch fa-spin"></i> Formatting resume</div>
+                        </div>
+                    </div>
+
+                    <!-- Generated Resume Preview -->
+                    <div class="resume-preview-wrapper" id="resume-preview-wrapper" style="display:none;">
+                        <div class="preview-toolbar">
+                            <span class="preview-label"><i class="fa-solid fa-eye"></i> Resume Preview</span>
+                            <div class="preview-actions">
+                                <button class="prev-action-btn" id="btn-pdf">
+                                    <i class="fa-solid fa-file-pdf"></i> Download PDF
+                                </button>
+                                <button class="prev-action-btn" id="btn-word">
+                                    <i class="fa-solid fa-file-word"></i> Download Word
+                                </button>
+                            </div>
+                        </div>
+                        <div class="resume-doc" id="resume-doc">
+                            <!-- Dynamically filled by JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ DOWNLOAD OPTIONS SECTION ============ -->
+    <section class="download-section">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-download"></i> Export Options</div>
+            <h2 class="section-title">Download in your preferred format</h2>
+            <p class="section-sub">Once your resume is ready, download it in the format that suits your application best.</p>
+            <div class="download-cards">
+                <div class="dl-card">
+                    <div class="dl-icon pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3>PDF Format</h3>
+                    <p>Pixel-perfect formatting that looks exactly the same on every device. Best for online job applications and email submissions.</p>
+                    <ul class="dl-features">
+                        <li><i class="fa-solid fa-check"></i> Preserves layout exactly</li>
+                        <li><i class="fa-solid fa-check"></i> ATS-readable PDF</li>
+                        <li><i class="fa-solid fa-check"></i> Universal compatibility</li>
+                    </ul>
+                </div>
+                <div class="dl-card">
+                    <div class="dl-icon word-icon"><i class="fa-solid fa-file-word"></i></div>
+                    <h3>Word Format (.docx)</h3>
+                    <p>Fully editable document so you can make final tweaks manually. Perfect for recruiters who request Word format submissions.</p>
+                    <ul class="dl-features">
+                        <li><i class="fa-solid fa-check"></i> Fully editable content</li>
+                        <li><i class="fa-solid fa-check"></i> Standard .docx format</li>
+                        <li><i class="fa-solid fa-check"></i> Compatible with MS Word</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FAQ SECTION ============ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-circle-question"></i> FAQ</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q"><span>Do I need to know how to write a resume?</span><i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-a">No! That's the whole point. Just describe your background naturally in plain text — like you're telling a friend about your career. Our AI takes care of all the professional formatting, language, and structure.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q"><span>Is this resume actually ATS-friendly?</span><i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-a">Yes. Our AI uses clean, machine-readable formatting and strategically places industry-relevant keywords that align with modern ATS (Applicant Tracking System) requirements. Your resume is designed to pass automated screening.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q"><span>Can I make changes after the resume is generated?</span><i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-a">Absolutely. After the AI generates your resume, a "Request Changes" box appears. Simply type what you want changed — like "add more bullet points to my experience" or "change my summary tone to be more executive" — and the AI updates it instantly.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q"><span>What information should I include in my prompt?</span><i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-a">For the best resume, include: your full name, target job title, years of experience, company names and roles with dates, key responsibilities and achievements, education details, technical and soft skills, certifications, and the type of role you're applying for.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-q"><span>Is the download free?</span><i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-a">Yes, generating and previewing your resume is completely free. PDF and Word downloads are available. Premium features like unlimited regenerations and custom templates are available with a MockB CV Pro plan.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA SECTION ============ -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-glow"></div>
+                <h2>Ready to land your dream job?</h2>
+                <p>Join thousands of professionals who built their winning resume with MockB CV's AI. It takes less than 5 minutes.</p>
+                <a href="#prompt-section" class="btn btn-primary btn-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Build My Resume Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+<script src="../JAVA SCRIPT/ai-builder.js"></script>
+</body>
+</html>

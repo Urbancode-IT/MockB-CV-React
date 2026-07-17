@@ -1,0 +1,46 @@
+.gl-guide-section {
+    padding: 4rem 0;
+}
+
+.gl-guide-card {
+    background: transparent;
+    border: 1px dashed var(--primary-color);
+    border-radius: 20px;
+    padding: 3rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.gl-guide-card:hover { 
+    background: rgba(255, 255, 255, 0.05); 
+}
+
+.gl-guide-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.gl-guide-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.gl-guide-card p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.gl-guide-card .btn-hero-primary {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+}

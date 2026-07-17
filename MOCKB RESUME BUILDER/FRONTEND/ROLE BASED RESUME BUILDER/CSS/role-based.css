@@ -1,0 +1,706 @@
+:root {
+    --primary-color: #EEC30C;
+    --primary-glow: rgba(238, 195, 12, 0.4);
+    --bg-dark: #0D0D0D;
+    --bg-card: rgba(26, 26, 26, 0.6);
+    --text-white: #FFFFFF;
+    --text-gray: #A0A0A0;
+    --font-main: 'Satoshi', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Utility */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+}
+
+/* Horizontal Hero Slider */
+.hero-slider-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.hero-slider-container {
+    display: flex;
+    width: 300%; /* 3 slides */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.hero-slide {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    position: relative;
+}
+
+.slide-content {
+    max-width: 800px;
+    z-index: 2;
+    text-align: center;
+}
+
+.slide-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.slide-content h1 span {
+    color: var(--primary-color);
+    text-shadow: 0 0 20px var(--primary-glow);
+}
+
+.slide-content p {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Floating UI Elements */
+.floating-element {
+    position: absolute;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+}
+
+.el-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.el-2 { top: 60%; right: 10%; animation-delay: 1s; }
+.el-3 { bottom: 15%; left: 25%; animation-delay: 2s; }
+.el-4 { top: 15%; right: 25%; animation-delay: 1.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+/* Slider Controls */
+.slider-nav {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.nav-dot {
+    width: 50px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.nav-dot.active {
+    background: var(--primary-color);
+    width: 80px;
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* 3D Card Animation Section - Styled to match reference image */
+.roles-grid-section {
+    padding: 4rem 0 8rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.roles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 6rem 3rem;
+    padding: 0 5%;
+    margin-top: 2rem;
+}
+
+.role-card {
+    position: relative;
+    height: 280px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+/* Background colored shapes */
+.role-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    z-index: 0;
+    transition: all 0.4s ease;
+}
+
+/* Blue shape */
+.role-card:nth-child(3n+1)::before {
+    background: var(--primary-color);
+    transform: rotate(-6deg) scale(1.02);
+}
+
+/* Green shape */
+.role-card:nth-child(3n+2)::before {
+    background: var(--primary-color);
+    transform: rotate(6deg) scale(1.02);
+}
+
+/* Teal shape */
+.role-card:nth-child(3n+3)::before {
+    background: var(--primary-color);
+    transform: rotate(-6deg) scale(1.02);
+}
+
+.role-card:hover::before {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 4rem 1.8rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: #ffffff;
+    border-radius: 24px;
+    text-align: center;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Circular icon at the top center */
+.role-icon {
+    position: absolute !important;
+    top: -40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 80px !important;
+    height: 80px !important;
+    background: #e9e9e9 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 8px !important; /* Moves the centered icon a little bit down */
+    font-size: 2rem !important;
+    color: var(--primary-color) !important;
+    z-index: 2 !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    margin: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.role-icon::before {
+    transform: none !important;
+}
+
+.role-card:hover .role-icon {
+    color: #000 !important;
+}
+
+.role-card:hover .role-icon::before {
+    background: linear-gradient(to right, #000 30%, var(--primary-color) 50%, #000 70%) !important;
+    background-size: 200% auto !important;
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: icon-shine 2s linear infinite !important;
+}
+
+@keyframes icon-shine {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.role-card h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.role-card p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Bottom button that appears on hover */
+.generate-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    background: var(--primary-color);
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+}
+
+.role-card:hover .generate-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.generate-btn:hover {
+    background: #000;
+    color: var(--primary-color);
+}
+
+/* Page Features Section */
+.page-features-section {
+    padding: 8rem 0;
+    background: radial-gradient(circle at right, rgba(238, 195, 12, 0.05) 0%, transparent 50%);
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    margin-bottom: 8rem;
+}
+
+.feature-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.feat-icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(238, 195, 12, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.feature-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.feature-text p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.feature-list {
+    list-style: none;
+}
+
+.feature-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.feature-list li i {
+    color: var(--primary-color);
+}
+
+.feature-image {
+    flex: 1;
+    position: relative;
+    border-radius: 30px;
+    padding: 1rem;
+    background: var(--glass-bg);
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.floating-badge {
+    position: absolute;
+    background: var(--primary-color);
+    color: #000;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 20px var(--primary-glow);
+    animation: float 4s ease-in-out infinite;
+}
+
+.badge-1 { bottom: -20px; right: -20px; }
+.badge-2 { top: -20px; left: -20px; animation-delay: 1s; }
+
+/* Footer Re-styling to match Home Page */
+.main-footer {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    border-radius: 40px !important;
+    margin: 4rem 2rem 2rem !important;
+}
+
+.main-footer h2, .main-footer h4, .main-footer p, .main-footer a {
+    color: #000 !important;
+}
+
+.footer-cta h2 {
+    font-size: 4rem !important;
+    font-weight: 800 !important;
+}
+
+.footer-grid {
+    border-top: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.btn-dark {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+/* Template Showcase Section */
+.templates-showcase {
+    padding: 8rem 0;
+    background: #0a0a0a;
+}
+
+.role-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+
+.role-tab {
+    padding: 0.8rem 2.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-gray);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-size: 0.95rem;
+    backdrop-filter: blur(5px);
+}
+
+.role-tab:hover {
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.role-tab.active {
+    background: var(--primary-color);
+    color: #000;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 3rem;
+    padding: 0 5%;
+}
+
+.template-item {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    background: #151515;
+    transition: var(--transition);
+    height: 500px;
+}
+
+.template-item:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.template-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.8s ease;
+}
+
+.template-item:hover img {
+    transform: scale(1.05);
+}
+
+.template-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.template-item:hover .template-overlay {
+    opacity: 1;
+}
+
+.template-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    color: #fff;
+}
+
+.template-overlay .btn {
+    align-self: flex-start;
+}
+
+/* Categories Slideshow Styling */
+.tabs-slideshow-container {
+    width: 100%;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Ensure clones don't cause overflow */
+}
+
+.categories-slideshow {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: hidden !important; /* Hide scrollbar completely */
+    padding: 15px 0 !important;
+    gap: 2rem !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: auto;
+    user-select: none;
+    width: auto;
+    max-width: 100%;
+}
+
+.categories-slideshow::-webkit-scrollbar {
+    display: none;
+}
+
+.categories-slideshow .role-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white !important;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+.categories-slideshow .role-tab::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(238, 195, 12, 0) 0%,
+        rgba(238, 195, 12, 0.4) 50%,
+        rgba(238, 195, 12, 0) 100%
+    );
+    transform: rotate(25deg);
+    animation: tab-shine 5s infinite;
+}
+
+@keyframes tab-shine {
+    0% { left: -120%; }
+    25% { left: 150%; }
+    100% { left: 150%; }
+}
+
+.categories-slideshow .role-tab:hover {
+    color: var(--primary-color) !important;
+    transform: translateY(-5px);
+    background: rgba(238, 195, 12, 0.1);
+    border-color: var(--primary-color);
+}
+
+.categories-slideshow .role-tab.active {
+    background: var(--primary-color) !important;
+    color: black !important;
+    border-color: var(--primary-color);
+    font-weight: 700;
+}
+
+.categories-slideshow .role-tab.active::after {
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/* Solid Navbar for Sub-pages */
+.solid-nav #header {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 0;
+}
+
+.solid-nav #header nav .logo span {
+    color: white;
+}
+
+.back-link {
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    color: var(--primary-color) !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.back-link:hover {
+    background: var(--primary-color);
+    color: black !important;
+    transform: translateX(-10px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(238, 195, 12, 0.4);
+    border-color: var(--primary-color);
+}
+
+.back-link i {
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover i {
+    transform: translateX(-5px);
+}
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.page-loading .page-transition-overlay {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Animations & Transitions */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}

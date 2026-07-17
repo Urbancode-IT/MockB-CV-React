@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role-Based Cover Letter Builder | MockB CV</title>
+    <meta name="description" content="Generate professional cover letters tailored for specific IT roles with MockB AI.">
+    <!-- Link to Home Page Styles for Navbar/Footer -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <!-- Link to Specific Page Styles -->
+    <link rel="stylesheet" href="../CSS/role-based.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-loading">
+    <div class="page-transition-overlay"></div>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD COVER LETTER GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#use-cases">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section - Design Match with Image -->
+        <section class="image-layout-hero">
+            <div class="container">
+                <div class="hero-left" data-aos="fade-right">
+                    <div class="hero-badge-ribbon">
+                        Many Happy Faces Around The Globe
+                    </div>
+                    <h1 class="tiered-heading">
+                        <span class="top">Grow Your</span>
+                        <span class="mid">Career</span>
+                        <span class="bot">With Us</span>
+                    </h1>
+                    <p>Stop sending generic pitches. Our specialized AI engine crafts high-impact, role-specific cover letters that demonstrate deep industry expertise and perfectly align with modern recruiter expectations.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#features" class="btn btn-primary" style="padding: 15px 30px; border-radius: 12px; font-weight: 700; background: var(--primary-color); color: #000; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+                            Select Your Role <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+
+                <div class="hero-right" data-aos="fade-left">
+                    <div class="main-circle-bg"></div>
+                    
+                    <!-- Overlapping Circles with Professional Images -->
+                    <div class="person-circle pc-1">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" alt="Professional 1">
+                    </div>
+                    <div class="person-circle pc-2">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Professional 2">
+                    </div>
+                    <div class="person-circle pc-3">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop" alt="Professional 3">
+                    </div>
+
+                    <!-- Decorative elements from the image -->
+                    <div class="floating-dots">
+                        <div class="deco-element dot-purple"></div>
+                        <div class="deco-element dot-blue"></div>
+                        <div class="deco-element dot-yellow"></div>
+                        <div class="deco-element dot-pink"></div>
+                        <div class="deco-element dot-cyan"></div>
+                        <div class="deco-element dot-white"></div>
+                        <div class="deco-element dot-purple-small"></div>
+                        <div class="deco-element dot-yellow-large"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section container">
+            <div class="section-header" data-aos>
+                <h2>How It Works</h2>
+                <p>Three simple steps to a perfectly tailored cover letter.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div class="glass" style="padding: 2.5rem; text-align: center;" data-aos>
+                    <div style="width: 50px; height: 50px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #000; font-weight: 800; font-size: 1.2rem;">1</div>
+                    <h4>Choose Your Role</h4>
+                    <p style="color: var(--text-gray);">Select your specific job category and technical stack from our extensive list.</p>
+                </div>
+                <div class="glass" style="padding: 2.5rem; text-align: center;" data-aos>
+                    <div style="width: 50px; height: 50px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #000; font-weight: 800; font-size: 1.2rem;">2</div>
+                    <h4>Personalize Content</h4>
+                    <p style="color: var(--text-gray);">Provide a few details about your experience and the target company to personalize the narrative.</p>
+                </div>
+                <div class="glass" style="padding: 2.5rem; text-align: center;" data-aos>
+                    <div style="width: 50px; height: 50px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #000; font-weight: 800; font-size: 1.2rem;">3</div>
+                    <h4>Download & Apply</h4>
+                    <p style="color: var(--text-gray);">Review your ATS-optimized cover letter and download it in your preferred format.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Infographic Details Section - Design Match with Reference -->
+        <section class="infographic-section container" data-aos="fade-up">
+            <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 3rem;">The <span style="color: var(--primary-color)">Precision Advantage</span>: Why Generic Isn't Enough</h2>
+            </div>
+            
+            <div class="infographic-grid">
+                <!-- Card 01 -->
+                <div class="info-card-wrapper">
+                    <div class="card-number-bg">1</div>
+                    <div class="info-card glass">
+                        <div class="card-border-accent accent-cyan"></div>
+                        <div class="card-inner-content">
+                            <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
+                            <span class="card-label">STRATEGY</span>
+                            <h3>Precision Targeting</h3>
+                            <p style="margin-bottom: 1.5rem;">In a competitive market, a general cover letter is often ignored. A role-based approach demonstrates that you aren't just looking for <em>any</em> job—you're the perfect fit for <em>this</em> specific role.</p>
+                            <ul style="list-style: none; color: var(--text-gray); text-align: left; font-size: 0.9rem;">
+                                <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: #00F0FF; margin-right: 10px;"></i> Role-Specific KPI Highlighting</li>
+                                <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: #00F0FF; margin-right: 10px;"></i> Industry-Standard Semantic Keywords</li>
+                                <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: #00F0FF; margin-right: 10px;"></i> Tailored Professional Tone & Voice</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dots-deco deco-left"></div>
+                </div>
+
+                <!-- Connector -->
+                <div class="info-connector">
+                    <div class="line"></div>
+                    <div class="connector-circles">
+                        <div class="c-outer">
+                            <div class="c-inner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 02 -->
+                <div class="info-card-wrapper">
+                    <div class="card-number-bg">2</div>
+                    <div class="info-card glass">
+                        <div class="card-border-accent accent-purple"></div>
+                        <div class="card-inner-content">
+                            <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
+                            <span class="card-label">EXPERT INSIGHT</span>
+                            <h3>Strategic Engineering</h3>
+                            <p style="font-style: italic; font-size: 1.1rem; line-height: 1.7; color: var(--text-white);">&ldquo;Recruiters decide in seconds. A cover letter that uses specific industry terminology and addresses role-specific pain points immediately signals that you are a high-value candidate who understands the business.&rdquo;</p>
+                        </div>
+                    </div>
+                    <div class="dots-deco deco-right"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Role Selection Grid -->
+        <section class="roles-grid-section container" id="features">
+            <div class="section-header" data-aos>
+                <h2>Select Your Job Role</h2>
+                <p>Choose your specific career path to generate a tailored cover letter that speaks the language of your future employers.</p>
+            </div>
+
+            <!-- Horizontal Categories Tabs Slideshow -->
+            <div class="tabs-slideshow-container" data-aos>
+                <div class="role-tabs categories-slideshow">
+                    <div class="role-tab">Fullstack Development</div>
+                    <div class="role-tab">Manual Testing</div>
+                    <div class="role-tab">Automation Testing</div>
+                    <div class="role-tab">AI and Data Science</div>
+                    <div class="role-tab">Cloud and DevOps</div>
+                    <div class="role-tab">Programming Languages</div>
+                    <div class="role-tab">UI UX Designing</div>
+                    <div class="role-tab">Database</div>
+                    <div class="role-tab">Data Engineering</div>
+                    <div class="role-tab">Net Working</div>
+                    <div class="role-tab">Digital Marketing</div>
+                    <div class="role-tab">CRM</div>
+                    <div class="role-tab">Automation</div>
+                </div>
+            </div>
+
+            <div class="roles-container">
+                <!-- Role 1: Fullstack Development -->
+                <div class="role-card role-orange" onclick="window.location.href='roles-list.html?cat=fullstack'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">01</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-layer-group role-icon"></i>
+                        <h3>Fullstack Development</h3>
+                        <p>Narratives focusing on end-to-end integration.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 2: Manual Testing -->
+                <div class="role-card role-pink" onclick="window.location.href='roles-list.html?cat=manual-testing'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">02</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-user-check role-icon"></i>
+                        <h3>Manual Testing</h3>
+                        <p>Focus on precision, QA, and user advocacy.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 3: Automation Testing -->
+                <div class="role-card role-purple" onclick="window.location.href='roles-list.html?cat=automation-testing'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">03</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-robot role-icon"></i>
+                        <h3>Automation Testing</h3>
+                        <p>Efficiency-driven scripting and framework logic.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 4: AI and Data Science -->
+                <div class="role-card role-cyan" onclick="window.location.href='roles-list.html?cat=ai-data'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">04</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-brain role-icon"></i>
+                        <h3>AI and Data Science</h3>
+                        <p>Data-driven storytelling and ML impact.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 5: Cloud and DevOps -->
+                <div class="role-card role-orange" onclick="window.location.href='roles-list.html?cat=cloud-devops'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">05</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-cloud role-icon"></i>
+                        <h3>Cloud and DevOps</h3>
+                        <p>Infrastructure scalability and CI/CD mastery.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 6: Programming Languages -->
+                <div class="role-card role-pink" onclick="window.location.href='roles-list.html?cat=languages'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">06</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-code role-icon"></i>
+                        <h3>Programming Languages</h3>
+                        <p>Core logic and software engineering foundations.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 7: UI UX Designing -->
+                <div class="role-card role-purple" onclick="window.location.href='roles-list.html?cat=ui-ux'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">07</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-pen-nib role-icon"></i>
+                        <h3>UI UX Designing</h3>
+                        <p>User-centric design thinking and visual impact.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 8: Database -->
+                <div class="role-card role-cyan" onclick="window.location.href='roles-list.html?cat=database'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">08</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-database role-icon"></i>
+                        <h3>Database</h3>
+                        <p>Data architecture and management narratives.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 9: Data Engineering -->
+                <div class="role-card role-orange" onclick="window.location.href='roles-list.html?cat=data-eng'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">09</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-server role-icon"></i>
+                        <h3>Data Engineering</h3>
+                        <p>Big data pipelines and infrastructure focus.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 10: Net Working -->
+                <div class="role-card role-pink" onclick="window.location.href='roles-list.html?cat=networking'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">10</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-network-wired role-icon"></i>
+                        <h3>Net Working</h3>
+                        <p>Network security and connectivity expert talk.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 11: Digital Marketing -->
+                <div class="role-card role-purple" onclick="window.location.href='roles-list.html?cat=marketing'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">11</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-bullseye role-icon"></i>
+                        <h3>Digital Marketing</h3>
+                        <p>Growth, SEO, and engagement strategies.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 12: CRM -->
+                <div class="role-card role-cyan" onclick="window.location.href='roles-list.html?cat=crm'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">12</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-users-gear role-icon"></i>
+                        <h3>CRM</h3>
+                        <p>Customer relationship management platform focus.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 13: Automation -->
+                <div class="role-card role-orange" onclick="window.location.href='roles-list.html?cat=automation'" data-aos>
+                    <div class="card-badge">
+                        <span class="badge-text">OPTION</span>
+                        <span class="badge-number">13</span>
+                    </div>
+                    <span class="curved-text">ROLE BASED</span>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-gears role-icon"></i>
+                        <h3>Automation</h3>
+                        <p>Workflow efficiency and process automation.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Features Content -->
+        <section class="page-features-section container">
+            <div class="section-header" data-aos>
+                <h2>Strategic Content Engineering</h2>
+                <p>Our proprietary AI model goes beyond templates, engineering a narrative that positions you as an industry expert.</p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="feature-row">
+                <div class="feature-text" data-aos>
+                    <div class="feat-icon-box"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Precision Context Mapping</h3>
+                    <p>Our AI doesn't just scan for keywords; it understands the specific technical challenges and KPIs of your target job role. Whether you're a Fullstack Developer or a Data Scientist, we align your narrative with the exact problems recruiters are trying to solve.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Contextual integration of niche technical skills</li>
+                        <li><i class="fa-solid fa-check"></i> Outcome-oriented career storytelling</li>
+                    </ul>
+                </div>
+                <div class="feature-image glass" data-aos>
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" alt="Ecosystem Storytelling" style="object-fit: cover; height: 350px; object-position: top;">
+                    <div class="floating-badge badge-1"><i class="fa-solid fa-bolt"></i> Role Targeted</div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-row reverse">
+                <div class="feature-text" data-aos>
+                    <div class="feat-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Strategic Industry Positioning</h3>
+                    <p>Stand out by speaking the language of industry leaders. We use role-specific action verbs and sophisticated professional narrative structures that position you not just as a candidate, but as a specialist.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Automatic generation of industry action verbs</li>
+                        <li><i class="fa-solid fa-check"></i> Tone-personality matching for your career field</li>
+                    </ul>
+                </div>
+                <div class="feature-image glass" data-aos>
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000009a2872089daf10c7b99ee68d.png" alt="Value Proposition" style="object-fit: cover; height: 350px; object-position: top;">
+                    <div class="floating-badge badge-2"><i class="fa-solid fa-chart-line"></i> Higher Response Rate</div>
+                </div>
+            </div>
+        </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="../../AI COVER LETTER BUILDER/HTML/index.html">AI Cover Letters</a></li>
+                        <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">AI Resume Checker</a></li>
+                        <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="../../AI COVER LETTER BUILDER/HTML/index.html">AI Cover Letter Generator</a></li>
+                        <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">Resume Keyword Optimizer</a></li>
+                        <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">ATS Resume Checker</a></li>
+                        <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+<script src="../JAVA SCRIPT/role-based.js"></script>
+
+<!-- Google Translate Script Integration -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+    }
+    function changeLanguage(langCode) {
+        var selectElement = document.querySelector('.goog-te-combo');
+        if (selectElement) {
+            selectElement.value = langCode;
+            selectElement.dispatchEvent(new Event('change'));
+        } else {
+            // Wait for widget to load if not ready
+            setTimeout(() => changeLanguage(langCode), 500);
+        }
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

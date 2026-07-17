@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role-Based Resume Building | MockB CV</title>
+    <meta name="description" content="Generate professional resumes tailored for specific IT roles with MockB AI.">
+    <!-- Link to Home Page Styles for Navbar/Footer -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <!-- Link to Specific Page Styles -->
+    <link rel="stylesheet" href="../CSS/role-based.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-loading">
+    <div class="page-transition-overlay"></div>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume Examples</h4>
+                                            <p>Create resumes that pass automated screening.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Languages <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Horizontal Slides -->
+        <section class="hero-slider-section">
+            <div class="hero-slider-container">
+                <!-- Slide 1: General Value Prop -->
+                <div class="hero-slide">
+                    <div class="floating-element el-1 glass">
+                        <i class="fa-solid fa-bullseye" style="color: var(--primary-color)"></i>
+                        <span style="margin-left: 10px">Targeted Impact</span>
+                    </div>
+                    <div class="floating-element el-2 glass">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary-color)"></i>
+                        <span style="margin-left: 10px">AI Precision</span>
+                    </div>
+                    <div class="slide-content">
+                        <h1>Precision-Engineered <span>Role Based</span> Resumes</h1>
+                        <p>Stop using generic templates. MockB CV uses industry-specific algorithms to align your profile with the exact expectations of hiring managers in your field.</p>
+                        <button class="btn btn-primary btn-premium">Build My Resume</button>
+                    </div>
+                </div>
+                <!-- Slide 2: Expert Design -->
+                <div class="hero-slide">
+                    <div class="floating-element el-3 glass">
+                        <i class="fa-solid fa-user-tie" style="color: var(--primary-color)"></i>
+                        <span style="margin-left: 10px">Expert Design</span>
+                    </div>
+                    <div class="floating-element el-4 glass">
+                        <i class="fa-solid fa-check-double" style="color: var(--primary-color)"></i>
+                        <span style="margin-left: 10px">ATS Verified</span>
+                    </div>
+                    <div class="slide-content">
+                        <h1>Built by <span>Industry Experts</span> for You</h1>
+                        <p>Our templates are designed by senior recruiters to showcase your expertise with language that actually gets you noticed in a competitive market.</p>
+                        <button class="btn btn-primary btn-premium">View Templates</button>
+                    </div>
+                </div>
+                <!-- Slide 3: Smart Optimization -->
+                <div class="hero-slide">
+                    <div class="slide-content">
+                        <h1>Smart <span>Role-Specific</span> Optimization</h1>
+                        <p>Automatically align your resume with specific job requirements. Our AI ensures every bullet point is optimized for your target industry and role.</p>
+                        <button class="btn btn-primary btn-premium">Get Started Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-nav">
+                <div class="nav-dot active"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+            </div>
+        </section>
+
+        <!-- Why Role-Based Section -->
+        <section class="details-section container" data-aos>
+            <div class="glass" style="padding: 4rem; margin-top: 20px; position: relative; z-index: 5; margin-bottom: 5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                    <div>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Why <span style="color: var(--primary-color)">Role-Based</span> Resume Building is Important?</h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2rem;">Generic resumes often fail to pass specialized ATS filters. Our role-based approach ensures that your resume contains the exact keywords, technical skills, and project descriptions that recruiters in your specific field are looking for.</p>
+                        <ul style="list-style: none; color: var(--text-gray);">
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Specialized Keyword Optimization</li>
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Industry-Standard Formatting</li>
+                            <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Expert-Crafted Bullet Points</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(238, 195, 12, 0.05); padding: 2.5rem; border-radius: 20px; border: 1px dashed var(--primary-color); backdrop-filter: blur(5px);">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary-color); font-size: 1.2rem;">Industry Insight</h4>
+                        <p style="font-size: 1.1rem; font-style: italic; line-height: 1.6;">"Recruiters spend only 6 seconds on a resume. A role-specific layout ensures they see your most relevant skills in the first 2 seconds, increasing your interview chances by 3x."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Role Selection Grid -->
+        <section class="roles-grid-section container" id="features">
+            <div class="section-header" data-aos>
+                <h2>Select Your Job Role</h2>
+                <p>Choose your specific career path to generate a tailored resume that matches industry expectations.</p>
+            </div>
+
+            <!-- Horizontal Categories Tabs Slideshow -->
+            <div class="tabs-slideshow-container" data-aos>
+                <div class="role-tabs categories-slideshow">
+                    <div class="role-tab">Fullstack Development</div>
+                    <div class="role-tab">Manual Testing</div>
+                    <div class="role-tab">Automation Testing</div>
+                    <div class="role-tab">AI and Data Science</div>
+                    <div class="role-tab">Cloud and DevOps</div>
+                    <div class="role-tab">Programming Languages</div>
+                    <div class="role-tab">UI UX Designing</div>
+                    <div class="role-tab">Database</div>
+                    <div class="role-tab">Data Engineering</div>
+                    <div class="role-tab">Net Working</div>
+                    <div class="role-tab">Digital Marketing</div>
+                    <div class="role-tab">CRM</div>
+                    <div class="role-tab">Automation</div>
+                </div>
+            </div>
+
+            <div class="roles-container">
+                <!-- Role 1: Fullstack Development -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=fullstack'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-layer-group role-icon"></i>
+                        <h3>Fullstack Development</h3>
+                        <p>End-to-end development and integration.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 2: Manual Testing -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=manual-testing'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-user-check role-icon"></i>
+                        <h3>Manual Testing</h3>
+                        <p>Human-centric QA and execution.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 2b: Automation Testing -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=automation-testing'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-robot role-icon"></i>
+                        <h3>Automation Testing</h3>
+                        <p>Framework building and scripting.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 3: AI and Data Science -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=ai-data'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-robot role-icon"></i>
+                        <h3>AI and Data Science</h3>
+                        <p>ML models and data-driven insights.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 4: Cloud and DevOps -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=cloud-devops'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-cloud role-icon"></i>
+                        <h3>Cloud and DevOps</h3>
+                        <p>CI/CD, Kubernetes, and Cloud Infra.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 5: Programming Languages -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=languages'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-code role-icon"></i>
+                        <h3>Programming Languages</h3>
+                        <p>Core languages and logic implementation.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 6: UI UX Designing -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=ui-ux'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-pen-nib role-icon"></i>
+                        <h3>UI UX Designing</h3>
+                        <p>User research and high-fidelity design.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 7: Database -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=database'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-database role-icon"></i>
+                        <h3>Database</h3>
+                        <p>Data modeling and database management.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 8: Data Engineering -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=data-eng'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-server role-icon"></i>
+                        <h3>Data Engineering</h3>
+                        <p>Data pipelines and big data architecture.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 9: Net Working -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=networking'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-network-wired role-icon"></i>
+                        <h3>Net Working</h3>
+                        <p>Network security and infrastructure.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 10: Digital Marketing -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=marketing'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-bullseye role-icon"></i>
+                        <h3>Digital Marketing</h3>
+                        <p>SEO, campaigns, and digital strategy.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 11: CRM -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=crm'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-users-gear role-icon"></i>
+                        <h3>CRM</h3>
+                        <p>Customer relationship management tools.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+                <!-- Role 12: Automation -->
+                <div class="role-card" onclick="window.location.href='roles-list.html?cat=automation'" data-aos>
+                    <div class="card-inner">
+                        <i class="fa-solid fa-gears role-icon"></i>
+                        <h3>Automation</h3>
+                        <p>Process automation and scripting.</p>
+                        <button class="generate-btn">Open</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Template Gallery Role Wise -->
+        <section class="templates-showcase">
+            <div class="container">
+                <div class="section-header" data-aos>
+                    <h2>Premium Role-Based Templates</h2>
+                    <p>Browse our collection of hand-crafted resume examples for every IT specialization.</p>
+                </div>
+
+                <div class="role-tabs" data-aos>
+                    <div class="role-tab active" data-filter="all">All Roles</div>
+                    <div class="role-tab" data-filter="frontend">Frontend</div>
+                    <div class="role-tab" data-filter="backend">Backend</div>
+                    <div class="role-tab" data-filter="devops">DevOps</div>
+                    <div class="role-tab" data-filter="data">Data Science</div>
+                </div>
+
+                <div class="templates-grid">
+                    <!-- Frontend Template -->
+                    <div class="template-item" data-role="frontend" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" alt="Frontend Template">
+                        <div class="template-overlay">
+                            <h3>Modern React Developer</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <!-- Backend Template -->
+                    <div class="template-item" data-role="backend" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f3207208b912c6c636a195a1.png" alt="Backend Template">
+                        <div class="template-overlay">
+                            <h3>Python Backend Pro</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <!-- DevOps Template -->
+                    <div class="template-item" data-role="devops" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f19472089c50ad245caa766f.png" alt="DevOps Template">
+                        <div class="template-overlay">
+                            <h3>Infrastructure Specialist</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <!-- Data Template -->
+                    <div class="template-item" data-role="data" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000009a2872089daf10c7b99ee68d.png" alt="Data Template">
+                        <div class="template-overlay">
+                            <h3>ML Engineer Lead</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <!-- Frontend Template 2 -->
+                    <div class="template-item" data-role="frontend" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000b96072089bcf803d41ea89ff.png" alt="Frontend Template">
+                        <div class="template-overlay">
+                            <h3>Sleek UI Engineer</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                    <!-- Backend Template 2 -->
+                    <div class="template-item" data-role="backend" data-aos>
+                        <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000fe2872088873cdc9244f32f0.png" alt="Backend Template">
+                        <div class="template-overlay">
+                            <h3>Node.js Architect</h3>
+                            <button class="btn btn-primary">Use Template</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Features Content -->
+        <section class="page-features-section container">
+            <div class="section-header" data-aos>
+                <h2>The Anatomy of a Perfect IT Resume</h2>
+                <p>Discover how our role-based engine crafts the perfect narrative for your specific career path.</p>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="feature-row">
+                <div class="feature-text" data-aos>
+                    <div class="feat-icon-box"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Deep Tech Stack Integration</h3>
+                    <p>Generic resumes just list skills at the bottom. Our role-based builder intelligently groups your technologies by ecosystem (e.g., Frontend, Backend, Cloud) exactly how technical recruiters prefer to read them.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Contextual keyword placement for ATS</li>
+                        <li><i class="fa-solid fa-check"></i> Ecosystem-aware layout formatting</li>
+                    </ul>
+                </div>
+                <div class="feature-image glass" data-aos>
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" alt="Tech Stack Integration" style="object-fit: cover; height: 350px; object-position: top;">
+                    <div class="floating-badge badge-1"><i class="fa-solid fa-bolt"></i> Keyword Optimized</div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-row reverse">
+                <div class="feature-text" data-aos>
+                    <div class="feat-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Impact-Driven Project Showcases</h3>
+                    <p>Whether you're a Data Scientist reducing latency or a UI Designer increasing conversion rates, the engine automatically restructures your project section to highlight the metrics that matter most for your role.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Role-specific action verbs (e.g., "Architected", "Deployed")</li>
+                        <li><i class="fa-solid fa-check"></i> Metric-focused bullet points generation</li>
+                    </ul>
+                </div>
+                <div class="feature-image glass" data-aos>
+                    <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_000000009a2872089daf10c7b99ee68d.png" alt="Project Showcase" style="object-fit: cover; height: 350px; object-position: top;">
+                    <div class="floating-badge badge-2"><i class="fa-solid fa-chart-line"></i> +45% ATS Match</div>
+                </div>
+            </div>
+        </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script src="../JAVA SCRIPT/role-based.js"></script>
+<script>
+    // Adjust header scroll effect for this page
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+</body>
+</html>

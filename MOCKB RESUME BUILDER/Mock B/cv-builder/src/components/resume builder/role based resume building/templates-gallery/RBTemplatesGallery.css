@@ -1,0 +1,107 @@
+/* Templates Showcase Section */
+.templates-showcase {
+  padding: 8rem 0;
+  background: #0a0a0a;
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 3rem;
+  padding: 0 5%;
+}
+
+.template-item {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #151515;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 500px;
+}
+
+.template-item:hover {
+  transform: translateY(-15px);
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.template-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.8s ease;
+}
+
+.template-item:hover img {
+  transform: scale(1.05);
+}
+
+.template-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.template-item:hover .template-overlay {
+  opacity: 1;
+}
+
+.template-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+}
+
+.template-overlay .btn {
+  align-self: flex-start;
+}
+
+/* Role tabs in templates section */
+.templates-showcase .role-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 5rem;
+  flex-wrap: wrap;
+}
+
+.templates-showcase .role-tab {
+  padding: 0.8rem 2.2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.templates-showcase .role-tab:hover {
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.templates-showcase .role-tab.active {
+  background: var(--primary-color);
+  color: #000;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(238, 195, 12, 0.4);
+}
+
+@media (max-width: 768px) {
+  .templates-grid {
+    grid-template-columns: 1fr;
+  }
+}

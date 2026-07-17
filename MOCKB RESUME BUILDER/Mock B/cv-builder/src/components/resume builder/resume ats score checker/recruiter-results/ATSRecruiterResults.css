@@ -1,0 +1,33 @@
+/* ── RECRUITER RESULTS TABLE ── */
+.recruiter-results-section { padding: 2rem 2rem 8rem; }
+
+.recruiter-table-wrap {
+    overflow-x: auto;
+    background: #141414;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+.recruiter-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #fff;
+}
+.recruiter-table thead tr {
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.recruiter-table th { padding: 16px; font-weight: 700; color: #A0A0A0; }
+.recruiter-table td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.recruiter-table tbody tr:last-child td { border-bottom: none; }
+
+.match-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.match-high { background: rgba(34,197,94,0.1); color: #22c55e; }
+.match-mid  { background: rgba(238,195,12,0.1); color: #EEC30C; }
+.match-low  { background: rgba(239,68,68,0.1); color: #ef4444; }

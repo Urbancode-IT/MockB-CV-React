@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Customizer | MockBee</title>
+    <!-- Use Home Page CSS for global styles -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <!-- Use Customizer CSS for specific page styles -->
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../RESUME CUSTOMIZER/HTML/index.html"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="portfolio-trigger">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="portfolio-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../PORTFOLIO BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <div class="item-text">
+                                            <h4>Build Portfolio</h4>
+                                            <p>Generate professional web portfolios with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../WHY MOCKB PORTFOLIO AND ITS USES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-circle-question"></i></div>
+                                        <div class="item-text">
+                                            <h4>Why Portfolio and its Uses</h4>
+                                            <p>Discover the power and key benefits of a professional portfolio.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+        <!-- Hero Section -->
+        <section class="hero-customizer glass-section scroll-anim">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Customize Your Resume.<br><span class="highlight-text">Your Style. Your Identity.</span></h1>
+                    <p>Fine-tune every detail of your resume — layout, fonts, colors, spacing, sections, templates, and personal branding — to create a resume that reflects your professional story.</p>
+                    
+                    <div class="cta-group">
+                        <a href="#templates" class="btn btn-primary"><i class="fa-solid fa-palette"></i> Start Customizing</a>
+                        <a href="#templates" class="btn btn-secondary"><i class="fa-solid fa-layer-group"></i> Explore Templates</a>
+                    </div>
+
+                    <div class="feature-tags">
+                        <span><i class="fa-solid fa-check"></i> Font Customization</span>
+                        <span><i class="fa-solid fa-check"></i> Layout Control</span>
+                        <span><i class="fa-solid fa-check"></i> Colors & Branding</span>
+                        <span><i class="fa-solid fa-check"></i> Smart Resume Styling</span>
+                        <span><i class="fa-solid fa-check"></i> Professional Templates</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 – Why Resume Customizer? -->
+        <section class="section-container why-section scroll-anim" id="features">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Build Resumes That <span class="highlight-text">Match Your Career Goals</span></h2>
+                    <p>Your resume should represent your personality and professionalism. Resume Customizer helps users personalize resume layouts, typography, colors, spacing, structure, and visual presentation to create resumes that stand out.</p>
+                </div>
+                <div class="custom-grid-features">
+                    <div class="feature-card-custom">
+                        <i class="fa-solid fa-palette custom-card-icon"></i>
+                        <h3>Professional Resume Designs</h3>
+                        <p>Curated layouts ensuring top-tier visual hierarchy.</p>
+                    </div>
+                    <div class="feature-card-custom">
+                        <i class="fa-solid fa-fingerprint custom-card-icon"></i>
+                        <h3>Personalized Branding</h3>
+                        <p>Inject your personal brand seamlessly into your CV.</p>
+                    </div>
+                    <div class="feature-card-custom">
+                        <i class="fa-solid fa-robot custom-card-icon"></i>
+                        <h3>ATS Friendly Formatting</h3>
+                        <p>Designed to be parsed correctly by any system.</p>
+                    </div>
+                    <div class="feature-card-custom">
+                        <i class="fa-solid fa-border-all custom-card-icon"></i>
+                        <h3>Flexible Layout Controls</h3>
+                        <p>One-column, two-column, or hybrid structures.</p>
+                    </div>
+                    <div class="feature-card-custom">
+                        <i class="fa-solid fa-sliders custom-card-icon"></i>
+                        <h3>Easy Design Customization</h3>
+                        <p>Intuitive sliders and pickers for every element.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 – Layout & Structure Controls -->
+        <section class="section-container layout-section scroll-anim">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Design Your <span class="highlight-text">Resume Structure</span></h2>
+                </div>
+                <div class="bento-grid-custom">
+                    <div class="bento-box-custom row-span-2">
+                        <h3>Layout Options</h3>
+                        <ul class="control-list">
+                            <li><i class="fa-solid fa-table-columns"></i> Single Column Layout</li>
+                            <li><i class="fa-solid fa-columns"></i> Two Column Layout</li>
+                            <li><i class="fa-solid fa-object-group"></i> Mixed Layout Style</li>
+                        </ul>
+                        <div class="visual-placeholder">
+                            <div class="wireframe wireframe-2col"></div>
+                        </div>
+                    </div>
+                    <div class="bento-box-custom">
+                        <h3>Section Arrangement</h3>
+                        <ul class="control-list">
+                            <li><i class="fa-solid fa-sort"></i> Rearrange Resume Sections</li>
+                            <li><i class="fa-solid fa-eye-slash"></i> Show / Hide Sections</li>
+                            <li><i class="fa-solid fa-network-wired"></i> Organize Resume Flow</li>
+                        </ul>
+                    </div>
+                    <div class="bento-box-custom">
+                        <h3>Spacing Controls</h3>
+                        <div class="sliders-wrapper">
+                            <div class="slider-group">
+                                <label>Font Size</label>
+                                <input type="range" min="1" max="100" value="50">
+                            </div>
+                            <div class="slider-group">
+                                <label>Line Height</label>
+                                <input type="range" min="1" max="100" value="60">
+                            </div>
+                            <div class="slider-group">
+                                <label>Margins & Spacing</label>
+                                <input type="range" min="1" max="100" value="40">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 – Typography Customization -->
+        <section class="section-container typo-section scroll-anim">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-content">
+                        <h2>Professional <span class="highlight-text">Typography Settings</span></h2>
+                        <p>Choose fonts that align with your career style. Tailor the hierarchy from your name down to bullet points.</p>
+                        <div class="font-categories">
+                            <div class="font-pill serif">Serif Fonts</div>
+                            <div class="font-pill sans">Sans Fonts</div>
+                            <div class="font-pill mono">Mono Fonts</div>
+                        </div>
+                    </div>
+                    <div class="split-visual feature-card-custom typo-controls">
+                        <h3>Typography Controls</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-text-height"></i> Font Size Adjustments</li>
+                            <li><i class="fa-solid fa-bold"></i> Bold Name Option</li>
+                            <li><i class="fa-solid fa-user-tie"></i> Professional Title Styling</li>
+                            <li><i class="fa-solid fa-heading"></i> Subtitle Formatting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 – Color Personalization -->
+        <section class="section-container color-section scroll-anim">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Build Your <span class="highlight-text">Personal Brand</span></h2>
+                    <p class="small-text">Create resumes aligned with your professional identity using advanced visual customization.</p>
+                </div>
+                <div class="color-cards">
+                    <div class="color-card feature-card-custom">
+                        <div class="color-circle" style="background: var(--primary-color);"></div>
+                        <h4>Accent Colors</h4>
+                    </div>
+                    <div class="color-card feature-card-custom">
+                        <div class="color-circle" style="background: #1A1A1A;"></div>
+                        <h4>Background Colors</h4>
+                    </div>
+                    <div class="color-card feature-card-custom">
+                        <div class="color-circle border-example"></div>
+                        <h4>Border Styling</h4>
+                    </div>
+                    <div class="color-card feature-card-custom">
+                        <div class="color-circle text-example">T</div>
+                        <h4>Text Colors</h4>
+                    </div>
+                    <div class="color-card feature-card-custom">
+                        <div class="color-circle theme-example"></div>
+                        <h4>Custom Color Themes</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MIDDLE SECTION: Templates Selection Gallery -->
+        <section class="section-container templates-section scroll-anim" id="templates">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Select Your <span class="highlight-text">Starting Canvas</span></h2>
+                    <p>Choose from our meticulously crafted resume templates and customize them to perfection. Or start from scratch!</p>
+                </div>
+        
+        <div class="template-filters">
+            <div class="filter-row top-filters">
+                <button class="filter-btn top-filter-btn active" data-filter="all"><i class="fa-solid fa-grip"></i> All</button>
+                <button class="filter-btn top-filter-btn" data-filter="top-picks"><i class="fa-solid fa-star"></i> Top Picks</button>
+                <button class="filter-btn top-filter-btn" data-filter="ats"><i class="fa-solid fa-robot"></i> ATS</button>
+                
+                <div class="filter-dropdown" data-dropdown="styles">
+                    <button class="filter-btn dropdown-trigger-btn"><i class="fa-solid fa-droplet"></i> <span class="dropdown-label">Styles</span> <i class="fa-solid fa-chevron-down" style="margin-left: 5px; font-size: 0.8em;"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="all-styles">All Styles</a>
+                        <a href="#" data-value="modern">Modern</a>
+                        <a href="#" data-value="traditional">Traditional</a>
+                        <a href="#" data-value="simple">Simple</a>
+                        <a href="#" data-value="creative">Creative</a>
+                        <a href="#" data-value="minimalist">Minimalist</a>
+                        <a href="#" data-value="infographic">Infographic</a>
+                        <a href="#" data-value="photo-style">Photo</a>
+                    </div>
+                </div>
+                
+                <div class="filter-dropdown" data-dropdown="layout">
+                    <button class="filter-btn dropdown-trigger-btn"><i class="fa-solid fa-border-all"></i> <span class="dropdown-label">Layout</span> <i class="fa-solid fa-chevron-down" style="margin-left: 5px; font-size: 0.8em;"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="all-layout">All Layouts</a>
+                        <a href="#" data-value="one-page">One Page</a>
+                        <a href="#" data-value="two-page">Two Page</a>
+                        <a href="#" data-value="one-column">One Column</a>
+                        <a href="#" data-value="two-column">Two Column</a>
+                        <a href="#" data-value="timeline">Timeline</a>
+                    </div>
+                </div>
+                
+                <div class="filter-dropdown" data-dropdown="experience">
+                    <button class="filter-btn dropdown-trigger-btn"><i class="fa-solid fa-briefcase"></i> <span class="dropdown-label">Experience</span> <i class="fa-solid fa-chevron-down" style="margin-left: 5px; font-size: 0.8em;"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="all-exp">All Levels</a>
+                        <a href="#" data-value="entry">Entry Level</a>
+                        <a href="#" data-value="mid">Mid Level</a>
+                        <a href="#" data-value="senior">Senior</a>
+                    </div>
+                </div>
+                
+                <div class="filter-dropdown" data-dropdown="format">
+                    <button class="filter-btn dropdown-trigger-btn"><i class="fa-solid fa-file-lines"></i> <span class="dropdown-label">Format</span> <i class="fa-solid fa-chevron-down" style="margin-left: 5px; font-size: 0.8em;"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="all-format">All Formats</a>
+                        <a href="#" data-value="chronological">Chronological</a>
+                        <a href="#" data-value="functional">Functional</a>
+                        <a href="#" data-value="hybrid">Hybrid</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-row bottom-filters">
+                <div class="filter-group">
+                    <span class="filter-label">Color</span>
+                    <button class="color-btn active" style="background: linear-gradient(135deg, #111, #444); border-radius: 50%; width: 26px; height: 26px;">All</button>
+                    <button class="color-btn" style="background: #007bff; border-radius: 50%; width: 26px; height: 26px;"></button>
+                    <button class="color-btn" style="background: #111; border-radius: 50%; width: 26px; height: 26px; border: 1px solid #555;"></button>
+                    <button class="color-btn" style="background: #28a745; border-radius: 50%; width: 26px; height: 26px;"></button>
+                    <button class="color-btn" style="background: #d93025; border-radius: 50%; width: 26px; height: 26px;"></button>
+                    <button class="color-btn" style="background: #003366; border-radius: 50%; width: 26px; height: 26px;"></button>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Photo</span>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active">All</button>
+                        <button class="toggle-btn">Photo</button>
+                        <button class="toggle-btn">No Photo</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-label">Columns</span>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active">All</button>
+                        <button class="toggle-btn">Single</button>
+                        <button class="toggle-btn">Double</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="template-grid">
+                <div class="templates-carousel">
+                    <div class="carousel-track" id="templateCarousel">
+                        <!-- Template Item 1 -->
+                        <div class="template-item feature-card-custom selectable-template" data-category="top-picks modern one-column chronological senior">
+                            <div class="template-preview t1"></div>
+                            <div class="template-info">
+                                <h4>Modern Executive</h4>
+                                <button class="btn btn-secondary small-btn template-select-btn">Select</button>
+                            </div>
+                        </div>
+                        <!-- Template Item 2 -->
+                        <div class="template-item feature-card-custom selectable-template" data-category="top-picks creative two-column hybrid mid">
+                            <div class="template-preview t2"></div>
+                            <div class="template-info">
+                                <h4>Creative Minimal</h4>
+                                <button class="btn btn-secondary small-btn template-select-btn">Select</button>
+                            </div>
+                        </div>
+                        <!-- Template Item 3 -->
+                        <div class="template-item feature-card-custom selectable-template" data-category="ats simple one-column chronological entry">
+                            <div class="template-preview t3"></div>
+                            <div class="template-info">
+                                <h4>ATS Standard</h4>
+                                <button class="btn btn-secondary small-btn template-select-btn">Select</button>
+                            </div>
+                        </div>
+                        <!-- Template Item 4 -->
+                        <div class="template-item feature-card-custom selectable-template" data-category="top-picks modern two-column functional senior">
+                            <div class="template-preview t4"></div>
+                            <div class="template-info">
+                                <h4>Tech Innovator</h4>
+                                <button class="btn btn-secondary small-btn template-select-btn">Select</button>
+                            </div>
+                        </div>
+                        <!-- Template Item 5 -->
+                        <div class="template-item feature-card-custom selectable-template" data-category="simple one-column chronological entry">
+                            <div class="template-preview t5"></div>
+                            <div class="template-info">
+                                <h4>Blank Canvas</h4>
+                                <button class="btn btn-primary small-btn template-select-btn" style="color: #000;">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animated CTA Button - appears after template selection -->
+            <div class="start-customizing-wrap" id="startCustomizingWrap">
+                <div class="selected-template-info" id="selectedTemplateInfo"></div>
+                <a href="../HTML/resume-upload.html" id="startCustomizingBtn" class="btn-start-customizing">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Start Resume Customizing
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 6 – Personal Details Customization -->
+        <section class="section-container personal-details scroll-anim">
+            <div class="container">
+                <div class="split-layout reverse">
+                    <div class="split-content">
+                        <h2>Control Your <span class="highlight-text">Resume Identity</span></h2>
+                        <ul class="feature-list-custom">
+                            <li><i class="fa-solid fa-align-center"></i> Name Alignment</li>
+                            <li><i class="fa-solid fa-briefcase"></i> Professional Title</li>
+                            <li><i class="fa-solid fa-user-circle"></i> Profile Photo Layouts</li>
+                            <li><i class="fa-solid fa-address-book"></i> Contact Arrangement</li>
+                            <li><i class="fa-solid fa-heading"></i> Header Layout Configurations</li>
+                        </ul>
+                    </div>
+                    <div class="split-visual feature-card-custom styling-examples">
+                        <h3>Style Examples</h3>
+                        <div class="example-group">
+                            <span>📍 Icons Styling</span>
+                            <div class="icons-row">
+                                <i class="fa-solid fa-phone"></i>
+                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa-brands fa-linkedin"></i>
+                            </div>
+                        </div>
+                        <div class="example-group">
+                            <span>📍 Bullet Style</span>
+                            <ul class="bullet-row">
+                                <li>Standard</li>
+                                <li class="custom-bullet">Custom</li>
+                            </ul>
+                        </div>
+                        <div class="example-group">
+                            <span>📍 Bar Separator</span>
+                            <div class="separator-row">
+                                <span>Email</span> | <span>Phone</span> | <span>Location</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 – Smart Resume Features -->
+        <section class="section-container smart-features scroll-anim">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Smarter Resume <span class="highlight-text">Personalization</span></h2>
+                </div>
+                <div class="custom-grid-features smart-grid">
+                    <div class="feature-card-custom"><i class="fa-solid fa-bolt"></i> Template Switching</div>
+                    <div class="feature-card-custom"><i class="fa-solid fa-magnifying-glass"></i> Resume Preview</div>
+                    <div class="feature-card-custom"><i class="fa-solid fa-rotate-left"></i> Undo / Redo</div>
+                    <div class="feature-card-custom"><i class="fa-solid fa-floppy-disk"></i> Save Design Templates</div>
+                    <div class="feature-card-custom"><i class="fa-solid fa-clone"></i> Multiple Resume Variants</div>
+                    <div class="feature-card-custom"><i class="fa-solid fa-share-nodes"></i> Private Template Sharing</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8 – Advanced Resume Controls -->
+        <section class="section-container advanced-section scroll-anim">
+            <div class="container">
+                <div class="feature-card-custom full-width-card">
+                    <div class="content-wrapper">
+                        <h2>Fine Tune Every <span class="highlight-text">Resume Detail</span></h2>
+                        <div class="pill-list">
+                            <span class="pill"><i class="fa-solid fa-link"></i> Link Styling</span>
+                            <span class="pill"><i class="fa-solid fa-heading"></i> Section Heading Styles</span>
+                            <span class="pill"><i class="fa-solid fa-font"></i> Uppercase Controls</span>
+                            <span class="pill"><i class="fa-solid fa-text-height"></i> Heading Sizes</span>
+                            <span class="pill"><i class="fa-solid fa-icons"></i> Icons Styles</span>
+                            <span class="pill"><i class="fa-solid fa-list-ul"></i> Bullet / Hyphen Lists</span>
+                            <span class="pill"><i class="fa-solid fa-shoe-prints"></i> Footer Settings</span>
+                            <span class="pill"><i class="fa-solid fa-file-lines"></i> Page Numbers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9 – Why Users Love Resume Customizer -->
+        <section class="section-container love-section scroll-anim">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Why Users Love <span class="highlight-text">Resume Customizer</span></h2>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card feature-card-custom">
+                        <i class="fa-solid fa-rocket"></i>
+                        <h4>Faster Resume Building</h4>
+                    </div>
+                    <div class="benefit-card feature-card-custom">
+                        <i class="fa-solid fa-eye"></i>
+                        <h4>Better Readability</h4>
+                    </div>
+                    <div class="benefit-card feature-card-custom">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h4>Professional Appearance</h4>
+                    </div>
+                    <div class="benefit-card feature-card-custom">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h4>Improved ATS Compatibility</h4>
+                    </div>
+                    <div class="benefit-card feature-card-custom">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <h4>Personalized Branding</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 10 – Final CTA -->
+        <section class="section-container cta-section scroll-anim" id="cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Create A Resume That Looks Professional And Feels Personal</h2>
+                    <p>Take complete control over your resume design and build resumes that truly represent your skills and career journey.</p>
+                    <div class="cta-actions">
+                        <a href="#templates" class="btn btn-primary btn-large">Start Customizing Resume</a>
+                        <a href="#templates" class="btn btn-dark btn-large">Build Resume Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="section-container faq-section scroll-anim">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Frequently Asked <span class="highlight-text">Questions</span></h2>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item feature-card-custom">
+                        <div class="faq-question">
+                            <h4>Can I customize fonts?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Choose font family, size, bold settings and typography options.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item feature-card-custom">
+                        <div class="faq-question">
+                            <h4>Can I adjust spacing?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Modify margins, line height and content spacing.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item feature-card-custom">
+                        <div class="faq-question">
+                            <h4>Can I save templates?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Save reusable resume designs to use across different applications.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item feature-card-custom">
+                        <div class="faq-question">
+                            <h4>Can I personalize colors?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Customize text, accent, background and branding colors easily.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Home Page Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for animations and interactions -->
+    <script>
+        // Scroll Animation
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-anim').forEach(el => {
+                observer.observe(el);
+            });
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Mega menu triggers for Resume Customizer standalone page
+            const triggers = ['resume-builder-trigger', 'cover-letter-trigger', 'portfolio-trigger', 'languages-trigger'];
+            triggers.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) {
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const menuId = id.replace('-trigger', '-mega-menu');
+                        const menu = document.getElementById(menuId);
+                        
+                        // close others
+                        document.querySelectorAll('.mega-menu').forEach(m => {
+                            if(m.id !== menuId) {
+                                m.classList.remove('active');
+                                m.parentElement.classList.remove('active');
+                            }
+                        });
+
+                        if(menu) {
+                            menu.classList.toggle('active');
+                            this.parentElement.classList.toggle('active');
+                        }
+                    });
+                }
+            });
+
+            // ========== TEMPLATE FILTERS ==========
+            
+            // State
+            const filterState = { topFilter: 'all', styles: 'all-styles', layout: 'all-layout', experience: 'all-exp', format: 'all-format' };
+
+            function applyFilters() {
+                const items = document.querySelectorAll('.selectable-template');
+                items.forEach(item => {
+                    const cats = item.dataset.category || '';
+                    const cats_arr = cats.split(' ');
+                    let show = true;
+
+                    // Top filter: all OR specific category must match
+                    if (filterState.topFilter !== 'all' && !cats_arr.includes(filterState.topFilter)) show = false;
+                    // Styles
+                    if (!filterState.styles.startsWith('all') && !cats_arr.includes(filterState.styles)) show = false;
+                    // Layout
+                    if (!filterState.layout.startsWith('all') && !cats_arr.includes(filterState.layout)) show = false;
+                    // Experience
+                    if (!filterState.experience.startsWith('all') && !cats_arr.includes(filterState.experience)) show = false;
+                    // Format
+                    if (!filterState.format.startsWith('all') && !cats_arr.includes(filterState.format)) show = false;
+
+                    item.style.display = show ? '' : 'none';
+                });
+            }
+
+            // 1. Top Buttons – exclusive selection (All / Top Picks / ATS)
+            const topFilterBtns = document.querySelectorAll('.top-filter-btn');
+            topFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    topFilterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterState.topFilter = btn.dataset.filter;
+                    applyFilters();
+                });
+            });
+
+            // 2. Dropdown Item Selection – exclusive per dropdown, reset label on "All X"
+            const dropdownEls = document.querySelectorAll('.filter-dropdown');
+            dropdownEls.forEach(dropdown => {
+                const triggerBtn = dropdown.querySelector('.dropdown-trigger-btn');
+                const label = triggerBtn.querySelector('.dropdown-label');
+                const originalLabel = label ? label.textContent : '';
+                const items = dropdown.querySelectorAll('.dropdown-content a');
+                const ddKey = dropdown.dataset.dropdown; // styles / layout / experience / format
+
+                items.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Reset all items in this dropdown
+                        items.forEach(i => { i.style.color = ''; i.style.fontWeight = ''; });
+                        item.style.color = 'var(--primary-color, #EEC30C)';
+                        item.style.fontWeight = '700';
+
+                        const val = item.dataset.value;
+                        const isAll = val.startsWith('all');
+
+                        // Update button label
+                        if (label) label.textContent = isAll ? originalLabel : item.textContent;
+                        triggerBtn.classList.toggle('active', !isAll);
+
+                        // Map dropdown key to state key
+                        const stateKeyMap = { styles: 'styles', layout: 'layout', experience: 'experience', format: 'format' };
+                        if (stateKeyMap[ddKey]) filterState[stateKeyMap[ddKey]] = val;
+
+                        applyFilters();
+                    });
+                });
+            });
+
+            // 3. Color Buttons – exclusive selection
+            const colorBtns = document.querySelectorAll('.color-btn');
+            colorBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    colorBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // 4. Toggle Groups – exclusive within group
+            const toggleGroups = document.querySelectorAll('.toggle-group');
+            toggleGroups.forEach(group => {
+                const btns = group.querySelectorAll('.toggle-btn');
+                btns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        btns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                    });
+                });
+            });
+
+            // 5. Template Selection + Animated CTA Button
+            const wrap = document.getElementById('startCustomizingWrap');
+            const infoEl = document.getElementById('selectedTemplateInfo');
+            const allTemplates = document.querySelectorAll('.selectable-template');
+            let selectedTemplate = null;
+
+            allTemplates.forEach(tmpl => {
+                const selectBtn = tmpl.querySelector('.template-select-btn');
+                if (!selectBtn) return;
+
+                selectBtn.addEventListener('click', () => {
+                    // Deselect all
+                    allTemplates.forEach(t => {
+                        t.classList.remove('template-selected');
+                        const b = t.querySelector('.template-select-btn');
+                        if (b) { b.textContent = 'Select'; b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); b.style.color = ''; }
+                    });
+
+                    // Select clicked
+                    tmpl.classList.add('template-selected');
+                    selectBtn.textContent = '✓ Selected';
+                    selectBtn.classList.remove('btn-secondary');
+                    selectBtn.classList.add('btn-primary');
+                    selectBtn.style.color = '#000';
+                    selectedTemplate = tmpl.querySelector('h4') ? tmpl.querySelector('h4').textContent : 'Template';
+
+                    // Update info text
+                    if (infoEl) infoEl.textContent = '✓ ' + selectedTemplate + ' selected — ready to customize!';
+
+                    // Show animated CTA
+                    if (wrap) {
+                        wrap.classList.add('visible');
+                        wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+
+        });
+
+    </script>
+    
+    <!-- Home Page Script -->
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* 3D Card Animation Section - Scoped to .rbrb-page to prevent CSS leaking from other pages */
+.rbrb-page .roles-grid-section {
+    padding: 4rem 0 8rem;
+    background: transparent;
+}
+
+.rbrb-page .roles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 6rem 3rem;
+    padding: 0 5%;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rbrb-page .role-card {
+    position: relative;
+    height: 280px;
+    cursor: pointer;
+    margin-top: 30px;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.rbrb-page .role-card::after {
+    display: none;
+}
+
+/* Background colored shapes */
+.rbrb-page .role-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    z-index: 0;
+    transition: all 0.4s ease;
+}
+
+/* Blue shape -> Yellow shape */
+.rbrb-page .role-card:nth-child(3n+1)::before {
+    background: var(--primary-color, #EEC30C);
+    transform: rotate(-6deg) scale(1.02);
+}
+
+/* Green shape -> Yellow shape */
+.rbrb-page .role-card:nth-child(3n+2)::before {
+    background: var(--primary-color, #EEC30C);
+    transform: rotate(6deg) scale(1.02);
+}
+
+/* Teal shape -> Yellow shape */
+.rbrb-page .role-card:nth-child(3n+3)::before {
+    background: var(--primary-color, #EEC30C);
+    transform: rotate(-6deg) scale(1.02);
+}
+
+.rbrb-page .role-card:hover::before {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.rbrb-page .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 4rem 1.8rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: #ffffff;
+    border-radius: 24px;
+    text-align: center;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Circular icon at the top center */
+.rbrb-page .role-icon {
+    position: absolute !important;
+    top: -40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 80px !important;
+    height: 80px !important;
+    background: #e9e9e9 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 8px !important;
+    font-size: 2rem !important;
+    color: var(--primary-color, #EEC30C) !important;
+    z-index: 2 !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    margin: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.rbrb-page .role-icon::before {
+    transform: none !important;
+}
+
+.rbrb-page .role-card:hover .role-icon {
+    color: #000 !important;
+}
+
+.rbrb-page .role-card:hover .role-icon::before {
+    background: linear-gradient(to right, #000 30%, var(--primary-color, #EEC30C) 50%, #000 70%) !important;
+    background-size: 200% auto !important;
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: icon-shine 2s linear infinite !important;
+}
+
+@keyframes icon-shine {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.rbrb-page .role-card h3 {
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    color: #111 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 0.5rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.rbrb-page .role-card p {
+    color: #888 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+}
+
+/* Bottom button that appears on hover */
+.rbrb-page .generate-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    background: var(--primary-color, #EEC30C);
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.rbrb-page .role-card:hover .generate-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.rbrb-page .generate-btn:hover {
+    background: #000;
+    color: var(--primary-color, #EEC30C);
+}

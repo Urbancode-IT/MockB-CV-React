@@ -1,0 +1,121 @@
+/* How It Works Section Styles */
+.home-how-it-works-section {
+    padding: 8rem 0;
+    overflow: hidden;
+}
+
+.home-how-it-works-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.home-how-it-works-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #FFFFFF !important;
+}
+
+.home-how-it-works-header p {
+    font-size: 1.2rem;
+    color: var(--text-gray, #A0A0A0);
+}
+
+.home-steps-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    position: relative;
+}
+
+.home-steps-container::before {
+    content: '';
+    position: absolute;
+    top: 35px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.home-step-card {
+    flex: 1;
+    background: var(--bg-card, #1A1A1A) !important;
+    padding: 3rem 2rem !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    text-align: center !important;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+.home-step-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(238, 195, 12, 0.3) !important;
+}
+
+.home-step-number {
+    width: 70px !important;
+    height: 70px !important;
+    background: #0D0D0D !important;
+    border: 2px solid #EEC30C !important;
+    color: #EEC30C !important;
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    box-shadow: 0 0 20px rgba(238, 195, 12, 0.2) !important;
+}
+
+.home-step-card h3 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    color: #FFFFFF !important;
+}
+
+.home-step-card p {
+    color: #A0A0A0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Animations */
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.slide-in-bottom {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.slide-in-left.animate,
+.slide-in-bottom.animate,
+.slide-in-right.animate {
+    opacity: 1;
+    transform: translate(0);
+}
+
+@media (max-width: 768px) {
+    .home-steps-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .home-steps-container::before {
+        display: none;
+    }
+}

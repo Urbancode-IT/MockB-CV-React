@@ -1,0 +1,52 @@
+/* Features Grid Styles */
+.home-features-grid {
+    padding: 6rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.home-feature-card {
+    background: #1A1A1A !important;
+    padding: 2.5rem !important;
+    border-radius: 20px !important;
+    border: 1px solid #222 !important;
+    transition: all 0.3s ease !important;
+    text-align: left !important;
+    min-height: 250px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+.home-feature-card:hover {
+    border-color: #EEC30C !important;
+    transform: translateY(-5px) !important;
+}
+
+.home-feature-icon {
+    font-size: 2rem !important;
+    color: #EEC30C !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.home-feature-card h3 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    color: #FFFFFF !important;
+}
+
+.home-feature-card p {
+    color: #A0A0A0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+}
+
+@media (max-width: 1024px) {
+    .home-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .home-features-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter Customizer | MockB CV</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rubik:wght@300;400;500;700&family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Raleway:wght@300;400;500;600;700;800&family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Exo+2:wght@300;400;500;600;700&family=Chivo:wght@300;400;700&family=Tinos:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;500;600;700&family=Volkhov:ital,wght@0,400;0,700;1,400&family=Gelasio:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <!-- Editor Header (no login/signup) -->
+    <header class="editor-header">
+        <div class="header-left">
+            <a href="../../HOME PAGE/HTML/index.html" class="logo-link">
+                <i class="fa-solid fa-bee"></i>
+                <span>MockB CV</span>
+            </a>
+            <a href="../../HOME PAGE/HTML/index.html" class="btn-back">
+                <i class="fa-solid fa-chevron-left"></i> Home
+            </a>
+        </div>
+
+        <div class="toolbar-tabs">
+            <button class="tab-btn" onclick="switchTab('ai', this)">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Improve text
+            </button>
+            <button class="tab-btn" onclick="switchTab('templates', this)">
+                <i class="fa-solid fa-layer-group"></i> Templates
+            </button>
+            <button class="tab-btn active" onclick="switchTab('customize', this)">
+                <i class="fa-solid fa-sliders"></i> Design & Font
+            </button>
+        </div>
+
+        <div class="header-right">
+            <!-- Empty right side – no login/signup -->
+        </div>
+    </header>
+
+    <!-- Split Workspace -->
+    <div class="workspace">
+
+        <!-- Left Sidebar Panel -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3 id="sidebar-title">Design & Font</h3>
+                <button class="btn-close-sidebar" onclick="toggleSidebar(false)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+
+                <!-- DESIGN & FONT TAB PANEL -->
+                <div class="panel-tab active" id="panel-customize">
+
+                    <!-- Page Margins -->
+                    <div class="control-group">
+                        <div class="slider-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <span class="control-label">Page Margins</span>
+                            <span class="slider-val" id="val-margins">5</span>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" min="1" max="10" value="5" class="slider-input" id="slider-margins" oninput="setMargins(this.value)">
+                            <button onclick="stepSlider('slider-margins', -1, 1, 10, 'margins')" class="btn-step"><i class="fa-solid fa-minus"></i></button>
+                            <button onclick="stepSlider('slider-margins', 1, 1, 10, 'margins')" class="btn-step"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Section Spacing -->
+                    <div class="control-group">
+                        <div class="slider-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <span class="control-label">Section Spacing</span>
+                            <span class="slider-val" id="val-spacing">3</span>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" min="1" max="8" value="3" class="slider-input" id="slider-spacing" oninput="setSpacing(this.value)">
+                            <button onclick="stepSlider('slider-spacing', -1, 1, 8, 'spacing')" class="btn-step"><i class="fa-solid fa-minus"></i></button>
+                            <button onclick="stepSlider('slider-spacing', 1, 1, 8, 'spacing')" class="btn-step"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Colors Grid -->
+                    <div class="control-group">
+                        <span class="control-label">Colors</span>
+                        <div class="color-grid">
+                            <div class="color-option active" style="background:#EEC30C;" data-color="#EEC30C" onclick="applyPresetColor('#EEC30C', this)"></div>
+                            <div class="color-option" style="background:#4A4A4A;" data-color="#4A4A4A" onclick="applyPresetColor('#4A4A4A', this)"></div>
+                            <div class="color-option" style="background:#2E7D32;" data-color="#2E7D32" onclick="applyPresetColor('#2E7D32', this)"></div>
+                            <div class="color-option" style="background:#D84315;" data-color="#D84315" onclick="applyPresetColor('#D84315', this)"></div>
+                            <div class="color-option" style="background:#1565C0;" data-color="#1565C0" onclick="applyPresetColor('#1565C0', this)"></div>
+                            <div class="color-option" style="background:#283593;" data-color="#283593" onclick="applyPresetColor('#283593', this)"></div>
+                            <div class="color-option" style="background:#FF5722;" data-color="#FF5722" onclick="applyPresetColor('#FF5722', this)"></div>
+                            <div class="color-option" style="background:#6A1B9A;" data-color="#6A1B9A" onclick="applyPresetColor('#6A1B9A', this)"></div>
+                            <div class="color-option" style="background:#00838F;" data-color="#00838F" onclick="applyPresetColor('#00838F', this)"></div>
+                            <div class="color-option" style="background:#6D4C41;" data-color="#6D4C41" onclick="applyPresetColor('#6D4C41', this)"></div>
+                        </div>
+
+                        <!-- Saved Custom Colors Row -->
+                        <div class="saved-colors-wrap" id="saved-colors-wrap" style="display:none;"></div>
+
+                        <!-- "Use custom color" link -->
+                        <button class="color-custom-link" onclick="toggleCustomPicker()">Use custom color</button>
+
+                        <!-- ===== Custom Color Picker Box ===== -->
+                        <div class="custom-picker-box" id="custom-picker-box">
+                            <div class="picker-header">
+                                <span class="picker-header-title">Custom Color Picker</span>
+                                <button class="picker-header-close" onclick="toggleCustomPicker()"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+
+                            <!-- Primary / Secondary tabs -->
+                            <div class="picker-tabs">
+                                <button class="picker-tab active" id="tab-primary" onclick="switchPickerTab('primary')">Primary</button>
+                                <button class="picker-tab" id="tab-secondary" onclick="switchPickerTab('secondary')">Secondary</button>
+                            </div>
+
+                            <div class="picker-body">
+                                <!-- Spectrum Canvas -->
+                                <div class="spectrum-area" id="spectrum-area" onmousedown="startSpectrumDrag(event)" ontouchstart="startSpectrumTouchDrag(event)">
+                                    <div class="spectrum-cursor" id="spectrum-cursor" style="left:80%;top:20%;"></div>
+                                </div>
+
+                                <!-- Hue Slider -->
+                                <div class="hue-slider-wrap">
+                                    <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" value="0" oninput="onHueChange(this.value)">
+                                </div>
+
+                                <!-- RGB/Hex Inputs Row -->
+                                <div class="picker-inputs-row">
+                                    <select class="input-select" id="color-mode-select" onchange="onColorModeChange(this.value)">
+                                        <option value="rgb">RGB</option>
+                                        <option value="hex">HEX</option>
+                                    </select>
+                                    <input type="text" class="picker-val-field" id="val-r" value="238" placeholder="R" oninput="onRgbInput()" style="max-width:52px;">
+                                    <input type="text" class="picker-val-field" id="val-g" value="195" placeholder="G" oninput="onRgbInput()" style="max-width:52px;">
+                                    <input type="text" class="picker-val-field" id="val-b" value="12" placeholder="B" oninput="onRgbInput()" style="max-width:52px;">
+                                </div>
+
+                                <button class="btn-save-color" onclick="saveCustomColor()">Save Color</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Font Style -->
+                    <div class="control-group">
+                        <span class="control-label">Font Style</span>
+                        <select class="font-select" id="font-style-select" onchange="changeFont(this.value); saveHistoryState('Font Family')">
+                            <option value="Satoshi">Satoshi</option>
+                            <option value="Inter">Inter</option>
+                            <option value="Rubik">Rubik</option>
+                            <option value="Arimo">Arimo &nbsp;—&nbsp; Arial-like</option>
+                            <option value="Lato">Lato</option>
+                            <option value="Raleway">Raleway</option>
+                            <option value="Exo 2">Exo 2</option>
+                            <option value="Chivo">Chivo</option>
+                            <option value="Oswald">Oswald</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Playfair Display">Playfair Display &nbsp;—&nbsp; Serif</option>
+                            <option value="Bitter">Bitter &nbsp;—&nbsp; Serif</option>
+                            <option value="Tinos">Tinos &nbsp;—&nbsp; Times-like</option>
+                            <option value="Volkhov">Volkhov &nbsp;—&nbsp; Serif</option>
+                            <option value="Gelasio">Gelasio &nbsp;—&nbsp; Georgia-like</option>
+                        </select>
+                    </div>
+
+                    <!-- Font Size -->
+                    <div class="control-group">
+                        <div class="slider-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <span class="control-label">Font Size</span>
+                            <span class="slider-val" id="val-font-size">M</span>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" min="1" max="4" value="2" class="slider-input" id="slider-font-size" oninput="setFontSize(this.value)">
+                            <button onclick="stepSlider('slider-font-size', -1, 1, 4, 'fontSize')" class="btn-step"><i class="fa-solid fa-minus"></i></button>
+                            <button onclick="stepSlider('slider-font-size', 1, 1, 4, 'fontSize')" class="btn-step"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Line Height -->
+                    <div class="control-group">
+                        <div class="slider-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <span class="control-label">Line Height</span>
+                            <span class="slider-val" id="val-line-height">1.4</span>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" min="10" max="20" value="14" class="slider-input" id="slider-line-height" oninput="setLineHeight(this.value/10)">
+                            <button onclick="stepSlider('slider-line-height', -1, 10, 20, 'lineHeight')" class="btn-step"><i class="fa-solid fa-minus"></i></button>
+                            <button onclick="stepSlider('slider-line-height', 1, 10, 20, 'lineHeight')" class="btn-step"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Backgrounds -->
+                    <div class="control-group">
+                        <span class="control-label">Backgrounds</span>
+                        <div class="bg-grid">
+                            <div class="bg-option active" onclick="setBackgroundPattern('pat-blank', this)">
+                                <div class="bg-pattern-thumb pat-blank"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-dots', this)">
+                                <div class="bg-pattern-thumb pat-dots"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-grid', this)">
+                                <div class="bg-pattern-thumb pat-grid"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-hexagons', this)">
+                                <div class="bg-pattern-thumb pat-hexagons"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-lines', this)">
+                                <div class="bg-pattern-thumb pat-lines"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-waves', this)">
+                                <div class="bg-pattern-thumb pat-waves"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-stripes', this)">
+                                <div class="bg-pattern-thumb pat-stripes"></div>
+                            </div>
+                            <div class="bg-option" onclick="setBackgroundPattern('pat-diagonal', this)">
+                                <div class="bg-pattern-thumb pat-diagonal"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reset Design -->
+                    <button class="btn-sidebar-footer" onclick="resetDesign()">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> Reset Design Settings
+                    </button>
+                </div>
+
+                <!-- TEMPLATES TAB PANEL -->
+                <div class="panel-tab" id="panel-templates">
+                    <p style="color:#888; font-size:0.84rem; margin-bottom:1rem;">Select a cover letter template style:</p>
+
+                    <div class="templates-list">
+                        <div class="template-card active" id="tpl-modern" onclick="selectTemplate('modern', this)">
+                            <div class="template-card-preview">
+                                <div style="background:#fff;width:100%;height:100%;padding:8px;display:flex;flex-direction:column;gap:4px;">
+                                    <div style="height:12px;background:#EEC30C;"></div>
+                                    <div style="height:6px;width:40%;background:#eee;"></div>
+                                    <div style="height:4px;width:100%;background:#f5f5f5;"></div>
+                                    <div style="height:4px;width:90%;background:#f5f5f5;"></div>
+                                    <div style="height:4px;width:95%;background:#f5f5f5;"></div>
+                                </div>
+                            </div>
+                            <h4>Modern Style</h4>
+                        </div>
+
+                        <div class="template-card" id="tpl-traditional" onclick="selectTemplate('traditional', this)">
+                            <div class="template-card-preview">
+                                <div style="background:#fff;width:100%;height:100%;padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="height:8px;width:60%;background:#1b2a47;"></div>
+                                    <div style="height:2px;width:100%;background:#ddd;margin:4px 0;"></div>
+                                    <div style="height:4px;width:90%;background:#f5f5f5;align-self:flex-start;"></div>
+                                    <div style="height:4px;width:95%;background:#f5f5f5;align-self:flex-start;"></div>
+                                </div>
+                            </div>
+                            <h4>Traditional Serif</h4>
+                        </div>
+
+                        <div class="template-card" id="tpl-creative" onclick="selectTemplate('creative', this)">
+                            <div class="template-card-preview">
+                                <div style="background:#fff;width:100%;height:100%;display:flex;">
+                                    <div style="width:8px;background:#e91e63;height:100%;"></div>
+                                    <div style="flex:1;padding:8px;display:flex;flex-direction:column;gap:4px;">
+                                        <div style="height:12px;background:#444;"></div>
+                                        <div style="height:4px;width:100%;background:#f5f5f5;"></div>
+                                        <div style="height:4px;width:80%;background:#f5f5f5;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>Creative Accent</h4>
+                        </div>
+
+                        <div class="template-card" id="tpl-minimalist" onclick="selectTemplate('minimalist', this)">
+                            <div class="template-card-preview">
+                                <div style="background:#fff;width:100%;height:100%;padding:8px;display:flex;flex-direction:column;gap:3px;">
+                                    <div style="height:8px;width:35%;background:#111;"></div>
+                                    <div style="height:3px;width:50%;background:#eee;"></div>
+                                    <div style="height:4px;width:100%;background:#f5f5f5;margin-top:4px;"></div>
+                                    <div style="height:4px;width:90%;background:#f5f5f5;"></div>
+                                </div>
+                            </div>
+                            <h4>Minimalist</h4>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top:1.5rem;">
+                        <span class="control-label">Document Size</span>
+                        <div class="size-switcher">
+                            <button class="size-btn active" onclick="setDocumentSize('a4', this)">A4</button>
+                            <button class="size-btn" onclick="setDocumentSize('letter', this)">US Letter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMPROVE TEXT (AI) TAB PANEL -->
+                <div class="panel-tab" id="panel-ai">
+                    <div class="ai-box">
+                        <span class="control-label">Write or rewrite with AI</span>
+                        <textarea class="ai-input" id="ai-prompt-input" placeholder="Type a job role or how you want to improve your cover letter text..."></textarea>
+                        <button class="btn-ai-generate" onclick="alert('AI text generation simulated!')">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Text
+                        </button>
+                    </div>
+
+                    <!-- Photo Management -->
+                    <div class="control-group" style="border-top:1px solid #222;padding-top:1.5rem;">
+                        <span class="control-label">Photo Settings</span>
+                        <div id="photo-edit-controls" style="display:none;margin-bottom:1rem;">
+                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.6rem;">
+                                <input type="checkbox" id="chk-show-photo" onchange="togglePhotoShow(this.checked)" style="width:16px;height:16px;accent-color:var(--primary-color);">
+                                <span style="font-size:0.85rem;color:#ccc;">Show Profile Picture</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.6rem;">
+                                <input type="checkbox" id="chk-photo-gray" onchange="togglePhotoGray(this.checked)" style="width:16px;height:16px;accent-color:var(--primary-color);">
+                                <span style="font-size:0.85rem;color:#ccc;">Grayscale Filter</span>
+                            </label>
+                            <button onclick="deletePhoto()" class="btn-step" style="width:100%;padding:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;color:#ff4444;border-color:#552222;background:rgba(255,68,68,0.05);height:auto;">
+                                <i class="fa-solid fa-trash"></i> Delete Photo
+                            </button>
+                        </div>
+                        <div id="photo-empty-message">
+                            <button onclick="triggerPhotoUploadPopup(event)" class="btn-sidebar-footer" style="margin-top:0.5rem;background:rgba(238,195,12,0.1);border:1px solid var(--primary-color);color:var(--primary-color);">
+                                <i class="fa-solid fa-camera"></i> Upload Profile Picture
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Right Preview Panel -->
+        <main class="preview-panel">
+
+            <!-- Floating action buttons (styled like 2nd image) -->
+            <div class="floating-actions">
+                <!-- Eye / Preview -->
+                <div class="floating-btn-container">
+                    <button class="btn-floating" id="btn-toggle-preview" onclick="openPreviewModal()" title="Full Preview">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+
+                <!-- Download with dropdown -->
+                <div class="floating-btn-container" id="download-container">
+                    <button class="btn-floating" id="btn-download" onclick="toggleDownloadDropdown()" title="Download">
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                    <div class="download-dropdown" id="download-dropdown">
+                        <button class="download-dropdown-item" onclick="downloadPDF()">
+                            <i class="fa-solid fa-file-pdf"></i> Download as PDF
+                        </button>
+                        <button class="download-dropdown-item" onclick="downloadDOC()">
+                            <i class="fa-solid fa-file-word"></i> Download as Word (DOC)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- History -->
+                <div class="floating-btn-container">
+                    <button class="btn-floating" id="btn-history" onclick="toggleHistoryModal(true)" title="History">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Editable Cover Letter Sheet -->
+            <div class="cover-letter-sheet" id="cover-letter-sheet">
+
+                <!-- Layout Header (clickable for options) -->
+                <div class="sheet-header-wrapper" id="sheet-header-wrapper">
+                    <!-- Floating Tab for Camera & Settings (Image 1) -->
+                    <div class="header-controls-tab" id="header-controls-tab">
+                        <button class="header-ctrl-btn" onclick="triggerPhotoUploadPopup(event)" title="Change Photo"><i class="fa-solid fa-camera"></i></button>
+                        <button class="header-ctrl-btn" onclick="toggleTextEditPopupFromTab(event)" title="Edit Text Styles"><i class="fa-solid fa-font"></i></button>
+                        <button class="header-ctrl-btn" onclick="toggleHeaderPopupFromTab(event)" title="Settings"><i class="fa-solid fa-gear"></i></button>
+                    </div>
+
+                    <div class="sheet-header" id="sheet-header">
+                        <div class="sheet-header-left">
+                            <div class="editable-field sheet-fullname" id="sheet-fullname" contenteditable="true">YOUR NAME</div>
+                            <div class="editable-field sheet-role" id="sheet-role" contenteditable="true">The role you are applying for?</div>
+                        </div>
+                        <div class="sheet-header-right">
+                            <div class="sheet-photo-wrapper" id="sheet-photo-wrapper">
+                                <img id="sheet-photo-img" src="" alt="Profile Photo">
+                            </div>
+                            <div class="sheet-contact-item" id="contact-phone-row">
+                                <i class="fa-solid fa-phone"></i>
+                                <span class="editable-field" id="sheet-phone" contenteditable="true">Phone</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-email-row">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span class="editable-field" id="sheet-email" contenteditable="true">Email</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-link-row">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                                <span class="editable-field" id="sheet-linkedin" contenteditable="true">LinkedIn/Portfolio</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-extralink-row" style="display:none;">
+                                <i class="fa-solid fa-link"></i>
+                                <span class="editable-field" id="sheet-extralink" contenteditable="true">Extra Link</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-location-row">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span class="editable-field" id="sheet-location" contenteditable="true">Location</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-dob-row" style="display:none;">
+                                <i class="fa-solid fa-calendar"></i>
+                                <span class="editable-field" id="sheet-dob" contenteditable="true">Date of Birth</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-nationality-row" style="display:none;">
+                                <i class="fa-solid fa-flag"></i>
+                                <span class="editable-field" id="sheet-nationality" contenteditable="true">Nationality</span>
+                            </div>
+                            <div class="sheet-contact-item" id="contact-extrafield-row" style="display:none;">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="editable-field" id="sheet-extrafield" contenteditable="true">Extra Field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Edit Popup Panel (images 3, 4, 5) -->
+                    <div class="header-options-popup text-edit-popup" id="text-edit-popup">
+                        <div class="text-edit-section">
+                            <div class="text-edit-title">Text alignment</div>
+                            <div class="text-edit-btn-group">
+                                <button class="text-edit-btn active" id="btn-align-left" onclick="setTextAlignment('left', this)">
+                                    <i class="fa-solid fa-align-left"></i><span>Left</span>
+                                </button>
+                                <button class="text-edit-btn" id="btn-align-center" onclick="setTextAlignment('center', this)">
+                                    <i class="fa-solid fa-align-center"></i><span>Center</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-edit-section">
+                            <div class="text-edit-title">Details Arrangement</div>
+                            <div class="text-edit-btn-group">
+                                <button class="text-edit-btn active" onclick="setDetailsLayout('stacked', this)"><i class="fa-solid fa-bars"></i></button>
+                                <button class="text-edit-btn" onclick="setDetailsLayout('columns', this)"><i class="fa-solid fa-grip-vertical"></i></button>
+                            </div>
+                            <div class="text-edit-btn-group" style="margin-top: 8px;">
+                                <button class="text-edit-btn active" onclick="setDetailsSeparator('icon', this)"><i class="fa-regular fa-face-smile"></i><span>Icon</span></button>
+                                <button class="text-edit-btn" onclick="setDetailsSeparator('bullet', this)"><span>&bull; Bullet</span></button>
+                                <button class="text-edit-btn" onclick="setDetailsSeparator('bar', this)"><span>| Bar</span></button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-edit-section">
+                            <div class="text-edit-title">Icon Style</div>
+                            <div class="text-edit-icon-styles">
+                                <button class="icon-style-btn active" onclick="setIconStyle(1, this)"><div class="icon-shape shape-1"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(2, this)"><div class="icon-shape shape-2"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(3, this)"><div class="icon-shape shape-3"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(4, this)"><div class="icon-shape shape-4"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(5, this)"><div class="icon-shape shape-5"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(6, this)"><div class="icon-shape shape-6"><i class="fa-solid fa-link"></i></div></button>
+                                <button class="icon-style-btn" onclick="setIconStyle(7, this)"><div class="icon-shape shape-7"><i class="fa-solid fa-link"></i></div></button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-edit-section">
+                            <div class="text-edit-title" style="font-size:1.1rem; color:#111; font-weight:bold;">Name</div>
+                            <div class="text-edit-title" style="margin-top:8px;">Size</div>
+                            <div class="text-edit-size-group">
+                                <button class="size-btn" onclick="setNameSize('XS', this)">XS</button>
+                                <button class="size-btn" onclick="setNameSize('S', this)">S</button>
+                                <button class="size-btn" onclick="setNameSize('M', this)">M</button>
+                                <button class="size-btn active" onclick="setNameSize('L', this)">L</button>
+                                <button class="size-btn" onclick="setNameSize('XL', this)">XL</button>
+                            </div>
+                            <div class="text-edit-checkbox" style="margin-top:12px;">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" checked onchange="toggleNameBold(this.checked)">
+                                    <span class="checkmark"></span> Name bold
+                                </label>
+                            </div>
+                            <div class="text-edit-title" style="margin-top:12px;">Font</div>
+                            <div class="text-edit-btn-group">
+                                <button class="text-edit-btn active" onclick="setNameFont('body', this)">Body Font</button>
+                                <button class="text-edit-btn" onclick="setNameFont('creative', this)">Creative</button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-edit-section">
+                            <div class="text-edit-title" style="font-size:1.1rem; color:#111; font-weight:bold;">Professional title</div>
+                            <div class="text-edit-title" style="margin-top:8px;">Size</div>
+                            <div class="text-edit-size-group">
+                                <button class="size-btn" onclick="setTitleSize('S', this)">S</button>
+                                <button class="size-btn active" onclick="setTitleSize('M', this)">M</button>
+                                <button class="size-btn" onclick="setTitleSize('L', this)">L</button>
+                            </div>
+                            <div class="text-edit-title" style="margin-top:12px;">Position</div>
+                            <div class="text-edit-btn-group">
+                                <button class="text-edit-btn" onclick="setTitlePosition('sameline', this)">Try Same Line</button>
+                                <button class="text-edit-btn active" onclick="setTitlePosition('below', this)">Below</button>
+                            </div>
+                            <div class="text-edit-title" style="margin-top:12px;">Style</div>
+                            <div class="text-edit-btn-group">
+                                <button class="text-edit-btn active" onclick="setTitleStyle('normal', this)">Normal</button>
+                                <button class="text-edit-btn" onclick="setTitleStyle('italic', this)" style="font-style:italic;">Italic</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Header Options Popup Panel (like images 4 & 5) -->
+                    <div class="header-options-popup" id="header-options-popup">
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Title</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-title" checked onchange="toggleHeaderField('title', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Phone</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-phone" checked onchange="toggleHeaderField('phone', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Link</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-link" checked onchange="toggleHeaderField('link', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Extra Link</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-extralink" onchange="toggleHeaderField('extralink', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Email</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-email" checked onchange="toggleHeaderField('email', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Location</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-location" checked onchange="toggleHeaderField('location', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Uppercase name</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-uppercase" onchange="toggleHeaderField('uppercase', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Photo</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-photo" onchange="toggleHeaderField('photo', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Extra Field</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-extrafield" onchange="toggleHeaderField('extrafield', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Date of Birth</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-dob" onchange="toggleHeaderField('dob', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Nationality</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tog-nationality" onchange="toggleHeaderField('nationality', this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="header-opt-row">
+                            <span class="header-opt-label">Photo Style</span>
+                            <div class="photo-style-dots">
+                                <button class="style-dot active" id="dot-photostyle-round" onclick="setPhotoStyle('round')"></button>
+                                <button class="style-dot" id="dot-photostyle-square" onclick="setPhotoStyle('square')"></button>
+                            </div>
+                            <div class="header-opt-icon-btn" id="photo-style-preview-icon" style="background:#e6e6e6; border:none; color:#777; pointer-events:none;">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Upload Modal -->
+                <div class="photo-upload-modal" id="photo-upload-modal">
+                    <div class="photo-upload-modal-box">
+                        <button class="photo-modal-close" onclick="closePhotoUploadModal()"><i class="fa-solid fa-xmark"></i></button>
+                        <h3 class="photo-modal-title">Upload photo:</h3>
+                        <div class="photo-modal-preview" id="photo-modal-preview">
+                            <i class="fa-solid fa-user photo-modal-placeholder-icon"></i>
+                        </div>
+                        <p class="photo-modal-hint">Square images work best.</p>
+                        <div class="photo-modal-actions">
+                            <button class="photo-modal-btn photo-modal-btn-upload" onclick="document.getElementById('photo-upload-input').click()">Upload</button>
+                            <button class="photo-modal-btn photo-modal-btn-save" onclick="savePhotoUploadModal()">Save</button>
+                        </div>
+                        <input type="file" id="photo-upload-input" accept="image/*" style="display:none;">
+                    </div>
+                </div>
+
+                <!-- Sheet Content Blocks -->
+                <div class="sheet-blocks-container" id="sheet-blocks-container">
+
+                    <!-- Block 1: Date -->
+                    <div class="content-block" data-block-id="b1" data-title="May 30, 2026" data-type="text">
+                        <div class="block-display"><span class="block-title-display">May 30, 2026</span></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 2: Recipient -->
+                    <div class="content-block" data-block-id="b2" data-title="Hiring Team" data-subtitle="Target Company Name" data-location="Company Address Line" data-type="entry">
+                        <div class="block-display">
+                            <div class="block-title-display">Hiring Team</div>
+                            <div class="block-subtitle-display">Target Company Name</div>
+                            <div class="block-meta-display"><span>Company Address Line</span></div>
+                        </div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 3: Greeting -->
+                    <div class="content-block" data-block-id="b3" data-type="text" data-desc="Dear Hiring Manager,">
+                        <div class="block-display"><div class="block-desc-display" style="font-weight:700; color:#111;">Dear Hiring Manager,</div></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 4: Opening Paragraph -->
+                    <div class="content-block" data-block-id="b4" data-type="text" data-desc="This is your opportunity to introduce yourself to the organization! Share your passion for the position you are applying for to motivate the reader to interview you.">
+                        <div class="block-display"><div class="block-desc-display">This is your opportunity to introduce yourself to the organization! Share your passion for the position you are applying for to motivate the reader to interview you.</div></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 5: Middle Paragraph -->
+                    <div class="content-block" data-block-id="b5" data-type="text" data-desc="Highlight your key achievements and relevant projects. Focus on quantifiable results and how your skillset directly solves the challenges the company is currently facing.">
+                        <div class="block-display"><div class="block-desc-display">Highlight your key achievements and relevant projects. Focus on quantifiable results and how your skillset directly solves the challenges the company is currently facing.</div></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 6: Closing Paragraph -->
+                    <div class="content-block" data-block-id="b6" data-type="text" data-desc="Close with a warm call to action, thanking the reader for their time and expressing excitement for a potential interview.">
+                        <div class="block-display"><div class="block-desc-display">Close with a warm call to action, thanking the reader for their time and expressing excitement for a potential interview.</div></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Block 7: Sign-off -->
+                    <div class="content-block" data-block-id="b7" data-type="text" data-desc="Sincerely,<br>Your Name">
+                        <div class="block-display"><div class="block-desc-display">Sincerely,<br><strong>Your Name</strong></div></div>
+                        <div class="block-nav-buttons">
+                            <button class="block-nav-btn" title="Move Up" onclick="moveBlockUp(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-up"></i></button>
+                            <button class="block-nav-btn" title="Move Down" onclick="moveBlockDown(this.closest('.content-block'));event.stopPropagation();"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+
+                </div><!-- /.sheet-blocks-container -->
+
+                <!-- Add New Block Button -->
+                <div class="add-block-row">
+                    <button class="add-block-btn" id="add-block-btn" onclick="addNewBlock()">
+                        <i class="fa-solid fa-plus"></i> Add New
+                    </button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal-overlay" id="history-modal">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>History Timeline</span>
+                <button class="modal-close" onclick="toggleHistoryModal(false)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                <button class="btn-step" id="btn-undo" onclick="undo()" style="width:auto;padding:0.4rem 1rem;font-size:0.8rem;gap:0.4rem;" disabled>
+                    <i class="fa-solid fa-rotate-left"></i> Undo
+                </button>
+                <button class="btn-step" id="btn-redo" onclick="redo()" style="width:auto;padding:0.4rem 1rem;font-size:0.8rem;gap:0.4rem;" disabled>
+                    <i class="fa-solid fa-rotate-right"></i> Redo
+                </button>
+            </div>
+            <div class="history-list" id="history-items-container"></div>
+        </div>
+    </div>
+
+    <!-- ===== POPUP PREVIEW MODAL (5th image style) ===== -->
+    <div class="preview-modal" id="preview-modal">
+        <div class="preview-modal-wrapper">
+            <button class="btn-preview-close" onclick="closePreviewModal()" title="Close Preview">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <!-- Sheet clone will be injected here dynamically -->
+            <div id="preview-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- ===== Edit Entry Panel (Image 4) ===== -->
+    <div class="edit-entry-panel" id="edit-entry-panel">
+        <div class="edit-panel-inner">
+            <div class="edit-panel-header">
+                <div class="edit-panel-title">Edit Entry</div>
+                <div class="edit-panel-actions">
+                    <button class="ep-action-btn" onclick="getTips()"><i class="fa-regular fa-lightbulb"></i> Get Tips</button>
+                    <button class="ep-action-btn" onclick="previewBlock()"><i class="fa-regular fa-eye"></i></button>
+                    <button class="ep-action-btn ep-delete" onclick="deleteCurrentBlock()"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- Fields Container (Dynamically updated based on block type) -->
+            <div id="ep-fields-container">
+                <!-- Template for 'Entry' block -->
+                <div class="ep-field-group">
+                    <label class="ep-field-label">Employer</label>
+                    <div class="ep-input-wrap">
+                        <input type="text" class="ep-input" id="ep-employer" placeholder="" oninput="updateCurrentBlock()">
+                        <button class="ep-link-btn" title="Add Link"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+
+                <div class="ep-field-group">
+                    <label class="ep-field-label">Job Title</label>
+                    <div class="ep-input-wrap">
+                        <input type="text" class="ep-input" id="ep-jobtitle" placeholder="" oninput="updateCurrentBlock()">
+                    </div>
+                </div>
+
+                <div class="ep-field-row">
+                    <div class="ep-field-group">
+                        <label class="ep-field-label">Start Date</label>
+                        <div class="ep-input-wrap">
+                            <input type="text" class="ep-input" id="ep-startdate" placeholder="MM/YYYY" oninput="updateCurrentBlock()">
+                            <button class="ep-clear-btn" onclick="clearInput('ep-startdate')"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <div class="ep-field-group">
+                        <label class="ep-field-label">End Date</label>
+                        <div class="ep-input-wrap">
+                            <input type="text" class="ep-input" id="ep-enddate" placeholder="MM/YYYY" oninput="updateCurrentBlock()">
+                            <button class="ep-clear-btn" onclick="clearInput('ep-enddate')"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <div class="ep-field-group">
+                        <label class="ep-field-label">Location</label>
+                        <div class="ep-input-wrap">
+                            <input type="text" class="ep-input" id="ep-location" placeholder="" oninput="updateCurrentBlock()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ep-field-group">
+                    <label class="ep-field-label">Description</label>
+                    
+                    <div class="rte-toolbar">
+                        <button class="rte-btn" onclick="document.execCommand('bold', false, null)" title="Bold">B</button>
+                        <button class="rte-btn" style="font-style:italic;" onclick="document.execCommand('italic', false, null)" title="Italic">I</button>
+                        <button class="rte-btn" style="text-decoration:underline;" onclick="document.execCommand('underline', false, null)" title="Underline">U</button>
+                        <div class="rte-sep"></div>
+                        <button class="rte-btn" onclick="document.execCommand('insertUnorderedList', false, null)" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+                        <button class="rte-btn" onclick="document.execCommand('createLink', false, prompt('Enter URL:'))" title="Link"><i class="fa-solid fa-link"></i></button>
+                        <div class="rte-sep"></div>
+                        <button class="rte-btn rte-active" onclick="document.execCommand('justifyLeft', false, null)" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+                        <button class="rte-btn" onclick="document.execCommand('justifyCenter', false, null)" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+                        <button class="rte-btn" onclick="document.execCommand('justifyRight', false, null)" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+                        <button class="rte-btn" onclick="document.execCommand('justifyFull', false, null)" title="Justify"><i class="fa-solid fa-align-justify"></i></button>
+                    </div>
+                    
+                    <div class="rte-editor" id="ep-description" contenteditable="true" data-placeholder="Describe your role & achievements" oninput="updateCurrentBlock()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="editor-footer">
+        <div class="footer-top">
+            <a href="../../HOME PAGE/HTML/index.html">Home</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p class="footer-bottom-text">© 2026 MockBee. All rights reserved. | Resumes recruiters love</p>
+    </footer>
+
+    <script src="../JAVA SCRIPT/script.js"></script>
+</body>
+</html>

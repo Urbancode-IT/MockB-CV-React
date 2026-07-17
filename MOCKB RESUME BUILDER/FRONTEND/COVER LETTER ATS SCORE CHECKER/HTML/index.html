@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockB CV | AI Cover Letter ATS Score Checker</title>
+    <meta name="description" content="Check your cover letter's ATS compatibility score and get professional feedback to land more interviews.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/cover-letter-checker.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="cl-page-body">
+
+    <!-- ── NAVBAR (EXACTLY FROM HOME PAGE) ── -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD COVER LETTER GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#use-cases">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BG Animated Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <main>
+        <!-- ── HERO SECTION ── -->
+        <section class="cl-hero">
+            <div class="container-cl">
+                <div class="hero-content">
+                    <h1 class="animate-slide-up">Is Your Cover Letter <br><span>ATS Friendly?</span></h1>
+                    <p class="animate-slide-up-delay">Don't let your cover letter get ignored. Our AI analyzes your letter against modern ATS algorithms to ensure your personality shines through while hitting every technical requirement.</p>
+                    
+                    <div class="hero-features animate-fade-in-delay">
+                        <div class="feat-item">
+                            <div class="feat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <span>Instant Scoring</span>
+                        </div>
+                        <div class="feat-item">
+                            <div class="feat-icon"><i class="fa-solid fa-spell-check"></i></div>
+                            <span>Grammar Scan</span>
+                        </div>
+                        <div class="feat-item">
+                            <div class="feat-icon"><i class="fa-solid fa-key"></i></div>
+                            <span>Keyword Sync</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── UPLOAD SECTION ── -->
+        <section class="upload-section container-cl">
+            <div class="upload-container-cl animate-fade-up">
+                <div class="upload-glass-card" id="drop-zone">
+                    <div class="upload-visual">
+                        <div class="pulse-ring"></div>
+                        <i class="fa-solid fa-file-export"></i>
+                    </div>
+                    <h2>Check Your Score</h2>
+                    <p>Upload your cover letter to see how it performs</p>
+                    
+                    <div class="file-info-tags">
+                        <span>PDF</span>
+                        <span>DOCX</span>
+                        <span>TXT</span>
+                    </div>
+
+                    <input type="file" id="cl-file" accept=".pdf,.doc,.docx,.txt" hidden>
+                    <button class="btn-primary-cl" id="browse-btn">
+                        <i class="fa-solid fa-plus"></i> Select File
+                    </button>
+
+                    <div class="selected-file-pill" id="file-selected" style="display:none;">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <span id="file-name-display">letter.pdf</span>
+                        <button class="remove-btn" id="remove-file"><i class="fa-solid fa-x"></i></button>
+                    </div>
+                </div>
+
+                <button class="btn-analyze" id="check-ats-btn" disabled>
+                    <span>Analyze Cover Letter</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ── DETAILED RESULTS SECTION (Appears after check) ── -->
+        <section class="results-detailed container-cl" id="results-detailed" style="display:none;">
+            <div class="results-header text-center animate-fade-in">
+                <h2 class="section-heading">Detailed Analysis</h2>
+                <p class="section-sub">Your cover letter has been checked across 13 critical ATS parameters</p>
+            </div>
+
+            <div class="metrics-grid" id="metrics-grid">
+                <!-- Injected by JS -->
+            </div>
+
+            <!-- Strengths & Weaknesses (Centered Floating Emoji Design) -->
+            <div class="sw-row">
+                <div class="sw-box strength-box animate-fade-up">
+                    <img src="../../RESUME ATS SCORE CHECKER PAGE/IMAGES/sticker_gif_whatsapp_iphone___Emojis_emoticono_3D_todo_OK_gesto-removebg-preview.png" class="floating-emoji">
+                    <i class="fa-solid fa-check bg-icon"></i>
+                    <div class="sw-header">Strengths</div>
+                    <ul class="sw-list" id="strengths-list">
+                        <!-- Injected by JS -->
+                    </ul>
+                </div>
+
+                <div class="sw-box weakness-box animate-fade-up">
+                    <img src="../../RESUME ATS SCORE CHECKER PAGE/IMAGES/dfghj-removebg-preview.png" class="floating-emoji">
+                    <i class="fa-solid fa-xmark bg-icon"></i>
+                    <div class="sw-header">Weaknesses</div>
+                    <ul class="sw-list" id="weaknesses-list">
+                        <!-- Injected by JS -->
+                    </ul>
+                </div>
+            </div>
+            
+
+            <div class="cta-banner animate-fade-in">
+                <div class="cta-text">
+                    <h3>Want a perfect Cover Letter?</h3>
+                    <p>Let our AI rewrite your letter for 100% ATS compatibility.</p>
+                </div>
+                <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="btn-cta">
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                    <span>Optimize with AI</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ── EXPLAINER SECTION ── -->
+        <section class="explainer-section container-cl animate-fade-up">
+            <div class="explainer-grid">
+                <div class="explainer-text">
+                    <h2>How ATS Algorithms Scan <span>Your Cover Letter</span></h2>
+                    <p>Modern Applicant Tracking Systems (ATS) don't just look for your name; they scan for specific keyword density, structural integrity, and even sentiment analysis to rank you against hundreds of other candidates.</p>
+                    <div class="info-points">
+                        <div class="info-point">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <div>
+                                <h4>Keyword Matching</h4>
+                                <p>We identify missing skills that recruiters are looking for.</p>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <div>
+                                <h4>Format Verification</h4>
+                                <p>Ensuring your letterhead and layout are machine-readable.</p>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <div>
+                                <h4>Readability Check</h4>
+                                <p>Analyzing sentence complexity and professional tone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explainer-visual">
+                    <img src="../../HOME PAGE/IMAGES/interface.png" alt="ATS Scanning Process" class="floating-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── HOW IT WORKS ── -->
+        <section class="how-it-works-cl container-cl">
+            <div class="section-title-wrap text-center animate-fade-up">
+                <h2>The 3-Step <span>Success Path</span></h2>
+                <p>Simple, fast, and highly effective for any job application.</p>
+            </div>
+            <div class="cl-steps-grid">
+                <div class="cl-step-card animate-fade-up" style="animation-delay: 0.1s;">
+                    <div class="step-num">01</div>
+                    <h3>Upload Letter</h3>
+                    <p>Drag your existing cover letter or paste your text into our secure analyzer.</p>
+                </div>
+                <div class="cl-step-card animate-fade-up" style="animation-delay: 0.2s;">
+                    <div class="step-num">02</div>
+                    <h3>AI Deep Scan</h3>
+                    <p>Our algorithms compare your letter against 50+ industry-standard ATS rules instantly.</p>
+                </div>
+                <div class="cl-step-card animate-fade-up" style="animation-delay: 0.3s;">
+                    <div class="step-num">03</div>
+                    <h3>Optimize & Land</h3>
+                    <p>Follow our custom fix-list or let AI rewrite it to hit a perfect 100% score.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── UNIQUE COMPARISON SECTION ── -->
+        <section class="comparison-section container-cl">
+            <div class="section-title-wrap text-center animate-fade-up">
+                <h2>Why Our AI <span>Dominates</span></h2>
+                <p>Generic checkers look for words. We look for the strategy that gets you hired.</p>
+            </div>
+            
+            <div class="comp-grid-unique">
+                <div class="comp-card-u animate-fade-up" style="animation-delay: 0.1s;">
+                    <div class="comp-tag">Strategic</div>
+                    <h3>Tone of Voice Analysis</h3>
+                    <p>Standard checkers miss the "feel". Our AI ensures you sound confident, not arrogant, matching the company culture perfectly.</p>
+                    <div class="comp-vs">
+                        <span class="bad">Others: Generic</span>
+                        <span class="good">MockB: Psychometric</span>
+                    </div>
+                </div>
+
+                <div class="comp-card-u animate-fade-up" style="animation-delay: 0.2s;">
+                    <div class="comp-tag">Technical</div>
+                    <h3>Multi-Layer ATS Parsing</h3>
+                    <p>We test your file against 4 different ATS engine types (Workday, Taleo, Greenhouse, and Lever) simultaneously.</p>
+                    <div class="comp-vs">
+                        <span class="bad">Others: Single Scan</span>
+                        <span class="good">MockB: Quad-Engine</span>
+                    </div>
+                </div>
+
+                <div class="comp-card-u animate-fade-up" style="animation-delay: 0.3s;">
+                    <div class="comp-tag">Conversion</div>
+                    <h3>CTA Strength Meter</h3>
+                    <p>A cover letter is a sales pitch. We analyze the strength of your "Call to Action" to ensure recruiters feel compelled to call.</p>
+                    <div class="comp-vs">
+                        <span class="bad">Others: Ignored</span>
+                        <span class="good">MockB: Optimized</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── UNIQUE FAQ SECTION ── -->
+        <section class="faq-section container-cl">
+            <div class="section-title-wrap text-center animate-fade-up">
+                <h2>Got <span>Questions?</span></h2>
+                <p>We've got the answers to help you beat the ATS algorithms.</p>
+            </div>
+            
+            <div class="faq-accordion-wrap animate-fade-up">
+                <div class="faq-card">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="faq-icon-box"><i class="fa-solid fa-robot"></i></div>
+                        <h4>How does the AI calculate my ATS score?</h4>
+                        <div class="faq-chevron"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>Our AI uses natural language processing (NLP) to compare your letter against a database of 100,000+ job descriptions. It checks for keyword density, structural parsing (how a machine reads it), and even "power words" that trigger recruiter interest.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="faq-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
+                        <h4>Is PDF better than Word for ATS?</h4>
+                        <div class="faq-chevron"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>While modern ATS can read both, a standard .docx file is often safer for complex layouts. However, our checker ensures your PDF is formatted with a "text layer" that makes it 100% readable by any system.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="faq-icon-box"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <h4>Can I re-check my letter after making changes?</h4>
+                        <div class="faq-chevron"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>Yes! You can upload your updated letter as many times as you want. We actually recommend iterating until you hit a score of 85 or higher for the best results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <div class="faq-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4>Is my personal data kept private?</h4>
+                        <div class="faq-chevron"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>Absolutely. We use 256-bit SSL encryption. Your documents are only stored temporarily for analysis and are automatically purged from our servers to ensure your privacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function toggleFaq(header) {
+                const card = header.parentElement;
+                const content = card.querySelector('.faq-content');
+                const chevron = header.querySelector('.faq-chevron i');
+                
+                const isOpen = card.classList.contains('active');
+                
+                // Close others
+                document.querySelectorAll('.faq-card').forEach(c => {
+                    c.classList.remove('active');
+                    c.querySelector('.faq-content').style.maxHeight = null;
+                    c.querySelector('.faq-chevron i').className = 'fa-solid fa-plus';
+                });
+
+                if (!isOpen) {
+                    card.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    chevron.className = 'fa-solid fa-minus';
+                }
+            }
+        </script>
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-cta">
+                    <h2>Land what's next</h2>
+                    <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                    <button class="btn btn-dark">Get started today</button>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Plans and Pricing</a></li>
+                            <li><a href="../../AI COVER LETTER BUILDER/HTML/index.html">AI Cover Letters</a></li>
+                            <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">AI Resume Checker</a></li>
+                            <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Resume Templates</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Sell Templates</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Features</h4>
+                        <ul>
+                            <li><a href="../../AI COVER LETTER BUILDER/HTML/index.html">AI Cover Letter Generator</a></li>
+                            <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">Resume Keyword Optimizer</a></li>
+                            <li><a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html">ATS Resume Checker</a></li>
+                            <li><a href="../../HOME PAGE/HTML/index.html#templates-gallery">Resume Design Templates</a></li>
+                            <li><a href="#">AI Connection Request Writer</a></li>
+                            <li><a href="#">AI Resignation Letter Writer</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                            <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                            <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                            <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                            <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <p>support@mockbee.com</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    <script src="../JS/cover-letter-checker.js" defer></script>
+    
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

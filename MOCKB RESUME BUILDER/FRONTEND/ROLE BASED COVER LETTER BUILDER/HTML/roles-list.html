@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Career Roles | MockB CV</title>
+    <meta name="description" content="Generate professional cover letters tailored for specific IT roles with MockB AI.">
+    <!-- Link to Home Page Styles for Navbar/Footer -->
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <!-- Link to Specific Page Styles -->
+    <link rel="stylesheet" href="../CSS/role-based.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="solid-nav page-loading">
+    <div class="page-transition-overlay"></div>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <!-- Removed nav-links as requested -->
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 10px;">
+        <section class="roles-grid-section container">
+            <div class="back-nav-wrapper" data-aos style="margin-top: 1rem; margin-bottom: 0.5rem; margin-left: -120px;">
+                <a href="index.html#features" class="back-link">
+                    <i class="fa-solid fa-arrow-left-long"></i> Back to Role Selection
+                </a>
+            </div>
+            <div class="section-header" data-aos id="category-header" style="text-align: center; margin-bottom: 0.5rem;">
+                <h2 id="category-title" style="margin-top: 0; font-size: 3rem; margin-bottom: 0.1rem;">Loading Roles...</h2>
+                <p id="category-desc" style="margin-top: 0;">Tailored cover letter roles for your specialized tech stack.</p>
+            </div>
+
+            <div class="roles-container" id="roles-container">
+                <!-- Cards will be dynamically injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JAVA SCRIPT/role-based.js"></script>
+    <script>
+        const categoryData = {
+            'fullstack': {
+                title: 'Fullstack Development Roles',
+                desc: 'Select your specialized tech stack to generate a precision-targeted cover letter.',
+                roles: [
+                    { name: 'Java Full Stack', desc: 'Spring Boot, Hibernate, and Angular/React focus.', icon: 'fa-brands fa-java' },
+                    { name: 'Angular', desc: 'TypeScript, RxJS, and enterprise-scale SPA focus.', icon: 'fa-brands fa-angular' },
+                    { name: 'MERN Stack', desc: 'MongoDB, Express.js, React, and Node.js specialization.', icon: 'fa-solid fa-layer-group' },
+                    { name: 'MEAN Stack', desc: 'MongoDB, Express.js, Angular, and Node.js solutions.', icon: 'fa-solid fa-code' },
+                    { name: 'Microsoft SharePoint', desc: 'Office 365, Power Automate, and custom SPFx focus.', icon: 'fa-brands fa-microsoft' },
+                    { name: 'React Native', desc: 'Cross-platform mobile apps with React Native.', icon: 'fa-brands fa-react' },
+                    { name: '.NET Angular', desc: 'ASP.NET Core APIs with Angular frontend.', icon: 'fa-solid fa-gear' },
+                    { name: 'React JS', desc: 'Modern React, Hooks, Redux, and Next.js focus.', icon: 'fa-brands fa-react' },
+                    { name: 'Python Full Stack', desc: 'Django or Flask backends with modern frontends.', icon: 'fa-brands fa-python' },
+                    { name: 'Next.js Development', desc: 'Server-side rendering and Static site generation.', icon: 'fa-solid fa-bolt' }
+                ]
+            },
+            'manual-testing': {
+                title: 'Manual Testing Roles',
+                desc: 'Specialized roles focused on quality assurance and test execution narratives.',
+                roles: [
+                    { name: 'Manual Tester', desc: 'SDLC/STLC, Test Cases, JIRA, and Agile focus.', icon: 'fa-solid fa-user-check' },
+                    { name: 'QA Analyst', desc: 'Functional Testing, Defect Tracking, and UAT focus.', icon: 'fa-solid fa-clipboard-check' },
+                    { name: 'Junior Test Engineer', desc: 'Manual Testing, Bug Reporting, and Documentation.', icon: 'fa-solid fa-vial-circle-check' }
+                ]
+            },
+            'automation-testing': {
+                title: 'Automation Testing Roles',
+                desc: 'Technical roles focused on building scalable automation frameworks.',
+                roles: [
+                    { name: 'Selenium Automation Tester', desc: 'Selenium, Java, TestNG, and Framework focus.', icon: 'fa-solid fa-robot' },
+                    { name: 'Playwright Automation Tester', desc: 'Playwright, TypeScript, and API Testing focus.', icon: 'fa-solid fa-microchip' },
+                    { name: 'API Tester', desc: 'Postman, REST API, JSON, and Authentication focus.', icon: 'fa-solid fa-cloud-arrow-down' },
+                    { name: 'SDET', desc: 'Automation Framework, CI/CD, and UI Automation.', icon: 'fa-solid fa-gears' }
+                ]
+            },
+            'ai-data': {
+                title: 'AI and Data Science Roles',
+                desc: 'Data-driven insights and machine learning model narratives.',
+                roles: [
+                    { name: 'Data Analytics', desc: 'Statistical analysis and data interpretation.', icon: 'fa-solid fa-chart-simple' },
+                    { name: 'AI and ML', desc: 'Machine learning algorithms and AI solutions.', icon: 'fa-solid fa-robot' },
+                    { name: 'Gen AI', desc: 'Generative models and LLM applications.', icon: 'fa-solid fa-brain' },
+                    { name: 'Python plus Chat GPT', desc: 'AI-assisted development and scripting.', icon: 'fa-brands fa-python' },
+                    { name: 'Power BI', desc: 'Business intelligence and data visualization.', icon: 'fa-solid fa-chart-pie' },
+                    { name: 'Tableau', desc: 'Interactive data visualization and dashboards.', icon: 'fa-solid fa-table-columns' },
+                    { name: 'SAS', desc: 'Statistical software for advanced analytics.', icon: 'fa-solid fa-database' },
+                    { name: 'R Programming', desc: 'Statistical computing and graphics.', icon: 'fa-solid fa-r' }
+                ]
+            },
+            'cloud-devops': {
+                title: 'Cloud and DevOps Roles',
+                desc: 'Infrastructure and automation at scale narratives.',
+                roles: [
+                    { name: 'AWS', desc: 'Amazon Web Services cloud infrastructure focus.', icon: 'fa-brands fa-aws' },
+                    { name: 'Google Cloud', desc: 'GCP infrastructure and services focus.', icon: 'fa-brands fa-google' },
+                    { name: 'Microsoft Azure', desc: 'Azure cloud solutions and integration focus.', icon: 'fa-brands fa-microsoft' },
+                    { name: 'DevOps', desc: 'CI/CD, automation, and site reliability focus.', icon: 'fa-solid fa-infinity' },
+                    { name: 'Kubernetes', desc: 'Container orchestration and management.', icon: 'fa-solid fa-dharmachakra' },
+                    { name: 'Jenkins', desc: 'Continuous integration and delivery pipelines.', icon: 'fa-brands fa-jenkins' },
+                    { name: 'Terraform', desc: 'Infrastructure as Code (IaC) solutions.', icon: 'fa-solid fa-mountain' }
+                ]
+            },
+            'languages': {
+                title: 'Programming Language Roles',
+                desc: 'Core logic and software development narratives.',
+                roles: [
+                    { name: 'Core Java', desc: 'Java fundamentals and OOP focus.', icon: 'fa-brands fa-java' },
+                    { name: 'Advanced Java', desc: 'J2EE, Spring, and enterprise Java features.', icon: 'fa-solid fa-mug-hot' },
+                    { name: 'Core Python', desc: 'Python basics and scripting fundamentals.', icon: 'fa-brands fa-python' },
+                    { name: 'Advance Python', desc: 'Data science and web frameworks focus.', icon: 'fa-solid fa-snake' },
+                    { name: 'C and CPP programming', desc: 'System-level programming and performance.', icon: 'fa-solid fa-file-code' },
+                    { name: 'DSA', desc: 'Algorithms and core CS concepts focus.', icon: 'fa-solid fa-sitemap' },
+                    { name: 'HTML and CSS', desc: 'Web foundations and responsive design.', icon: 'fa-brands fa-html5' }
+                ]
+            },
+            'ui-ux': {
+                title: 'UI UX Designing Roles',
+                desc: 'User-centric design and visual interface narratives.',
+                roles: [
+                    { name: 'Figma', desc: 'UI/UX design and collaborative prototyping.', icon: 'fa-brands fa-figma' },
+                    { name: 'Photoshop', desc: 'Image editing and graphic design focus.', icon: 'fa-solid fa-image' },
+                    { name: 'Graphic Design', desc: 'Visual communication and branding focus.', icon: 'fa-solid fa-palette' },
+                    { name: 'Canva', desc: 'Quick and professional graphic creation.', icon: 'fa-solid fa-wand-magic-sparkles' }
+                ]
+            },
+            'database': {
+                title: 'Database Roles',
+                desc: 'Data management and storage narratives.',
+                roles: [
+                    { name: 'MongoDB Database', desc: 'NoSQL data modeling and management focus.', icon: 'fa-solid fa-leaf' },
+                    { name: 'MSSQL Database', desc: 'SQL Server administration and T-SQL.', icon: 'fa-solid fa-server' },
+                    { name: 'MySQL Database', desc: 'Relational database management focus.', icon: 'fa-solid fa-database' },
+                    { name: 'PostgreSQL Database', desc: 'Advanced relational database focus.', icon: 'fa-solid fa-elephant' }
+                ]
+            },
+            'data-eng': {
+                title: 'Data Engineering Roles',
+                desc: 'Data pipelines and architecture narratives.',
+                roles: [
+                    { name: 'Data Engineering', desc: 'ETL processes and big data systems focus.', icon: 'fa-solid fa-gears' }
+                ]
+            },
+            'networking': {
+                title: 'Networking Roles',
+                desc: 'Network infrastructure and security narratives.',
+                roles: [
+                    { name: 'CCNA', desc: 'Cisco certified network routing focus.', icon: 'fa-solid fa-network-wired' },
+                    { name: 'Cybersecurity', desc: 'Network defense and information security.', icon: 'fa-solid fa-shield-halved' },
+                    { name: 'Ethical Hacking', desc: 'Penetration testing and vulnerability focus.', icon: 'fa-solid fa-user-secret' }
+                ]
+            },
+            'marketing': {
+                title: 'Digital Marketing Roles',
+                desc: 'Online presence and brand growth narratives.',
+                roles: [
+                    { name: 'SEO', desc: 'Search engine optimization focus.', icon: 'fa-solid fa-magnifying-glass' },
+                    { name: 'Social Media', desc: 'Brand engagement across platforms.', icon: 'fa-solid fa-hashtag' },
+                    { name: 'LinkedIn Marketing', desc: 'B2B growth and personal branding.', icon: 'fa-brands fa-linkedin' },
+                    { name: 'Meta Campaign', desc: 'Facebook and Instagram advertising.', icon: 'fa-brands fa-meta' }
+                ]
+            },
+            'crm': {
+                title: 'CRM Roles',
+                desc: 'Customer relationship management platform focus.',
+                roles: [
+                    { name: 'Salesforce Administrator', desc: 'Salesforce config and user management.', icon: 'fa-brands fa-salesforce' },
+                    { name: 'Salesforce Developer', desc: 'Apex, LWC, and custom solutions.', icon: 'fa-solid fa-cloud-bolt' }
+                ]
+            },
+            'automation': {
+                title: 'Automation Roles',
+                desc: 'Process automation and efficiency focus.',
+                roles: [
+                    { name: 'Power Automate', desc: 'Workflow automation and business processes.', icon: 'fa-solid fa-bolt-lightning' }
+                ]
+            }
+        };
+
+        function renderRoles() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cat = urlParams.get('cat') || 'fullstack';
+            const data = categoryData[cat];
+
+            if (data) {
+                // Update header
+                document.getElementById('category-title').innerText = data.title;
+                document.getElementById('category-desc').innerText = data.desc;
+                document.getElementById('page-title').innerText = data.title + ' | MockB CV';
+
+                // Render cards
+                const container = document.getElementById('roles-container');
+                container.innerHTML = '';
+
+                data.roles.forEach((role, index) => {
+                    const card = document.createElement('div');
+                    // Using role-orange for theme yellow consistency
+                    card.className = 'role-card role-orange';
+                    card.setAttribute('data-aos', '');
+                    
+                    const num = (index + 1).toString().padStart(2, '0');
+                    
+                    card.innerHTML = `
+                        <div class="card-badge">
+                            <span class="badge-text">OPTION</span>
+                            <span class="badge-number">${num}</span>
+                        </div>
+                        <span class="curved-text">ROLE BASED</span>
+                        <div class="card-inner">
+                            <i class="${role.icon} role-icon"></i>
+                            <h3>${role.name}</h3>
+                            <p>${role.desc}</p>
+                            <button class="generate-btn">Generate</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+                initDynamicInteractions();
+            }
+        }
+
+        function initDynamicInteractions() {
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    card.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `translateY(0) rotateX(0) rotateY(0)`;
+                });
+
+                card.addEventListener('click', () => {
+                    const title = card.querySelector('h3').innerText;
+                    const roleParam = title.toLowerCase().replace(/\s+/g, '-');
+                    window.smoothNavigate(`generate.html?role=${roleParam}`);
+                });
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll('[data-aos]').forEach(el => {
+                    el.classList.add('aos-animate');
+                });
+            }, 100);
+        }
+
+        document.addEventListener('DOMContentLoaded', renderRoles);
+    </script>
+</body>
+</html>

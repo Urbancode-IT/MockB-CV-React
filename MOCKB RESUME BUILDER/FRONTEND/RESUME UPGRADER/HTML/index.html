@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Upgrader | MockB CV</title>
+    <meta name="description" content="Upgrade your resume and unlock better opportunities with MockB CV's AI-powered analyzer.">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume Examples</h4>
+                                            <p>Create resumes that pass automated screening.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">Languages <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="upgrader-main">
+        <div id="initial-content">
+            <!-- Hero Section -->
+            <section class="upgrader-hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Upgrade your resume,<br>unlock <span>better opportunities.</span></h1>
+                        <p>Our AI analyzes your resume, improves keywords, structure, and formatting to help you stand out and get shortlisted.</p>
+                        <div class="hero-btns">
+                            <button class="btn btn-primary btn-with-icon" onclick="scrollToUpload()">
+                                Start Analyze <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </button>
+                        </div>
+                        <p class="secure-tag"><i class="fa-solid fa-lock"></i> Your files are secure and confidential. We never share your data.</p>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-resume">
+                            <div class="resume-skeleton">
+                                <div class="skeleton-header">
+                                    <div class="avatar">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div class="lines">
+                                        <div class="line short"></div>
+                                        <div class="line medium"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-body">
+                                    <div class="line long highlighted"></div>
+                                    <div class="line medium highlighted"></div>
+                                    <div class="line long"></div>
+                                    <div class="line short highlighted"></div>
+                                    <div class="line medium"></div>
+                                </div>
+                            </div>
+                            <div class="analysis-indicator">
+                                <div class="graph-icon">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decorative-dots"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Steps Section -->
+            <section class="steps-section" id="upload-section">
+                <div class="container">
+                    <div class="step-card-wrapper">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Upload your resume</h3>
+                                <p>Upload your resume in pdf,word</p>
+                                <div class="upload-ui-card">
+                                    <div class="ui-card-header">
+                                        <h4>Upload Files</h4>
+                                    </div>
+                                    <div class="ui-drop-zone" ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'copy';">
+                                        <div class="ui-icons-wrapper">
+                                            <div class="ui-icon-doc pink"><i class="fa-solid fa-file-lines"></i></div>
+                                            <div class="ui-icon-doc blue main">
+                                                <i class="fa-solid fa-file-arrow-up"></i>
+                                                <div class="ui-plus-circle"><i class="fa-solid fa-plus"></i></div>
+                                            </div>
+                                            <div class="ui-icon-doc orange"><i class="fa-solid fa-file-word"></i></div>
+                                        </div>
+                                        <div class="ui-drop-text">
+                                            <p>Drag and drop files here</p>
+                                            <input type="file" id="resume-file-input" hidden accept=".pdf,.doc,.docx" onchange="handleFileSelect(this)">
+                                            <a href="javascript:void(0)" onclick="document.getElementById('resume-file-input').click()">or choose file</a>
+                                        </div>
+                                    </div>
+                                    <div class="ui-card-info">
+                                        <span class="formats">Accepted formats: PDF, Word</span>
+                                        <span class="size">Maximum file size: 100MB</span>
+                                    </div>
+                                    <div class="ui-file-list">
+                                        <!-- Files will appear here when uploaded -->
+                                    </div>
+                                    <div class="ui-card-footer">
+                                        <a href="#" class="ui-help"><i class="fa-regular fa-circle-question"></i> Help</a>
+                                        <div class="ui-footer-btns">
+                                            <button class="ui-btn-save" onclick="saveUpload()">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p id="upload-error" class="error-message" style="display: none; color: #ff4d4f; font-size: 0.85rem; margin-top: 10px; text-align: center; font-weight: 500;"><i class="fa-solid fa-circle-exclamation"></i> Please upload your resume first.</p>
+                                <p class="secure-info"><i class="fa-solid fa-lock"></i> Your files are secure and confidential. We never share your data.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-divider"></div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>What role are you looking for?</h3>
+                                <p>Enter the job title or role you want to optimize your resume for.</p>
+                                <div class="role-input-box">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                    <input type="text" id="target-role-input" placeholder="e.g. Senior Software Engineer, Product Manager, Data Analyst">
+                                </div>
+                                <p id="role-error" class="error-message" style="display: none; color: #ff4d4f; font-size: 0.85rem; margin-top: 10px; font-weight: 500;"><i class="fa-solid fa-circle-exclamation"></i> Please enter the role you are looking for.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-divider"></div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Start the analysis</h3>
+                                <p>Let our AI analyze and upgrade your resume for the best match.</p>
+                                <button class="btn btn-primary btn-large" onclick="startAnalysis()">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Start Analyze
+                                </button>
+                                <p class="time-info"><i class="fa-regular fa-clock"></i> It only takes a few seconds</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Loading State -->
+        <div id="analysis-loading" class="analysis-loading" style="display: none;">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <h3>Analyzing your resume...</h3>
+                <p>Checking match score, ATS compatibility and identifying improvements.</p>
+            </div>
+        </div>
+
+        <!-- Analysis Report Section -->
+        <div id="analysis-report" class="container analysis-report" style="display: none;">
+            <div class="report-header">
+                <h2>Analysis Report</h2>
+                <div class="scores-row">
+                    <div class="score-card">
+                        <div class="score-val">80<span>/100</span></div>
+                        <p>Overall Match</p>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-val">90<span>/100</span></div>
+                        <p>ATS Score</p>
+                    </div>
+                    <div class="score-card verdict-card">
+                        <div class="verdict-val">Strong Support</div>
+                        <p>Verdict</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-details">
+                <div class="detail-box">
+                    <h4><i class="fa-solid fa-align-left"></i> Summary</h4>
+                    <p>Your resume demonstrates solid experience in software engineering with a strong focus on frontend technologies. It is well-structured but could benefit from more quantitative achievements.</p>
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-box strength">
+                        <h4><i class="fa-solid fa-circle-check"></i> Strengths</h4>
+                        <ul>
+                            <li>Strong technical skill set in React and Node.js.</li>
+                            <li>Clear and professional formatting.</li>
+                            <li>Consistent career progression shown.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box weakness">
+                        <h4><i class="fa-solid fa-circle-exclamation"></i> Weaknesses</h4>
+                        <ul>
+                            <li>Lack of metrics and KPIs in job descriptions.</li>
+                            <li>Professional summary is too generic.</li>
+                            <li>Education section lacks specific coursework relevant to current roles.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box mistakes">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Mistakes</h4>
+                        <ul>
+                            <li>Minor spelling error in "Environment" in second job.</li>
+                            <li>Inconsistent date formatting.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box missing">
+                        <h4><i class="fa-solid fa-magnifying-glass-plus"></i> Missing Keywords</h4>
+                        <ul>
+                            <li>TypeScript</li>
+                            <li>Cloud Infrastructure</li>
+                            <li>Unit Testing</li>
+                            <li>Agile Methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="detail-box recommendations">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Recommendations</h4>
+                    <p>Incorporate specific numbers (e.g., "Increased performance by 20%"). Add the missing keywords identified above. Refine your professional summary to highlight your unique value proposition.</p>
+                </div>
+            </div>
+
+            <div class="report-footer">
+                <button class="btn btn-primary btn-large" onclick="upgradeResume()">
+                    <i class="fa-solid fa-circle-up"></i> Upgrade Resume
+                </button>
+            </div>
+        </div>
+
+        <!-- Upgraded Resume Preview Section -->
+        <div id="upgraded-preview" class="container upgraded-preview" style="display: none;">
+            <div class="preview-header">
+                <h2>Upgraded Resume Preview</h2>
+                <p>Your resume has been optimized for ATS and role-matching.</p>
+            </div>
+            
+            <div class="preview-container">
+                <div class="resume-paper">
+                    <!-- High Fidelity Resume Mockup -->
+                    <div class="paper-content">
+                        <div class="header-section">
+                            <h1>JASON SMITH</h1>
+                            <p>Senior Software Engineer | Full-Stack Developer</p>
+                            <div class="contact-info">
+                                <span><i class="fa-solid fa-envelope"></i> jason.smith@email.com</span>
+                                <span><i class="fa-solid fa-phone"></i> +1 234 567 8900</span>
+                                <span><i class="fa-solid fa-location-dot"></i> San Francisco, CA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="body-section">
+                            <div class="main-col">
+                                <div class="section">
+                                    <h3 class="section-title">PROFESSIONAL SUMMARY</h3>
+                                    <p>Results-driven Senior Software Engineer with 8+ years of experience in building scalable web applications. Expert in React, Node.js, and TypeScript, with a proven track record of improving application performance by 30% and leading cross-functional teams to deliver high-quality products.</p>
+                                </div>
+                                
+                                <div class="section">
+                                    <h3 class="section-title">PROFESSIONAL EXPERIENCE</h3>
+                                    <div class="job">
+                                        <div class="job-header">
+                                            <strong>TechFlow Solutions</strong>
+                                            <span>2020 — Present</span>
+                                        </div>
+                                        <div class="job-title">Senior Frontend Developer</div>
+                                        <ul>
+                                            <li>Led the redesign of the core dashboard, resulting in a 40% increase in user engagement.</li>
+                                            <li>Implemented automated unit testing using Jest, reducing bug reports by 25%.</li>
+                                            <li>Mentored a team of 5 junior developers, improving overall team velocity by 15%.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="job">
+                                        <div class="job-header">
+                                            <strong>InnoSystems Inc.</strong>
+                                            <span>2016 — 2020</span>
+                                        </div>
+                                        <div class="job-title">Software Engineer</div>
+                                        <ul>
+                                            <li>Developed microservices architecture using Node.js and Docker.</li>
+                                            <li>Optimized database queries, reducing response times by 500ms on average.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="side-col">
+                                <div class="section">
+                                    <h3 class="section-title">SKILLS</h3>
+                                    <div class="skill-tags">
+                                        <span>React</span> <span>Node.js</span> <span>TypeScript</span> 
+                                        <span>Python</span> <span>Docker</span> <span>AWS</span>
+                                        <span>GraphQL</span> <span>PostgreSQL</span>
+                                    </div>
+                                </div>
+                                <div class="section">
+                                    <h3 class="section-title">EDUCATION</h3>
+                                    <p><strong>B.S. in Computer Science</strong><br>Stanford University</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-actions">
+                    <div class="download-card">
+                        <h4>Ready to download?</h4>
+                        <p>Get your upgraded resume in your preferred format.</p>
+                        <div class="download-btns">
+                            <button class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                            <button class="btn btn-outline"><i class="fa-solid fa-file-word"></i> Download Word</button>
+                        </div>
+                    </div>
+                    
+                    <div class="success-message">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>Optimization Complete!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-footer">
+                <button class="btn btn-text" onclick="resetUpgrader()">
+                    <i class="fa-solid fa-arrow-left"></i> Analyze Another Resume
+                </button>
+            </div>
+        </div>
+
+        <!-- What Happens Next -->
+        <section class="next-steps-section">
+            <div class="container">
+                <div class="next-grid">
+                    <div class="next-content">
+                        <h2>What happens next?</h2>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feat-icon"><i class="fa-solid fa-search"></i></div>
+                                <div class="feat-text">
+                                    <h4>1. Resume Analysis</h4>
+                                    <p>Our AI scans your resume for content, structure, formatting, and relevance to the job you want.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feat-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                                <div class="feat-text">
+                                    <h4>2. Match & Optimize</h4>
+                                    <p>We compare your resume with job requirements and optimize keywords, skills, and experience to improve your match score.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feat-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                                <div class="feat-text">
+                                    <h4>3. Smart Suggestions</h4>
+                                    <p>You'll receive AI-powered suggestions to enhance your content, highlight achievements, and improve readability.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feat-icon"><i class="fa-solid fa-download"></i></div>
+                                <div class="feat-text">
+                                    <h4>4. Get Your Upgraded Resume</h4>
+                                    <p>Download your optimized resume and increase your chances of getting noticed by recruiters and ATS.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next-visual">
+                        <img src="../../HOME PAGE/IMAGES/optimization.png" alt="Resume Analysis" class="optimization-img" style="width: 100%; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-banner">
+                    <div class="cta-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="cta-text">
+                        <h3>Smarter resume. Better matches. More interviews.</h3>
+                        <p>Our AI resume upgrader gives you the edge you need in today's competitive job market. Upload your resume and see the difference.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    <script>
+        function scrollToUpload() {
+            const uploadSection = document.getElementById('upload-section');
+            if (uploadSection) {
+                const headerOffset = 80;
+                const elementPosition = uploadSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        function startAnalysis() {
+            const fileList = document.querySelector('.ui-file-list');
+            const roleInput = document.getElementById('target-role-input');
+            const uploadError = document.getElementById('upload-error');
+            const roleError = document.getElementById('role-error');
+            
+            // Reset errors
+            uploadError.style.display = 'none';
+            roleError.style.display = 'none';
+            
+            let hasError = false;
+
+            // Validation Check
+            if (!fileList || fileList.children.length === 0) {
+                uploadError.style.display = 'block';
+                hasError = true;
+            }
+            
+            if (!roleInput || !roleInput.value.trim()) {
+                roleError.style.display = 'block';
+                hasError = true;
+            }
+
+            if (hasError) {
+                if (uploadError.style.display === 'block') {
+                    scrollToUpload();
+                } else if (roleError.style.display === 'block') {
+                    roleInput.focus();
+                }
+                return;
+            }
+
+            document.getElementById('initial-content').style.display = 'none';
+            document.getElementById('analysis-loading').style.display = 'flex';
+            
+            // Simulate analysis time
+            setTimeout(() => {
+                document.getElementById('analysis-loading').style.display = 'none';
+                document.getElementById('analysis-report').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2500);
+        }
+
+        function upgradeResume() {
+            document.getElementById('analysis-report').style.display = 'none';
+            document.getElementById('analysis-loading').querySelector('h3').innerText = 'Upgrading your resume...';
+            document.getElementById('analysis-loading').querySelector('p').innerText = 'Applying smart suggestions and optimizing formatting.';
+            document.getElementById('analysis-loading').style.display = 'flex';
+
+            // Simulate upgrade time
+            setTimeout(() => {
+                document.getElementById('analysis-loading').style.display = 'none';
+                document.getElementById('upgraded-preview').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2000);
+        }
+
+        function resetUpgrader() {
+            document.getElementById('upgraded-preview').style.display = 'none';
+            document.getElementById('initial-content').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveUpload() {
+            // Scroll to Step 2
+            const step2 = document.querySelectorAll('.step-item')[1];
+            if (step2) {
+                const headerOffset = 100;
+                const elementPosition = step2.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        function cancelUpload() {
+            // Scroll back to Hero
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        // File Upload Logic - Moved inside DOMContentLoaded for robustness
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropZone = document.querySelector('.ui-drop-zone');
+            
+            if (dropZone) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, preventDefaults, false);
+                });
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, (e) => {
+                        preventDefaults(e);
+                        dropZone.classList.add('highlight');
+                        e.dataTransfer.dropEffect = 'copy';
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, (e) => {
+                        preventDefaults(e);
+                        dropZone.classList.remove('highlight');
+                    }, false);
+                });
+
+                dropZone.addEventListener('drop', handleDrop, false);
+            }
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function handleDrop(e) {
+            let dt = e.dataTransfer;
+            let files = dt.files;
+            handleFiles(files);
+        }
+
+        function handleFileSelect(input) {
+            handleFiles(input.files);
+        }
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const fileList = document.querySelector('.ui-file-list');
+                
+                // Create new file item
+                const fileItem = document.createElement('div');
+                fileItem.className = 'ui-file-item';
+                
+                const isPdf = file.name.toLowerCase().endsWith('.pdf');
+                const typeClass = isPdf ? 'pdf' : 'word';
+                const icon = isPdf ? 'fa-file-pdf' : 'fa-file-word';
+                const label = isPdf ? 'PDF' : 'W';
+                const size = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+
+                fileItem.innerHTML = `
+                    <div class="file-icon-box ${typeClass}">
+                        <i class="fa-solid ${icon}"></i>
+                        <span class="icon-label">${label}</span>
+                    </div>
+                    <div class="file-details">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-meta">${size}  <span>|</span>  <span class="status">Uploaded</span></div>
+                    </div>
+                    <button class="file-remove" onclick="removeFile(this)"><i class="fa-solid fa-xmark"></i></button>
+                `;
+                
+                fileList.appendChild(fileItem);
+            }
+        }
+
+        function removeFile(btn) {
+            const item = btn.closest('.ui-file-item');
+            if (item) {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => {
+                    item.remove();
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>

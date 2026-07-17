@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Role-Based Cover Letter | MockB CV</title>
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/role-based.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .generator-container {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+        }
+        .generator-card {
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+        .step-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+        .step-dot.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .input-group {
+            margin-bottom: 2rem;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: var(--primary-color);
+            background: rgba(255,255,255,0.05);
+            outline: none;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        .loading-screen {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(238, 195, 12, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="page-loading">
+    <div class="page-transition-overlay"></div>
+    <header id="header" class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-dark">Exit</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="generator-container">
+        <div class="generator-card glass">
+            <div id="setup-form">
+                <div class="step-indicator">
+                    <div class="step-dot active" data-step="1">1</div>
+                    <div class="step-dot" data-step="2">2</div>
+                    <div class="step-dot" data-step="3">3</div>
+                    <div class="step-dot" data-step="4">4</div>
+                </div>
+
+                <form id="role-generator-form">
+                    <!-- Step 1: Personal Details -->
+                    <div class="form-step active" id="step-1">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Personal <span style="color: var(--primary-color)">Details</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Provide your contact information for the letterhead.</p>
+                        
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" id="full-name" placeholder="e.g. John Doe">
+                        </div>
+                        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label>Email Address</label>
+                                <input type="email" id="email" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label>Phone Number</label>
+                                <input type="tel" id="phone" placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Role Context -->
+                    <div class="form-step" id="step-2">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Target <span style="color: var(--primary-color)">Position</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Which role are you applying for?</p>
+                        
+                        <div class="input-group">
+                            <label>Selected Role</label>
+                            <input type="text" id="target-role" placeholder="e.g. Senior Frontend Developer" readonly>
+                        </div>
+                        <div class="input-group">
+                            <label>Company Name</label>
+                            <input type="text" id="company-name" placeholder="e.g. Tech Corp Inc.">
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Key Achievements -->
+                    <div class="form-step" id="step-3">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Key <span style="color: var(--primary-color)">Achievements</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Highlight one or two major wins related to this role.</p>
+                        
+                        <div class="input-group">
+                            <label>Professional Wins</label>
+                            <textarea id="achievements" rows="5" placeholder="e.g. Led a team of 5 to deliver a critical project 2 weeks ahead of schedule, resulting in $50k cost savings."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Tone & Style -->
+                    <div class="form-step" id="step-4">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Letter <span style="color: var(--primary-color)">Tone</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">How should your cover letter sound?</p>
+                        
+                        <div class="input-group">
+                            <label>Preferred Tone</label>
+                            <select id="tone">
+                                <option value="professional">Professional & Formal</option>
+                                <option value="enthusiastic">Enthusiastic & Passionate</option>
+                                <option value="creative">Creative & Unique</option>
+                                <option value="minimalist">Minimalist & Direct</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dark" id="prev-btn" style="display: none;">Back</button>
+                        <div style="display: flex; gap: 1rem; margin-left: auto;">
+                            <button type="button" class="btn btn-dark" id="skip-btn">Skip</button>
+                            <button type="button" class="btn btn-primary" id="next-btn">Next Step</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="loading-screen" id="loading-screen">
+                <div class="spinner"></div>
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">Generating Your <span style="color: var(--primary-color)">Tailored Letter</span></h2>
+                <p style="color: var(--text-gray);">Our AI is crafting a persuasive narrative for the <span id="loading-role"></span> position...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../JAVA SCRIPT/role-based.js"></script>
+    <script>
+        const form = document.getElementById('role-generator-form');
+        const steps = document.querySelectorAll('.form-step');
+        const dots = document.querySelectorAll('.step-dot');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const setupForm = document.getElementById('setup-form');
+        const loadingScreen = document.getElementById('loading-screen');
+        const targetRoleInput = document.getElementById('target-role');
+        const loadingRoleText = document.getElementById('loading-role');
+        
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        // Get role from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'IT Professional';
+        targetRoleInput.value = role.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        loadingRoleText.innerText = targetRoleInput.value;
+
+        function goToNextStep() {
+            if (currentStep < totalSteps) {
+                steps[currentStep - 1].classList.remove('active');
+                dots[currentStep - 1].classList.remove('active');
+                currentStep++;
+                steps[currentStep - 1].classList.add('active');
+                dots[currentStep - 1].classList.add('active');
+                prevBtn.style.display = 'block';
+                
+                if (currentStep === totalSteps) {
+                    nextBtn.innerText = 'Generate Letter';
+                } else {
+                    nextBtn.innerText = 'Next Step';
+                }
+            } else {
+                setupForm.style.display = 'none';
+                loadingScreen.style.display = 'block';
+                
+                setTimeout(() => {
+                    // Since we don't have a specific preview page yet, we redirect back with a success message 
+                    // or to a generic preview. For now, let's just go back to roles-list.
+                    alert('Cover Letter Generated Successfully! (Preview coming soon)');
+                    window.location.href = 'index.html';
+                }, 3000);
+            }
+        }
+
+        nextBtn.addEventListener('click', goToNextStep);
+        skipBtn.addEventListener('click', goToNextStep);
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                steps[currentStep - 1].classList.remove('active');
+                dots[currentStep - 1].classList.remove('active');
+                currentStep--;
+                steps[currentStep - 1].classList.add('active');
+                dots[currentStep - 1].classList.add('active');
+                nextBtn.innerText = 'Next Step';
+                
+                if (currentStep === 1) {
+                    prevBtn.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

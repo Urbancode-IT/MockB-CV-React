@@ -1,0 +1,152 @@
+/* Accordions / Use Cases Styles */
+#use-cases {
+    padding: 8rem 0;
+}
+
+.use-cases-header {
+    margin-bottom: 4rem;
+    text-align: left;
+}
+
+.use-cases-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--primary-color, #EEC30C);
+    margin-bottom: 1rem;
+}
+
+.use-cases-header h2 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    max-width: 600px;
+    line-height: 1.15;
+    color: #FFFFFF;
+}
+
+.accordion-list {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.accordion-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+}
+
+.accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    background: transparent;
+    border: none;
+    color: var(--text-white, #FFFFFF);
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.accordion-trigger:hover {
+    color: var(--primary-color, #EEC30C);
+}
+
+.acc-num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-gray, #A0A0A0);
+    letter-spacing: 0.05em;
+    min-width: 30px;
+    transition: color 0.3s ease;
+}
+
+.accordion-trigger:hover .acc-num,
+.accordion-item.open .acc-num {
+    color: var(--primary-color, #EEC30C);
+}
+
+.acc-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex: 1;
+    transition: color 0.3s ease;
+}
+
+.accordion-item.open .acc-title {
+    color: var(--primary-color, #EEC30C);
+}
+
+.acc-icon {
+    font-size: 1rem;
+    color: var(--text-gray, #A0A0A0);
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.accordion-item.open .acc-icon {
+    transform: rotate(45deg);
+    color: var(--primary-color, #EEC30C);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.accordion-item.open .accordion-body {
+    max-height: 400px;
+}
+
+.acc-content {
+    padding: 0 0 2.5rem 3.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    text-align: left;
+}
+
+.accordion-item.open .acc-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.acc-text p {
+    color: var(--text-gray, #A0A0A0);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 1.5rem;
+}
+
+.acc-roles {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+.acc-roles li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-gray, #A0A0A0);
+    font-weight: 500;
+}
+
+.acc-roles li i {
+    font-size: 0.45rem;
+    color: var(--primary-color, #EEC30C);
+}
+
+@media (max-width: 768px) {
+    .use-cases-header h2 {
+        font-size: 2.2rem;
+    }
+    .acc-title {
+        font-size: 1.2rem;
+    }
+}

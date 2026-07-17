@@ -1,0 +1,607 @@
+/* ===== PAGE-SPECIFIC OVERRIDES ===== */
+.ai-cover-letter-page {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+}
+
+.ai-cover-letter-page main {
+    padding-top: 80px;
+}
+
+/* ===== HERO ===== */
+.ai-cover-letter-page .aib-hero {
+    position: relative;
+    background: #0a0b0d;
+    padding: 0 0 10vh 0;
+    text-align: center;
+    overflow: hidden;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ai-cover-letter-page .aib-hero .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(238,195,12,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+.ai-cover-letter-page .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(238,195,12,0.1);
+    border: 1px solid rgba(238,195,12,0.25);
+    color: #EEC30C;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+}
+.ai-cover-letter-page .aib-hero h1 {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+.ai-cover-letter-page .aib-hero h1 .gold { color: #EEC30C; }
+.ai-cover-letter-page .hero-sub {
+    max-width: 640px;
+    margin: 0 auto 32px;
+    color: #9BA1A6;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+.ai-cover-letter-page .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 38px;
+}
+.ai-cover-letter-page .trust-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 7px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    color: #ccc;
+}
+.ai-cover-letter-page .trust-pill i { color: #EEC30C; }
+.ai-cover-letter-page .btn-lg {
+    padding: 14px 36px;
+    font-size: 1rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.ai-cover-letter-page .hero-cta { text-decoration: none; }
+
+/* ===== HOW IT WORKS ===== */
+.ai-cover-letter-page .how-section {
+    padding: 90px 0;
+    background: #0f1113;
+}
+.ai-cover-letter-page .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #EEC30C;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+.ai-cover-letter-page .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 14px;
+}
+.ai-cover-letter-page .section-sub {
+    color: #9BA1A6;
+    font-size: 1rem;
+    max-width: 580px;
+    margin-bottom: 52px;
+    line-height: 1.7;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.ai-cover-letter-page .steps-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+.ai-cover-letter-page .step-box {
+    flex: 1;
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.ai-cover-letter-page .step-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.ai-cover-letter-page .step-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(238,195,12,0.4);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-family: 'Satoshi', sans-serif;
+}
+.ai-cover-letter-page .step-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(238,195,12,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #EEC30C;
+    margin-bottom: 18px;
+}
+.ai-cover-letter-page .step-box h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.ai-cover-letter-page .step-box p { color: #9BA1A6; font-size: 0.9rem; line-height: 1.65; }
+.ai-cover-letter-page .step-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    margin-top: 80px;
+    color: rgba(238,195,12,0.8);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+/* ===== FEATURES ===== */
+.ai-cover-letter-page .features-section {
+    padding: 90px 0;
+    background: #0a0b0d;
+    text-align: center;
+}
+.ai-cover-letter-page .features-section .section-title {
+    margin-bottom: 60px;
+}
+.ai-cover-letter-page .features-grid-ai {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.ai-cover-letter-page .feat-card {
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 24px 20px;
+    transition: all 0.3s;
+    text-align: left;
+}
+.ai-cover-letter-page .feat-card:hover {
+    border-color: rgba(238,195,12,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.ai-cover-letter-page .feat-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(238,195,12,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #EEC30C;
+    margin-bottom: 18px;
+}
+.ai-cover-letter-page .feat-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.ai-cover-letter-page .feat-card p { color: #9BA1A6; font-size: 0.88rem; line-height: 1.65; }
+
+/* ===== PROMPT SECTION ===== */
+.ai-cover-letter-page .prompt-section {
+    padding: 90px 0;
+    background: #0f1113;
+}
+.ai-cover-letter-page .prompt-section .section-label,
+.ai-cover-letter-page .prompt-section .section-title,
+.ai-cover-letter-page .prompt-section .section-sub {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.ai-cover-letter-page .builder-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: stretch;
+    text-align: left;
+}
+.ai-cover-letter-page .prompt-panel,
+.ai-cover-letter-page .preview-panel { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 24px; 
+    min-width: 0;
+    width: 100%;
+}
+.ai-cover-letter-page .prompt-card, .ai-cover-letter-page .followup-card {
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+}
+.ai-cover-letter-page .prompt-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+.ai-cover-letter-page .char-count { color: #9BA1A6; font-size: 0.75rem; font-weight: 400; }
+.ai-cover-letter-page .prompt-textarea {
+    width: 100%;
+    min-height: 220px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #E1E3E6;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    padding: 20px;
+    resize: none;
+}
+.ai-cover-letter-page .prompt-textarea.small { min-height: 110px; }
+.ai-cover-letter-page .prompt-textarea::placeholder { color: rgba(255,255,255,0.25); }
+.ai-cover-letter-page .prompt-tips {
+    margin: 0 20px 16px;
+    background: rgba(238,195,12,0.05);
+    border: 1px solid rgba(238,195,12,0.12);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.8rem;
+}
+.ai-cover-letter-page .prompt-tips p { color: #EEC30C; margin-bottom: 8px; }
+.ai-cover-letter-page .prompt-tips ul { padding-left: 16px; color: #9BA1A6; }
+.ai-cover-letter-page .prompt-tips li { margin-bottom: 4px; line-height: 1.5; }
+.ai-cover-letter-page .btn-generate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: calc(100% - 40px);
+    margin: 0 20px 20px;
+    padding: 14px;
+    background: #EEC30C;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Satoshi', sans-serif;
+    transition: all 0.25s;
+}
+.ai-cover-letter-page .btn-generate:hover { background: #d4a90a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(238,195,12,0.3); }
+.ai-cover-letter-page .btn-generate.secondary { background: rgba(238,195,12,0.1); color: #EEC30C; border: 1px solid rgba(238,195,12,0.25); }
+.ai-cover-letter-page .btn-generate.secondary:hover { background: rgba(238,195,12,0.18); }
+
+/* ===== PREVIEW PANEL ===== */
+.ai-cover-letter-page .preview-panel {
+    display: flex; 
+    flex-direction: column; 
+    min-width: 0;
+    height: 0 !important;
+    min-height: 100% !important;
+    width: 100%;
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    position: sticky;
+    top: 80px;
+    padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+}
+.ai-cover-letter-page .preview-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    flex: 1;
+}
+.ai-cover-letter-page .empty-icon {
+    width: 80px; height: 80px;
+    background: rgba(238,195,12,0.08);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: #EEC30C;
+    margin-bottom: 22px;
+    animation: float-icon 3s ease-in-out infinite;
+}
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.ai-cover-letter-page .preview-empty h3 { font-size: 1.1rem; color: #fff; margin-bottom: 10px; }
+.ai-cover-letter-page .preview-empty p { color: #9BA1A6; font-size: 0.88rem; line-height: 1.6; max-width: 300px; }
+
+/* ===== LOADING STATE ===== */
+.ai-cover-letter-page .preview-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    min-height: 520px;
+    text-align: center;
+}
+.ai-cover-letter-page .ai-loader { position: relative; width: 70px; height: 70px; margin-bottom: 28px; }
+.ai-cover-letter-page .loader-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    animation: spin 1.4s linear infinite;
+}
+.ai-cover-letter-page .loader-ring:nth-child(1) { border-top-color: #EEC30C; animation-duration: 1.4s; }
+.ai-cover-letter-page .loader-ring:nth-child(2) { border-right-color: rgba(238,195,12,0.5); animation-duration: 1.8s; inset: 10px; }
+.ai-cover-letter-page .loader-ring:nth-child(3) { border-bottom-color: rgba(238,195,12,0.25); animation-duration: 2.2s; inset: 20px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ai-cover-letter-page .preview-loading h3 { color: #fff; font-size: 1rem; margin-bottom: 24px; }
+.ai-cover-letter-page .loading-steps { text-align: left; width: 240px; }
+.ai-cover-letter-page .load-step {
+    font-size: 0.82rem;
+    color: #9BA1A6;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+.ai-cover-letter-page .load-step i { font-size: 0.9rem; }
+.ai-cover-letter-page .load-step.active { color: #EEC30C; }
+.ai-cover-letter-page .load-step.done { color: #4ade80; }
+
+/* ===== RESUME DOC STYLES ===== */
+.ai-cover-letter-page .preview-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.2);
+}
+.ai-cover-letter-page .preview-label { font-size: 0.82rem; font-weight: 600; color: #EEC30C; display: flex; align-items: center; gap: 8px; }
+.ai-cover-letter-page .preview-actions { display: flex !important; flex-direction: row !important; gap: 10px !important; }
+.ai-cover-letter-page .prev-action-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Satoshi', sans-serif;
+    transition: all 0.2s;
+}
+.ai-cover-letter-page .prev-action-btn:hover { background: rgba(255,255,255,0.1); border-color: #EEC30C; color: #EEC30C; }
+.ai-cover-letter-page #btn-pdf:hover { color: #ff6b6b; border-color: #ff6b6b; }
+.ai-cover-letter-page #btn-word:hover { color: #4d9ef5; border-color: #4d9ef5; }
+.ai-cover-letter-page .resume-preview-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+.ai-cover-letter-page .resume-doc {
+    background: #fff;
+    color: #1a1a1a;
+    padding: 40px;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.ai-cover-letter-page .resume-doc::-webkit-scrollbar { display: none; }
+
+/* Cover Letter styles */
+.ai-cover-letter-page .cl-header {
+    border-bottom: 2px solid #EEC30C;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+.ai-cover-letter-page .cl-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f1113;
+    font-family: 'Satoshi', sans-serif;
+    margin-bottom: 5px;
+}
+.ai-cover-letter-page .cl-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.9rem;
+    color: #666;
+}
+.ai-cover-letter-page .cl-date {
+    margin-bottom: 20px;
+    color: #333;
+}
+.ai-cover-letter-page .cl-recipient {
+    margin-bottom: 24px;
+    line-height: 1.5;
+    color: #333;
+}
+.ai-cover-letter-page .cl-salutation {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+.ai-cover-letter-page .cl-body p {
+    margin-bottom: 16px;
+    text-indent: 0;
+    color: #333;
+}
+.ai-cover-letter-page .cl-closing {
+    margin-top: 30px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* ===== FAQ ===== */
+.ai-cover-letter-page .faq-section { padding: 90px 0; background: #0f1113; }
+.ai-cover-letter-page .faq-section .section-label { 
+    text-align: left; 
+    display: flex; 
+    margin-left: 0; 
+    color: #EEC30C;
+}
+.ai-cover-letter-page .faq-section .section-title { 
+    text-align: left; 
+    display: block; 
+    font-size: clamp(1.8rem, 3vw, 2.4rem); 
+    margin-bottom: 20px;
+}
+
+.ai-cover-letter-page .faq-list { margin-top: 50px; display: flex; flex-direction: column; gap: 12px; }
+.ai-cover-letter-page .faq-item {
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.ai-cover-letter-page .faq-item.open { border-color: rgba(238,195,12,0.35); }
+.ai-cover-letter-page .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    gap: 16px;
+}
+.ai-cover-letter-page .faq-q i { color: #EEC30C; flex-shrink: 0; transition: transform 0.25s; }
+.ai-cover-letter-page .faq-item.open .faq-q i { transform: rotate(45deg); }
+.ai-cover-letter-page .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 24px;
+    color: #9BA1A6;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    transition: max-height 0.35s ease, padding 0.3s;
+}
+.ai-cover-letter-page .faq-item.open .faq-a { max-height: 400px; padding: 0 24px 20px; }
+
+/* ===== GLOBAL OVERRIDES ===== */
+.ai-cover-letter-page .section-label { background: none !important; border: none !important; }
+.ai-cover-letter-page .section-sub { text-align: center; }
+
+/* ===== PROCESS ===== */
+.ai-cover-letter-page .aib-hero { min-height: calc(100vh - 80px); }
+.ai-cover-letter-page .process-section { 
+    padding: 90px 0; 
+    background: #0a0b0d; 
+    text-align: center;
+}
+
+/* ===== CTA ===== */
+.ai-cover-letter-page .cta-section { padding: 90px 0; background: #0a0b0d; }
+.ai-cover-letter-page .cta-box {
+    position: relative;
+    background: linear-gradient(135deg, #1a1500 0%, #181A1D 60%);
+    border: 1px solid rgba(238,195,12,0.25);
+    border-radius: 24px;
+    padding: 70px 48px;
+    text-align: center;
+    overflow: hidden;
+}
+.ai-cover-letter-page .cta-glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(238,195,12,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+.ai-cover-letter-page .cta-box h2 { font-family: 'Satoshi', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900; color: #fff; margin-bottom: 16px; }
+.ai-cover-letter-page .cta-box p { color: #9BA1A6; font-size: 1rem; max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+.ai-cover-letter-page .cta-box .btn-primary { 
+    background: #EEC30C; 
+    color: #000; 
+    border: none; 
+    font-weight: 700; 
+    padding: 15px 32px; 
+    font-size: 1.05rem; 
+    border-radius: 8px;
+    text-decoration: none; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px; 
+    transition: all 0.25s;
+}
+.ai-cover-letter-page .cta-box .btn-primary:hover {
+    background: #d4a90a; 
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 24px rgba(238,195,12,0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .ai-cover-letter-page .features-grid-ai { grid-template-columns: 1fr 1fr; }
+    .ai-cover-letter-page .steps-row { flex-direction: column; }
+    .ai-cover-letter-page .step-connector { display: none; }
+    .ai-cover-letter-page .builder-layout { grid-template-columns: 1fr; }
+    .ai-cover-letter-page .preview-panel { position: static; }
+}
+@media (max-width: 600px) {
+    .ai-cover-letter-page .features-grid-ai { grid-template-columns: 1fr; }
+    .ai-cover-letter-page .aib-hero { padding: 110px 0 70px; }
+}

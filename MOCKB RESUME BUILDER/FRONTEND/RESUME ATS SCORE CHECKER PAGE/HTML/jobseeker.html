@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockB CV | Jobseeker ATS Resume Checker</title>
+    <meta name="description" content="Upload your resume and get an instant ATS compatibility score with detailed feedback across 13 key metrics.">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/jobseeker.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back</span>
+    </a>
+
+    <!-- BG Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <main>
+
+        <!-- ── HERO ── -->
+        <section class="jb-hero">
+            <div class="jb-hero-inner">
+                <div class="hero-badge"><i class="fa-solid fa-gauge-high"></i> ATS Checker · Jobseeker Mode</div>
+                <h1>Is Your Resume <span>ATS-Ready?</span></h1>
+                <p>Upload your resume and our AI will instantly analyse it across 13 key dimensions — from keyword matching to formatting — and give you a precise ATS score out of 100, plus a tailored fix plan.</p>
+                <div class="hero-stats-row">
+                    <div class="hs-item"><i class="fa-solid fa-check-double"></i> 13 Metrics Checked</div>
+                    <div class="hs-divider"></div>
+                    <div class="hs-item"><i class="fa-solid fa-robot"></i> AI-Powered Analysis</div>
+                    <div class="hs-divider"></div>
+                    <div class="hs-item"><i class="fa-solid fa-file-arrow-down"></i> Download Fixed Resume</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── UPLOAD SECTION ── -->
+        <section class="upload-section container" id="upload-section">
+            <div class="upload-card" id="drop-zone">
+                <div class="upload-icon-wrap">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h2>Upload Your Resume</h2>
+                <p>Drag & drop your resume here, or click to browse</p>
+                <p class="upload-hint"><i class="fa-solid fa-file-pdf"></i> PDF &nbsp;|&nbsp; <i class="fa-solid fa-file-word"></i> Word (.doc / .docx) &nbsp;|&nbsp; Max 5MB</p>
+                <input type="file" id="resume-file" accept=".pdf,.doc,.docx" hidden>
+                <button class="btn-upload" id="browse-btn">
+                    <i class="fa-solid fa-folder-open"></i> Browse File
+                </button>
+                <div class="file-selected" id="file-selected" style="display:none;">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                    <span id="file-name-display">resume.pdf</span>
+                    <button class="remove-file" id="remove-file"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <button class="btn-check-ats" id="check-ats-btn" disabled>
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <span>Check ATS Score of My Resume</span>
+            </button>
+        </section>
+
+        <!-- ── RESULTS SECTION (hidden until check) ── -->
+        <section class="results-section container" id="results-section" style="display:none;">
+
+            <!-- Speedometer -->
+            <div class="speedometer-wrap">
+                <h2 class="section-heading">Your ATS Score</h2>
+                <div class="speedo-container">
+                    <svg class="speedo-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="border-radius: 50%;">
+                        <defs>
+                            <!-- Gradient for the outer ring -->
+                            <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff4e2a"/>
+                                <stop offset="25%" style="stop-color:#ff8e25"/>
+                                <stop offset="50%" style="stop-color:#fce411"/>
+                                <stop offset="75%" style="stop-color:#b4e333"/>
+                                <stop offset="100%" style="stop-color:#82c91e"/>
+                            </linearGradient>
+                            
+                            <!-- Shadow for the inner circle -->
+                            <filter id="outerShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.2" />
+                            </filter>
+
+                            <!-- Shadow for the needle -->
+                            <filter id="needleShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.25" />
+                            </filter>
+                        </defs>
+
+                        <!-- Background White Circles -->
+                        <circle cx="150" cy="150" r="150" fill="#f0f0f0"/>
+                        <circle cx="150" cy="150" r="135" fill="#ffffff"/>
+                        
+                        <!-- Empty Track (Light Grey) -->
+                        <path d="M 65 150 A 85 85 0 0 1 235 150" fill="none" stroke="#e6e6e6" stroke-width="35" stroke-linecap="butt"/>
+                        
+                        <!-- Gradient Score Arc -->
+                        <path class="speedo-arc" id="speedo-arc" d="M 65 150 A 85 85 0 0 1 235 150" fill="none" stroke="url(#scoreGrad)" stroke-width="35" stroke-linecap="butt" stroke-dasharray="0 267"/>
+                        
+                        <!-- Inner White Circle -->
+                        <circle cx="150" cy="150" r="75" fill="#f5f5f5" filter="url(#outerShadow)"/>
+                        
+                        <!-- Large Teardrop Needle -->
+                        <g class="speedo-needle-group" id="speedo-needle" style="transform-origin: 150px 150px; transform: rotate(-90deg);">
+                            <path d="M 136 150 A 14 14 0 0 0 164 150 L 153 60 L 147 60 Z" fill="#a0a0a0" filter="url(#needleShadow)" />
+                        </g>
+
+
+                    </svg>
+                    
+                    <div class="speedo-score-display">
+                        <span id="score-number" class="score-num" style="color: #555;">0</span>
+
+                    </div>
+                    <div id="score-label" class="score-label">Calculating...</div>
+                </div>
+            </div>
+
+            <!-- 13 Metrics -->
+            <div class="metrics-section">
+                <h2 class="section-heading">Detailed Analysis</h2>
+                <p class="section-sub">Your resume has been checked across 13 critical ATS parameters</p>
+                <div class="metrics-grid" id="metrics-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Strengths & Weaknesses -->
+            <div class="sw-row">
+                <div class="sw-box strength-box">
+                    <img src="../IMAGES/sticker_gif_whatsapp_iphone___Emojis_emoticono_3D_todo_OK_gesto-removebg-preview.png" class="floating-emoji">
+                    <i class="fa-solid fa-check bg-icon"></i>
+                    <div class="sw-header">Strengths</div>
+                    <ul class="sw-list" id="strengths-list"></ul>
+                </div>
+                <div class="sw-box weakness-box">
+                    <img src="../IMAGES/dfghj-removebg-preview.png" class="floating-emoji">
+                    <i class="fa-solid fa-xmark bg-icon"></i>
+                    <div class="sw-header">Weaknesses</div>
+                    <ul class="sw-list" id="weaknesses-list"></ul>
+                </div>
+            </div>
+
+            <!-- Fix & Regenerate -->
+            <div class="regen-section">
+                <h2>Fix All Issues & <span>Regenerate Resume</span></h2>
+                <p>Our AI will automatically correct all detected issues — formatting, keywords, grammar, bullet points and more — and deliver your improved resume.</p>
+                <button class="btn-regen" id="regen-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Fix Issues & Regenerate My Resume</span>
+                </button>
+            </div>
+
+            <!-- Download + Preview (hidden until regenerated) -->
+            <div class="download-section" id="download-section" style="display:none;">
+                <div class="dl-card">
+                    <i class="fa-solid fa-circle-check dl-check"></i>
+                    <h3>Your Improved Resume Is Ready!</h3>
+                    <p>All 13 issues have been fixed. Preview your ATS-optimised resume below, then download in your preferred format.</p>
+
+                    <!-- Resume Preview Panel -->
+                    <div class="resume-preview-wrap">
+                        <div class="rp-toolbar">
+                            <span class="rp-label"><i class="fa-solid fa-eye"></i> Live Preview</span>
+                            <div class="dl-btns">
+                                <button class="dl-btn dl-pdf" onclick="downloadResumePDF()">
+                                    <i class="fa-solid fa-file-pdf"></i> Download PDF
+                                </button>
+                                <button class="dl-btn dl-word" onclick="downloadResumeWord()">
+                                    <i class="fa-solid fa-file-word"></i> Download Word
+                                </button>
+                            </div>
+                        </div>
+                        <div class="resume-preview-panel" id="resume-preview-panel">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../JS/jobseeker.js" defer></script>
+</body>
+</html>

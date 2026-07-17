@@ -1,0 +1,82 @@
+.how-section {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.how-section .section-label {
+    border: none;
+}
+
+.steps-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.step-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.step-card::before {
+    content: attr(data-step);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: black;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 50px;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(238, 195, 12, 0.35);
+}
+
+.step-icon {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 14px;
+}
+
+.step-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.step-card p {
+    font-size: 11.5px;
+    color: #A0A0A0;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 210px;
+    margin: 0 auto;
+}
+
+.step-connector {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 20px;
+    opacity: 0.5;
+}

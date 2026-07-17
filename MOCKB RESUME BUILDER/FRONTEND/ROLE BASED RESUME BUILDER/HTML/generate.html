@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Role-Based Resume | MockB CV</title>
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/role-based.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .generator-container {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+        }
+        .generator-card {
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+        .step-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+        .step-dot.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .input-group {
+            margin-bottom: 2rem;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: var(--primary-color);
+            background: rgba(255,255,255,0.05);
+            outline: none;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        .loading-screen {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(238, 195, 12, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .template-option input:checked + img {
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .template-option:hover img {
+            border-color: rgba(238, 195, 12, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header id="header" class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-dark">Exit</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="generator-container">
+        <div class="generator-card glass">
+            <div id="setup-form">
+                <div class="step-indicator">
+                    <div class="step-dot active" data-step="1">1</div>
+                    <div class="step-dot" data-step="2">2</div>
+                    <div class="step-dot" data-step="3">3</div>
+                    <div class="step-dot" data-step="4">4</div>
+                    <div class="step-dot" data-step="5">5</div>
+                </div>
+
+                <form id="role-generator-form">
+                    <!-- Step 1: Personal Details -->
+                    <div class="form-step active" id="step-1">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Personal <span style="color: var(--primary-color)">Details</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Provide your basic contact information.</p>
+                        
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" id="full-name" placeholder="e.g. John Doe">
+                        </div>
+                        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label>Email Address</label>
+                                <input type="email" id="email" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label>Phone Number</label>
+                                <input type="tel" id="phone" placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Role Context -->
+                    <div class="form-step" id="step-2">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Target <span style="color: var(--primary-color)">Role</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Tell us what specific job you're aiming for.</p>
+                        
+                        <div class="input-group">
+                            <label>Selected Role</label>
+                            <input type="text" id="target-role" placeholder="e.g. Senior Frontend Developer" readonly>
+                        </div>
+                        <div class="input-group">
+                            <label>Experience Level</label>
+                            <select id="experience-level">
+                                <option value="entry">Entry Level (0-2 years)</option>
+                                <option value="mid">Mid-Senior (3-6 years)</option>
+                                <option value="senior">Senior/Lead (7+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Key Skills & Tech Stack -->
+                    <div class="form-step" id="step-3">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Core <span style="color: var(--primary-color)">Expertise</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">List your main technologies and skills for this role.</p>
+                        
+                        <div class="input-group">
+                            <label>Technical Skills (Comma separated)</label>
+                            <textarea id="tech-skills" rows="4" placeholder="React, TypeScript, Node.js, AWS, System Design..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Bio & Impact -->
+                    <div class="form-step" id="step-4">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Your <span style="color: var(--primary-color)">Impact</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Briefly describe your biggest achievement in this role.</p>
+                        
+                        <div class="input-group">
+                            <label>Professional Summary</label>
+                            <textarea id="bio" rows="5" placeholder="I am a passionate developer who built a high-traffic e-commerce platform..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Template Selection -->
+                    <div class="form-step" id="step-5">
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Choose <span style="color: var(--primary-color)">Template</span></h2>
+                        <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Select a premium design for your resume.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                            <label style="cursor: pointer; position: relative; border-radius: 12px; display: block;" class="template-option">
+                                <input type="radio" name="template" value="modern" style="display: none;" checked>
+                                <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000ca6c7208a76594f2e619499a.png" style="width: 100%; height: 250px; object-fit: cover; object-position: top; border-radius: 10px; border: 3px solid transparent; transition: var(--transition);">
+                                <div style="padding: 1rem; text-align: center; font-weight: bold; color: #fff;">Modern Clean</div>
+                            </label>
+                            <label style="cursor: pointer; position: relative; border-radius: 12px; display: block;" class="template-option">
+                                <input type="radio" name="template" value="creative" style="display: none;">
+                                <img src="../../HOME PAGE/IMAGES/RESUME TEMPLATES/file_00000000f3207208b912c6c636a195a1.png" style="width: 100%; height: 250px; object-fit: cover; object-position: top; border-radius: 10px; border: 3px solid transparent; transition: var(--transition);">
+                                <div style="padding: 1rem; text-align: center; font-weight: bold; color: #fff;">Creative Bold</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dark" id="prev-btn" style="display: none;">Back</button>
+                        <div style="display: flex; gap: 1rem; margin-left: auto;">
+                            <button type="button" class="btn btn-dark" id="skip-btn">Skip</button>
+                            <button type="button" class="btn btn-primary" id="next-btn">Next Step</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="loading-screen" id="loading-screen">
+                <div class="spinner"></div>
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">Generating Your <span style="color: var(--primary-color)">Tailored Resume</span></h2>
+                <p style="color: var(--text-gray);">Our AI is optimizing keywords and formatting for the <span id="loading-role"></span> role...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById('role-generator-form');
+        const steps = document.querySelectorAll('.form-step');
+        const dots = document.querySelectorAll('.step-dot');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const setupForm = document.getElementById('setup-form');
+        const loadingScreen = document.getElementById('loading-screen');
+        const targetRoleInput = document.getElementById('target-role');
+        const loadingRoleText = document.getElementById('loading-role');
+        
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Get role from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'IT Professional';
+        targetRoleInput.value = role.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        loadingRoleText.innerText = targetRoleInput.value;
+
+        function goToNextStep() {
+            if (currentStep < totalSteps) {
+                steps[currentStep - 1].classList.remove('active');
+                dots[currentStep - 1].classList.remove('active');
+                currentStep++;
+                steps[currentStep - 1].classList.add('active');
+                dots[currentStep - 1].classList.add('active');
+                prevBtn.style.display = 'block';
+                
+                if (currentStep === totalSteps) {
+                    nextBtn.innerText = 'Generate Resume';
+                    nextBtn.classList.add('btn-premium');
+                } else {
+                    nextBtn.innerText = 'Next Step';
+                    nextBtn.classList.remove('btn-premium');
+                }
+            } else {
+                // Final Submission
+                setupForm.style.display = 'none';
+                loadingScreen.style.display = 'block';
+                
+                // Simulate AI Generation
+                setTimeout(() => {
+                    window.location.href = `preview.html?role=${role}`; 
+                }, 3000);
+            }
+        }
+
+        nextBtn.addEventListener('click', goToNextStep);
+        skipBtn.addEventListener('click', goToNextStep); // Skip does the same as next for now, just bypasses input
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                steps[currentStep - 1].classList.remove('active');
+                dots[currentStep - 1].classList.remove('active');
+                currentStep--;
+                steps[currentStep - 1].classList.add('active');
+                dots[currentStep - 1].classList.add('active');
+                nextBtn.innerText = 'Next Step';
+                nextBtn.classList.remove('btn-premium');
+                
+                if (currentStep === 1) {
+                    prevBtn.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

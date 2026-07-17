@@ -1,0 +1,42 @@
+/* Templates Promo Section Styles */
+.templates-section {
+    padding: 8rem 0;
+}
+
+.templates-section h2 {
+    font-size: 3rem;
+    color: #FFFFFF;
+}
+
+.templates-section .split-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    text-align: left;
+}
+
+.templates-section .split-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.templates-section .split-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+    max-width: 500px;
+    color: var(--text-gray, #A0A0A0);
+}
+
+.templates-section .split-image img {
+    width: 100%;
+    max-width: 500px;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+}
+
+@media (max-width: 1024px) {
+    .templates-section .split-row { grid-template-columns: 1fr; gap: 3rem; }
+}

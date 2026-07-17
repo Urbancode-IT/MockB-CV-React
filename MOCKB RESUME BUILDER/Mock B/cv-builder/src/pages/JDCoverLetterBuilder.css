@@ -1,0 +1,977 @@
+/* JD Cover Letter Builder specific styles */
+
+.jdclb-page {
+    background-color: #0D0D0D;
+    color: #FFFFFF;
+    font-family: 'Satoshi', sans-serif;
+    line-height: 1.6;
+    overflow-x: clip;
+    min-height: 100vh;
+}
+
+/* Glassmorphism Utility */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section .container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(238, 195, 12, 0.1);
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.hero-content h1 span {
+    color: var(--primary-color);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #A0A0A0;
+    margin-bottom: 40px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
+/* Hero Visual Card */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.visual-card {
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 380px;
+    text-align: left;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.title-bar {
+    font-size: 0.75rem;
+    color: #A0A0A0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.placeholder-line {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.placeholder-line.short {
+    width: 60%;
+}
+
+.ai-pulse {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--primary-color);
+}
+
+.ai-pulse i {
+    font-size: 2rem;
+    animation: pulse-key 2s infinite;
+}
+
+@keyframes pulse-key {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.hero-bg-glow {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(238, 195, 12, 0.4) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(80px);
+}
+
+/* Deep Science Matching Details Section */
+.details-section {
+    padding: 80px 0;
+}
+
+.details-section .glass {
+    padding: 4rem;
+    margin-top: 20px;
+    position: relative;
+    z-index: 5;
+    margin-bottom: 5rem;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    text-align: left;
+}
+
+/* Why JD-Based Cover Letter Builder features */
+.features-section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.section-title h2 span {
+    color: var(--primary-color);
+}
+
+.section-title p {
+    color: #A0A0A0;
+    font-size: 1.1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    padding: 40px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-color);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.feature-card p {
+    color: #A0A0A0;
+}
+
+/* Main Builder Area */
+.builder-section {
+    padding: 100px 20px;
+}
+
+.builder-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.step-card {
+    padding: 40px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: left;
+}
+
+.step-num {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.1;
+    color: var(--primary-color);
+}
+
+.step-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    color: #A0A0A0;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+/* Inputs Form Elements */
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Form Inputs */
+.jd-input-box textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+/* Thin Professional Scrollbar for Job Description Box */
+#job-description::-webkit-scrollbar {
+    width: 6px;
+}
+#job-description::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+}
+#job-description::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+#job-description::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(238, 195, 12, 0.1);
+}
+
+textarea.form-input {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#job-description {
+    min-height: 250px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #A0A0A0;
+}
+
+/* Drop uploader box */
+.upload-box {
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.upload-box:hover {
+    border-color: var(--primary-color);
+    background: rgba(238, 195, 12, 0.05);
+}
+
+.upload-box i {
+    font-size: 2.5rem;
+    color: #A0A0A0;
+}
+
+.upload-box.active {
+    border-color: var(--primary-color);
+    background: rgba(238, 195, 12, 0.05);
+}
+
+.uploaded-file {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+.uploaded-file i {
+    color: var(--primary-color);
+}
+
+/* Live Preview panel side */
+.sticky-preview {
+    position: sticky;
+    top: 120px;
+    height: 506.14px;
+    max-height: 506.14px;
+    min-height: 506.14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-header span {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #A0A0A0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: var(--primary-color);
+    color: #000;
+    border-color: var(--primary-color);
+}
+
+.preview-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+}
+
+/* Hide scrollbar */
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+.scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Paper Document Mock Layout styles */
+.cv-document {
+    background: #ffffff;
+    color: #333333;
+    padding: 40px;
+    width: 100%;
+    max-width: 210mm;
+    min-height: 297mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-family: 'Inter', sans-serif;
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin-bottom: -10%;
+    text-align: left;
+    border-radius: 4px;
+}
+
+/* Template Select Options */
+.template-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.template-option {
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.template-thumb {
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.template-option.active .template-thumb {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(238, 195, 12, 0.4);
+}
+
+.template-option.active span {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.template-option span {
+    font-size: 0.8rem;
+    color: #A0A0A0;
+}
+
+.template-thumb::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    height: 10px;
+    background: #eeeeee;
+}
+
+.modern .template-thumb::after { content: ''; position: absolute; top: 20px; left: 5px; width: 40%; height: 5px; background: var(--primary-color); }
+.classic .template-thumb::after { content: ''; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 30%; height: 5px; background: #333333; }
+.minimal .template-thumb::after { content: ''; position: absolute; top: 10px; left: 0; width: 100%; height: 2px; background: #eeeeee; }
+.creative .template-thumb::before { background: #333333; width: 20px; height: 100%; left: 0; top: 0; }
+
+/* Dynamic Template Previews */
+.cv-document.modern { border-top: 10px solid var(--primary-color); }
+.cv-document.classic { font-family: 'Times New Roman', serif; text-align: center; }
+.cv-document.classic .letter-body { text-align: justify; }
+.cv-document.minimal { border: 1px solid #eeeeee; padding: 60px; }
+
+.cv-document.creative {
+    display: grid;
+    grid-template-columns: 32% 68%;
+    padding: 0;
+    min-height: 297mm;
+}
+.cv-document.creative .creative-sidebar {
+    background: #333333;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: left;
+}
+.cv-document.creative .creative-main {
+    padding: 40px;
+    background: #ffffff;
+    color: #333333;
+    text-align: left;
+}
+
+.preview-placeholder {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.preview-placeholder p {
+    max-width: 450px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.preview-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* AI loading overlay frame */
+.ai-loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 13, 13, 0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+}
+
+.loader-content {
+    text-align: center;
+    max-width: 300px;
+    padding: 20px;
+}
+
+.ai-brain {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+    animation: brain-bounce 2s infinite ease-in-out;
+}
+
+@keyframes brain-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.typing-status {
+    font-size: 0.9rem;
+    color: #A0A0A0;
+    margin: 12px 0 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+/* Success Stories */
+.success-stories {
+    padding: 100px 0;
+}
+
+/* FAQs block */
+.faq-section {
+    padding: 100px 0;
+}
+
+/* Customizer styles */
+.builder-actions {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .hero-section .container, .builder-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-visual {
+        display: none;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sticky-preview {
+        position: static;
+        height: 1000px;
+    }
+}
+
+/* Buttons imported from Frontend */
+.jdclb-page .btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.jdclb-page .btn-primary {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.jdclb-page .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+.jdclb-page .btn-outline {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: #fff;
+}
+
+.jdclb-page .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.jdclb-page .btn-lg {
+    padding: 16px 36px;
+    font-size: 1.1rem;
+}
+
+.jdclb-page .btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* Fix global CSS leaks from ResumeUpgrader.css */
+.jdclb-page .preview-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    margin-top: 0 !important;
+    height: 560px !important;
+    max-height: 560px !important;
+    min-height: 560px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.jdclb-page .builder-preview-side {
+    height: 100% !important;
+}
+
+.jdclb-page .preview-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: left !important;
+    margin: 0 !important;
+    padding: 30px 30px 25px 30px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
+}
+
+.jdclb-page .preview-header span {
+    display: inline-flex !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: #A0A0A0 !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+}
+
+.jdclb-page .preview-content {
+    background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Hide the document icon as requested */
+.jdclb-page .preview-placeholder i {
+    display: none !important;
+}
+
+.jdclb-page .preview-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px !important;
+}
+
+/* Restore natural dimensions to match reference images */
+.jdclb-page .step-card {
+    max-width: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.jdclb-page .step-card:hover {
+    border-color: var(--primary-color) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.jdclb-page .step-card h3,
+.jdclb-page .step-card p {
+    text-align: center !important;
+}
+
+.jdclb-page .step-card .form-group {
+    text-align: left !important;
+}
+
+/* Professional button sizing */
+.jdclb-page .builder-actions .btn {
+    width: auto !important;
+    padding: 12px 40px !important;
+    font-size: 1rem !important;
+    margin: 0 auto !important;
+    display: inline-flex !important;
+    border-radius: 8px !important;
+}
+
+.jdclb-page .builder-actions {
+    text-align: center !important;
+}
+
+/* Hide scrollbar for step cards (Chrome, Safari and Opera) */
+.jdclb-page .step-card::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* SweetAlert Custom Modal Styling */
+.sa-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+.sa-modal {
+    background: #2B2B2B;
+    border-radius: 12px;
+    padding: 30px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: sa-pop 0.3s ease-out forwards;
+}
+@keyframes sa-pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.sa-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2rem; font-weight: bold;
+}
+.sa-warning {
+    border: 3px solid #EEC30C;
+    color: #EEC30C;
+}
+.sa-warning::before {
+    content: '!';
+}
+.sa-modal h2 {
+    color: #fff; font-size: 1.4rem; margin-bottom: 10px;
+}
+.sa-modal p {
+    color: #A0A0A0; font-size: 0.95rem; margin-bottom: 25px;
+}
+.sa-confirm-btn {
+    background: #EEC30C; color: #000;
+    border: none; border-radius: 6px;
+    padding: 10px 30px; font-weight: bold; cursor: pointer;
+}
+
+/* Magnify Modal */
+.magnify-overlay {
+    padding: 40px;
+    z-index: 10000;
+}
+.magnify-modal {
+    background: transparent !important;
+    width: 700px;
+    max-width: 90vw;
+    height: auto !important;
+    max-height: none !important;
+    position: relative;
+    box-shadow: none !important;
+    margin: 0 auto;
+}
+.magnify-modal .cv-document {
+    background: #fff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+}
+/* Ensure the scrollbar is hidden in the magnify modal */
+.magnify-modal .cv-document::-webkit-scrollbar {
+    display: none !important;
+}
+.magnify-modal .cv-document::-webkit-scrollbar-thumb {
+    display: none !important;
+}
+.close-magnify {
+    position: absolute;
+    top: -15px; right: -15px;
+    background: #EEC30C; color: #000;
+    border: none; border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 1.2rem; cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+}
+
+/* Increase Preview Container Size */
+.jdclb-page .preview-container {
+    height: 680px !important;
+    max-height: 680px !important;
+    min-height: 680px !important;
+}
+.jdclb-page .sticky-preview {
+    height: 680px !important;
+    max-height: 680px !important;
+    min-height: 680px !important;
+}
+.jdclb-page .preview-content {
+    padding: 15px 20px !important;
+    justify-content: flex-start !important;
+    overflow-y: hidden !important;
+}
+.jdclb-page .preview-content .cv-document {
+    padding: 25px !important;
+    min-height: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+.jdclb-page .preview-content textarea {
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+    flex: 1;
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for textarea so it's obvious they can scroll */
+.jdclb-page .preview-content textarea::-webkit-scrollbar {
+    width: 6px;
+    display: block !important;
+}
+.jdclb-page .preview-content textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+.jdclb-page .preview-content textarea::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+.jdclb-page .preview-content textarea::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+

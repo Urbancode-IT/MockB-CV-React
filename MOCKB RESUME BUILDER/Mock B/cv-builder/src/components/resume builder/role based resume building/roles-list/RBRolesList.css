@@ -1,0 +1,39 @@
+/* Roles List View - Back link and header */
+.back-nav-wrapper {
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.back-link {
+  padding: 10px 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  color: var(--primary-color) !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.back-link:hover {
+  background: var(--primary-color);
+  color: black !important;
+  transform: translateX(-10px) scale(1.05);
+  box-shadow: 0 5px 20px rgba(238, 195, 12, 0.4);
+  border-color: var(--primary-color);
+}
+
+.back-link i {
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover i {
+  transform: translateX(-5px);
+}

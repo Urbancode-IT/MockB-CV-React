@@ -1,0 +1,75 @@
+.features-strip {
+    padding: 80px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.feat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 1.4rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+}
+
+.feat-card:hover {
+    border-color: rgba(238,195,12,0.3);
+    transform: translateY(-5px);
+}
+
+.feat-large { grid-column: span 2; }
+.feat-wide { grid-column: span 2; }
+
+.feat-glow {
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(238, 195, 12, 0.35);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.jd-feat-icon {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 0.7rem;
+    display: block;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    line-height: 1;
+}
+
+.feat-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.feat-card p {
+    color: #A0A0A0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+    .features-bento {
+        grid-template-columns: 1fr;
+    }
+    .feat-large, .feat-wide {
+        grid-column: span 1;
+    }
+}

@@ -1,0 +1,61 @@
+.ai-builder-page .faq-section {
+    padding: 90px 0;
+    background: #0f1113;
+}
+
+.ai-builder-page .faq-list {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-builder-page .faq-item {
+    background: #181A1D;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    padding: 0 !important;
+}
+
+.ai-builder-page .faq-item.open {
+    border-color: rgba(238,195,12,0.35);
+}
+
+.ai-builder-page .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    gap: 16px;
+}
+
+.ai-builder-page .faq-q i {
+    color: #EEC30C;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+}
+
+.ai-builder-page .faq-item.open .faq-q i {
+    transform: rotate(45deg);
+}
+
+.ai-builder-page .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 24px;
+    color: #9BA1A6;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    transition: max-height 0.35s ease, padding 0.3s;
+}
+
+.ai-builder-page .faq-item.open .faq-a {
+    max-height: 200px;
+    padding: 0 24px 20px;
+}

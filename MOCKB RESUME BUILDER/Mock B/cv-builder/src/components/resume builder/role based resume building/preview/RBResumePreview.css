@@ -1,0 +1,163 @@
+/* Resume Preview Container */
+.preview-container {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 100vh;
+  align-items: start;
+}
+
+/* Resume Paper */
+.resume-paper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  min-height: 900px;
+}
+
+.resume-header {
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.resume-header h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #000;
+  margin-bottom: 0.3rem;
+}
+
+.resume-header p {
+  color: #444;
+  font-size: 0.95rem;
+  margin: 3px 0;
+}
+
+.resume-section {
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.resume-section:last-child {
+  border-bottom: none;
+}
+
+.resume-section h2 {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.resume-section p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+.resume-section ul {
+  padding-left: 1.5rem;
+  color: #222;
+}
+
+.resume-section ul li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* Sidebar */
+.preview-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.action-card {
+  padding: 1.8rem;
+  border-radius: 16px;
+}
+
+.action-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+/* Download Buttons */
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.pdf-btn {
+  background: rgba(220, 38, 38, 0.1);
+  color: #fc6161;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.pdf-btn:hover {
+  background: rgba(220, 38, 38, 0.2);
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-2px);
+}
+
+.word-btn {
+  background: rgba(37, 99, 235, 0.1);
+  color: #60a5fa;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.word-btn:hover {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-gray);
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .preview-container {
+    grid-template-columns: 1fr;
+  }
+  .preview-sidebar {
+    position: static;
+  }
+}

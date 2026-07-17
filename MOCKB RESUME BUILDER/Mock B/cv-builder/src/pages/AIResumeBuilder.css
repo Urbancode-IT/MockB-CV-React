@@ -1,0 +1,59 @@
+/* ===== PAGE-SPECIFIC OVERRIDES ===== */
+.ai-builder-page {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+}
+
+.ai-builder-page main {
+    padding-top: 30px;
+}
+
+/* ===== SHARED MOCKUP SECTION STYLES ===== */
+.ai-builder-page .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #EEC30C;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+}
+
+.ai-builder-page .section-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.ai-builder-page .section-sub {
+    color: #9BA1A6;
+    font-size: 1rem;
+    max-width: 580px;
+    margin-bottom: 52px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+/* Override any leaky global bottom borders on section titles */
+.ai-builder-page .section-title {
+    border-bottom: none !important;
+}
+
+/* Remove border and background pills from section labels on this page */
+.ai-builder-page .section-label {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: none !important;
+}
+
+

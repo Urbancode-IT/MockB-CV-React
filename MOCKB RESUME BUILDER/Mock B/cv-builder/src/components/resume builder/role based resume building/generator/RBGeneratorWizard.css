@@ -1,0 +1,163 @@
+/* Generator Wizard - Scoped to .rbrb-page to prevent CSS leaking */
+.rbrb-page.generator-container {
+    padding: 100px 0 40px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+    position: relative;
+}
+
+.rbrb-page .generator-exit-btn {
+    position: fixed;
+    top: 100px;
+    right: 5%;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.rbrb-page .generator-exit-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.rbrb-page .generator-card {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem 3rem;
+    position: relative;
+    z-index: 10;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rbrb-page .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.rbrb-page .step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.rbrb-page .step-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 2px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    color: #fff; /* Ensure text color isn't overridden */
+}
+
+.rbrb-page .step-dot.active {
+    background: var(--primary-color, #EEC30C);
+    border-color: var(--primary-color, #EEC30C);
+    color: #000;
+    box-shadow: 0 0 20px rgba(238, 195, 12, 0.4);
+}
+
+.rbrb-page .form-step {
+    display: none;
+}
+
+.rbrb-page .form-step.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.rbrb-page .input-group {
+    margin-bottom: 1.5rem;
+    text-align: left; /* Ensure alignment doesn't leak */
+}
+
+.rbrb-page .input-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--text-gray, #A0A0A0);
+    font-size: 0.9rem;
+}
+
+.rbrb-page .input-group input, 
+.rbrb-page .input-group textarea, 
+.rbrb-page .input-group select {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.rbrb-page .input-group input:focus, 
+.rbrb-page .input-group textarea:focus, 
+.rbrb-page .input-group select:focus {
+    border-color: var(--primary-color, #EEC30C);
+    background: rgba(255,255,255,0.05);
+    outline: none;
+}
+
+.rbrb-page .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.rbrb-page .loading-screen {
+    text-align: center;
+    padding: 3rem;
+}
+
+.rbrb-page .spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(238, 195, 12, 0.1);
+    border-top: 4px solid var(--primary-color, #EEC30C);
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    animation: spin 1s linear infinite;
+}
+
+.rbrb-page .template-option input:checked + img {
+    border: 3px solid var(--primary-color, #EEC30C);
+    box-shadow: 0 0 20px rgba(238, 195, 12, 0.4);
+}
+
+.rbrb-page .template-option:hover img {
+    border-color: rgba(238, 195, 12, 0.5);
+}

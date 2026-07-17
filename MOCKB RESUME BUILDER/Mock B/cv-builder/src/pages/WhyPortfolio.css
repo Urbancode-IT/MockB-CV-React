@@ -1,0 +1,412 @@
+/* Why Portfolio Styles */
+.why-portfolio-container {
+    background-color: #000;
+    color: #fff;
+}
+
+.why-hero-section {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 0 4rem;
+    background: radial-gradient(circle at center, rgba(238, 195, 12, 0.08) 0%, #000000 60%);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-hero-section .hero-content {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.why-hero-section h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.why-hero-section h1 span {
+    color: var(--primary-color);
+}
+
+.why-hero-section p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.why-hero-section p.highlight-text {
+    font-weight: 600;
+    color: #fff;
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+}
+
+.hero-features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.why-portfolio-container .feature-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.why-portfolio-container .feature-card:hover {
+    background: rgba(238, 195, 12, 0.1);
+    border-color: rgba(238, 195, 12, 0.3);
+    transform: translateY(-3px);
+}
+
+.why-portfolio-container .feature-card i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Comparison Section */
+.comparison-section {
+    padding: 6rem 0;
+    background: #050505;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.compare-card {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    transition: var(--transition);
+    text-align: left;
+}
+
+.compare-card.mockb {
+    background: linear-gradient(145deg, rgba(238, 195, 12, 0.05) 0%, rgba(20, 20, 20, 0.9) 100%);
+    border: 1px solid rgba(238, 195, 12, 0.2);
+    box-shadow: 0 10px 40px rgba(238, 195, 12, 0.05);
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-head i {
+    font-size: 2rem;
+    color: var(--text-gray);
+}
+
+.compare-card.mockb .card-head i {
+    color: var(--primary-color);
+}
+
+.card-head h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.compare-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.compare-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-gray);
+    font-size: 1.05rem;
+}
+
+.compare-card.traditional .compare-list li i {
+    color: #ff4b4b;
+    margin-top: 4px;
+}
+
+.compare-card.mockb .compare-list li i {
+    color: var(--primary-color);
+    margin-top: 4px;
+}
+
+.compare-card.mockb .compare-list li {
+    color: #fff;
+}
+
+/* Key Uses Section */
+.key-uses-section {
+    padding: 6rem 0;
+}
+
+.uses-timeline {
+    max-width: 900px;
+    margin: 4rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.use-item {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.use-number {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: var(--primary-color);
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(238, 195, 12, 0.3);
+}
+
+.use-content {
+    flex-grow: 1;
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: left;
+}
+
+.use-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.tags-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.tags-group span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-gray);
+}
+
+.tags-group.outline span {
+    background: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Who Can Use Section */
+.who-can-use-section {
+    padding: 6rem 0;
+    background: #050505;
+}
+
+.personas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.persona-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.persona-card:hover {
+    background: rgba(238, 195, 12, 0.05);
+    transform: translateY(-5px);
+}
+
+.persona-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.persona-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.persona-card p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+/* Advantages Section */
+.advantages-section {
+    padding: 6rem 0;
+}
+
+.advantages-section .split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.advantages-block {
+    padding: 3rem;
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    text-align: left;
+}
+
+.advantages-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.adv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.adv-item strong {
+    display: block;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.adv-item p {
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.recruiters-block {
+    text-align: left;
+}
+
+.recruiters-block h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.recruiters-block h2 span {
+    color: var(--primary-color);
+}
+
+.feature-bullets {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-bullets.large li {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-bullets li i {
+    color: var(--primary-color);
+}
+
+/* Career Impact Section */
+.career-impact-section {
+    padding: 4rem 0 8rem;
+}
+
+.impact-metrics {
+    margin-bottom: 5rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 200px;
+}
+
+.metric-card h4 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.final-cta {
+    padding: 4rem 2rem;
+    background: linear-gradient(145deg, rgba(238, 195, 12, 0.1) 0%, rgba(20, 20, 20, 0.8) 100%);
+    border: 1px solid rgba(238, 195, 12, 0.3);
+    border-radius: 24px;
+}
+
+.final-cta h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.final-cta h2 span {
+    color: var(--primary-color);
+}
+
+.final-cta p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .why-hero-section h1 { font-size: 2.5rem; }
+    .comparison-grid, .advantages-section .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .use-item { flex-direction: column; align-items: center; text-align: center; }
+    .use-content { text-align: center; }
+    .tags-group { justify-content: center; }
+    .final-cta h2 { font-size: 2rem; }
+}

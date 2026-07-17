@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Resume | MockB CV Resume Customizer</title>
+    <meta name="description" content="Upload your existing resume or start fresh with MockB CV's Resume Customizer.">
+    <link rel="stylesheet" href="../../HOME PAGE/CSS/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0D0D0D;
+            color: #fff;
+            font-family: 'Satoshi', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Upload Page Main ── */
+        .upload-page-main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 1.5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background glow */
+        .upload-page-main::before {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(238,195,12,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .upload-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 28px;
+            padding: 3.5rem 4rem;
+            width: 100%;
+            max-width: 680px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        /* Progress steps */
+        .upload-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 3rem;
+        }
+
+        .step-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1e1e1e;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #555;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .step-dot.active {
+            background: #EEC30C;
+            border-color: #EEC30C;
+            color: #000;
+            box-shadow: 0 0 0 4px rgba(238,195,12,0.2);
+        }
+
+        .step-dot.done {
+            background: #EEC30C;
+            border-color: #EEC30C;
+            color: #000;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background: #222;
+            max-width: 80px;
+            transition: background 0.4s;
+        }
+
+        .step-line.done { background: #EEC30C; }
+
+        /* Header */
+        .upload-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .upload-header .step-badge {
+            display: inline-block;
+            background: rgba(238,195,12,0.1);
+            border: 1px solid rgba(238,195,12,0.3);
+            color: #EEC30C;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.35rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .upload-header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+        }
+
+        .upload-header h1 span { color: #EEC30C; }
+
+        .upload-header p {
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Choice cards */
+        .choice-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .choice-card {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 18px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(238,195,12,0.06) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .choice-card:hover {
+            border-color: #EEC30C;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(238,195,12,0.12);
+        }
+
+        .choice-card:hover::before { opacity: 1; }
+
+        .choice-card.selected {
+            border-color: #EEC30C;
+            background: #1e1c10;
+            box-shadow: 0 0 0 3px rgba(238,195,12,0.2);
+        }
+
+        .choice-card.selected::before { opacity: 1; }
+
+        .choice-icon {
+            width: 58px;
+            height: 58px;
+            background: rgba(238,195,12,0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #EEC30C;
+            margin: 0 auto 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .choice-card:hover .choice-icon,
+        .choice-card.selected .choice-icon {
+            background: #EEC30C;
+            color: #000;
+        }
+
+        .choice-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .choice-card p {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .choice-card .selected-check {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 22px;
+            height: 22px;
+            background: #EEC30C;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: #000;
+            font-weight: 900;
+        }
+
+        .choice-card.selected .selected-check { display: flex; }
+
+        /* Upload zone */
+        .upload-zone {
+            display: none;
+            border: 2px dashed #333;
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #111;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .upload-zone.show { display: block; }
+
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #EEC30C;
+            background: rgba(238,195,12,0.04);
+        }
+
+        .upload-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .upload-zone-icon {
+            font-size: 2.5rem;
+            color: #EEC30C;
+            margin-bottom: 1rem;
+        }
+
+        .upload-zone h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .upload-zone p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .upload-zone .file-formats {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .file-format-badge {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #aaa;
+        }
+
+        .uploaded-file-info {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(238,195,12,0.08);
+            border: 1px solid rgba(238,195,12,0.3);
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .uploaded-file-info.show { display: flex; }
+
+        .uploaded-file-info i {
+            font-size: 1.5rem;
+            color: #EEC30C;
+        }
+
+        .uploaded-file-info span { font-size: 0.9rem; font-weight: 600; }
+
+        .uploaded-file-info .remove-file {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .uploaded-file-info .remove-file:hover { color: #ff4444; }
+
+        /* Action buttons */
+        .upload-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-proceed {
+            flex: 1;
+            background: #EEC30C;
+            color: #000;
+            font-weight: 800;
+            font-size: 1rem;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .btn-proceed.enabled {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .btn-proceed.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(238,195,12,0.4);
+        }
+
+        .btn-skip {
+            background: transparent;
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #333;
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-skip:hover {
+            border-color: #555;
+            color: #ccc;
+        }
+
+        /* Skip note */
+        .skip-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.82rem;
+            color: #444;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .upload-card { padding: 2.5rem 1.5rem; }
+            .choice-cards { grid-template-columns: 1fr; }
+            .upload-header h1 { font-size: 1.7rem; }
+            .upload-actions { flex-direction: column; }
+            .btn-skip { width: 100%; justify-content: center; }
+        }
+
+        .back-templates-btn {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-templates-btn i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-templates-btn:hover {
+            color: #EEC30C;
+        }
+
+        .back-templates-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        @media (min-width: 768px) {
+            .back-templates-btn {
+                top: 120px;
+                left: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (same as main site) -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../../HOME PAGE/HTML/index.html" class="logo">
+                    <i class="fa-solid fa-bee logo-icon"></i>
+                    <span>MockB CV</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../HOME PAGE/HTML/index.html">Home</a></li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#features">Features</a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="resume-builder-trigger">Resume<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="resume-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Resume Builder ATS Friendly</h4>
+                                            <p>Generate professional resumes with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME ATS SCORE CHECKER PAGE/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume ATS Score Checker</h4>
+                                            <p>Analyze your resume against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED RESUME BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Resume Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESCRIPTION RESUME BUILDING/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Resume Based on Job Description</h4>
+                                            <p>Match your resume to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../HOW TO BUILD RESUME GUIDELINES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Resume: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../RESUME UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Resume upgrader</h4>
+                                            <p>Enhance and elevate your existing resume.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../RESUME CUSTOMIZER/HTML/index.html"><span class="hover-prefix">Resume </span>customizer <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="cover-letter-trigger">Cover Letter<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="cover-letter-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../AI COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="item-text">
+                                            <h4>AI Cover Letter Builder ATS Friendly</h4>
+                                            <p>Generate professional cover letters with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER ATS SCORE CHECKER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter ATS Score Checker</h4>
+                                            <p>Analyze your cover letter against ATS algorithms.</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="../../ROLE BASED COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div class="item-text">
+                                            <h4>Role-based Cover Letter Building</h4>
+                                            <p>Tailored templates for specific job roles.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../JOB DESRIPTION COVER LETTER BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="item-text">
+                                            <h4>Create Cover Letter Based on Job Description</h4>
+                                            <p>Match your cover letter to specific job requirements.</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-book-open"></i></div>
+                                        <div class="item-text">
+                                            <h4>How to Build Cover Letter: Keywords and Guideline</h4>
+                                            <p>Expert tips on keywords and formatting.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../COVER LETTER UPGRADER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                        <div class="item-text">
+                                            <h4>Cover Letter upgrader</h4>
+                                            <p>Enhance and elevate your existing cover letter.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu">
+                        <a href="javascript:void(0)" id="portfolio-trigger">Portfolio<span class="hover-suffix"> Builder</span> <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="portfolio-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="../../PORTFOLIO BUILDER/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <div class="item-text">
+                                            <h4>Build Portfolio</h4>
+                                            <p>Generate professional web portfolios with AI power.</p>
+                                        </div>
+                                    </a>
+                                    <a href="../../WHY MOCKB PORTFOLIO AND ITS USES/HTML/index.html" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-circle-question"></i></div>
+                                        <div class="item-text">
+                                            <h4>Why Portfolio and its Uses</h4>
+                                            <p>Discover the power and key benefits of a professional portfolio.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html#templates">Templates <i class="fa-solid fa-chevron-down"></i></a></li>
+                    <li class="has-mega-menu" id="lang-menu-parent">
+                        <a href="javascript:void(0)" id="languages-trigger">Languages <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu" id="languages-mega-menu">
+                            <div class="container">
+                                <div class="mega-menu-grid">
+                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>English</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('fr')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>French</h4>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="changeLanguage('es')" class="mega-menu-item">
+                                        <div class="item-icon"><i class="fa-solid fa-language"></i></div>
+                                        <div class="item-text">
+                                            <h4>Spanish</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../../HOME PAGE/HTML/index.html">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="upload-page-main">
+        <!-- Back Button -->
+        <a href="index.html#templates" class="back-templates-btn">
+            <i class="fa-solid fa-chevron-left"></i> Back to Templates
+        </a>
+
+        <div class="upload-card">
+            <!-- Step progress -->
+            <div class="upload-steps">
+                <div class="step-dot done"><i class="fa-solid fa-check" style="font-size:0.75rem;"></i></div>
+                <div class="step-line done"></div>
+                <div class="step-dot active">2</div>
+                <div class="step-line"></div>
+                <div class="step-dot">3</div>
+            </div>
+
+            <!-- Header -->
+            <div class="upload-header">
+                <div class="step-badge">Step 2 of 3</div>
+                <h1>Do you have an <span>existing resume</span>?</h1>
+                <p>Upload your current resume and we'll auto-fill your details — or start fresh and build from scratch.</p>
+            </div>
+
+            <!-- Choice cards -->
+            <div class="choice-cards">
+                <div class="choice-card" id="cardYes" onclick="selectChoice('yes')">
+                    <div class="selected-check"><i class="fa-solid fa-check"></i></div>
+                    <div class="choice-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                    <h3>Yes, I have one</h3>
+                    <p>Upload your resume and we'll import your details automatically.</p>
+                </div>
+                <div class="choice-card" id="cardNo" onclick="selectChoice('no')">
+                    <div class="selected-check"><i class="fa-solid fa-check"></i></div>
+                    <div class="choice-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <h3>No, start fresh</h3>
+                    <p>Build a new resume from scratch using your selected template.</p>
+                </div>
+            </div>
+
+            <!-- Upload zone (shown when "yes" selected) -->
+            <div class="upload-zone" id="uploadZone">
+                <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" onchange="handleFileUpload(event)">
+                <div class="upload-zone-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <h4>Drag & drop your resume here</h4>
+                <p>or click to browse from your device</p>
+                <div class="file-formats">
+                    <span class="file-format-badge">PDF</span>
+                    <span class="file-format-badge">DOC</span>
+                    <span class="file-format-badge">DOCX</span>
+                </div>
+            </div>
+
+            <!-- Uploaded file info -->
+            <div class="uploaded-file-info" id="uploadedFileInfo">
+                <i class="fa-solid fa-file-pdf"></i>
+                <div>
+                    <span id="uploadedFileName">resume.pdf</span>
+                    <div style="font-size:0.78rem; color:#666; margin-top:0.2rem;">Ready to import</div>
+                </div>
+                <button class="remove-file" onclick="removeFile()" title="Remove file"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="upload-actions">
+                <button class="btn-proceed" id="proceedBtn" onclick="handleProceed()">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    Proceed
+                </button>
+                <a href="#" class="btn-skip" id="skipBtn" onclick="handleSkip(event)">
+                    Skip for now
+                </a>
+            </div>
+
+            <p class="skip-note">You can always upload or edit your resume details later inside the editor.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Land what's next</h2>
+                <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
+                <button class="btn btn-dark">Get started today</button>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">Plans and Pricing</a></li>
+                        <li><a href="#">AI Cover Letters</a></li>
+                        <li><a href="#">AI Resume Checker</a></li>
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell Templates</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">AI Cover Letter Generator</a></li>
+                        <li><a href="#">Resume Keyword Optimizer</a></li>
+                        <li><a href="#">ATS Resume Checker</a></li>
+                        <li><a href="#">Resume Design Templates</a></li>
+                        <li><a href="#">AI Connection Request Writer</a></li>
+                        <li><a href="#">AI Resignation Letter Writer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
+                        <li><a href="#">How to Optimize Your Resume Keywords</a></li>
+                        <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
+                        <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
+                        <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>support@mockbee.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentChoice = null;
+        let uploadedFile = null;
+
+        function selectChoice(choice) {
+            currentChoice = choice;
+
+            // Update card states
+            document.getElementById('cardYes').classList.toggle('selected', choice === 'yes');
+            document.getElementById('cardNo').classList.toggle('selected', choice === 'no');
+
+            const uploadZone = document.getElementById('uploadZone');
+            const skipBtn = document.getElementById('skipBtn');
+
+            if (choice === 'yes') {
+                // Show upload zone
+                uploadZone.classList.add('show');
+                if (skipBtn) skipBtn.style.display = 'inline-flex';
+            } else {
+                // Hide upload zone, clear file
+                uploadZone.classList.remove('show');
+                document.getElementById('uploadedFileInfo').classList.remove('show');
+                uploadedFile = null;
+                if (skipBtn) skipBtn.style.display = 'none';
+            }
+            updateProceedState();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            uploadedFile = file;
+            document.getElementById('uploadedFileName').textContent = file.name;
+
+            const ext = file.name.split('.').pop().toLowerCase();
+            const iconEl = document.querySelector('#uploadedFileInfo i');
+            iconEl.className = ext === 'pdf' ? 'fa-solid fa-file-pdf' : 'fa-solid fa-file-word';
+            iconEl.style.color = ext === 'pdf' ? '#ff4444' : '#2b7cd3';
+
+            document.getElementById('uploadedFileInfo').classList.add('show');
+            updateProceedState();
+        }
+
+        function removeFile() {
+            uploadedFile = null;
+            document.getElementById('resumeFile').value = '';
+            document.getElementById('uploadedFileInfo').classList.remove('show');
+            updateProceedState();
+        }
+
+        function updateProceedState() {
+            const proceedBtn = document.getElementById('proceedBtn');
+            const enabled = currentChoice === 'no' || (currentChoice === 'yes' && uploadedFile !== null);
+            proceedBtn.classList.toggle('enabled', enabled);
+            if (enabled) {
+                proceedBtn.style.pointerEvents = 'all';
+                proceedBtn.style.opacity = '1';
+            } else {
+                proceedBtn.style.pointerEvents = 'none';
+                proceedBtn.style.opacity = '0.4';
+            }
+        }
+
+        function handleProceed() {
+            if (!document.getElementById('proceedBtn').classList.contains('enabled')) return;
+            // Navigate to the editor page
+            window.location.href = "editor.html";
+        }
+
+        function handleSkip(e) {
+            e.preventDefault();
+            window.location.href = "editor.html";
+        }
+
+        // Drag and drop support
+        const zone = document.getElementById('uploadZone');
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (allowedTypes.includes(file.type) || file.name.match(/\.(pdf|doc|docx)$/i)) {
+                    uploadedFile = file;
+                    document.getElementById('uploadedFileName').textContent = file.name;
+                    document.getElementById('uploadedFileInfo').classList.add('show');
+                    updateProceedState();
+                } else {
+                    alert('Please upload a PDF, DOC, or DOCX file.');
+                }
+            }
+        });
+
+        // Mega menu triggers
+        document.addEventListener('DOMContentLoaded', () => {
+            const triggers = ['resume-builder-trigger'];
+            triggers.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const menuId = id.replace('-trigger', '-mega-menu');
+                        const menu = document.getElementById(menuId);
+                        document.querySelectorAll('.mega-menu').forEach(m => {
+                            if (m.id !== menuId) { m.classList.remove('active'); m.parentElement.classList.remove('active'); }
+                        });
+                        if (menu) { menu.classList.toggle('active'); this.parentElement.classList.toggle('active'); }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script src="../../HOME PAGE/JAVA SCRIPT/script.js"></script>
+    
+    <!-- Google Translate Script Integration -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function changeLanguage(langCode) {
+            var selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for widget to load if not ready
+                setTimeout(() => changeLanguage(langCode), 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

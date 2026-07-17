@@ -1,0 +1,127 @@
+                                <button class="detail-pill link-pill" id="pill-threads" onclick="toggleDetailPill('threads')"><i class="fa-solid fa-plus"></i> Threads</button>
+                                <button class="detail-pill link-pill" id="pill-x" onclick="toggleDetailPill('x')"><i class="fa-solid fa-plus"></i> X</button>
+                                <button class="detail-pill link-pill" id="pill-discord" onclick="toggleDetailPill('discord')"><i class="fa-solid fa-plus"></i> Discord</button>
+                                <button class="detail-pill link-pill" id="pill-dribbble" onclick="toggleDetailPill('dribbble')"><i class="fa-solid fa-plus"></i> Dribbble</button>
+                                <button class="detail-pill link-pill" id="pill-behance" onclick="toggleDetailPill('behance')"><i class="fa-solid fa-plus"></i> Behance</button>
+                                <button class="detail-pill link-pill" id="pill-stackoverflow" onclick="toggleDetailPill('stackoverflow')"><i class="fa-solid fa-plus"></i> Stack Overflow</button>
+                                <button class="detail-pill link-pill" id="pill-gitlab" onclick="toggleDetailPill('gitlab')"><i class="fa-solid fa-plus"></i> GitLab</button>
+                                <button class="detail-pill link-pill" id="pill-quora" onclick="toggleDetailPill('quora')"><i class="fa-solid fa-plus"></i> Quora</button>
+                                <button class="detail-pill link-pill" id="pill-facebook" onclick="toggleDetailPill('facebook')"><i class="fa-solid fa-plus"></i> Facebook</button>
+                                <button class="detail-pill link-pill" id="pill-instagram" onclick="toggleDetailPill('instagram')"><i class="fa-solid fa-plus"></i> Instagram</button>
+                                <button class="detail-pill link-pill" id="pill-wechat" onclick="toggleDetailPill('wechat')"><i class="fa-solid fa-plus"></i> WeChat</button>
+                                <button class="detail-pill link-pill" id="pill-huggingface" onclick="toggleDetailPill('huggingface')"><i class="fa-solid fa-plus"></i> Hugging Face</button>
+                                <button class="detail-pill link-pill" id="pill-kaggle" onclick="toggleDetailPill('kaggle')"><i class="fa-solid fa-plus"></i> Kaggle</button>
+                                <button class="detail-pill link-pill" id="pill-youtube" onclick="toggleDetailPill('youtube')"><i class="fa-solid fa-plus"></i> YouTube</button>
+                                <button class="detail-pill link-pill" id="pill-tiktok" onclick="toggleDetailPill('tiktok')"><i class="fa-solid fa-plus"></i> TikTok</button>
+                                <button class="detail-pill link-pill" id="pill-signal" onclick="toggleDetailPill('signal')"><i class="fa-solid fa-plus"></i> Signal</button>
+                                <button class="detail-pill link-pill" id="pill-telegram" onclick="toggleDetailPill('telegram')"><i class="fa-solid fa-plus"></i> Telegram</button>
+                                <button class="detail-pill link-pill" id="pill-whatsapp" onclick="toggleDetailPill('whatsapp')"><i class="fa-solid fa-plus"></i> WhatsApp</button>
+                                <button class="detail-pill link-pill" id="pill-paypal" onclick="toggleDetailPill('paypal')"><i class="fa-solid fa-plus"></i> PayPal</button>
+                                <button class="detail-pill link-pill" id="pill-producthunt" onclick="toggleDetailPill('producthunt')"><i class="fa-solid fa-plus"></i> Product Hunt</button>
+                                <button class="detail-pill link-pill" id="pill-artstation" onclick="toggleDetailPill('artstation')"><i class="fa-solid fa-plus"></i> ArtStation</button>
+                                <button class="detail-pill link-pill" id="pill-codepen" onclick="toggleDetailPill('codepen')"><i class="fa-solid fa-plus"></i> CodePen</button>
+                                <button class="detail-pill link-pill" id="pill-fiverr" onclick="toggleDetailPill('fiverr')"><i class="fa-solid fa-plus"></i> Fiverr</button>
+                                <button class="detail-pill link-pill" id="pill-hashnode" onclick="toggleDetailPill('hashnode')"><i class="fa-solid fa-plus"></i> Hashnode</button>
+                                <button class="detail-pill link-pill" id="pill-pluralsight" onclick="toggleDetailPill('pluralsight')"><i class="fa-solid fa-plus"></i> Pluralsight</button>
+                                <button class="detail-pill link-pill" id="pill-researchgate" onclick="toggleDetailPill('researchgate')"><i class="fa-solid fa-plus"></i> ResearchGate</button>
+                                <button class="detail-pill link-pill" id="pill-imdb" onclick="toggleDetailPill('imdb')"><i class="fa-solid fa-plus"></i> IMDb</button>
+                                <button class="detail-pill link-pill" id="pill-qwiklabs" onclick="toggleDetailPill('qwiklabs')"><i class="fa-solid fa-plus"></i> Qwiklabs</button>
+                                <button class="detail-pill link-pill" id="pill-googleplay" onclick="toggleDetailPill('googleplay')"><i class="fa-solid fa-plus"></i> Google Play</button>
+                                <button class="detail-pill link-pill" id="pill-tumblr" onclick="toggleDetailPill('tumblr')"><i class="fa-solid fa-plus"></i> Tumblr</button>
+                                <button class="detail-pill link-pill" id="pill-tripadvisor" onclick="toggleDetailPill('tripadvisor')"><i class="fa-solid fa-plus"></i> Tripadvisor</button>
+                                <button class="detail-pill link-pill" id="pill-yelp" onclick="toggleDetailPill('yelp')"><i class="fa-solid fa-plus"></i> Yelp</button>
+                                <button class="detail-pill link-pill" id="pill-slack" onclick="toggleDetailPill('slack')"><i class="fa-solid fa-plus"></i> Slack</button>
+                                <button class="detail-pill link-pill" id="pill-flickr" onclick="toggleDetailPill('flickr')"><i class="fa-solid fa-plus"></i> Flickr</button>
+                                <button class="detail-pill link-pill" id="pill-reverbnation" onclick="toggleDetailPill('reverbnation')"><i class="fa-solid fa-plus"></i> ReverbNation</button>
+                                <button class="detail-pill link-pill" id="pill-deviantart" onclick="toggleDetailPill('deviantart')"><i class="fa-solid fa-plus"></i> DeviantArt</button>
+                                <button class="detail-pill link-pill" id="pill-vimeo" onclick="toggleDetailPill('vimeo')"><i class="fa-solid fa-plus"></i> Vimeo</button>
+                                <button class="detail-pill link-pill" id="pill-reddit" onclick="toggleDetailPill('reddit')"><i class="fa-solid fa-plus"></i> Reddit</button>
+                                <button class="detail-pill link-pill" id="pill-pinterest" onclick="toggleDetailPill('pinterest')"><i class="fa-solid fa-plus"></i> Pinterest</button>
+                                <button class="detail-pill link-pill" id="pill-blogger" onclick="toggleDetailPill('blogger')"><i class="fa-solid fa-plus"></i> Blogger</button>
+                                <button class="detail-pill link-pill" id="pill-spotify" onclick="toggleDetailPill('spotify')"><i class="fa-solid fa-plus"></i> Spotify</button>
+                                <button class="detail-pill link-pill" id="pill-bitcoin" onclick="toggleDetailPill('bitcoin')"><i class="fa-solid fa-plus"></i> Bitcoin</button>
+                                <button class="detail-pill link-pill" id="pill-appstore" onclick="toggleDetailPill('appstore')"><i class="fa-solid fa-plus"></i> App Store</button>
+                                <button class="detail-pill link-pill" id="pill-wordpress" onclick="toggleDetailPill('wordpress')"><i class="fa-solid fa-plus"></i> WordPress</button>
+                                <button class="detail-pill link-pill" id="pill-leetcode" onclick="toggleDetailPill('leetcode')"><i class="fa-solid fa-plus"></i> LeetCode</button>
+                                <button class="detail-pill link-pill" id="pill-codechef" onclick="toggleDetailPill('codechef')"><i class="fa-solid fa-plus"></i> CodeChef</button>
+                                <button class="detail-pill link-pill" id="pill-codecademy" onclick="toggleDetailPill('codecademy')"><i class="fa-solid fa-plus"></i> Codecademy</button>
+                                <button class="detail-pill link-pill" id="pill-codeforces" onclick="toggleDetailPill('codeforces')"><i class="fa-solid fa-plus"></i> Codeforces</button>
+                                <button class="detail-pill link-pill" id="pill-vsco" onclick="toggleDetailPill('vsco')"><i class="fa-solid fa-plus"></i> VSCO</button>
+                                <button class="detail-pill link-pill" id="pill-snapchat" onclick="toggleDetailPill('snapchat')"><i class="fa-solid fa-plus"></i> Snapchat</button>
+                                <button class="detail-pill link-pill" id="pill-upwork" onclick="toggleDetailPill('upwork')"><i class="fa-solid fa-plus"></i> Upwork</button>
+                                <button class="detail-pill link-pill" id="pill-geeksforgeeks" onclick="toggleDetailPill('geeksforgeeks')"><i class="fa-solid fa-plus"></i> GeeksforGeeks</button>
+                                <button class="detail-pill link-pill" id="pill-googlescholar" onclick="toggleDetailPill('googlescholar')"><i class="fa-solid fa-plus"></i> Google Scholar</button>
+                                <button class="detail-pill link-pill" id="pill-line" onclick="toggleDetailPill('line')"><i class="fa-solid fa-plus"></i> LINE</button>
+                                <button class="detail-pill link-pill" id="pill-tryhackme" onclick="toggleDetailPill('tryhackme')"><i class="fa-solid fa-plus"></i> TryHackMe</button>
+                                <button class="detail-pill link-pill" id="pill-coursera" onclick="toggleDetailPill('coursera')"><i class="fa-solid fa-plus"></i> Coursera</button>
+                                <button class="detail-pill link-pill" id="pill-protonmail" onclick="toggleDetailPill('protonmail')"><i class="fa-solid fa-plus"></i> Proton Mail</button>
+                                <button class="detail-pill link-pill" id="pill-hackerearth" onclick="toggleDetailPill('hackerearth')"><i class="fa-solid fa-plus"></i> HackerEarth</button>
+                                <button class="detail-pill link-pill" id="pill-codewars" onclick="toggleDetailPill('codewars')"><i class="fa-solid fa-plus"></i> Codewars</button>
+                                <button class="detail-pill link-pill" id="pill-hackthebox" onclick="toggleDetailPill('hackthebox')"><i class="fa-solid fa-plus"></i> Hack The Box</button>
+                                <button class="detail-pill link-pill" id="pill-bitbucket" onclick="toggleDetailPill('bitbucket')"><i class="fa-solid fa-plus"></i> Bitbucket</button>
+                                <button class="detail-pill link-pill" id="pill-gitea" onclick="toggleDetailPill('gitea')"><i class="fa-solid fa-plus"></i> Gitea</button>
+                                <button class="detail-pill link-pill" id="pill-xing" onclick="toggleDetailPill('xing')"><i class="fa-solid fa-plus"></i> Xing</button>
+                                <button class="detail-pill link-pill" id="pill-500px" onclick="toggleDetailPill('500px')"><i class="fa-solid fa-plus"></i> 500px</button>
+                                <button class="detail-pill link-pill" id="pill-devto" onclick="toggleDetailPill('devto')"><i class="fa-solid fa-plus"></i> dev.to</button>
+                                <button class="detail-pill link-pill" id="pill-hackerrank" onclick="toggleDetailPill('hackerrank')"><i class="fa-solid fa-plus"></i> HackerRank</button>
+                                <button class="detail-pill link-pill" id="pill-tencentqq" onclick="toggleDetailPill('tencentqq')"><i class="fa-solid fa-plus"></i> Tencent QQ</button>
+                                <button class="detail-pill link-pill" id="pill-ethereum" onclick="toggleDetailPill('ethereum')"><i class="fa-solid fa-plus"></i> Ethereum</button>
+                                <button class="detail-pill link-pill" id="pill-stopstalk" onclick="toggleDetailPill('stopstalk')"><i class="fa-solid fa-plus"></i> StopStalk</button>
+                                <button class="detail-pill link-pill" id="pill-substack" onclick="toggleDetailPill('substack')"><i class="fa-solid fa-plus"></i> Substack</button>
+                                <button class="detail-pill link-pill" id="pill-toptal" onclick="toggleDetailPill('toptal')"><i class="fa-solid fa-plus"></i> Toptal</button>
+                                <button class="detail-pill link-pill" id="pill-polywork" onclick="toggleDetailPill('polywork')"><i class="fa-solid fa-plus"></i> Polywork</button>
+                                <button class="detail-pill link-pill" id="pill-replit" onclick="toggleDetailPill('replit')"><i class="fa-solid fa-plus"></i> Replit</button>
+                                <button class="detail-pill link-pill" id="pill-credly" onclick="toggleDetailPill('credly')"><i class="fa-solid fa-plus"></i> Credly</button>
+                                <button class="detail-pill link-pill" id="pill-figma" onclick="toggleDetailPill('figma')"><i class="fa-solid fa-plus"></i> Figma</button>
+                                <button class="detail-pill link-pill" id="pill-gmail" onclick="toggleDetailPill('gmail')"><i class="fa-solid fa-plus"></i> Gmail</button>
+                                <button class="detail-pill link-pill" id="pill-twitch" onclick="toggleDetailPill('twitch')"><i class="fa-solid fa-plus"></i> Twitch</button>
+                                <button class="detail-pill link-pill" id="pill-trello" onclick="toggleDetailPill('trello')"><i class="fa-solid fa-plus"></i> Trello</button>
+                                <button class="detail-pill link-pill" id="pill-evernote" onclick="toggleDetailPill('evernote')"><i class="fa-solid fa-plus"></i> Evernote</button>
+                                <button class="detail-pill link-pill" id="pill-canva" onclick="toggleDetailPill('canva')"><i class="fa-solid fa-plus"></i> Canva</button>
+                                <button class="detail-pill link-pill" id="pill-etsy" onclick="toggleDetailPill('etsy')"><i class="fa-solid fa-plus"></i> Etsy</button>
+                                <button class="detail-pill link-pill" id="pill-googlemaps" onclick="toggleDetailPill('googlemaps')"><i class="fa-solid fa-plus"></i> Google Maps</button>
+                                <button class="detail-pill link-pill" id="pill-googlepodcasts" onclick="toggleDetailPill('googlepodcasts')"><i class="fa-solid fa-plus"></i> Google Podcasts</button>
+                                <button class="detail-pill link-pill" id="pill-applepodcasts" onclick="toggleDetailPill('applepodcasts')"><i class="fa-solid fa-plus"></i> Apple Podcasts</button>
+                                <button class="detail-pill link-pill" id="pill-stitcher" onclick="toggleDetailPill('stitcher')"><i class="fa-solid fa-plus"></i> Stitcher</button>
+                                <button class="detail-pill link-pill" id="pill-amazonmusic" onclick="toggleDetailPill('amazonmusic')"><i class="fa-solid fa-plus"></i> Amazon Music</button>
+                                <button class="detail-pill link-pill" id="pill-iheartradio" onclick="toggleDetailPill('iheartradio')"><i class="fa-solid fa-plus"></i> iHeartRadio</button>
+                                <button class="detail-pill link-pill" id="pill-tunein" onclick="toggleDetailPill('tunein')"><i class="fa-solid fa-plus"></i> TuneIn</button>
+                                <button class="detail-pill link-pill" id="pill-pocketcasts" onclick="toggleDetailPill('pocketcasts')"><i class="fa-solid fa-plus"></i> Pocket Casts</button>
+                                <button class="detail-pill link-pill" id="pill-pandora" onclick="toggleDetailPill('pandora')"><i class="fa-solid fa-plus"></i> Pandora</button>
+                                <button class="detail-pill link-pill" id="pill-youtubemusic" onclick="toggleDetailPill('youtubemusic')"><i class="fa-solid fa-plus"></i> YouTube Music</button>
+                                <button class="detail-pill link-pill" id="pill-tidal" onclick="toggleDetailPill('tidal')"><i class="fa-solid fa-plus"></i> Tidal</button>
+                                <button class="detail-pill link-pill" id="pill-bandcamp" onclick="toggleDetailPill('bandcamp')"><i class="fa-solid fa-plus"></i> Bandcamp</button>
+                                <button class="detail-pill link-pill" id="pill-scopus" onclick="toggleDetailPill('scopus')"><i class="fa-solid fa-plus"></i> Scopus</button>
+                                <button class="detail-pill link-pill" id="pill-disco" onclick="toggleDetailPill('disco')"><i class="fa-solid fa-plus"></i> Disco</button>
+                                <button class="detail-pill link-pill" id="pill-handshake" onclick="toggleDetailPill('handshake')"><i class="fa-solid fa-plus"></i> Handshake</button>
+                                <button class="detail-pill link-pill" id="pill-steam" onclick="toggleDetailPill('steam')"><i class="fa-solid fa-plus"></i> Steam</button>
+                                <button class="detail-pill link-pill" id="pill-google" onclick="toggleDetailPill('google')"><i class="fa-solid fa-plus"></i> Google</button>
+                                <button class="detail-pill link-pill" id="pill-calendly" onclick="toggleDetailPill('calendly')"><i class="fa-solid fa-plus"></i> Calendly</button>
+                                <button class="detail-pill link-pill" id="pill-angellist" onclick="toggleDetailPill('angellist')"><i class="fa-solid fa-plus"></i> AngelList</button>
+                                <button class="detail-pill link-pill" id="pill-deezer" onclick="toggleDetailPill('deezer')"><i class="fa-solid fa-plus"></i> Deezer</button>
+                                <button class="detail-pill link-pill" id="pill-flowcv" onclick="toggleDetailPill('flowcv')"><i class="fa-solid fa-plus"></i> FlowCV</button>
+                                <button class="detail-pill link-pill" id="pill-khanacademy" onclick="toggleDetailPill('khanacademy')"><i class="fa-solid fa-plus"></i> Khan Academy</button>
+                                <button class="detail-pill link-pill" id="pill-udemy" onclick="toggleDetailPill('udemy')"><i class="fa-solid fa-plus"></i> Udemy</button>
+                                <button class="detail-pill link-pill" id="pill-udacity" onclick="toggleDetailPill('udacity')"><i class="fa-solid fa-plus"></i> Udacity</button>
+                                <button class="detail-pill link-pill" id="pill-tableau" onclick="toggleDetailPill('tableau')"><i class="fa-solid fa-plus"></i> Tableau</button>
+                                <button class="detail-pill link-pill" id="pill-npm" onclick="toggleDetailPill('npm')"><i class="fa-solid fa-plus"></i> npm</button>
+                                <button class="detail-pill link-pill" id="pill-hackerone" onclick="toggleDetailPill('hackerone')"><i class="fa-solid fa-plus"></i> HackerOne</button>
+                                <button class="detail-pill link-pill" id="pill-freelancer" onclick="toggleDetailPill('freelancer')"><i class="fa-solid fa-plus"></i> Freelancer</button>
+                                <button class="detail-pill link-pill" id="pill-datacamp" onclick="toggleDetailPill('datacamp')"><i class="fa-solid fa-plus"></i> DataCamp</button>
+                                <button class="detail-pill link-pill" id="pill-mastodon" onclick="toggleDetailPill('mastodon')"><i class="fa-solid fa-plus"></i> Mastodon</button>
+                                <button class="detail-pill link-pill" id="pill-letterboxd" onclick="toggleDetailPill('letterboxd')"><i class="fa-solid fa-plus"></i> Letterboxd</button>
+                                <button class="detail-pill link-pill" id="pill-zoom" onclick="toggleDetailPill('zoom')"><i class="fa-solid fa-plus"></i> Zoom</button>
+                                <button class="detail-pill link-pill" id="pill-audioboom" onclick="toggleDetailPill('audioboom')"><i class="fa-solid fa-plus"></i> Audioboom</button>
+                                <button class="detail-pill link-pill" id="pill-soundcloud" onclick="toggleDetailPill('soundcloud')"><i class="fa-solid fa-plus"></i> SoundCloud</button>
+                                <button class="detail-pill link-pill" id="pill-soundcharts" onclick="toggleDetailPill('soundcharts')"><i class="fa-solid fa-plus"></i> Soundcharts</button>
+                                <button class="detail-pill link-pill" id="pill-kakaotalk" onclick="toggleDetailPill('kakaotalk')"><i class="fa-solid fa-plus"></i> KakaoTalk</button>
+                                <button class="detail-pill link-pill" id="pill-salesforce" onclick="toggleDetailPill('salesforce')"><i class="fa-solid fa-plus"></i> Salesforce</button>
+                                <button class="detail-pill link-pill" id="pill-itchio" onclick="toggleDetailPill('itchio')"><i class="fa-solid fa-plus"></i> itch.io</button>
+                                <button class="detail-pill link-pill" id="pill-sololearn" onclick="toggleDetailPill('sololearn')"><i class="fa-solid fa-plus"></i> Sololearn</button>
+                                <button class="detail-pill link-pill" id="pill-opensea" onclick="toggleDetailPill('opensea')"><i class="fa-solid fa-plus"></i> OpenSea</button>
+                                <button class="detail-pill link-pill" id="pill-devpost" onclick="toggleDetailPill('devpost')"><i class="fa-solid fa-plus"></i> Devpost</button>
+                                <button class="detail-pill link-pill" id="pill-linktree" onclick="toggleDetailPill('linktree')"><i class="fa-solid fa-plus"></i> Linktree</button>
+                                <button class="detail-pill link-pill" id="pill-codingame" onclick="toggleDetailPill('codingame')"><i class="fa-solid fa-plus"></i> CodinGame</button>
+                                <button class="detail-pill link-pill" id="pill-codingninjas" onclick="toggleDetailPill('codingninjas')"><i class="fa-solid fa-plus"></i> Coding Ninjas</button>
+                                <button class="detail-pill link-pill" id="pill-unsplash" onclick="toggleDetailPill('unsplash')"><i class="fa-solid fa-plus"></i> Unsplash</button>
+                                <button class="detail-pill link-pill" id="pill-indeed" onclick="toggleDetailPill('indeed')"><i class="fa-solid fa-plus"></i> Indeed</button>
