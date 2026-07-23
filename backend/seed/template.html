@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume Template - Modern</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff; color: #222; padding: 24px; }
+    .resume { max-width: 900px; margin: 0 auto; border: 1px solid #eee; padding: 28px; border-radius: 8px; }
+    .header { display:flex; justify-content:space-between; align-items:center }
+    .name { font-size:28px; font-weight:700; color:#333 }
+    .title { color:#777 }
+    .section { margin-top:18px }
+    .section h3 { margin:0 0 8px 0; font-size:14px; color:#555; letter-spacing:1px }
+    .skills span { display:inline-block; background:#f3f3f3; padding:6px 10px; border-radius:16px; margin-right:8px; margin-bottom:6px }
+    .two-col { display:flex; gap:24px }
+    .left { flex:2 }
+    .right { flex:1 }
+    .item { margin-bottom:12px }
+    .muted { color:#888 }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <div class="header">
+      <div>
+        <div class="name">FULL NAME</div>
+        <div class="title muted">Job Title • City, Country • email@example.com</div>
+      </div>
+      <div class="muted">Years Experience • LinkedIn</div>
+    </div>
+
+    <div class="section two-col">
+      <div class="left">
+        <h3>Experience</h3>
+        <div class="item">
+          <strong>Senior Software Engineer — Company A</strong>
+          <div class="muted">Jan 2020 — Present</div>
+          <p>Worked on full-stack features, built APIs, and improved performance of core services.</p>
+        </div>
+        <div class="item">
+          <strong>Software Engineer — Company B</strong>
+          <div class="muted">Jul 2017 — Dec 2019</div>
+          <p>Implemented customer-facing features and integrated third-party services.</p>
+        </div>
+
+        <h3>Education</h3>
+        <div class="item">
+          <strong>B.Sc. in Computer Science</strong>
+          <div class="muted">University Name — 2013-2017</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <h3>Skills</h3>
+        <div class="skills">
+          <span>JavaScript</span>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>Docker</span>
+        </div>
+
+        <h3>Tools</h3>
+        <div class="skills">
+          <span>Git</span>
+          <span>AWS</span>
+          <span>Jest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

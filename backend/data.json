@@ -1,0 +1,20 @@
+{
+  "users": [],
+  "resumes": [],
+  "coverLetters": [],
+  "portfolios": [],
+  "templates": [
+    {
+      "id": "f19092cd-96d1-441e-8699-d07e0f657a11",
+      "title": "Modern Resume",
+      "description": "A modern, ATS-friendly resume template.",
+      "htmlContent": "<!doctype html>\r\n<html>\r\n<head>\r\n  <meta charset=\"utf-8\" />\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n  <title>Resume Template - Modern</title>\r\n  <style>\r\n    body { font-family: Arial, sans-serif; background: #fff; color: #222; padding: 24px; }\r\n    .resume { max-width: 900px; margin: 0 auto; border: 1px solid #eee; padding: 28px; border-radius: 8px; }\r\n    .header { display:flex; justify-content:space-between; align-items:center }\r\n    .name { font-size:28px; font-weight:700; color:#333 }\r\n    .title { color:#777 }\r\n    .section { margin-top:18px }\r\n    .section h3 { margin:0 0 8px 0; font-size:14px; color:#555; letter-spacing:1px }\r\n    .skills span { display:inline-block; background:#f3f3f3; padding:6px 10px; border-radius:16px; margin-right:8px; margin-bottom:6px }\r\n    .two-col { display:flex; gap:24px }\r\n    .left { flex:2 }\r\n    .right { flex:1 }\r\n    .item { margin-bottom:12px }\r\n    .muted { color:#888 }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"resume\">\r\n    <div class=\"header\">\r\n      <div>\r\n        <div class=\"name\">FULL NAME</div>\r\n        <div class=\"title muted\">Job Title • City, Country • email@example.com</div>\r\n      </div>\r\n      <div class=\"muted\">Years Experience • LinkedIn</div>\r\n    </div>\r\n\r\n    <div class=\"section two-col\">\r\n      <div class=\"left\">\r\n        <h3>Experience</h3>\r\n        <div class=\"item\">\r\n          <strong>Senior Software Engineer — Company A</strong>\r\n          <div class=\"muted\">Jan 2020 — Present</div>\r\n          <p>Worked on full-stack features, built APIs, and improved performance of core services.</p>\r\n        </div>\r\n        <div class=\"item\">\r\n          <strong>Software Engineer — Company B</strong>\r\n          <div class=\"muted\">Jul 2017 — Dec 2019</div>\r\n          <p>Implemented customer-facing features and integrated third-party services.</p>\r\n        </div>\r\n\r\n        <h3>Education</h3>\r\n        <div class=\"item\">\r\n          <strong>B.Sc. in Computer Science</strong>\r\n          <div class=\"muted\">University Name — 2013-2017</div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"right\">\r\n        <h3>Skills</h3>\r\n        <div class=\"skills\">\r\n          <span>JavaScript</span>\r\n          <span>React</span>\r\n          <span>Node.js</span>\r\n          <span>MongoDB</span>\r\n          <span>Docker</span>\r\n        </div>\r\n\r\n        <h3>Tools</h3>\r\n        <div class=\"skills\">\r\n          <span>Git</span>\r\n          <span>AWS</span>\r\n          <span>Jest</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</body>\r\n</html>\r\n",
+      "tags": [
+        "modern",
+        "ats",
+        "simple"
+      ],
+      "createdAt": "2026-07-23T05:36:12.734Z"
+    }
+  ]
+}
