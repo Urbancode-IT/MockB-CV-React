@@ -1,35 +1,85 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { initDB } = require('./config/jsonDB');
+require("dotenv").config();
+require("./config/env");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
 
-dotenv.config();
+
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
+
+const connectDB = require("./config/db");
+
+const limiter = require("./middleware/rateLimiter");
+const notFound = require("./middleware/notFound");
+const errorHandler = require("./middleware/errorHandler");
+
+const logger = require("./utils/logger");
+const compression = require("compression");
+const hpp = require("hpp");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const cookieParser = require("cookie-parser");
+
+
+
+
+
+
+connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(helmet());
 
-// Initialize JSON DB
-initDB();
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+}));
+
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(morgan("dev"));
+
+app.use(limiter);
 
 // Routes
-const authRoutes = require('./routes/auth');
-const templateRoutes = require('./routes/templates');
-const resumeRoutes = require('./routes/resumes');
-const coverLetterRoutes = require('./routes/coverLetters');
-const portfolioRoutes = require('./routes/portfolios');
-const aiRoutes = require('./routes/ai');
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/resumes", require("./routes/resumes"));
+app.use("/api/coverLetters", require("./routes/coverLetters"));
+app.use("/api/portfolios", require("./routes/portfolios"));
+app.use("/api/templates", require("./routes/templates"));
+app.use("/api/ai", require("./routes/ai"));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/templates', templateRoutes);
-app.use('/api/resumes', resumeRoutes);
-app.use('/api/cover-letters', coverLetterRoutes);
-app.use('/api/portfolios', portfolioRoutes);
-app.use('/api/ai', aiRoutes);
+//swagger
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
+);
 
-app.get('/', (req, res) => res.send('CV Backend API is running with JSON DB'));
+app.use(compression());
+app.use(hpp());
+app.use(mongoSanitize());
+app.use(xss());
+
+app.get("/", (req, res) => {
+    res.send("API is running...");
+});
+
+app.get("/favicon.ico", (req, res) => res.status(204).end());
+
+// Error handling
+app.use(notFound);
+app.use(errorHandler);
+
+
+
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+    logger.info(`Server running on port ${PORT}`);
+});

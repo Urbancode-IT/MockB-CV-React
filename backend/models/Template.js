@@ -1,49 +1,29 @@
-const { readDB, writeDB } = require('../config/jsonDB');
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require("mongoose");
 
-class Template {
-    static findAll() {
-        const db = readDB();
-        return db.templates;
-    }
+const templateSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-    static findById(id) {
-        const db = readDB();
-        return db.templates.find(t => t.id === id);
-    }
+    description: String,
 
-    static create(templateData) {
-        const db = readDB();
-        const newTemplate = {
-            id: uuidv4(),
-            ...templateData,
-            tags: templateData.tags || [],
-            createdAt: new Date().toISOString()
-        };
-        db.templates.push(newTemplate);
-        writeDB(db);
-        return newTemplate;
-    }
+    htmlContent: {
+      type: String,
+      required: true,
+    },
 
-    static update(id, updateData) {
-        const db = readDB();
-        const index = db.templates.findIndex(t => t.id === id);
-        if (index === -1) return null;
-        
-        db.templates[index] = { ...db.templates[index], ...updateData };
-        writeDB(db);
-        return db.templates[index];
-    }
-    
-    static delete(id) {
-        const db = readDB();
-        const index = db.templates.findIndex(t => t.id === id);
-        if (index === -1) return null;
-        
-        const deleted = db.templates.splice(index, 1);
-        writeDB(db);
-        return deleted[0];
-    }
-}
+    tags: [
+      {
+        type: String,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = Template;
+module.exports = mongoose.model("Template", templateSchema);

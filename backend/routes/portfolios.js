@@ -1,80 +1,183 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const Portfolio = require('../models/Portfolio');
-const authMiddleware = require('../middleware/authMiddleware');
 
-// @route   GET /api/portfolios
-// @desc    Get all user portfolios
-// @access  Private
-router.get('/', authMiddleware, (req, res) => {
-    try {
-        const items = Portfolio.findAll(req.user.id);
-        res.json(items);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+const Portfolio = require("../models/Portfolio");
 
-// @route   GET /api/portfolios/:id
-// @desc    Get a specific portfolio
-// @access  Private
-router.get('/:id', authMiddleware, (req, res) => {
-    try {
-        const item = Portfolio.findById(req.params.id);
-        if (!item || item.userId !== req.user.id) {
-            return res.status(404).json({ msg: 'Portfolio not found' });
+const authMiddleware = require("../middleware/authMiddleware");
+const asyncHandler = require("../middleware/asyncHandler");
+const validate = require("../middleware/validate");
+
+const { success, error } = require("../utils/apiResponse");
+
+const {
+    portfolioValidation,
+} = require("../validators/portfolioValidator");
+
+
+// ======================================
+// Get All Portfolios
+// GET /api/portfolios
+// ======================================
+
+router.get(
+    "/",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const portfolios = await Portfolio.find({
+            user: req.user.id,
+        }).sort({
+            createdAt: -1,
+        });
+
+        return success(
+            res,
+            portfolios,
+            "Portfolios fetched successfully",
+            200,
+            {
+                count: portfolios.length,
+            }
+        );
+
+    })
+);
+
+
+// ======================================
+// Get Portfolio By ID
+// GET /api/portfolios/:id
+// ======================================
+
+router.get(
+    "/:id",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const portfolio = await Portfolio.findOne({
+            _id: req.params.id,
+            user: req.user.id,
+        });
+
+        if (!portfolio) {
+            return error(res, "Portfolio not found", 404);
         }
-        res.json(item);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
 
-// @route   POST /api/portfolios
-// @desc    Create a new portfolio
-// @access  Private
-router.post('/', authMiddleware, (req, res) => {
-    try {
-        const newItem = Portfolio.create(req.user.id, req.body);
-        res.json(newItem);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+        return success(
+            res,
+            portfolio,
+            "Portfolio fetched successfully"
+        );
 
-// @route   PUT /api/portfolios/:id
-// @desc    Update a portfolio
-// @access  Private
-router.put('/:id', authMiddleware, (req, res) => {
-    try {
-        const updatedItem = Portfolio.update(req.params.id, req.user.id, req.body);
-        if (!updatedItem) {
-            return res.status(404).json({ msg: 'Portfolio not found or unauthorized' });
+    })
+);
+
+
+// ======================================
+// Create Portfolio
+// POST /api/portfolios
+// ======================================
+
+router.post(
+    "/",
+    authMiddleware,
+    portfolioValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const { title, data } = req.body;
+
+        const portfolio = await Portfolio.create({
+
+            user: req.user.id,
+
+            title: title || "My Portfolio",
+
+            data: data || {},
+
+        });
+
+        return success(
+            res,
+            portfolio,
+            "Portfolio created successfully",
+            201
+        );
+
+    })
+);
+
+
+// ======================================
+// Update Portfolio
+// PUT /api/portfolios/:id
+// ======================================
+
+router.put(
+    "/:id",
+    authMiddleware,
+    portfolioValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const { title, data } = req.body;
+
+        const portfolio = await Portfolio.findOneAndUpdate(
+            {
+                _id: req.params.id,
+                user: req.user.id,
+            },
+            {
+                title,
+                data,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+
+        if (!portfolio) {
+            return error(res, "Portfolio not found", 404);
         }
-        res.json(updatedItem);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
 
-// @route   DELETE /api/portfolios/:id
-// @desc    Delete a portfolio
-// @access  Private
-router.delete('/:id', authMiddleware, (req, res) => {
-    try {
-        const deleted = Portfolio.delete(req.params.id, req.user.id);
-        if (!deleted) {
-            return res.status(404).json({ msg: 'Portfolio not found or unauthorized' });
+        return success(
+            res,
+            portfolio,
+            "Portfolio updated successfully"
+        );
+
+    })
+);
+
+
+// ======================================
+// Delete Portfolio
+// DELETE /api/portfolios/:id
+// ======================================
+
+router.delete(
+    "/:id",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const portfolio = await Portfolio.findOneAndDelete({
+            _id: req.params.id,
+            user: req.user.id,
+        });
+
+        if (!portfolio) {
+            return error(res, "Portfolio not found", 404);
         }
-        res.json({ msg: 'Portfolio deleted' });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+
+        return success(
+            res,
+            null,
+            "Portfolio deleted successfully"
+        );
+
+    })
+);
 
 module.exports = router;

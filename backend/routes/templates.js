@@ -1,54 +1,164 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const Template = require('../models/Template');
 
-// GET /api/templates - list all templates
-router.get('/', (req, res) => {
-  try {
-    const templates = Template.findAll();
-    // Exclude htmlContent for list view to save bandwidth
-    const templatesWithoutHtml = templates.map(t => {
-      const { htmlContent, ...rest } = t;
-      return rest;
-    });
-    res.json(templatesWithoutHtml);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+const Template = require("../models/Template");
 
-// GET /api/templates/:id - get template metadata and content
-router.get('/:id', (req, res) => {
-  try {
-    const tpl = Template.findById(req.params.id);
-    if (!tpl) return res.status(404).json({ message: 'Template not found' });
-    res.json(tpl);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+const asyncHandler = require("../middleware/asyncHandler");
+const validate = require("../middleware/validate");
 
-// GET /api/templates/:id/html - return template HTML
-router.get('/:id/html', (req, res) => {
-  try {
-    const tpl = Template.findById(req.params.id);
-    if (!tpl) return res.status(404).send('Template not found');
-    res.set('Content-Type', 'text/html');
-    res.send(tpl.htmlContent || '');
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
+const { success, error } = require("../utils/apiResponse");
 
-// POST /api/templates - create a new template
-router.post('/', (req, res) => {
-  try {
-    const { title, description, htmlContent, tags } = req.body;
-    const tpl = Template.create({ title, description, htmlContent, tags });
-    res.status(201).json(tpl);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+const {
+    templateValidation,
+} = require("../validators/templateValidator");
+
+
+// ======================================
+// Get All Templates
+// GET /api/templates
+// ======================================
+
+router.get(
+    "/",
+    asyncHandler(async (req, res) => {
+
+        const templates = await Template.find().sort({
+            createdAt: -1,
+        });
+
+        return success(
+            res,
+            templates,
+            "Templates fetched successfully",
+            200,
+            {
+                count: templates.length,
+            }
+        );
+
+    })
+);
+
+
+// ======================================
+// Get Template By ID
+// GET /api/templates/:id
+// ======================================
+
+router.get(
+    "/:id",
+    asyncHandler(async (req, res) => {
+
+        const template = await Template.findById(req.params.id);
+
+        if (!template) {
+            return error(res, "Template not found", 404);
+        }
+
+        return success(
+            res,
+            template,
+            "Template fetched successfully"
+        );
+
+    })
+);
+
+
+// ======================================
+// Create Template
+// POST /api/templates
+// (Protect with admin middleware later)
+// ======================================
+
+router.post(
+    "/",
+    templateValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const {
+            title,
+            description,
+            htmlContent,
+            tags,
+        } = req.body;
+
+        const template = await Template.create({
+            title,
+            description,
+            htmlContent,
+            tags,
+        });
+
+        return success(
+            res,
+            template,
+            "Template created successfully",
+            201
+        );
+
+    })
+);
+
+
+// ======================================
+// Update Template
+// PUT /api/templates/:id
+// ======================================
+
+router.put(
+    "/:id",
+    templateValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const template = await Template.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+
+        if (!template) {
+            return error(res, "Template not found", 404);
+        }
+
+        return success(
+            res,
+            template,
+            "Template updated successfully"
+        );
+
+    })
+);
+
+
+// ======================================
+// Delete Template
+// DELETE /api/templates/:id
+// ======================================
+
+router.delete(
+    "/:id",
+    asyncHandler(async (req, res) => {
+
+        const template = await Template.findByIdAndDelete(req.params.id);
+
+        if (!template) {
+            return error(res, "Template not found", 404);
+        }
+
+        return success(
+            res,
+            null,
+            "Template deleted successfully"
+        );
+
+    })
+);
 
 module.exports = router;

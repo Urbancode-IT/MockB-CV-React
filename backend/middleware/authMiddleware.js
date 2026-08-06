@@ -1,23 +1,44 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_temporary_key_123';
+const { error } = require("../utils/apiResponse");
 
-const authMiddleware = (req, res, next) => {
-    // Get token from header
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+const JWT_SECRET = process.env.JWT_SECRET;
 
-    // Check if not token
-    if (!token) {
-        return res.status(401).json({ msg: 'No token, authorization denied' });
-    }
+module.exports = (req, res, next) => {
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = decoded.user;
-        next();
-    } catch (err) {
-        res.status(401).json({ msg: 'Token is not valid' });
-    }
-};
 
-module.exports = authMiddleware;
+        // Read token from HttpOnly Cookie
+        const token = req.cookies.token;
+
+        if (!token) {
+            return error(
+                res,
+                "Authentication required. Please login.",
+                401
+            );
+        }
+
+        // Verify JWT
+        const decoded = jwt.verify(
+            token,
+            JWT_SECRET
+        );
+
+        req.user = decoded.user;
+
+        next();
+
+    }
+
+    catch (err) {
+
+        return error(
+            res,
+            "Invalid or expired token",
+            401
+        );
+
+    }
+
+};

@@ -1,80 +1,199 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const CoverLetter = require('../models/CoverLetter');
-const authMiddleware = require('../middleware/authMiddleware');
 
-// @route   GET /api/cover-letters
-// @desc    Get all user cover letters
-// @access  Private
-router.get('/', authMiddleware, (req, res) => {
-    try {
-        const items = CoverLetter.findAll(req.user.id);
-        res.json(items);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+const CoverLetter = require("../models/CoverLetter");
 
-// @route   GET /api/cover-letters/:id
-// @desc    Get a specific cover letter
-// @access  Private
-router.get('/:id', authMiddleware, (req, res) => {
-    try {
-        const item = CoverLetter.findById(req.params.id);
-        if (!item || item.userId !== req.user.id) {
-            return res.status(404).json({ msg: 'Cover letter not found' });
+const authMiddleware = require("../middleware/authMiddleware");
+const asyncHandler = require("../middleware/asyncHandler");
+const validate = require("../middleware/validate");
+
+const { success, error } = require("../utils/apiResponse");
+
+const {
+    coverLetterValidation,
+} = require("../validators/coverLetterValidator");
+
+
+// ======================================
+// Get All Cover Letters
+// GET /api/coverLetters
+// ======================================
+
+router.get(
+    "/",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const coverLetters = await CoverLetter.find({
+            user: req.user.id,
+        }).sort({
+            createdAt: -1,
+        });
+
+        return success(
+            res,
+            coverLetters,
+            "Cover Letters fetched successfully",
+            200,
+            {
+                count: coverLetters.length,
+            }
+        );
+
+    })
+);
+
+
+// ======================================
+// Get Cover Letter By ID
+// GET /api/coverLetters/:id
+// ======================================
+
+router.get(
+    "/:id",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const coverLetter = await CoverLetter.findOne({
+            _id: req.params.id,
+            user: req.user.id,
+        });
+
+        if (!coverLetter) {
+            return error(res, "Cover Letter not found", 404);
         }
-        res.json(item);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
 
-// @route   POST /api/cover-letters
-// @desc    Create a new cover letter
-// @access  Private
-router.post('/', authMiddleware, (req, res) => {
-    try {
-        const newItem = CoverLetter.create(req.user.id, req.body);
-        res.json(newItem);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+        return success(
+            res,
+            coverLetter,
+            "Cover Letter fetched successfully"
+        );
 
-// @route   PUT /api/cover-letters/:id
-// @desc    Update a cover letter
-// @access  Private
-router.put('/:id', authMiddleware, (req, res) => {
-    try {
-        const updatedItem = CoverLetter.update(req.params.id, req.user.id, req.body);
-        if (!updatedItem) {
-            return res.status(404).json({ msg: 'Cover letter not found or unauthorized' });
+    })
+);
+
+
+// ======================================
+// Create Cover Letter
+// POST /api/coverLetters
+// ======================================
+
+router.post(
+    "/",
+    authMiddleware,
+    coverLetterValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const {
+            title,
+            content,
+            company,
+            jobTitle,
+        } = req.body;
+
+        const coverLetter = await CoverLetter.create({
+
+            user: req.user.id,
+
+            title: title || "Untitled Cover Letter",
+
+            content: content || "",
+
+            company: company || "",
+
+            jobTitle: jobTitle || "",
+
+        });
+
+        return success(
+            res,
+            coverLetter,
+            "Cover Letter created successfully",
+            201
+        );
+
+    })
+);
+
+
+// ======================================
+// Update Cover Letter
+// PUT /api/coverLetters/:id
+// ======================================
+
+router.put(
+    "/:id",
+    authMiddleware,
+    coverLetterValidation,
+    validate,
+    asyncHandler(async (req, res) => {
+
+        const {
+            title,
+            content,
+            company,
+            jobTitle,
+        } = req.body;
+
+        const coverLetter = await CoverLetter.findOneAndUpdate(
+            {
+                _id: req.params.id,
+                user: req.user.id,
+            },
+            {
+                title,
+                content,
+                company,
+                jobTitle,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+
+        if (!coverLetter) {
+            return error(res, "Cover Letter not found", 404);
         }
-        res.json(updatedItem);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
 
-// @route   DELETE /api/cover-letters/:id
-// @desc    Delete a cover letter
-// @access  Private
-router.delete('/:id', authMiddleware, (req, res) => {
-    try {
-        const deleted = CoverLetter.delete(req.params.id, req.user.id);
-        if (!deleted) {
-            return res.status(404).json({ msg: 'Cover letter not found or unauthorized' });
+        return success(
+            res,
+            coverLetter,
+            "Cover Letter updated successfully"
+        );
+
+    })
+);
+
+
+// ======================================
+// Delete Cover Letter
+// DELETE /api/coverLetters/:id
+// ======================================
+
+router.delete(
+    "/:id",
+    authMiddleware,
+    asyncHandler(async (req, res) => {
+
+        const coverLetter = await CoverLetter.findOneAndDelete({
+            _id: req.params.id,
+            user: req.user.id,
+        });
+
+        if (!coverLetter) {
+            return error(res, "Cover Letter not found", 404);
         }
-        res.json({ msg: 'Cover letter deleted' });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
+
+        return success(
+            res,
+            null,
+            "Cover Letter deleted successfully"
+        );
+
+    })
+);
 
 module.exports = router;

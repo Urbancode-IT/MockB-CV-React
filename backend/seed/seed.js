@@ -1,44 +1,79 @@
-const fs = require('fs');
-const path = require('path');
-const dotenv = require('dotenv');
-dotenv.config({ path: path.join(__dirname, '..', '.env') });
+const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
+const logger = require("../utils/logger");
 
-const { initDB } = require('../config/jsonDB');
-const Template = require('../models/Template');
 
-async function run() {
-  // Initialize the JSON DB (creates data.json if missing)
-  initDB();
-  console.log('JSON DB initialized for seeding');
+require("dotenv").config();
 
-  const html = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
+const connectDB = require("../config/db");
+const Template = require("../models/Template");
 
-  // Check if a template with this title already exists
-  const allTemplates = Template.findAll();
-  const existing = allTemplates.find(t => t.title === 'Modern Resume');
+const seed = async () => {
 
-  if (existing) {
-    console.log('Template already exists, updating...');
-    const updated = Template.update(existing.id, {
-      htmlContent: html,
-      description: 'A modern, ATS-friendly resume template.',
-    });
-    console.log('Updated template:', updated.id);
-  } else {
-    const tpl = Template.create({
-      title: 'Modern Resume',
-      description: 'A modern, ATS-friendly resume template.',
-      htmlContent: html,
-      tags: ['modern', 'ats', 'simple'],
-    });
-    console.log('Seeded template:', tpl.id);
-  }
+    try {
 
-  console.log('Seeding complete!');
-  process.exit(0);
-}
+        await connectDB();
 
-run().catch(err => {
-  console.error('Seeding failed:', err);
-  process.exit(1);
-});
+        const html = fs.readFileSync(
+
+            path.join(__dirname, "../template.html"),
+
+            "utf8"
+
+        );
+
+        const existing = await Template.findOne({
+
+            title: "Modern Resume"
+
+        });
+
+        if (existing) {
+
+            existing.htmlContent = html;
+
+            await existing.save();
+
+            logger.info("✅ Template Updated");
+
+        }
+
+        else {
+
+            await Template.create({
+
+                title: "Modern Resume",
+
+                description: "Professional ATS Friendly Resume",
+
+                htmlContent: html,
+
+                tags: [
+
+                    "ATS",
+
+                    "Modern"
+
+                ]
+
+            });
+
+            console.log("✅ Template Created");
+
+        }
+
+        process.exit();
+
+    }
+
+    catch (error) {
+
+logger.error(error);    
+    process.exit(1);
+
+    }
+
+};
+
+seed();
