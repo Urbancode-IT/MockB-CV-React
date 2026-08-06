@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { generateResume } from '../../../../services/aiService';
 import './JDBuilderSection.css';
 
 export default function JDBuilderSection() {
@@ -34,6 +35,7 @@ export default function JDBuilderSection() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [error, setError] = useState('');
 
   const handleAddExperience = () => {
     setExperiences([
@@ -69,7 +71,21 @@ export default function JDBuilderSection() {
     setSkills(skills.filter(s => s !== tag));
   };
 
-  const handleGenerate = () => {
+  const buildCurrentResume = () => ({
+    personalInfo: { name: fullName, title: jobTitle, email, phone, linkedin, location },
+    summary,
+    skills,
+    experience: experiences.map((exp) => ({
+      role: exp.title,
+      company: exp.company,
+      start: exp.start,
+      end: exp.end,
+      description: exp.achievements,
+    })),
+    education: [{ degree, school: institution, end: year, grade: cgpa }],
+  });
+
+  const handleGenerate = async () => {
     if (!jdText.trim()) {
       alert('Please paste a job description first.');
       return;
@@ -79,31 +95,52 @@ export default function JDBuilderSection() {
       return;
     }
 
+    setError('');
     setIsGenerating(true);
     setLoadingStep(0);
 
-    const steps = [
-      'Parsing job description...',
-      'Matching your profile fields...',
-      'Optimizing keywords for ATS algorithms...',
-      'Generating tailored resume content...'
-    ];
-
-    let currentStepIdx = 0;
     const interval = setInterval(() => {
-      if (currentStepIdx < steps.length - 1) {
-        currentStepIdx++;
-        setLoadingStep(currentStepIdx);
-      }
+      setLoadingStep((prev) => Math.min(prev + 1, 3));
     }, 600);
 
-    setTimeout(() => {
+    try {
+      const currentResume = buildCurrentResume();
+      const response = await generateResume({
+        jobDescription: jdText,
+        currentResume,
+      });
+
       clearInterval(interval);
+
+      if (response?.success && response.data) {
+        const aiData = response.data;
+        if (aiData.summary) setSummary(aiData.summary);
+        if (aiData.skills?.length) setSkills(aiData.skills);
+        if (aiData.experience?.length) {
+          setExperiences(
+            aiData.experience.map((exp, idx) => ({
+              id: Date.now() + idx,
+              title: exp.role || exp.title || jobTitle,
+              company: exp.company || exp.employer || '',
+              start: exp.start || '',
+              end: exp.end || 'Present',
+              achievements: Array.isArray(exp.bullets)
+                ? exp.bullets.join('\n')
+                : (exp.description || ''),
+            }))
+          );
+        }
+        setHasGenerated(true);
+        document.getElementById('preview-panel-anchor')?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        throw new Error(response?.message || 'Failed to generate resume');
+      }
+    } catch (err) {
+      clearInterval(interval);
+      setError(err.message || 'AI generation failed. Please try again.');
+    } finally {
       setIsGenerating(false);
-      setHasGenerated(true);
-      // Scroll preview into view on small screens
-      document.getElementById('preview-panel-anchor')?.scrollIntoView({ behavior: 'smooth' });
-    }, 2800);
+    }
   };
 
   const getResumeTextContent = () => {
@@ -370,9 +407,10 @@ export default function JDBuilderSection() {
 
           {/* Generate Trigger */}
           <div className="generate-section">
-            <button className="generate-resume-btn" onClick={handleGenerate}>
+            {error && <p style={{ color: '#ef4444', marginBottom: '0.75rem' }}>{error}</p>}
+            <button className="generate-resume-btn" onClick={handleGenerate} disabled={isGenerating}>
               <i className="fa-solid fa-wand-magic-sparkles"></i>
-              <span>Generate My Tailored Resume</span>
+              <span>{isGenerating ? 'Generating...' : 'Generate My Tailored Resume'}</span>
             </button>
             <p className="generate-note">AI will analyze the JD and match your experience to it perfectly</p>
           </div>

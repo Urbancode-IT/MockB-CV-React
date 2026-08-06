@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkATS } from '../services/aiService';
+import { mapAtsResponseToUI, readFileAsText } from '../utils/apiMappers';
 import ATSGateway from '../components/resume builder/resume ats score checker/gateway/ATSGateway';
 import ATSHero from '../components/resume builder/resume ats score checker/hero/ATSHero';
 import ATSUpload from '../components/resume builder/resume ats score checker/upload-section/ATSUpload';
-import ATSResults, { METRICS_LIST } from '../components/resume builder/resume ats score checker/results-section/ATSResults';
+import ATSResults from '../components/resume builder/resume ats score checker/results-section/ATSResults';
 import ATSRegen from '../components/resume builder/resume ats score checker/regen-section/ATSRegen';
 import ATSRecruiterResults from '../components/resume builder/resume ats score checker/recruiter-results/ATSRecruiterResults';
 import './ResumeATSScoreChecker.css';
@@ -14,7 +16,10 @@ export default function ResumeATSScoreChecker() {
 
     // Jobseeker state
     const [uploadedFile, setUploadedFile] = useState(null);
+    const [jobDescription, setJobDescription] = useState('');
+    const [resumeText, setResumeText] = useState('');
     const [checking, setChecking] = useState(false);
+    const [checkError, setCheckError] = useState('');
     const [showResults, setShowResults] = useState(false);
     const [score, setScore] = useState(0);
     const [metrics, setMetrics] = useState({});
@@ -44,45 +49,82 @@ export default function ResumeATSScoreChecker() {
 
     // ── Jobseeker handlers ────────────────────────────────────────────────────
 
-    const handleFileChange = (file) => {
-        const allowed = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-        if (!allowed.includes(file.type)) { alert('Please upload a PDF or Word document (.pdf / .doc / .docx)'); return; }
+    const handleFileChange = async (file) => {
+        const allowed = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+        if (!allowed.includes(file.type) && !file.name.match(/\.(pdf|doc|docx|txt)$/i)) {
+            alert('Please upload a PDF, Word, or text document (.pdf / .doc / .docx / .txt)');
+            return;
+        }
         if (file.size > 5 * 1024 * 1024) { alert('File size must be under 5MB'); return; }
         setUploadedFile(file);
         setShowResults(false);
         setFixedReady(false);
         setScore(0);
+        setCheckError('');
+
+        if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+            try {
+                const text = await readFileAsText(file);
+                setResumeText(text);
+            } catch {
+                setCheckError('Could not read file. Please paste your resume text below.');
+            }
+        } else if (!file.name.endsWith('.pdf')) {
+            try {
+                const text = await readFileAsText(file);
+                if (text.trim()) setResumeText(text);
+            } catch {
+                setCheckError('Paste your resume text below for best results with this file type.');
+            }
+        } else {
+            setCheckError('PDF text extraction is limited — paste your resume content below for accurate ATS scoring.');
+        }
     };
 
     const handleRemoveFile = () => {
         setUploadedFile(null);
+        setResumeText('');
         setShowResults(false);
         setFixedReady(false);
         setScore(0);
+        setCheckError('');
     };
 
-    const handleRunCheck = () => {
-        if (!uploadedFile) return;
+    const handleRunCheck = async () => {
+        if (!jobDescription.trim()) {
+            alert('Please paste the target job description.');
+            return;
+        }
+        if (!resumeText.trim()) {
+            alert('Please upload a resume file or paste your resume text.');
+            return;
+        }
+
         setChecking(true);
-        setTimeout(() => {
-            const finalScore = Math.floor(Math.random() * 36) + 48;
-            const computedMetrics = {};
-            METRICS_LIST.forEach(m => { computedMetrics[m.id] = Math.floor(Math.random() * 25) + 65; });
-            const sorted = Object.entries(computedMetrics).sort((a, b) => b[1] - a[1]);
-            setScore(finalScore);
-            setMetrics(computedMetrics);
-            setStrengths(sorted.slice(0, 4).map(([id, val]) => {
-                const m = METRICS_LIST.find(x => x.id === id);
-                return { name: m.name, tip: m.tip, score: val };
-            }));
-            setWeaknesses(sorted.slice(-4).map(([id, val]) => {
-                const m = METRICS_LIST.find(x => x.id === id);
-                return { name: m.name, tip: m.tip, score: val };
-            }));
+        setCheckError('');
+
+        try {
+            const response = await checkATS({
+                jobDescription,
+                resumeData: { rawText: resumeText, fileName: uploadedFile?.name || 'resume' },
+            });
+
+            if (response?.success && response.data) {
+                const mapped = mapAtsResponseToUI(response.data);
+                setScore(mapped.score);
+                setMetrics(mapped.metrics);
+                setStrengths(mapped.strengths);
+                setWeaknesses(mapped.weaknesses);
+                setShowResults(true);
+                setTimeout(() => document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            } else {
+                throw new Error(response?.message || 'ATS check failed');
+            }
+        } catch (err) {
+            setCheckError(err.message || 'ATS check failed. Please try again.');
+        } finally {
             setChecking(false);
-            setShowResults(true);
-            setTimeout(() => document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-        }, 3000);
+        }
     };
 
     const handleAutoFix = () => {
@@ -192,10 +234,15 @@ export default function ResumeATSScoreChecker() {
                         <ATSUpload
                             mode="jobseeker"
                             uploadedFile={uploadedFile}
+                            jobDescription={jobDescription}
+                            resumeText={resumeText}
+                            onJobDescriptionChange={setJobDescription}
+                            onResumeTextChange={setResumeText}
                             onFileChange={handleFileChange}
                             onRemove={handleRemoveFile}
                             onCheck={handleRunCheck}
                             checking={checking}
+                            error={checkError}
                         />
 
                         {checking && (

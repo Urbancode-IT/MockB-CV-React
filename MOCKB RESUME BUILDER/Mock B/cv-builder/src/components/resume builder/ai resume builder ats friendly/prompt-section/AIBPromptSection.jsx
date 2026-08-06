@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useResumeStore } from '../../../../store/useResumeStore';
+import { generateResume } from '../../../../services/aiService';
+import { mapAiResumeToStore } from '../../../../utils/apiMappers';
 import './AIBPromptSection.css';
 
 export default function AIBPromptSection() {
@@ -8,6 +10,7 @@ export default function AIBPromptSection() {
   const [followupText, setFollowupText] = useState('');
   const [status, setStatus] = useState('empty'); // empty, loading, generated
   const [loadingStep, setLoadingStep] = useState(1);
+  const [error, setError] = useState('');
 
   const handlePromptChange = (e) => {
     setPromptText(e.target.value);
@@ -176,36 +179,51 @@ export default function AIBPromptSection() {
     return data;
   };
 
-  const handleGenerate = () => {
-    if (!promptText.trim()) return;
+  const runGeneration = async (text) => {
+    if (!text.trim()) return;
+    setError('');
     setStatus('loading');
-    setLoadingStep(0);
+    setLoadingStep(1);
+
+    const stepInterval = setInterval(() => {
+      setLoadingStep((prev) => Math.min(prev + 1, 4));
+    }, 600);
+
+    try {
+      const parsed = parsePrompt(text);
+      const targetRole = parsed.personalInfo.title || 'Professional role';
+
+      const response = await generateResume({
+        jobDescription: `Target role: ${targetRole}\n\nCandidate background:\n${text}`,
+        currentResume: parsed,
+      });
+
+      clearInterval(stepInterval);
+      setLoadingStep(5);
+
+      if (response?.success && response.data) {
+        resume.setResumeData(mapAiResumeToStore(response.data, parsed));
+        setStatus('generated');
+      } else {
+        throw new Error(response?.message || 'Failed to generate resume');
+      }
+    } catch (err) {
+      clearInterval(stepInterval);
+      setError(err.message || 'AI generation failed. Please try again.');
+      setStatus('empty');
+    }
   };
 
-  useEffect(() => {
-    if (status !== 'loading') return;
-
-    const interval = setInterval(() => {
-      setLoadingStep(prev => {
-        if (prev >= 5) {
-          clearInterval(interval);
-          const parsed = parsePrompt(promptText);
-          resume.setResumeData(parsed);
-          setStatus('generated');
-          return 5;
-        }
-        return prev + 1;
-      });
-    }, 350);
-
-    return () => clearInterval(interval);
-  }, [status, promptText]);
+  const handleGenerate = () => {
+    runGeneration(promptText);
+  };
 
   const handleUpdate = () => {
     if (!followupText.trim()) return;
-    setStatus('loading');
-    setLoadingStep(0);
+    const updatedPrompt = `${promptText}\n\nRequested changes:\n${followupText}`;
+    setPromptText(updatedPrompt);
     setFollowupText('');
+    runGeneration(updatedPrompt);
   };
 
   const handlePrint = () => {
@@ -232,6 +250,12 @@ export default function AIBPromptSection() {
         <p className="section-sub">
           Describe your background in detail below. Include your name, job title, years of experience, companies you've worked at, education, skills, and any achievements. The AI will handle the rest.
         </p>
+
+        {error && (
+          <div className="error-message" style={{ marginBottom: '1rem', color: '#ef4444' }}>
+            {error}
+          </div>
+        )}
 
         <div className="builder-layout">
           {/* LEFT: Prompt Panel */}

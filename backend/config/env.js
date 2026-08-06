@@ -28,5 +28,6 @@ module.exports = cleanEnv(process.env, {
     PORT: port(),
     JWT_SECRET: str(),
     MONGO_URI: str(),
-    GEMINI_API_KEY: str(),
+    GEMINI_API_KEY: str({ default: "" }),
+    CLIENT_URL: str({ default: "http://localhost:5173" }),
 });

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import { useAuth } from '../context/AuthProvider';
 import './Auth.css';
 
 const Register = () => {
@@ -8,18 +8,25 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const handleRegister = async (e) => {
         e.preventDefault();
         setError('');
+        setSubmitting(true);
         try {
-            const res = await api.post('/auth/register', { name, email, password });
-            if (res.data) {
+            const res = await register({ name, email, password });
+            if (res?.success) {
                 navigate('/login');
+            } else {
+                setError(res?.message || 'Registration failed. Please try again.');
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Registration failed. Please try again.');
+            setError(err.message || 'Registration failed. Please try again.');
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -38,9 +45,11 @@ const Register = () => {
                 </div>
                 <div className="form-group">
                     <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
                 </div>
-                <button type="submit" className="auth-btn">Register</button>
+                <button type="submit" className="auth-btn" disabled={submitting}>
+                    {submitting ? 'Creating account...' : 'Register'}
+                </button>
             </form>
             <p>Already have an account? <Link to="/login">Login here</Link></p>
         </div>

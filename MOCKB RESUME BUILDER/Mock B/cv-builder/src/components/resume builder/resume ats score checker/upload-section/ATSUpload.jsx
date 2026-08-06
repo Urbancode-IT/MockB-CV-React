@@ -1,7 +1,24 @@
 import React, { useRef } from 'react';
 import './ATSUpload.css';
 
-export default function ATSUpload({ mode, uploadedFile, onFileChange, onRemove, onCheck, checking, recruiterFiles, onRecruiterFileChange, onRemoveRecruiter, onRankCandidates, ranking }) {
+export default function ATSUpload({
+  mode,
+  uploadedFile,
+  jobDescription,
+  resumeText,
+  onJobDescriptionChange,
+  onResumeTextChange,
+  onFileChange,
+  onRemove,
+  onCheck,
+  checking,
+  error,
+  recruiterFiles,
+  onRecruiterFileChange,
+  onRemoveRecruiter,
+  onRankCandidates,
+  ranking,
+}) {
   const fileInputRef = useRef(null);
   const recruiterInputRef = useRef(null);
 
@@ -49,6 +66,17 @@ export default function ATSUpload({ mode, uploadedFile, onFileChange, onRemove, 
 
   return (
     <section className="upload-section container" id="upload-section">
+      <div className="input-card" style={{ marginBottom: '1.25rem', padding: '1.25rem', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <h3 style={{ marginBottom: '0.75rem' }}><i className="fa-solid fa-briefcase"></i> Target Job Description</h3>
+        <textarea
+          value={jobDescription || ''}
+          onChange={(e) => onJobDescriptionChange?.(e.target.value)}
+          placeholder="Paste the job description you are applying for..."
+          rows={5}
+          style={{ width: '100%', resize: 'vertical', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.2)', color: 'inherit' }}
+        />
+      </div>
+
       <div
         className="upload-card"
         id="drop-zone"
@@ -74,7 +102,21 @@ export default function ATSUpload({ mode, uploadedFile, onFileChange, onRemove, 
           </div>
         )}
       </div>
-      <button className="btn-check-ats" id="check-ats-btn" onClick={onCheck} disabled={!uploadedFile || checking}>
+
+      <div className="input-card" style={{ marginTop: '1.25rem', padding: '1.25rem', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <h3 style={{ marginBottom: '0.75rem' }}><i className="fa-solid fa-file-lines"></i> Resume Text</h3>
+        <textarea
+          value={resumeText || ''}
+          onChange={(e) => onResumeTextChange?.(e.target.value)}
+          placeholder="Paste your resume content here (required for AI ATS analysis)..."
+          rows={8}
+          style={{ width: '100%', resize: 'vertical', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.2)', color: 'inherit' }}
+        />
+      </div>
+
+      {error && <p style={{ color: '#f97316', marginTop: '1rem', textAlign: 'center' }}>{error}</p>}
+
+      <button className="btn-check-ats" id="check-ats-btn" onClick={onCheck} disabled={checking || !jobDescription?.trim() || !resumeText?.trim()}>
         <i className="fa-solid fa-magnifying-glass-chart"></i>
         <span>{checking ? 'Scanning Resume...' : 'Check ATS Score of My Resume'}</span>
       </button>

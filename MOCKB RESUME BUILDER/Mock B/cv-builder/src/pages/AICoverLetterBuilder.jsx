@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCoverLetterStore } from '../store/useCoverLetterStore';
+import { generateCoverLetter } from '../services/aiService';
 import './AICoverLetterBuilder.css';
 
 export default function AICoverLetterBuilder() {
@@ -17,6 +18,7 @@ export default function AICoverLetterBuilder() {
     const [status, setStatus] = useState('empty'); // empty, loading, generated
     const [loadingStep, setLoadingStep] = useState(1);
     const [updateNotes, setUpdateNotes] = useState([]);
+    const [error, setError] = useState('');
 
     const handlePromptChange = (e) => {
         setPromptText(e.target.value);
@@ -47,56 +49,75 @@ export default function AICoverLetterBuilder() {
         return data;
     };
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
         if (!promptText.trim()) return;
+        setError('');
         setStatus('loading');
         setLoadingStep(1);
         setUpdateNotes([]);
-    };
 
-    useEffect(() => {
-        if (status !== 'loading') return;
-
-        const interval = setInterval(() => {
-            setLoadingStep(prev => {
-                if (prev >= 5) {
-                    clearInterval(interval);
-                    const parsed = parseCoverLetterPrompt(promptText);
-                    clStore.updatePersonalInfo('name', parsed.name);
-                    clStore.updateRecipientInfo('company', parsed.company);
-                    clStore.updateRecipientInfo('name', 'Hiring Manager');
-                    
-                    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                    clStore.updatePersonalInfo('date', today);
-
-                    const generatedBody = `Dear Hiring Manager,
-
-I am writing to express my strong interest in the ${parsed.role} position at ${parsed.company}, as advertised. With my extensive background and passion for excellence, I am confident that I would be a valuable asset to your team.
-
-During my career, I have consistently demonstrated a commitment to high-quality results. Specifically, ${parsed.highlights.length > 0 ? parsed.highlights.join(' ') : 'I have developed a strong foundation in my field through various professional challenges and successes.'} My ability to adapt and contribute to complex projects aligns perfectly with the goals of ${parsed.company}.
-
-I am particularly drawn to ${parsed.company} because of its reputation for innovation and its forward-thinking approach to the industry. I am eager to bring my unique perspective and problem-solving skills to help the company achieve its upcoming objectives.
-
-Thank you for considering my application. I have attached my resume for your review and look forward to the possibility of discussing how my experience and passion can contribute to the continued success of your team.
-
-Sincerely,
-${parsed.name}`;
-                    
-                    clStore.updateLetterBody(generatedBody);
-                    setStatus('generated');
-                    return 5;
-                }
-                return prev + 1;
-            });
+        const stepInterval = setInterval(() => {
+            setLoadingStep((prev) => Math.min(prev + 1, 4));
         }, 500);
 
-        return () => clearInterval(interval);
-    }, [status, promptText]);
+        try {
+            const parsed = parseCoverLetterPrompt(promptText);
+            const response = await generateCoverLetter({
+                jobDescription: promptText,
+                resumeData: parsed,
+            });
 
-    const handleUpdate = () => {
+            clearInterval(stepInterval);
+            setLoadingStep(5);
+
+            if (response?.success && response.data) {
+                clStore.updatePersonalInfo('name', parsed.name);
+                clStore.updateRecipientInfo('company', parsed.company);
+                clStore.updateRecipientInfo('name', 'Hiring Manager');
+
+                const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                clStore.updatePersonalInfo('date', today);
+                clStore.updateLetterBody(response.data.content || '');
+                setStatus('generated');
+            } else {
+                throw new Error(response?.message || 'Failed to generate cover letter');
+            }
+        } catch (err) {
+            clearInterval(stepInterval);
+            setError(err.message || 'AI generation failed. Please try again.');
+            setStatus('empty');
+        }
+    };
+
+    const handleUpdate = async () => {
         if (!followupText.trim()) return;
-        setUpdateNotes(prev => [...prev, followupText]);
+        setUpdateNotes((prev) => [...prev, followupText]);
+        const updatedPrompt = `${promptText}\n\nRequested changes:\n${followupText}`;
+        setPromptText(updatedPrompt);
+        const note = followupText;
         setFollowupText('');
+        setError('');
+        setStatus('loading');
+        setLoadingStep(1);
+
+        try {
+            const parsed = parseCoverLetterPrompt(updatedPrompt);
+            const response = await generateCoverLetter({
+                jobDescription: updatedPrompt,
+                resumeData: parsed,
+            });
+
+            if (response?.success && response.data) {
+                clStore.updateLetterBody(response.data.content || '');
+                setStatus('generated');
+            } else {
+                throw new Error(response?.message || 'Failed to update cover letter');
+            }
+        } catch (err) {
+            setError(err.message || 'Update failed. Please try again.');
+            setStatus('generated');
+            setFollowupText(note);
+        }
     };
 
     const handlePrint = () => {
@@ -225,6 +246,7 @@ ${parsed.name}`;
                         <div className="section-label"><i className="fa-solid fa-comment-dots"></i> Cover Letter Generator</div>
                         <h2 className="section-title">Tell us about the opportunity</h2>
                         <p className="section-sub">Input the job role, company name, and your key highlights. Paste the job description for the best results.</p>
+                        {error && <div className="error-message" style={{ color: '#ef4444', marginBottom: '1rem' }}>{error}</div>}
                         <div className="builder-layout">
                             {/* LEFT: Prompt Input */}
                             <div className="prompt-panel">

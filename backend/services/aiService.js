@@ -1,10 +1,25 @@
 const { GoogleGenAI } = require("@google/genai");
+const ApiError = require("../utils/ApiError");
 
-const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY,
-});
+const getClient = () => {
+    const apiKey = process.env.GEMINI_API_KEY;
 
-const MODEL = "gemini-3.6-flash";
+    if (!apiKey || apiKey === "your_google_gemini_api_key") {
+        throw new ApiError(
+            "Gemini API key is missing. Set a valid GEMINI_API_KEY in backend/.env",
+            503
+        );
+    }
+
+    return new GoogleGenAI({ apiKey });
+};
+
+// Prefer models that still have free-tier quota for new API keys
+const MODEL_CANDIDATES = [
+    "gemini-flash-latest",
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-001",
+];
 
 /**
  * Parse Gemini JSON Response
@@ -18,30 +33,88 @@ const parseJSON = (text) => {
 
         return JSON.parse(cleaned);
     } catch (err) {
-        throw new Error("Failed to parse AI response.");
+        throw new ApiError("Failed to parse AI response.", 502);
     }
 };
 
 /**
- * Generate AI Response
+ * Map Google GenAI errors to readable API errors
+ */
+const wrapGeminiError = (err) => {
+    const raw = err?.message || "";
+    let parsed;
+
+    try {
+        parsed = JSON.parse(raw);
+    } catch {
+        parsed = null;
+    }
+
+    const googleMsg = parsed?.error?.message || raw;
+    const reason = parsed?.error?.details?.[0]?.reason || "";
+
+    if (
+        reason === "API_KEY_INVALID" ||
+        /API key not valid/i.test(googleMsg) ||
+        /API_KEY_INVALID/i.test(raw)
+    ) {
+        return new ApiError(
+            "Invalid Gemini API key. Update GEMINI_API_KEY in backend/.env with a real key from https://aistudio.google.com/apikey",
+            503
+        );
+    }
+
+    if (/quota|rate limit|RESOURCE_EXHAUSTED/i.test(googleMsg)) {
+        return new ApiError("Gemini API quota exceeded. Try again later.", 429);
+    }
+
+    return new ApiError(googleMsg || "AI service failed", 502);
+};
+
+/**
+ * Generate AI Response (tries multiple models if quota/model unavailable)
  */
 const generateAIResponse = async (prompt, expectJSON = true) => {
+    const ai = getClient();
+    let lastError;
 
-    const response = await ai.models.generateContent({
-        model: MODEL,
-        contents: prompt,
-    });
+    for (const model of MODEL_CANDIDATES) {
+        try {
+            const response = await ai.models.generateContent({
+                model,
+                contents: prompt,
+            });
 
-    const text = response.text.trim();
+            const text = (response.text || "").trim();
 
-    return expectJSON ? parseJSON(text) : text;
+            if (!text) {
+                throw new ApiError("Empty response from AI.", 502);
+            }
+
+            return expectJSON ? parseJSON(text) : text;
+        } catch (err) {
+            if (err instanceof ApiError && err.statusCode !== 502) throw err;
+            lastError = err;
+
+            const raw = err?.message || "";
+            const isQuota =
+                /RESOURCE_EXHAUSTED|quota|rate limit/i.test(raw);
+            const isMissing =
+                /NOT_FOUND|no longer available|is not found/i.test(raw);
+
+            // Try next model when this one is blocked / gone
+            if (isQuota || isMissing) continue;
+            throw wrapGeminiError(err);
+        }
+    }
+
+    throw wrapGeminiError(lastError || new Error("All Gemini models failed"));
 };
 
 /**
  * Generate ATS Optimized Resume
  */
 exports.generateResume = async ({ jobDescription, currentResume }) => {
-
     const prompt = `
 You are an expert ATS Resume Writer with years of experience helping candidates get shortlisted.
 
@@ -86,7 +159,6 @@ Return JSON only.
  * ATS Resume Checker
  */
 exports.checkATS = async ({ jobDescription, resumeData }) => {
-
     const prompt = `
 You are an ATS Resume Scanner.
 
@@ -132,7 +204,6 @@ Return ONLY JSON.
  * Cover Letter Generator
  */
 exports.generateCoverLetter = async ({ jobDescription, resumeData }) => {
-
     const prompt = `
 You are a professional HR Recruiter.
 
