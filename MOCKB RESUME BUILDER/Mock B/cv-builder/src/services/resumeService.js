@@ -10,11 +10,15 @@ export const getResumeById = async (id) => {
     return response.data;
 };
 
+// payload: { title, template, data }
 export const createResume = async (payload) => {
     const response = await api.post('/resumes', payload);
     return response.data;
 };
 
+// payload: { title?, template?, data? }
+// Partial update — only sends what changed.
+// Changing template alone never wipes data.
 export const updateResume = async (id, payload) => {
     const response = await api.put(`/resumes/${id}`, payload);
     return response.data;

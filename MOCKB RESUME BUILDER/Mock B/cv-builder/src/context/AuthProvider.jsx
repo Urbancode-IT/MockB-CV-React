@@ -24,8 +24,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            await refreshUser();
-            setLoading(false);
+            try {
+                await refreshUser();
+            } finally {
+                setLoading(false);
+            }
         };
         checkAuth();
     }, [refreshUser]);
@@ -40,6 +43,11 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         const data = await registerUser(userData);
+        if (data?.success) {
+            // The API sets the same authentication cookie for registration and
+            // login, so make the new session available immediately.
+            setUser(data.data?.user || data.data);
+        }
         return data;
     };
 
@@ -63,9 +71,9 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext) ?? {};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthProvider';
 import './Header.css';
 
 export default function Header() {
@@ -7,6 +8,8 @@ export default function Header() {
     const [activeMenu, setActiveMenu] = useState(null); // 'resume' | 'cover-letter' | 'portfolio' | 'templates' | 'languages' | null
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const headerRef = useRef(null);
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
     // Sticky header on scroll
     useEffect(() => {
@@ -50,6 +53,11 @@ export default function Header() {
     const handleLinkClick = () => {
         setActiveMenu(null);
         setIsMobileOpen(false);
+    };
+
+    const handleLogout = async () => {
+        await logout();
+        navigate('/');
     };
 
     return (
@@ -278,10 +286,78 @@ export default function Header() {
                         <li>
                             <Link to="/about" onClick={handleLinkClick}>About</Link>
                         </li>
+
+                        {/* Mobile-only auth buttons */}
+                        <li style={{ width: '100%' }}>
+                            {user ? (
+                                <div style={{ width: '100%' }}>
+                                    <div className="mobile-user-info">
+                                        <span className="nav-user-avatar">
+                                            {user.name ? user.name.charAt(0).toUpperCase() : <i className="fa-solid fa-user"></i>}
+                                        </span>
+                                        <span className="nav-user-name">{user.name || user.email}</span>
+                                    </div>
+                                    <div className="mobile-auth-buttons">
+                                        <button
+                                            className="btn btn-logout"
+                                            onClick={() => { handleLinkClick(); handleLogout(); }}
+                                        >
+                                            <i className="fa-solid fa-right-from-bracket"></i>
+                                            Logout
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="mobile-auth-buttons">
+                                    <Link to="/login" className="btn btn-outline-auth" onClick={handleLinkClick}>
+                                        Login
+                                    </Link>
+                                    <Link to="/register" className="btn btn-primary" onClick={handleLinkClick}>
+                                        Register
+                                    </Link>
+                                </div>
+                            )}
+                        </li>
                     </ul>
 
                     <div className="nav-actions">
-                        <Link to="/resume/ai-builder" className="btn btn-primary" onClick={handleLinkClick}>Get Started</Link>
+                        {user ? (
+                            <>
+                                <div className="nav-user-info">
+                                    <span className="nav-user-avatar">
+                                        {user.name ? user.name.charAt(0).toUpperCase() : <i className="fa-solid fa-user"></i>}
+                                    </span>
+                                    <span className="nav-user-name">{user.name || user.email}</span>
+                                </div>
+                                <button
+                                    id="header-logout-btn"
+                                    className="btn btn-logout"
+                                    onClick={handleLogout}
+                                >
+                                    <i className="fa-solid fa-right-from-bracket"></i>
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link
+                                    id="header-login-btn"
+                                    to="/login"
+                                    className="btn btn-outline-auth"
+                                    onClick={handleLinkClick}
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    id="header-register-btn"
+                                    to="/register"
+                                    className="btn btn-primary"
+                                    onClick={handleLinkClick}
+                                >
+                                    Register
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </nav>
             </div>

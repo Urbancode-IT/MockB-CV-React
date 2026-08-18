@@ -9,21 +9,24 @@ export default function MainLayout() {
     const location = useLocation();
     const isNoHeaderFooterPage = 
         location.pathname === '/' || 
+        location.pathname === '/login' ||
+        location.pathname === '/register' ||
         location.pathname === '/resume/ats-checker' || 
         location.pathname === '/resume/ats_checker' || 
         location.pathname === '/cover-letter/ats-checker' || 
         location.pathname === '/cover-letter/ats_checker' ||
         location.pathname === '/cover-letter/customizer' ||
         location.pathname === '/cover-letter-customizer' ||
-        location.pathname === '/cover-letter/jd-builder';
+        location.pathname === '/cover-letter/jd-builder' ||
+        location.pathname === '/resume/customizer' ||
+        location.pathname.startsWith('/resume/customizer/');
 
     if (isNoHeaderFooterPage) {
         return <Outlet />;
     }
 
     const useHomeNavbar = 
-        location.pathname === '/resume/customizer' || 
-        location.pathname === '/resume-customizer' ||
+        location.pathname === '/cover-letter/role-based' ||
         location.pathname === '/cover-letter/role-based' ||
         location.pathname === '/cover-letter/guidelines';
 

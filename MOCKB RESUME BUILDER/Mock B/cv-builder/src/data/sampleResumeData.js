@@ -1,0 +1,114 @@
+// ======================================
+// Sample Resume Data
+//
+// Used ONLY for template preview cards
+// in the TemplateSelector component.
+//
+// NEVER use this for actual user resumes.
+// User data comes from the backend.
+// ======================================
+
+const sampleResumeData = {
+    personal: {
+        name: "Alex Morgan",
+        jobTitle: "Senior Product Manager",
+        email: "alex.morgan@email.com",
+        phone: "+91 98765 43210",
+        location: "Bengaluru, India",
+        website: "alexmorgan.dev",
+        linkedin: "linkedin.com/in/alexmorgan",
+        github: "github.com/alexmorgan",
+    },
+
+    summary:
+        "Results-driven Product Manager with 7+ years of experience leading cross-functional teams to deliver innovative digital products. Proven track record of increasing user engagement by 40% and driving revenue growth through data-informed strategies.",
+
+    experience: [
+        {
+            company: "Innovate Tech Solutions",
+            role: "Senior Product Manager",
+            startDate: "Jan 2021",
+            endDate: "Present",
+            location: "Bengaluru, India",
+            description:
+                "Led end-to-end product lifecycle for a SaaS platform serving 200K+ users. Collaborated with engineering, design, and marketing teams to launch 12 major features.",
+        },
+        {
+            company: "StartupHub India",
+            role: "Product Manager",
+            startDate: "Mar 2018",
+            endDate: "Dec 2020",
+            location: "Mumbai, India",
+            description:
+                "Defined product roadmap and prioritized features based on user research and business goals. Increased user retention by 35% through improved onboarding.",
+        },
+    ],
+
+    education: [
+        {
+            institution: "Indian Institute of Management",
+            degree: "MBA",
+            field: "Product & Innovation",
+            startYear: "2016",
+            endYear: "2018",
+            gpa: "",
+        },
+        {
+            institution: "VIT University",
+            degree: "B.Tech",
+            field: "Computer Science",
+            startYear: "2012",
+            endYear: "2016",
+            gpa: "8.7 / 10",
+        },
+    ],
+
+    skills: [
+        { name: "Product Strategy", level: "Expert" },
+        { name: "Agile / Scrum", level: "Expert" },
+        { name: "Data Analysis", level: "Proficient" },
+        { name: "SQL", level: "Proficient" },
+        { name: "Figma / UX", level: "Competent" },
+        { name: "Roadmapping", level: "Expert" },
+    ],
+
+    projects: [
+        {
+            name: "AI-Powered Resume Builder",
+            description:
+                "Built a MERN-stack SaaS tool that generates ATS-optimized resumes using AI. Launched with 5,000 users in first month.",
+            technologies: ["React", "Node.js", "MongoDB", "OpenAI"],
+            link: "https://mockb.io",
+        },
+        {
+            name: "E-Commerce Analytics Dashboard",
+            description:
+                "Designed and shipped a real-time analytics dashboard for an e-commerce platform processing 50K+ daily transactions.",
+            technologies: ["React", "D3.js", "Python", "PostgreSQL"],
+            link: "",
+        },
+    ],
+
+    certifications: [
+        {
+            name: "Certified Scrum Product Owner (CSPO)",
+            issuer: "Scrum Alliance",
+            date: "2022",
+            link: "",
+        },
+        {
+            name: "Google Analytics Certified",
+            issuer: "Google",
+            date: "2021",
+            link: "",
+        },
+    ],
+
+    languages: [
+        { name: "English", proficiency: "Native/Bilingual" },
+        { name: "Hindi", proficiency: "Native/Bilingual" },
+        { name: "Tamil", proficiency: "Proficient" },
+    ],
+};
+
+export default sampleResumeData;

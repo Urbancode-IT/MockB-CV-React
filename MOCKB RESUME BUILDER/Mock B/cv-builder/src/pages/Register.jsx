@@ -8,6 +8,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
     const { register } = useAuth();
@@ -15,11 +16,27 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         setError('');
+        setSuccess('');
+        const normalizedName = name.trim();
+        const normalizedEmail = email.trim().toLowerCase();
+        if (normalizedName.length < 2) {
+            setError('Please enter your full name.');
+            return;
+        }
+        if (!normalizedEmail) {
+            setError('Please enter your email address.');
+            return;
+        }
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long.');
+            return;
+        }
         setSubmitting(true);
         try {
-            const res = await register({ name, email, password });
+            const res = await register({ name: normalizedName, email: normalizedEmail, password });
             if (res?.success) {
-                navigate('/login');
+                setSuccess('Account created! Taking you to your dashboard…');
+                setTimeout(() => navigate('/'), 700);
             } else {
                 setError(res?.message || 'Registration failed. Please try again.');
             }
@@ -31,27 +48,148 @@ const Register = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2>Register</h2>
-            {error && <div className="error-message">{error}</div>}
-            <form onSubmit={handleRegister}>
-                <div className="form-group">
-                    <label>Name:</label>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        <div className="auth-page">
+            {/* ── Left branding panel ── */}
+            <div className="auth-brand-panel">
+                <Link to="/" className="auth-brand-logo">
+                    <span className="logo-icon-wrap">
+                        <i className="fa-solid fa-file-lines"></i>
+                    </span>
+                    MockB <span style={{ color: '#EEC30C' }}>CV</span>
+                </Link>
+
+                <div className="auth-brand-content">
+                    <h2>Start Building Your<br /><span style={{color:'#EEC30C'}}>Dream Career Today</span></h2>
+                    <p>
+                        Join thousands of job seekers who have landed their dream roles
+                        using MockB CV&apos;s AI-powered tools — completely free.
+                    </p>
                 </div>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+                <div className="auth-brand-features">
+                    <div className="auth-feature-item">
+                        <span className="feat-icon"><i className="fa-solid fa-wand-magic-sparkles"></i></span>
+                        <span className="feat-text">Generate a resume in under 2 minutes</span>
+                    </div>
+                    <div className="auth-feature-item">
+                        <span className="feat-icon"><i className="fa-solid fa-chart-line"></i></span>
+                        <span className="feat-text">Beat ATS filters with smart keyword analysis</span>
+                    </div>
+                    <div className="auth-feature-item">
+                        <span className="feat-icon"><i className="fa-solid fa-shield-halved"></i></span>
+                        <span className="feat-text">Your data is always private &amp; secure</span>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
+            </div>
+
+            {/* ── Right form panel ── */}
+            <div className="auth-form-panel">
+                <div className="auth-grid-bg"></div>
+                <div className="auth-form-inner">
+
+                    {/* Mobile logo */}
+                    <Link to="/" className="auth-mobile-logo">
+                        <span className="logo-icon-wrap">
+                            <i className="fa-solid fa-file-lines"></i>
+                        </span>
+                        MockB <span style={{ color: '#EEC30C' }}>CV</span>
+                    </Link>
+
+                    <div className="auth-form-header">
+                        <h1>Create your <span>account</span> 🚀</h1>
+                        <p>
+                            Already have an account?{' '}
+                            <Link to="/login">Sign in</Link>
+                        </p>
+                    </div>
+
+                    {error && (
+                        <div className="auth-error" role="alert">
+                            <i className="fa-solid fa-circle-exclamation"></i>
+                            {error}
+                        </div>
+                    )}
+
+                    {success && (
+                        <div className="auth-success" role="status">
+                            <i className="fa-solid fa-circle-check"></i>
+                            {success}
+                        </div>
+                    )}
+
+                    <form className="auth-form" onSubmit={handleRegister} noValidate>
+                        <div className="auth-field">
+                            <label htmlFor="register-name">Full name</label>
+                            <div className="auth-input-wrap">
+                                <input
+                                    id="register-name"
+                                    type="text"
+                                    placeholder="John Doe"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                    autoComplete="name"
+                                />
+                                <i className="fa-solid fa-user auth-input-icon"></i>
+                            </div>
+                        </div>
+
+                        <div className="auth-field">
+                            <label htmlFor="register-email">Email address</label>
+                            <div className="auth-input-wrap">
+                                <input
+                                    id="register-email"
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    autoComplete="email"
+                                />
+                                <i className="fa-solid fa-envelope auth-input-icon"></i>
+                            </div>
+                        </div>
+
+                        <div className="auth-field">
+                            <label htmlFor="register-password">Password</label>
+                            <div className="auth-input-wrap">
+                                <input
+                                    id="register-password"
+                                    type="password"
+                                    placeholder="At least 6 characters"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    minLength={6}
+                                    autoComplete="new-password"
+                                />
+                                <i className="fa-solid fa-lock auth-input-icon"></i>
+                            </div>
+                        </div>
+
+                        <button
+                            id="register-submit-btn"
+                            type="submit"
+                            className="auth-submit-btn"
+                            disabled={submitting}
+                        >
+                            {submitting ? (
+                                <>
+                                    <span className="btn-spinner"></span>
+                                    Creating account…
+                                </>
+                            ) : (
+                                'Create Account'
+                            )}
+                        </button>
+                    </form>
+
+                    <p className="auth-footer-link">
+                        Already have an account?{' '}
+                        <Link to="/login">Login here</Link>
+                    </p>
                 </div>
-                <button type="submit" className="auth-btn" disabled={submitting}>
-                    {submitting ? 'Creating account...' : 'Register'}
-                </button>
-            </form>
-            <p>Already have an account? <Link to="/login">Login here</Link></p>
+            </div>
         </div>
     );
 };

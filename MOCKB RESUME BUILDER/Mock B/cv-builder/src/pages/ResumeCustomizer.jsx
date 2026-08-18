@@ -1335,6 +1335,11 @@ export default function ResumeCustomizer() {
   const [lrMargin, setLrMargin] = useState(15); // mm
   const [tbMargin, setTbMargin] = useState(15); // mm
   const [entrySpacing, setEntrySpacing] = useState(2); // 0-5 scale
+  // Paper dimensions are kept in millimetres so the on-screen preview and PDF
+  // export use the same, familiar resume measurements.
+  const [pageFormat, setPageFormat] = useState('a4');
+  const [pageWidth, setPageWidth] = useState(210);
+  const [pageHeight, setPageHeight] = useState(297);
   const [accentColor, setAccentColor] = useState('#EEC30C');
   const [headingStyle, setHeadingStyle] = useState('full-underline');
   const [headingTransform, setHeadingTransform] = useState('uppercase');
@@ -1972,27 +1977,112 @@ export default function ResumeCustomizer() {
     };
 
     if (type === 'summary') {
-      newSection.items = [{ desc: "" }];
+      newSection.items = [{ 
+        desc: "Results-driven professional with X years of experience in [your industry]. Proven track record of [key achievement]. Skilled in [key skill 1], [key skill 2], and [key skill 3]. Seeking to leverage expertise in [specific area] to drive value for [company/role type]." 
+      }];
+    } else if (type === 'education') {
+      newSection.items = [{ 
+        name: "Degree Name (e.g., Bachelor of Science)", 
+        role: "Major/Field of Study", 
+        dateRange: "Year Started – Year Graduated", 
+        location: "University Name, City", 
+        desc: "GPA: X.XX (if applicable). Honors, scholarships, relevant coursework, or academic achievements." 
+      }];
+    } else if (type === 'experience') {
+      newSection.items = [{ 
+        name: "Job Title", 
+        role: "Company Name", 
+        dateRange: "Month Year – Month Year", 
+        location: "City, Country or Remote", 
+        desc: "• Achievement or responsibility describing impact made\n• Key accomplishment with quantifiable results\n• Specific project or initiative you led or contributed to" 
+      }];
     } else if (type === 'skills') {
-      newSection.items = [{ name: "", desc: "", level: "" }];
+      newSection.items = [{ 
+        name: "Technical Skills", 
+        desc: "JavaScript, React, Node.js, Python, SQL, Git, REST APIs", 
+        level: "Advanced" 
+      }];
     } else if (type === 'languages') {
-      newSection.items = [{ name: "", level: "" }];
+      newSection.items = [{ 
+        name: "English", 
+        level: "Native" 
+      }];
     } else if (type === 'certificates') {
-      newSection.items = [{ name: "", desc: "" }];
+      newSection.items = [{ 
+        name: "Professional Certification Name", 
+        desc: "Issued by [Issuing Organization] • [Month Year]" 
+      }];
     } else if (type === 'interests') {
-      newSection.items = [{ name: "", desc: "" }];
+      newSection.items = [{ 
+        name: "Interest/Hobby", 
+        desc: "Brief description of your personal interests, hobbies, or passions that complement your professional profile." 
+      }];
+    } else if (type === 'projects') {
+      newSection.items = [{ 
+        name: "Project Title", 
+        role: "Your Role", 
+        dateRange: "Month Year – Month Year", 
+        location: "Location or Remote", 
+        desc: "Description of the project, your contribution, and impact. Highlight key technologies used and results achieved." 
+      }];
     } else if (type === 'courses') {
-      newSection.items = [{ name: "", institution: "", dateRange: "", location: "", desc: "" }];
-    } else if (type === 'awards' || type === 'publications') {
-      newSection.items = [{ name: "", issuer: "", day: "", month: "", year: "", desc: "" }];
+      newSection.items = [{ 
+        name: "Course/Training Name", 
+        institution: "Institution/Platform Name", 
+        dateRange: "Month Year – Month Year", 
+        location: "Location or Online", 
+        desc: "Brief description of course content, skills learned, or certification obtained." 
+      }];
+    } else if (type === 'awards') {
+      newSection.items = [{ 
+        name: "Award/Recognition Name", 
+        issuer: "Organization/Institution", 
+        day: "01", 
+        month: "January", 
+        year: "2024", 
+        desc: "Brief description of the award, why it was received, and its significance." 
+      }];
+    } else if (type === 'publications') {
+      newSection.items = [{ 
+        name: "Publication Title", 
+        issuer: "Publication/Journal Name", 
+        day: "01", 
+        month: "January", 
+        year: "2024", 
+        desc: "Brief description of the publication, topic, or contribution." 
+      }];
     } else if (type === 'organisations') {
-      newSection.items = [{ name: "", position: "", dateRange: "", location: "", desc: "" }];
+      newSection.items = [{ 
+        name: "Organization/Association Name", 
+        position: "Member/Volunteer Position", 
+        dateRange: "Month Year – Present", 
+        location: "Location or Remote", 
+        desc: "Description of your involvement, responsibilities, and contributions to the organization." 
+      }];
     } else if (type === 'references') {
-      newSection.items = [{ name: "", role: "", organization: "", email: "", phone: "" }];
+      newSection.items = [{ 
+        name: "Reference Name", 
+        role: "Job Title/Relationship", 
+        organization: "Organization Name", 
+        email: "email@example.com", 
+        phone: "+1 (123) 456-7890" 
+      }];
     } else if (type === 'declaration') {
-      newSection.items = [{ desc: "", signature: "", name: "", location: "", dateRange: "" }];
+      newSection.items = [{ 
+        desc: "I hereby declare that the information furnished above is true to the best of my knowledge and belief.", 
+        signature: "", 
+        name: "Your Name", 
+        location: "City, Country", 
+        dateRange: "January 01, 2024" 
+      }];
     } else {
-      newSection.items = [{ name: "", role: "", dateRange: "", location: "", desc: "" }];
+      newSection.items = [{ 
+        name: "Item Name", 
+        role: "Sub-item/Category", 
+        dateRange: "Month Year – Month Year", 
+        location: "Location", 
+        desc: "Add your content here. Edit or delete this item to customize your section." 
+      }];
     }
 
     updateResumeData(prev => ({
@@ -2041,6 +2131,48 @@ export default function ResumeCustomizer() {
       
       return { ...prev, sections: list };
     });
+  };
+
+  // Drag & drop reorder for rearrange list
+  const [draggedSectionId, setDraggedSectionId] = useState(null);
+  const [dragOverSectionId, setDragOverSectionId] = useState(null);
+
+  const handleSectionDragStart = (e, id) => {
+    setDraggedSectionId(id);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', id);
+    setTimeout(() => { if (e.target) e.target.style.opacity = '0.5'; }, 0);
+  };
+
+  const handleSectionDragEnd = (e) => {
+    if (e.target) e.target.style.opacity = '1';
+    setDraggedSectionId(null);
+    setDragOverSectionId(null);
+  };
+
+  const handleSectionDragOver = (e, id) => {
+    e.preventDefault();
+    if (id !== draggedSectionId) setDragOverSectionId(id);
+  };
+
+  const handleSectionDrop = (e, id) => {
+    e.preventDefault();
+    const srcId = draggedSectionId || e.dataTransfer.getData('text/plain');
+    if (!srcId) return;
+    if (srcId === id) return;
+
+    setResumeData(prev => {
+      const list = [...prev.sections];
+      const srcIdx = list.findIndex(s => s.id === srcId);
+      const dstIdx = list.findIndex(s => s.id === id);
+      if (srcIdx === -1 || dstIdx === -1) return prev;
+      const [item] = list.splice(srcIdx, 1);
+      list.splice(dstIdx, 0, item);
+      return { ...prev, sections: list };
+    });
+
+    setDraggedSectionId(null);
+    setDragOverSectionId(null);
   };
 
   const handleMoveSectionColumn = (idx, col) => {
@@ -2322,6 +2454,183 @@ export default function ResumeCustomizer() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  // Download PDF using html2pdf but first show a preview overlay and ensure resources load
+  const waitForImagesLoad = (node, timeout = 10000) => {
+    return new Promise((resolve) => {
+      const imgs = Array.from(node.querySelectorAll('img'));
+      if (!imgs.length) return resolve(true);
+      let loaded = 0;
+      const onDone = () => {
+        loaded += 1;
+        if (loaded >= imgs.length) resolve(true);
+      };
+      imgs.forEach(img => {
+        if (img.complete && img.naturalWidth !== 0) return onDone();
+        const onLoad = () => { img.removeEventListener('load', onLoad); img.removeEventListener('error', onLoad); onDone(); };
+        img.addEventListener('load', onLoad);
+        img.addEventListener('error', onLoad);
+      });
+      // Guard timeout
+      setTimeout(() => resolve(true), timeout);
+    });
+  };
+
+  const handleDownloadPDF = async () => {
+    try {
+      const html2pdf = (await import('html2pdf.js')).default || (await import('html2pdf.js'));
+      const pageSheets = Array.from(document.querySelectorAll('.resume-page-sheet'));
+      if (!pageSheets.length) {
+        alert('Nothing to export — resume preview not found.');
+        return;
+      }
+
+      // Build wrapper and clone pages
+      const wrapper = document.createElement('div');
+      wrapper.style.background = '#ffffff';
+      wrapper.style.color = '#000000';
+      wrapper.style.padding = '0';
+      // Convert mm to px (approx at 96dpi): 1mm = 3.7795275591px
+      const mmToPx = (mm) => Math.round(mm * 3.7795275591);
+      const wrapperPxWidth = mmToPx(pageWidth);
+      wrapper.style.width = `${wrapperPxWidth}px`;
+      wrapper.style.boxSizing = 'border-box';
+
+      const pageHeightPx = mmToPx(pageHeight);
+      pageSheets.forEach(ps => {
+        const cloned = ps.cloneNode(true);
+        cloned.style.background = '#ffffff';
+        cloned.style.boxShadow = 'none';
+        cloned.style.margin = '0';
+        cloned.style.padding = '0';
+        cloned.style.boxSizing = 'border-box';
+        cloned.style.overflow = 'hidden';
+        // force cloned element to the exact page pixel height to avoid extra gaps
+        cloned.style.width = `${wrapperPxWidth}px`;
+        cloned.style.height = `${pageHeightPx}px`;
+        // preserve original font size to avoid CSS scaling differences
+        try {
+          const cs = window.getComputedStyle(ps);
+          if (cs && cs.fontSize) cloned.style.fontSize = cs.fontSize;
+        } catch (e) {}
+        wrapper.appendChild(cloned);
+      });
+
+      // Prepare preview overlay so user can confirm
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.left = '0';
+      overlay.style.top = '0';
+      overlay.style.right = '0';
+      overlay.style.bottom = '0';
+      overlay.style.background = 'rgba(0,0,0,0.7)';
+      overlay.style.zIndex = '999999';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+
+      const previewBox = document.createElement('div');
+      previewBox.style.width = '90%';
+      previewBox.style.maxHeight = '90%';
+      previewBox.style.overflow = 'auto';
+      previewBox.style.background = '#fff';
+      previewBox.style.padding = '16px';
+      previewBox.style.borderRadius = '6px';
+      previewBox.style.boxShadow = '0 6px 30px rgba(0,0,0,0.4)';
+
+      // control row
+      const controls = document.createElement('div');
+      controls.style.display = 'flex';
+      controls.style.justifyContent = 'flex-end';
+      controls.style.gap = '8px';
+      controls.style.marginBottom = '10px';
+
+      const cancelBtn = document.createElement('button');
+      cancelBtn.textContent = 'Cancel';
+      cancelBtn.style.padding = '8px 12px';
+      cancelBtn.style.border = '1px solid #ccc';
+      cancelBtn.style.background = '#fff';
+      cancelBtn.style.cursor = 'pointer';
+
+      const confirmBtn = document.createElement('button');
+      confirmBtn.textContent = 'Download PDF';
+      confirmBtn.style.padding = '8px 12px';
+      confirmBtn.style.border = 'none';
+      confirmBtn.style.background = '#e2574c';
+      confirmBtn.style.color = '#fff';
+      confirmBtn.style.cursor = 'pointer';
+
+      controls.appendChild(cancelBtn);
+      controls.appendChild(confirmBtn);
+
+      // Insert cloned pages for preview
+      previewBox.appendChild(controls);
+      previewBox.appendChild(wrapper);
+      overlay.appendChild(previewBox);
+      document.body.appendChild(overlay);
+
+      // Wait for images in cloned content to load before letting user confirm
+      await waitForImagesLoad(wrapper, 12000);
+
+      const filename = (resumeData.name || 'Resume').trim().replace(/\s+/g, '_') + '.pdf';
+      const opt = {
+        margin: 0,
+        filename,
+        image: { type: 'png', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true, logging: false, allowTaint: true, width: wrapperPxWidth, scrollY: 0 },
+        jsPDF: { unit: 'mm', format: [pageWidth, pageHeight], orientation: pageWidth > pageHeight ? 'landscape' : 'portrait' }
+      };
+
+      const cleanup = () => {
+        try { document.body.removeChild(overlay); } catch (e) {}
+      };
+
+      cancelBtn.addEventListener('click', () => {
+        cleanup();
+      });
+
+      confirmBtn.addEventListener('click', async () => {
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = 'Generating...';
+        try {
+          // Prefer rendering each sheet separately to avoid overflow/blank pages
+          const html2canvasModule = (await import('html2canvas')).default || (await import('html2canvas'));
+          const jspdfModule = (await import('jspdf'));
+          const { jsPDF } = jspdfModule;
+
+          const pxPerMm = 3.7795275591;
+          const doc = new jsPDF({ unit: 'mm', format: [pageWidth, pageHeight], orientation: pageWidth > pageHeight ? 'landscape' : 'portrait' });
+
+          const sheets = Array.from(wrapper.children);
+          for (let i = 0; i < sheets.length; i++) {
+            const node = sheets[i];
+            // Render to canvas with exact width/height matching page mm->px conversion
+            const canvas = await html2canvasModule(node, { scale: 2, useCORS: true, allowTaint: true, width: wrapperPxWidth, height: pageHeightPx, scrollY: 0 });
+            const imgData = canvas.toDataURL('image/png', 1.0);
+
+            // Draw the rendered image stretched to exactly the PDF page size (mm)
+            if (i > 0) doc.addPage();
+            doc.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+          }
+
+          doc.save(filename);
+        } catch (err) {
+          console.warn('html2canvas/jsPDF path failed, falling back to html2pdf', err);
+          try {
+            await html2pdf().set(opt).from(wrapper).save();
+          } catch (err2) {
+            console.error('PDF export failed', err2);
+            alert('Failed to export PDF. Check console for details.');
+          }
+        } finally {
+          cleanup();
+        }
+      });
+    } catch (err) {
+      console.error('PDF export flow failed', err);
+      alert('Failed to export PDF. Check console for details.');
+    }
   };
 
   const handleOptimizeSummaryAI = () => {
@@ -4586,7 +4895,7 @@ export default function ResumeCustomizer() {
                 </button>
                 {showDownloadOptions && (
                   <div id="download-options" style={{ display: 'block', position: 'absolute', right: 0, top: '110%', background: '#1e1e1e', border: '1px solid #333', borderRadius: '8px', zIndex: 1000, minWidth: '170px', boxShadow: '0 5px 15px rgba(0,0,0,0.5)' }}>
-                    <a href="#" onClick={(e) => { e.preventDefault(); window.print(); setShowDownloadOptions(false); }} style={{ display: 'block', padding: '12px 15px', color: '#fff', textDecoration: 'none', borderBottom: '1px solid #333', fontSize: '0.9rem' }}><i className="fa-solid fa-file-pdf" style={{ color: '#e2574c', marginRight: '8px' }}></i> Download PDF</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleDownloadPDF(); setShowDownloadOptions(false); }} style={{ display: 'block', padding: '12px 15px', color: '#fff', textDecoration: 'none', borderBottom: '1px solid #333', fontSize: '0.9rem' }}><i className="fa-solid fa-file-pdf" style={{ color: '#e2574c', marginRight: '8px' }}></i> Download PDF</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleDownloadWord(); setShowDownloadOptions(false); }} style={{ display: 'block', padding: '12px 15px', color: '#fff', textDecoration: 'none', fontSize: '0.9rem' }}><i className="fa-solid fa-file-word" style={{ color: '#2b579a', marginRight: '8px' }}></i> Download Word</a>
                   </div>
                 )}
@@ -5786,6 +6095,52 @@ export default function ResumeCustomizer() {
                     </div>
                     {expandedAccordions['layout'] && (
                       <div className="customize-content" style={{ display: 'block' }}>
+                        <div style={{ marginBottom: '1.5rem' }}>
+                            <div style={{ fontSize: '0.82rem', color: '#555', fontWeight: '600', marginBottom: '0.8rem' }}>Resume Size</div>
+                            <div className="style-options" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '0.85rem' }}>
+                              {[
+                                { id: 'a4', label: 'A4', width: 210, height: 297 },
+                                { id: 'letter', label: 'US Letter', width: 216, height: 279 },
+                                { id: 'custom', label: 'Custom' }
+                              ].map(format => (
+                                <button
+                                  key={format.id}
+                                  className={`style-option ${pageFormat === format.id ? 'active' : ''}`}
+                                  onClick={() => {
+                                    setPageFormat(format.id);
+                                    if (format.width) {
+                                      setPageWidth(format.width);
+                                      setPageHeight(format.height);
+                                    }
+                                  }}
+                                  style={{ padding: '0.65rem 0.35rem', fontSize: '0.78rem' }}
+                                >{format.label}</button>
+                              ))}
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
+                              {[
+                                { label: 'Width', value: pageWidth, setter: setPageWidth, min: 160, max: 260 },
+                                { label: 'Height', value: pageHeight, setter: setPageHeight, min: 220, max: 360 }
+                              ].map(dimension => (
+                                <label key={dimension.label} style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', color: '#888', fontSize: '0.75rem' }}>
+                                  {dimension.label} ({dimension.value} mm)
+                                  <input
+                                    type="number"
+                                    min={dimension.min}
+                                    max={dimension.max}
+                                    value={dimension.value}
+                                    onChange={(e) => {
+                                      const value = Math.max(dimension.min, Math.min(dimension.max, Number(e.target.value) || dimension.min));
+                                      setPageFormat('custom');
+                                      dimension.setter(value);
+                                    }}
+                                    className="form-input-dark"
+                                    style={{ padding: '0.45rem 0.55rem' }}
+                                  />
+                                </label>
+                              ))}
+                            </div>
+                        </div>
                         {/* Columns */}
                         <div style={{ marginBottom: '1.5rem' }}>
                             <div style={{ fontSize: '0.82rem', color: '#555', fontWeight: '600', marginBottom: '0.8rem' }}>Columns</div>
@@ -5885,6 +6240,9 @@ export default function ResumeCustomizer() {
                         {/* Change Section Layout */}
                         <div style={{ marginBottom: '1.5rem' }}>
                             <div style={{ fontSize: '0.82rem', color: '#555', fontWeight: '600', marginBottom: '0.8rem' }}>Change Section Layout</div>
+                            <p style={{ color: '#888', fontSize: '0.75rem', lineHeight: 1.45, margin: '-0.35rem 0 0.75rem' }}>
+                              Drag a section by its handle to change its order. In two-column layouts, drop it into either column to move it there.
+                            </p>
                             
                             <div 
                               id="customize-section-layout-list" 
@@ -7312,9 +7670,23 @@ export default function ResumeCustomizer() {
                     <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 'bold', marginBottom: '1rem' }}>
                       <i className="fa-solid fa-arrows-up-down"></i> Sort Sections
                     </h4>
+                    <div style={{ color: '#bbb', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
+                      You can customize manually: drag the sections to reorder them, or use the L/R and Up/Down controls.
+                    </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {resumeData.sections.map((sec, idx) => (
-                        <div key={sec.id} style={{ background: '#0a0a0a', padding: '10px 14px', borderRadius: '8px', border: '1px solid #333', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div key={sec.id}>
+                          {dragOverSectionId === sec.id && (
+                            <div style={{ height: '42px', marginBottom: '8px', borderRadius: '8px', background: 'rgba(238,195,12,0.08)', border: '1px dashed #EEC30C' }} />
+                          )}
+                          <div
+                            draggable="true"
+                            onDragStart={(e) => handleSectionDragStart(e, sec.id)}
+                            onDragEnd={handleSectionDragEnd}
+                            onDragOver={(e) => handleSectionDragOver(e, sec.id)}
+                            onDrop={(e) => handleSectionDrop(e, sec.id)}
+                            style={{ background: '#0a0a0a', padding: '10px 14px', borderRadius: '8px', border: '1px solid #333', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'grab' }}
+                          >
                           <div>
                             <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.85rem' }}>{sec.title}</span>
                             {layoutConfig.columns !== 'one' && (
@@ -7445,6 +7817,9 @@ export default function ResumeCustomizer() {
                     className="resume-page-sheet"
                     style={{
                       marginBottom: pageIndex < pages.length - 1 ? '2rem' : '0',
+                      width: `${pageWidth}mm`,
+                      minHeight: `${pageHeight}mm`,
+                      maxWidth: '100%',
                       fontFamily: (hoveredFont || fontFamily) === 'Satoshi' ? 'Satoshi, sans-serif' : `'${hoveredFont || fontFamily}'`,
                       fontSize: `${fontSize}pt`,
                   lineHeight: lineHeight,
@@ -7917,6 +8292,9 @@ export default function ResumeCustomizer() {
                <div
                 className="resume-page-sheet"
                 style={{
+                  width: `${pageWidth}mm`,
+                  minHeight: `${pageHeight}mm`,
+                  maxWidth: '100%',
                   fontFamily: (hoveredFont || fontFamily) === 'Satoshi' ? 'Satoshi, sans-serif' : `'${hoveredFont || fontFamily}'`,
                   fontSize: `${fontSize}pt`,
                   lineHeight: lineHeight,

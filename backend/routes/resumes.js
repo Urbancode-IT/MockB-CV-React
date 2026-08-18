@@ -12,12 +12,14 @@ const { success, error } = require("../utils/apiResponse");
 
 const {
     createResumeValidation,
+    ALLOWED_TEMPLATES,
 } = require("../validators/resumeValidator");
 
 
 // ======================================
 // Get All Resumes
 // GET /api/resumes
+// Private — requires auth cookie
 // ======================================
 
 router.get(
@@ -27,18 +29,16 @@ router.get(
 
         const resumes = await Resume.find({
             user: req.user.id,
-        }).sort({
-            createdAt: -1,
-        });
+        })
+            .select("_id title template createdAt updatedAt")
+            .sort({ createdAt: -1 });
 
         return success(
             res,
             resumes,
             "Resumes fetched successfully",
             200,
-            {
-                count: resumes.length,
-            }
+            { count: resumes.length }
         );
 
     })
@@ -48,6 +48,7 @@ router.get(
 // ======================================
 // Get Resume By ID
 // GET /api/resumes/:id
+// Private — requires auth cookie
 // ======================================
 
 router.get(
@@ -77,6 +78,9 @@ router.get(
 // ======================================
 // Create Resume
 // POST /api/resumes
+// Private — requires auth cookie
+//
+// Body: { title, template, data }
 // ======================================
 
 router.post(
@@ -86,11 +90,22 @@ router.post(
     validate,
     asyncHandler(async (req, res) => {
 
-        const { title, data } = req.body;
+        const { title, template, data } = req.body;
+
+        // Security: validate template against allowed list
+        // (belt-and-suspenders in addition to validator)
+        if (template && !ALLOWED_TEMPLATES.includes(template)) {
+            return error(
+                res,
+                `Invalid resume template. Allowed values: ${ALLOWED_TEMPLATES.join(", ")}`,
+                400
+            );
+        }
 
         const resume = await Resume.create({
             user: req.user.id,
             title: title || "Untitled Resume",
+            template: template || "classic-professional",
             data: data || {},
         });
 
@@ -108,6 +123,11 @@ router.post(
 // ======================================
 // Update Resume
 // PUT /api/resumes/:id
+// Private — requires auth cookie
+//
+// Body: { title?, template?, data? }
+// NOTE: Changing `template` does NOT change `data`.
+//       The same resume content appears in the new design.
 // ======================================
 
 router.put(
@@ -117,17 +137,29 @@ router.put(
     validate,
     asyncHandler(async (req, res) => {
 
-        const { title, data } = req.body;
+        const { title, template, data } = req.body;
+
+        // Security: validate template against allowed list
+        if (template && !ALLOWED_TEMPLATES.includes(template)) {
+            return error(
+                res,
+                `Invalid resume template. Allowed values: ${ALLOWED_TEMPLATES.join(", ")}`,
+                400
+            );
+        }
+
+        // Build update object — only update fields that were sent
+        const updateFields = {};
+        if (title !== undefined) updateFields.title = title;
+        if (template !== undefined) updateFields.template = template;
+        if (data !== undefined) updateFields.data = data;
 
         const resume = await Resume.findOneAndUpdate(
             {
                 _id: req.params.id,
                 user: req.user.id,
             },
-            {
-                title,
-                data,
-            },
+            updateFields,
             {
                 new: true,
                 runValidators: true,
@@ -151,6 +183,7 @@ router.put(
 // ======================================
 // Delete Resume
 // DELETE /api/resumes/:id
+// Private — requires auth cookie
 // ======================================
 
 router.delete(
@@ -175,5 +208,6 @@ router.delete(
 
     })
 );
+
 
 module.exports = router;

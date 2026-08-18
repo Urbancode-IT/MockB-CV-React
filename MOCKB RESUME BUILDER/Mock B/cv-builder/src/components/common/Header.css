@@ -152,11 +152,161 @@ nav {
 
 .nav-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: center;
     flex: 1;
     justify-content: flex-end;
 }
+
+/* ── Login ghost button ── */
+.btn-outline-auth {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-outline-auth:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+}
+
+/* ── Register / primary CTA ── */
+.btn-primary {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary-color, #eec30c), #f59e0b);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 3px 14px rgba(238, 195, 12, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(238, 195, 12, 0.45);
+}
+
+/* ── Logout button ── */
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #fca5a5;
+    border: 1.5px solid rgba(239, 68, 68, 0.25);
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.07);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-logout:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.5);
+    color: #fca5a5;
+    transform: translateY(-1px);
+}
+
+.btn-logout i {
+    font-size: 0.85rem;
+}
+
+/* ── Logged-in user chip ── */
+.nav-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px 4px 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+}
+
+.nav-user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.nav-user-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Mobile: auth buttons inside the slide-out menu ── */
+@media (max-width: 768px) {
+    .nav-actions {
+        display: none; /* hidden; buttons go inside mobile menu */
+    }
+
+    .nav-links .mobile-auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-links .mobile-auth-buttons .btn-outline-auth,
+    .nav-links .mobile-auth-buttons .btn-primary,
+    .nav-links .mobile-auth-buttons .btn-logout {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .nav-links .mobile-user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.5rem 0;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-links .mobile-auth-buttons,
+    .nav-links .mobile-user-info {
+        display: none;
+    }
+}
+
+
 
 /* Mega Menu Styles */
 .has-mega-menu {

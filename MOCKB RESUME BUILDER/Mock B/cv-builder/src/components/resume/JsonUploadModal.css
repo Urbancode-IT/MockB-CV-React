@@ -1,0 +1,331 @@
+/* ============================================
+   JSON Upload Modal
+   Dark · Premium · Glassmorphism
+   ============================================ */
+
+.jm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: jmFadeIn 0.2s ease;
+}
+
+@keyframes jmFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.jm-modal {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(238, 195, 12, 0.08);
+    animation: jmSlideUp 0.25s ease;
+    overflow: hidden;
+}
+
+@keyframes jmSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Header ── */
+.jm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid #222;
+    flex-shrink: 0;
+}
+
+.jm-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jm-header-icon {
+    font-size: 1.2rem;
+    color: #EEC30C;
+}
+
+.jm-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin: 0;
+}
+
+.jm-close {
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.jm-close:hover {
+    color: #fff;
+    background: #2a2a2a;
+}
+
+/* ── Body ── */
+.jm-body {
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.jm-body::-webkit-scrollbar { width: 6px; }
+.jm-body::-webkit-scrollbar-track { background: transparent; }
+.jm-body::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+.jm-desc {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.jm-desc code {
+    background: #2a2a2a;
+    color: #EEC30C;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+}
+
+.jm-desc strong {
+    color: #ccc;
+}
+
+/* ── Action Buttons Row ── */
+.jm-input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.jm-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.jm-action-file {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #ccc;
+}
+
+.jm-action-file:hover {
+    background: #222;
+    border-color: #EEC30C;
+    color: #EEC30C;
+}
+
+.jm-action-example {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+}
+
+.jm-action-example:hover {
+    border-color: #555;
+    color: #ccc;
+    background: #1a1a1a;
+}
+
+/* ── Example Block ── */
+.jm-example-block {
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0d0d0d;
+}
+
+.jm-example-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #222;
+}
+
+.jm-example-bar span {
+    font-size: 0.75rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.jm-example-bar span i { color: #4A90D9; }
+
+.jm-example-bar button {
+    background: #EEC30C;
+    border: none;
+    color: #000;
+    font-size: 0.73rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+}
+
+.jm-example-bar button:hover {
+    background: #d4ad0b;
+}
+
+.jm-example-pre {
+    font-size: 0.72rem;
+    color: #22c55e;
+    padding: 14px;
+    overflow-y: auto;
+    max-height: 200px;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    white-space: pre;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Textarea Section ── */
+.jm-textarea-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.jm-textarea-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.jm-textarea {
+    width: 100%;
+    min-height: 160px;
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.jm-textarea:focus {
+    border-color: #EEC30C;
+}
+
+.jm-textarea::placeholder {
+    color: #3a3a3a;
+}
+
+/* ── Error ── */
+.jm-error {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8rem;
+    color: #ef4444;
+    padding: 8px 10px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+}
+
+/* ── Footer ── */
+.jm-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid #222;
+    flex-shrink: 0;
+}
+
+.jm-cancel {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.jm-cancel:hover {
+    color: #ccc;
+    border-color: #555;
+    background: #1a1a1a;
+}
+
+.jm-apply {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #EEC30C;
+    border: none;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.jm-apply:hover:not(:disabled) {
+    background: #d4ad0b;
+    transform: translateY(-1px);
+}
+
+.jm-apply:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

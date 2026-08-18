@@ -1,0 +1,308 @@
+/* ============================================
+   Executive Resume Template
+   Single-column top · Bottom two-col
+   Deep Navy · Premium feel
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap');
+
+.ex-resume {
+    font-family: 'Lato', 'Segoe UI', sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    background: #ffffff;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* ── Header ── */
+.ex-header {
+    background: #0F172A;
+    padding: 30px 36px;
+    border-bottom: 4px solid #F59E0B;
+}
+
+.ex-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.ex-header-left {
+    flex: 1;
+}
+
+.ex-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28pt;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+.ex-job-title {
+    font-size: 10.5pt;
+    color: #F59E0B;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.ex-header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: right;
+}
+
+.ex-contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    font-size: 8.5pt;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.ex-contact-item i {
+    color: #F59E0B;
+    width: 12px;
+    font-size: 8pt;
+}
+
+/* ── Body ── */
+.ex-body {
+    padding: 22px 36px 30px;
+}
+
+/* ── Sections ── */
+.ex-section {
+    margin-bottom: 18px;
+    break-inside: avoid;
+}
+
+.ex-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 10pt;
+    font-weight: 600;
+    color: #0F172A;
+    margin: 0 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #F59E0B;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ex-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #F59E0B;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ── Summary ── */
+.ex-summary {
+    font-size: 9.5pt;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ── Experience entries (timeline style) ── */
+.ex-entry {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ex-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ex-entry-marker {
+    width: 3px;
+    min-height: 100%;
+    background: linear-gradient(180deg, #F59E0B, #0F172A);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.ex-entry-content {
+    flex: 1;
+}
+
+.ex-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.ex-entry-role {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0;
+}
+
+.ex-entry-company {
+    font-size: 9pt;
+    color: #F59E0B;
+    font-weight: 700;
+    margin: 2px 0 0;
+}
+
+.ex-entry-meta {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.ex-date {
+    display: block;
+    font-size: 8pt;
+    color: #555;
+    white-space: nowrap;
+    font-weight: 300;
+}
+
+.ex-location {
+    display: block;
+    font-size: 8pt;
+    color: #777;
+}
+
+.ex-entry-desc {
+    font-size: 9pt;
+    line-height: 1.55;
+    color: #333;
+    margin: 5px 0 0;
+}
+
+/* ── Two-column bottom ── */
+.ex-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Simple entries (edu/cert) ── */
+.ex-simple-entry {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.ex-simple-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ex-simple-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.ex-simple-sub {
+    font-size: 9pt;
+    color: #F59E0B;
+    font-weight: 600;
+}
+
+.ex-simple-date {
+    font-size: 8pt;
+    color: #666;
+}
+
+/* ── Skills grid ── */
+.ex-skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.ex-skill-chip {
+    font-size: 8pt;
+    background: #0F172A;
+    color: #F59E0B;
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* ── Languages ── */
+.ex-lang-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px dotted #e5e7eb;
+}
+
+.ex-lang-row:last-child { border-bottom: none; }
+
+.ex-lang-name {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.ex-lang-level {
+    font-size: 8.5pt;
+    color: #666;
+}
+
+/* ── Projects ── */
+.ex-proj-link {
+    font-size: 8pt;
+    color: #0F172A;
+    text-decoration: underline;
+}
+
+.ex-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: 5px;
+}
+
+.ex-tech-tag {
+    font-size: 7.5pt;
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-weight: 600;
+}
+
+/* ── Print ── */
+@media print {
+    .ex-resume { box-shadow: none; width: 210mm; }
+    .ex-section { break-inside: avoid; }
+}
+
+/* ── Responsive ── */

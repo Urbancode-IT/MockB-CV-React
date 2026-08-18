@@ -1,0 +1,357 @@
+/* ============================================
+   Creative Professional Resume Template
+   Two-column · Purple Sidebar · Vibrant
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.crp-resume {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    font-size: 9.5pt;
+    color: #1a1a1a;
+    background: #ffffff;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ── Layout ── */
+.crp-layout {
+    display: flex;
+    min-height: 297mm;
+}
+
+/* ── Sidebar ── */
+.crp-sidebar {
+    width: 185px;
+    min-width: 185px;
+    background: linear-gradient(180deg, #5B21B6 0%, #7C3AED 40%, #8B5CF6 100%);
+    padding: 24px 14px 28px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+}
+
+/* Avatar */
+.crp-avatar {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18pt;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.crp-sidebar-name {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 3px;
+}
+
+.crp-sidebar-role {
+    font-size: 7.5pt;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.crp-sidebar-divider {
+    width: 80%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 14px 0;
+}
+
+/* Sidebar sections */
+.crp-sb-section {
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.crp-sb-title {
+    font-size: 7pt;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+}
+
+/* Sidebar contact */
+.crp-sb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.crp-sb-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 7pt;
+    color: rgba(255, 255, 255, 0.9);
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.crp-sb-item i {
+    color: rgba(255, 255, 255, 0.7);
+    width: 10px;
+    font-size: 7.5pt;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Skill chips */
+.crp-sb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.crp-chip {
+    font-size: 7pt;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-weight: 500;
+}
+
+/* Languages */
+.crp-sb-lang {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.crp-lang-name {
+    font-size: 8pt;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.crp-lang-dot {
+    font-size: 7pt;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Certifications */
+.crp-sb-cert {
+    margin-bottom: 7px;
+}
+
+.crp-sb-cert:last-child { margin-bottom: 0; }
+
+.crp-cert-name {
+    display: block;
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.crp-cert-issuer {
+    display: block;
+    font-size: 7pt;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Main Content ── */
+.crp-main {
+    flex: 1;
+    padding: 22px 24px 28px;
+    box-sizing: border-box;
+}
+
+.crp-section {
+    margin-bottom: 16px;
+    break-inside: avoid;
+}
+
+.crp-section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #7C3AED;
+    margin: 0 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #EDE9FE;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.crp-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #7C3AED;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+}
+
+.crp-summary {
+    font-size: 8.5pt;
+    line-height: 1.65;
+    color: #333;
+    margin: 0;
+}
+
+/* ── Timeline entries ── */
+.crp-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.crp-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.crp-entry-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7C3AED;
+    flex-shrink: 0;
+    margin-top: 4px;
+    box-shadow: 0 0 0 2px #EDE9FE;
+}
+
+.crp-entry-body {
+    flex: 1;
+}
+
+.crp-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 3px;
+}
+
+.crp-entry-role {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.crp-entry-company {
+    font-size: 8.5pt;
+    color: #7C3AED;
+    font-weight: 500;
+    margin: 1px 0 0;
+}
+
+.crp-entry-right {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.crp-date {
+    display: block;
+    font-size: 7.5pt;
+    color: #555;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.crp-loc {
+    display: block;
+    font-size: 7.5pt;
+    color: #888;
+    margin-top: 2px;
+}
+
+.crp-entry-desc {
+    font-size: 8.5pt;
+    line-height: 1.55;
+    color: #333;
+    margin: 5px 0 0;
+}
+
+/* ── Project cards ── */
+.crp-project-card {
+    background: #FAF5FF;
+    border: 1px solid #EDE9FE;
+    border-left: 3px solid #7C3AED;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+}
+
+.crp-project-card:last-child { margin-bottom: 0; }
+
+.crp-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.crp-project-name {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #4C1D95;
+    margin: 0;
+}
+
+.crp-project-link {
+    font-size: 7.5pt;
+    color: #7C3AED;
+    text-decoration: underline;
+    flex-shrink: 0;
+}
+
+.crp-tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: 5px;
+}
+
+.crp-tech {
+    font-size: 7pt;
+    background: #EDE9FE;
+    color: #6D28D9;
+    border: 1px solid #DDD6FE;
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-weight: 600;
+}
+
+/* ── Print ── */
+@media print {
+    .crp-resume { box-shadow: none; width: 210mm; }
+    .crp-section { break-inside: avoid; }
+}
+
+/* ── Responsive ── */

@@ -28,10 +28,13 @@ import JDResumeBuilder from "./pages/JDResumeBuilder";
 import JDCoverLetterBuilder from "./pages/JDCoverLetterBuilder";
 import ResumeUpgrader from "./pages/ResumeUpgrader";
 import CoverLetterUpgrader from "./pages/CoverLetterUpgrader";
-import ResumeCustomizer from "./pages/ResumeCustomizer";
+// Legacy component removed from imports
 import CoverLetterCustomizer from "./pages/CoverLetterCustomizer";
 import ResumeTemplates from "./pages/ResumeTemplates";
 import CoverLetterTemplates from "./pages/CoverLetterTemplates";
+
+// Dynamic Resume Template System
+import ResumeBuilder from "./pages/ResumeBuilder";
 
 function App() {
   return (
@@ -57,8 +60,9 @@ function App() {
               <Route path="/resume/role-based" element={<RoleBasedResumeBuilder />} />
               <Route path="/resume/jd-builder" element={<JDResumeBuilder />} />
               <Route path="/resume/guidelines" element={<ResumeGuidelines />} />
-              <Route path="/resume/upgrader" element={<ResumeUpgrader />} />
-              <Route path="/resume/customizer" element={<ResumeCustomizer />} />
+              {/* Dynamic Resume Builder mapped to /resume/customizer */}
+              <Route path="/resume/customizer" element={<ResumeBuilder />} />
+              <Route path="/resume/customizer/:id" element={<ResumeBuilder />} />
               <Route path="/resume/templates" element={<ResumeTemplates />} />
 
               {/* Cover Letter */}
@@ -79,7 +83,7 @@ function App() {
               {/* Legacy Routes */}
               <Route path="/ai-resume-builder" element={<AIResumeBuilder />} />
               <Route path="/ai-cover-letter-builder" element={<AICoverLetterBuilder />} />
-              <Route path="/resume-customizer" element={<ResumeCustomizer />} />
+              <Route path="/resume-customizer" element={<ResumeBuilder />} />
               <Route path="/cover-letter-customizer" element={<CoverLetterCustomizer />} />
 
             </Route>
