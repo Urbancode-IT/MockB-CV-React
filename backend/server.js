@@ -33,16 +33,25 @@ const app = express();
 
 app.use(helmet());
 
-const allowedOrigins = [
+const deployedClientUrl = "https://mockbcv.netlify.app";
+const envClientUrls = [
     process.env.CLIENT_URL,
+    ...(process.env.CLIENT_URLS || "").split(","),
+];
+
+const allowedOrigins = [
+    deployedClientUrl,
+    ...envClientUrls,
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:5175",
     "http://localhost:5176",
     "http://localhost:5177",
-].filter(Boolean);
+]
+    .map((origin) => origin && origin.trim())
+    .filter(Boolean);
 
-app.use(cors({
+const corsOptions = {
     origin(origin, callback) {
         // Allow non-browser tools (no Origin) and local Vite ports
         if (!origin || allowedOrigins.includes(origin)) {
@@ -51,7 +60,10 @@ app.use(cors({
         return callback(new Error(`CORS blocked for origin: ${origin}`));
     },
     credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());

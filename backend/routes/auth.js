@@ -18,6 +18,13 @@ const {
 
 const generateToken = require("../utils/generateToken");
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 5 * 24 * 60 * 60 * 1000,
+};
+
 
 // ======================================
 // Register
@@ -50,12 +57,7 @@ router.post(
 
         const token = generateToken(user._id);
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
-            maxAge: 5 * 24 * 60 * 60 * 1000,
-        });
+        res.cookie("token", token, cookieOptions);
 
         return success(
             res,
@@ -106,12 +108,7 @@ router.post(
 
         const token = generateToken(user._id);
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
-            maxAge: 5 * 24 * 60 * 60 * 1000,
-        });
+        res.cookie("token", token, cookieOptions);
 
         return success(
             res,
@@ -169,7 +166,11 @@ router.post(
     "/logout",
     (req, res) => {
 
-        res.clearCookie("token");
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        });
 
         return success(
             res,
