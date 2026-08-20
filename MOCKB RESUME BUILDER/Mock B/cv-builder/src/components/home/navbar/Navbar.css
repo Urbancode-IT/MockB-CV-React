@@ -1,5 +1,5 @@
 /* Navbar Styles */
-header {
+#header {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,13 +9,13 @@ header {
     transition: all 0.3s ease;
 }
 
-header.scrolled {
+#header.scrolled {
     background: rgba(13, 13, 13, 0.9);
     backdrop-filter: blur(10px);
     padding: 1rem 0;
 }
 
-header .container {
+#header .container {
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 2rem;

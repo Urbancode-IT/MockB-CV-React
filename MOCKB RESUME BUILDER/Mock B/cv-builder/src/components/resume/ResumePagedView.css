@@ -1,0 +1,58 @@
+.resume-paged {
+    width: var(--page-w, 210mm);
+    position: relative;
+}
+
+.resume-measure {
+    position: absolute;
+    left: -12000px;
+    top: 0;
+    width: var(--page-w, 210mm);
+    pointer-events: none;
+}
+
+.resume-sheets {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.resume-sheet {
+    width: var(--page-w, 210mm);
+    height: var(--page-h, 297mm);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.14);
+    position: relative;
+}
+
+.resume-sheet-inner {
+    width: var(--page-w, 210mm);
+}
+
+.resume-sheet .resume-design-wrapper,
+.resume-sheet .cp-resume,
+.resume-sheet .pp-resume,
+.resume-sheet .ss-resume,
+.resume-sheet .cm-resume {
+    box-shadow: none !important;
+}
+
+@media print {
+    .resume-measure {
+        display: none !important;
+    }
+    .resume-sheets {
+        gap: 0;
+    }
+    .resume-sheet {
+        box-shadow: none;
+        break-after: page;
+        page-break-after: always;
+    }
+    .resume-sheet:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+}

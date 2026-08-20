@@ -1,25 +1,13 @@
-const required = [
+const requiredDefaults = {
+    PORT: "5000",
+    JWT_SECRET: "dev-only-change-this-jwt-secret",
+    MONGO_URI: "mongodb://127.0.0.1:27017/mockb_cv",
+};
 
-    "PORT",
-
-    "JWT_SECRET",
-
-    "MONGO_URI"
-
-];
-
-required.forEach((key) => {
-
+Object.entries(requiredDefaults).forEach(([key, value]) => {
     if (!process.env[key]) {
-
-        throw new Error(
-
-            `Missing Environment Variable: ${key}`
-
-        );
-
+        process.env[key] = value;
     }
-
 });
 
 const { cleanEnv, str, port } = require("envalid");

@@ -1,5 +1,7 @@
 import React from 'react';
 import './ClassicProfessional.css';
+import ExtraSections from './ExtraSections';
+import { visibleList, isEntryVisible, sectionTitle } from './templateUtils';
 
 // ======================================
 // Classic Professional Template
@@ -9,32 +11,33 @@ import './ClassicProfessional.css';
 // ======================================
 
 const ClassicProfessional = ({ resumeData = {} }) => {
+    const hidden = resumeData.hiddenEntries || {};
     const {
-        themeColor,
         personal = {},
-        summary = '',
-        experience = [],
-        education = [],
-        skills = [],
-        projects = [],
-        certifications = [],
-        languages = [],
     } = resumeData;
+    const summary = isEntryVisible(resumeData, 'summary') ? (resumeData.summary || '') : '';
+    const experience = visibleList(resumeData.experience, hidden.experience);
+    const education = visibleList(resumeData.education, hidden.education);
+    const skills = visibleList(resumeData.skills, hidden.skills);
+    const projects = visibleList(resumeData.projects, hidden.projects);
+    const certifications = visibleList(resumeData.certifications, hidden.certifications);
+    const languages = visibleList(resumeData.languages, hidden.languages);
+    const t = (id, fallback) => sectionTitle(resumeData, id, fallback);
 
     const hasContent = (arr) => Array.isArray(arr) && arr.length > 0;
     const sectionOrder = resumeData.sectionOrder || ['summary', 'experience', 'education', 'skills', 'projects', 'certifications', 'languages'];
-    const orderStyle = (section) => ({ order: Math.max(0, sectionOrder.indexOf(section)), marginBottom: 'var(--resume-section-spacing, 18px)' });
+    const orderStyle = (section) => ({ order: Math.max(0, sectionOrder.indexOf(section)) });
 
     return (
-        <div className="cp-resume" style={{ '--accent-color': themeColor || '#1A3A5C' }}>
+        <div className="cp-resume">
 
             {/* ── HEADER ── */}
             <div className="cp-header">
-                <h1 className="cp-name">
+                <h1 className="cp-name rx-name">
                     {personal.name || 'Your Name'}
                 </h1>
                 {personal.jobTitle && (
-                    <p className="cp-job-title">{personal.jobTitle}</p>
+                    <p className="cp-job-title rx-role">{personal.jobTitle}</p>
                 )}
                 <div className="cp-contact-row">
                     {personal.email && (
@@ -76,22 +79,20 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                 </div>
             </div>
 
-            <div className="cp-body" style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="cp-body">
 
                 {/* ── SUMMARY ── */}
                 {summary && (
-                    <section className="cp-section" style={orderStyle('summary')}>
-                        <h2 className="cp-section-title">Professional Summary</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('summary')} data-section="summary">
+                        <h2 className="cp-section-title">{t('summary', 'Professional Summary')}</h2>
                         <p className="cp-summary">{summary}</p>
                     </section>
                 )}
 
                 {/* ── EXPERIENCE ── */}
                 {hasContent(experience) && (
-                    <section className="cp-section" style={orderStyle('experience')}>
-                        <h2 className="cp-section-title">Work Experience</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('experience')} data-section="experience">
+                        <h2 className="cp-section-title">{t('experience', 'Work Experience')}</h2>
                         {experience.map((exp, i) => (
                             <div key={i} className="cp-entry">
                                 <div className="cp-entry-header">
@@ -120,9 +121,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── EDUCATION ── */}
                 {hasContent(education) && (
-                    <section className="cp-section" style={orderStyle('education')}>
-                        <h2 className="cp-section-title">Education</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('education')} data-section="education">
+                        <h2 className="cp-section-title">{t('education', 'Education')}</h2>
                         {education.map((edu, i) => (
                             <div key={i} className="cp-entry">
                                 <div className="cp-entry-header">
@@ -150,9 +150,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── SKILLS ── */}
                 {hasContent(skills) && (
-                    <section className="cp-section" style={orderStyle('skills')}>
-                        <h2 className="cp-section-title">Skills</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('skills')} data-section="skills">
+                        <h2 className="cp-section-title">{t('skills', 'Skills')}</h2>
                         <div className="cp-skills-grid">
                             {skills.map((skill, i) => (
                                 <div key={i} className="cp-skill-item">
@@ -170,9 +169,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── PROJECTS ── */}
                 {hasContent(projects) && (
-                    <section className="cp-section" style={orderStyle('projects')}>
-                        <h2 className="cp-section-title">Projects</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('projects')} data-section="projects">
+                        <h2 className="cp-section-title">{t('projects', 'Projects')}</h2>
                         {projects.map((proj, i) => (
                             <div key={i} className="cp-entry">
                                 <div className="cp-entry-header">
@@ -198,9 +196,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── CERTIFICATIONS ── */}
                 {hasContent(certifications) && (
-                    <section className="cp-section" style={orderStyle('certifications')}>
-                        <h2 className="cp-section-title">Certifications</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('certifications')} data-section="certifications">
+                        <h2 className="cp-section-title">{t('certifications', 'Certifications')}</h2>
                         {certifications.map((cert, i) => (
                             <div key={i} className="cp-cert-row">
                                 <span className="cp-cert-name">{cert.name}</span>
@@ -214,9 +211,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── LANGUAGES ── */}
                 {hasContent(languages) && (
-                    <section className="cp-section" style={orderStyle('languages')}>
-                        <h2 className="cp-section-title">Languages</h2>
-                        <div className="cp-section-line"></div>
+                    <section className="cp-section" style={orderStyle('languages')} data-section="languages">
+                        <h2 className="cp-section-title">{t('languages', 'Languages')}</h2>
                         <div className="cp-languages-row">
                             {languages.map((lang, i) => (
                                 <div key={i} className="cp-lang-item">
@@ -231,6 +227,8 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                         </div>
                     </section>
                 )}
+
+                <ExtraSections resumeData={resumeData} exclude={['projects', 'languages']} />
 
             </div>
         </div>

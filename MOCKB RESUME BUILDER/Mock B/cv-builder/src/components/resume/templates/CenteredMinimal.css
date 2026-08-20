@@ -1,0 +1,170 @@
+.cm-resume {
+    font-family: inherit;
+    font-size: inherit;
+    color: #222;
+    background: #ffffff;
+    width: 210mm;
+    min-height: var(--resume-page-h, 297mm);
+    height: var(--resume-page-h, 297mm);
+    max-height: var(--resume-page-h, 297mm);
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cm-header {
+    text-align: center;
+    padding: var(--resume-pad-top, 18mm) var(--resume-pad-side, 18mm) 14px;
+    flex: 0 0 auto;
+}
+
+.resume-design-wrapper[data-header-align="left"] .cm-header {
+    text-align: left;
+}
+
+.resume-design-wrapper[data-header-align="right"] .cm-header {
+    text-align: right;
+}
+
+.cm-name {
+    margin: 0;
+    font-size: var(--resume-name-size, 28pt);
+    font-weight: var(--resume-name-weight, 700);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--resume-name-color, var(--accent-color, #0E7490));
+    line-height: 1.12;
+}
+
+.cm-role {
+    margin: 12px 0 0;
+    font-size: var(--resume-title-size, 12.5pt);
+    font-weight: 700;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    font-style: var(--resume-title-style, normal);
+    color: var(--resume-title-color, #111);
+}
+
+.cm-contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 36px;
+    background: #f3f3f3;
+    padding: 13px var(--resume-pad-side, 18mm);
+    margin-bottom: var(--resume-header-gap, 18px);
+    flex: 0 0 auto;
+}
+
+.cm-contact-item {
+    font-size: 10pt;
+    color: #333;
+    white-space: nowrap;
+}
+
+.cm-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 8px var(--resume-pad-side, 18mm) var(--resume-pad-bottom, 18mm);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--resume-section-spacing, 22px);
+    overflow: hidden;
+}
+
+.cm-section,
+.cm-body .rx-section {
+    min-width: 0;
+    flex: 0 0 auto;
+}
+
+.cm-title,
+.cm-body .rx-title {
+    margin: 0 0 10px;
+    padding: 0 0 6px;
+    font-size: var(--resume-heading-size, 11.5pt);
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: var(--resume-heading-transform, uppercase);
+    text-align: var(--resume-heading-align, left);
+    color: var(--resume-heading-color, #111);
+    border-bottom: 1px solid var(--resume-line-color, #d0d0d0);
+}
+
+.cm-copy,
+.cm-expertise {
+    margin: 0;
+    font-size: 10.5pt;
+    line-height: 1.62;
+    color: #2a2a2a;
+}
+
+.cm-entry {
+    margin-bottom: var(--resume-entry-gap, 12px);
+}
+
+.cm-entry:last-child {
+    margin-bottom: 0;
+}
+
+.cm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 6px;
+}
+
+.cm-row strong {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #111;
+}
+
+.cm-org {
+    margin: 0 0 5px;
+    font-size: 10.5pt;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333;
+}
+
+.cm-date {
+    font-size: 10.5pt;
+    color: #111;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 700;
+}
+
+.cm-bullets {
+    margin: 4px 0 0;
+    padding: 0 0 0 18px;
+}
+
+.cm-bullets li {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #2a2a2a;
+}
+
+.cm-cert-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cm-cert-list li {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #2a2a2a;
+}
+
+.cm-body .rx-entry {
+    margin-bottom: 8px;
+}

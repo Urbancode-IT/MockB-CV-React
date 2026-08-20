@@ -1,0 +1,111 @@
+.sm-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    background: rgba(0, 0, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(6px);
+}
+
+.sm-card {
+    position: relative;
+    width: min(640px, 100%);
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    color: #fff;
+}
+
+.sm-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ccc;
+    cursor: pointer;
+}
+
+.sm-kicker {
+    margin: 0 0 6px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #EEC30C;
+    font-weight: 700;
+}
+
+.sm-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.45rem;
+}
+
+.sm-lead {
+    margin: 0 0 20px;
+    color: #b3b3b3;
+    line-height: 1.5;
+    font-size: 0.92rem;
+}
+
+.sm-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.sm-option {
+    text-align: left;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 18px 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sm-option:hover,
+.sm-option--accent:hover {
+    border-color: #EEC30C;
+}
+
+.sm-option--accent {
+    background: linear-gradient(180deg, rgba(238, 195, 12, 0.12), rgba(238, 195, 12, 0.02));
+}
+
+.sm-icon {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(238, 195, 12, 0.15);
+    color: #EEC30C;
+    margin-bottom: 12px;
+}
+
+.sm-option-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.sm-option-copy {
+    display: block;
+    font-size: 0.82rem;
+    color: #a3a3a3;
+    line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+    .sm-options {
+        grid-template-columns: 1fr;
+    }
+}

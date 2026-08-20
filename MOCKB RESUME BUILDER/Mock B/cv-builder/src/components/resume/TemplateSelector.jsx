@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RESUME_TEMPLATES } from '../../config/templates';
 import ResumeTemplateRenderer from './ResumeTemplateRenderer';
-import sampleResumeData from '../../data/sampleResumeData';
+import { sampleForTemplate } from '../../data/sampleResumeData';
 import './TemplateSelector.css';
 
 // ======================================
@@ -51,7 +51,8 @@ const TemplateSelector = ({ selectedTemplate, onSelect }) => {
                                     <div className="ts-preview-scale">
                                         <ResumeTemplateRenderer
                                             template={tmpl.id}
-                                            resumeData={sampleResumeData}
+                                            resumeData={sampleForTemplate(tmpl.id)}
+                                            preview
                                         />
                                     </div>
 
@@ -70,31 +71,7 @@ const TemplateSelector = ({ selectedTemplate, onSelect }) => {
                                     </div>
                                 </div>
 
-                                {/* Card footer */}
-                                <div className="ts-card-footer">
-                                    <div className="ts-card-info">
-                                        <span className="ts-card-name">{tmpl.name}</span>
-                                        <span className="ts-card-desc">{tmpl.description}</span>
-                                        <span
-                                            className="ts-card-category"
-                                            style={{ background: `${tmpl.accentColor}20`, color: tmpl.accentColor }}
-                                        >
-                                            {tmpl.category}
-                                        </span>
-                                    </div>
-                                    <button
-                                        className={`ts-btn-use ${isSelected ? 'ts-btn-use--active' : ''}`}
-                                        onClick={() => handleSelect(tmpl.id)}
-                                        style={isSelected ? { background: tmpl.accentColor } : {}}
-                                    >
-                                        {isSelected ? (
-                                            <>
-                                                <i className="fa-solid fa-check"></i>
-                                                Selected
-                                            </>
-                                        ) : 'Use This'}
-                                    </button>
-                                </div>
+                                <span className="ts-card-name" onClick={() => handleSelect(tmpl.id)}>{tmpl.name}</span>
 
                                 {/* Selected badge */}
                                 {isSelected && (
@@ -137,7 +114,8 @@ const TemplateSelector = ({ selectedTemplate, onSelect }) => {
                             <div className="ts-modal-resume">
                                 <ResumeTemplateRenderer
                                     template={previewTemplate}
-                                    resumeData={sampleResumeData}
+                                    resumeData={sampleForTemplate(previewTemplate)}
+                                    preview
                                 />
                             </div>
                         </div>

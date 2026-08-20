@@ -1,0 +1,18 @@
+.rx-section { break-inside: avoid; }
+.rx-title {
+    font-size: var(--resume-heading-size, 10.5pt);
+    font-weight: 700;
+    text-transform: var(--resume-heading-transform, uppercase);
+    text-align: var(--resume-heading-align, left);
+    color: var(--resume-heading-color, inherit);
+    letter-spacing: 1.2px;
+    margin: 0 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--resume-line-color, currentColor);
+}
+.rx-entry { margin-bottom: 8px; }
+.rx-entry strong { display: block; font-size: 10pt; }
+.rx-entry span { display: block; font-size: 8.5pt; color: #555; }
+.rx-entry p { margin: 3px 0 0; font-size: 9pt; line-height: 1.5; color: #333; }
+.rx-chips { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+.rx-chips span { font-size: 9pt; font-weight: 600; }

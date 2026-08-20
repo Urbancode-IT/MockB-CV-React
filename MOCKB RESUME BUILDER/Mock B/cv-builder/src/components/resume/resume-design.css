@@ -1,0 +1,922 @@
+/* Applies Customize panel settings to every live resume template */
+
+.resume-design-wrapper {
+    --resume-accent: var(--accent-color, #1A3A5C);
+    background: #fff;
+    color: #111;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.resume-design-wrapper,
+.resume-design-wrapper .cp-resume,
+.resume-design-wrapper .pp-resume,
+.resume-design-wrapper .ss-resume,
+.resume-design-wrapper .cm-resume,
+.resume-design-wrapper .mp-resume,
+.resume-design-wrapper .ma-resume,
+.resume-design-wrapper .ex-resume,
+.resume-design-wrapper .crp-resume {
+    font-family: var(--resume-font, Inter, Arial, sans-serif) !important;
+    font-size: var(--resume-font-size, 11pt);
+    line-height: var(--resume-line-height, 1.4);
+}
+
+.resume-design-wrapper .cp-body,
+.resume-design-wrapper .ma-body,
+.resume-design-wrapper .ex-body,
+.resume-design-wrapper .mp-main,
+.resume-design-wrapper .crp-main,
+.resume-design-wrapper .pp-main {
+    padding-left: var(--resume-pad-side, 12mm) !important;
+    padding-right: var(--resume-pad-side, 12mm) !important;
+    padding-bottom: var(--resume-pad-bottom, 12mm) !important;
+}
+
+.resume-design-wrapper .cp-body {
+    padding-top: var(--resume-header-gap, 12px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    gap: var(--resume-section-spacing, 16px) !important;
+}
+
+.resume-design-wrapper .cp-section,
+.resume-design-wrapper .rx-section {
+    margin-bottom: 0 !important;
+}
+
+.resume-design-wrapper .cp-header,
+.resume-design-wrapper .ma-header,
+.resume-design-wrapper .ex-header,
+.resume-design-wrapper .mp-header,
+.resume-design-wrapper .pp-sidebar,
+.resume-design-wrapper .pp-topbar {
+    padding-top: var(--resume-pad-top, 12mm) !important;
+    padding-left: var(--resume-pad-side, 12mm) !important;
+    padding-right: var(--resume-pad-side, 12mm) !important;
+}
+
+.resume-design-wrapper .pp-sidebar {
+    padding-bottom: var(--resume-pad-bottom, 12mm) !important;
+}
+
+.resume-design-wrapper .pp-main {
+    padding-top: var(--resume-pad-top, 12mm) !important;
+}
+
+.resume-design-wrapper .cp-name,
+.resume-design-wrapper .pp-name,
+.resume-design-wrapper .ss-name,
+.resume-design-wrapper .cm-name,
+.resume-design-wrapper .mp-name,
+.resume-design-wrapper .ma-name,
+.resume-design-wrapper .ex-name,
+.resume-design-wrapper .crp-sidebar-name {
+    font-size: var(--resume-name-size, 24pt) !important;
+    font-weight: var(--resume-name-weight, 700) !important;
+    font-family: inherit !important;
+    color: var(--resume-name-color, inherit);
+}
+
+.resume-design-wrapper .cp-job-title,
+.resume-design-wrapper .pp-role,
+.resume-design-wrapper .ss-role,
+.resume-design-wrapper .cm-role,
+.resume-design-wrapper .mp-job-title,
+.resume-design-wrapper .ma-job-title,
+.resume-design-wrapper .ex-job-title,
+.resume-design-wrapper .crp-sidebar-role {
+    font-size: var(--resume-title-size, 11pt) !important;
+    font-style: var(--resume-title-style, normal) !important;
+    color: var(--resume-title-color, inherit);
+}
+
+.resume-design-wrapper .cp-section-title,
+.resume-design-wrapper .rx-title,
+.resume-design-wrapper .pp-section > h2,
+.resume-design-wrapper .pp-side-block > h2,
+.resume-design-wrapper .pp-resume .rx-title,
+.resume-design-wrapper .mp-section-title,
+.resume-design-wrapper .ma-section-title,
+.resume-design-wrapper .ex-section-title,
+.resume-design-wrapper .mp-sidebar-title,
+.resume-design-wrapper .crp-sb-title,
+.resume-design-wrapper .crp-section-title {
+    font-size: var(--resume-heading-size, 10.5pt) !important;
+    text-transform: var(--resume-heading-transform, uppercase) !important;
+    text-align: var(--resume-heading-align, left) !important;
+    color: var(--resume-heading-color, inherit);
+}
+
+.resume-design-wrapper[data-heading-style="full-underline"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="full-underline"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="full-underline"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="full-underline"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="full-underline"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="full-underline"] .rx-title {
+    border-bottom: 1.5px solid var(--resume-line-color, currentColor) !important;
+    padding-bottom: 4px !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper[data-heading-style="short-double-underline"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .rx-title {
+    border-bottom: 3px double var(--resume-line-color, currentColor) !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="top-bottom-lines"] .rx-title {
+    border-top: 1px solid var(--resume-line-color, currentColor) !important;
+    border-bottom: 1px solid var(--resume-line-color, currentColor) !important;
+    background: #f1f5f9 !important;
+    padding: 6px 10px !important;
+}
+
+.resume-design-wrapper[data-heading-style="dashed"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="dashed"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="dashed"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="dashed"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="dashed"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="dashed"] .rx-title {
+    border-bottom: 1.5px dashed var(--resume-line-color, currentColor) !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper[data-heading-style="dotted"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="dotted"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="dotted"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="dotted"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="dotted"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="dotted"] .rx-title {
+    border-bottom: 1.5px dotted var(--resume-line-color, currentColor) !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper[data-heading-style="box"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="box"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="box"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="box"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="box"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="box"] .rx-title {
+    background: var(--resume-accent) !important;
+    color: #fff !important;
+    padding: 6px 10px !important;
+}
+
+.resume-design-wrapper[data-heading-style="none"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="none"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="none"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="none"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="none"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="none"] .rx-title {
+    border: none !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper[data-heading-style="full-underline"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="full-underline"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="full-underline"] .pp-resume .rx-title {
+    border-bottom: 1.5px solid var(--resume-line-color, var(--resume-accent)) !important;
+    padding-bottom: 4px !important;
+    background: transparent !important;
+}
+.resume-design-wrapper[data-heading-style="short-double-underline"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="short-double-underline"] .pp-resume .rx-title {
+    border-bottom: 3px double var(--resume-line-color, var(--resume-accent)) !important;
+}
+.resume-design-wrapper[data-heading-style="dashed"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="dashed"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="dashed"] .pp-resume .rx-title {
+    border-bottom: 1.5px dashed var(--resume-line-color, var(--resume-accent)) !important;
+}
+.resume-design-wrapper[data-heading-style="dotted"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="dotted"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="dotted"] .pp-resume .rx-title {
+    border-bottom: 1.5px dotted var(--resume-line-color, var(--resume-accent)) !important;
+}
+.resume-design-wrapper[data-heading-style="box"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="box"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="box"] .pp-resume .rx-title {
+    background: var(--resume-accent) !important;
+    color: #fff !important;
+    padding: 6px 10px !important;
+    border: none !important;
+}
+.resume-design-wrapper[data-heading-style="none"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="none"] .pp-side-block > h2,
+.resume-design-wrapper[data-heading-style="none"] .pp-resume .rx-title {
+    border: none !important;
+    background: transparent !important;
+}
+
+.resume-design-wrapper .cp-entry-title,
+.resume-design-wrapper .pp-entry-top h3,
+.resume-design-wrapper .mp-entry-role,
+.resume-design-wrapper .ma-entry-title,
+.resume-design-wrapper .ex-entry-title,
+.resume-design-wrapper .crp-entry-title {
+    font-size: var(--resume-entry-title-size, 10pt) !important;
+}
+
+.resume-design-wrapper .cp-entry-subtitle,
+.resume-design-wrapper .mp-entry-company,
+.resume-design-wrapper .ma-entry-sub,
+.resume-design-wrapper .ex-entry-sub {
+    font-style: var(--resume-subtitle-style, italic);
+    font-weight: var(--resume-subtitle-weight, 400);
+}
+
+.resume-design-wrapper .cp-entry,
+.resume-design-wrapper .pp-entry,
+.resume-design-wrapper .mp-entry,
+.resume-design-wrapper .ma-split-entry,
+.resume-design-wrapper .ex-split-entry {
+    margin-bottom: var(--resume-entry-gap, 10px) !important;
+}
+
+.resume-design-wrapper[data-desc-indent="true"] .cp-entry-desc,
+.resume-design-wrapper[data-desc-indent="true"] .mp-entry-desc,
+.resume-design-wrapper[data-desc-indent="true"] .ma-bullets,
+.resume-design-wrapper[data-desc-indent="true"] .ex-bullets {
+    padding-left: 16px !important;
+}
+
+.resume-design-wrapper[data-list="hyphen"] .ma-bullets,
+.resume-design-wrapper[data-list="hyphen"] .ex-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+.resume-design-wrapper[data-list="hyphen"] .ma-bullets li::before,
+.resume-design-wrapper[data-list="hyphen"] .ex-bullets li::before {
+    content: '– ';
+}
+
+/* Entry layout 1: title left / dates right */
+.resume-design-wrapper[data-entry-layout="1"] .cp-entry-header,
+.resume-design-wrapper[data-entry-layout="1"] .mp-entry-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+}
+.resume-design-wrapper[data-entry-layout="1"] .ma-split-entry,
+.resume-design-wrapper[data-entry-layout="1"] .ex-split-entry {
+    display: grid !important;
+    grid-template-columns: 1fr max-content !important;
+}
+.resume-design-wrapper[data-entry-layout="1"] .ma-split-left,
+.resume-design-wrapper[data-entry-layout="1"] .ex-split-left { order: 2; text-align: right; }
+.resume-design-wrapper[data-entry-layout="1"] .ma-split-right,
+.resume-design-wrapper[data-entry-layout="1"] .ex-split-right { order: 1; }
+
+/* Entry layout 2: dates left / details right (reference 3rd & 4th) */
+.resume-design-wrapper[data-entry-layout="2"] .cp-entry-header,
+.resume-design-wrapper[data-entry-layout="2"] .mp-entry-header {
+    display: grid !important;
+    grid-template-columns: var(--resume-entry-left, 28%) 1fr !important;
+    gap: 14px !important;
+}
+.resume-design-wrapper[data-entry-layout="2"] .cp-entry-header > div:first-child,
+.resume-design-wrapper[data-entry-layout="2"] .mp-entry-header > div:first-child { order: 2; }
+.resume-design-wrapper[data-entry-layout="2"] .cp-entry-meta,
+.resume-design-wrapper[data-entry-layout="2"] .mp-entry-meta {
+    order: 1;
+    text-align: left !important;
+}
+.resume-design-wrapper[data-entry-layout="2"] .ma-split-entry,
+.resume-design-wrapper[data-entry-layout="2"] .ex-split-entry {
+    display: grid !important;
+    grid-template-columns: var(--resume-entry-left, 28%) 1fr !important;
+}
+
+/* Entry layout 3: meta on top, title below */
+.resume-design-wrapper[data-entry-layout="3"] .cp-entry-header,
+.resume-design-wrapper[data-entry-layout="3"] .mp-entry-header,
+.resume-design-wrapper[data-entry-layout="3"] .ma-split-entry,
+.resume-design-wrapper[data-entry-layout="3"] .ex-split-entry {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+}
+
+/* Entry layout 4: compact stacked */
+.resume-design-wrapper[data-entry-layout="4"] .cp-entry-header,
+.resume-design-wrapper[data-entry-layout="4"] .mp-entry-header,
+.resume-design-wrapper[data-entry-layout="4"] .ma-split-entry,
+.resume-design-wrapper[data-entry-layout="4"] .ex-split-entry {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+.resume-design-wrapper[data-entry-layout="4"] .cp-entry,
+.resume-design-wrapper[data-entry-layout="4"] .mp-entry,
+.resume-design-wrapper[data-entry-layout="4"] .ma-split-entry,
+.resume-design-wrapper[data-entry-layout="4"] .ex-split-entry {
+    margin-bottom: 6px !important;
+}
+
+/* Header alignment */
+.resume-design-wrapper[data-header-align="center"] .cp-header,
+.resume-design-wrapper[data-header-align="center"] .mp-header,
+.resume-design-wrapper[data-header-align="center"] .ma-header,
+.resume-design-wrapper[data-header-align="center"] .ex-header {
+    text-align: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+}
+.resume-design-wrapper[data-header-align="center"] .cp-contact-row,
+.resume-design-wrapper[data-header-align="center"] .ma-contact-grid,
+.resume-design-wrapper[data-header-align="center"] .ex-contact-grid {
+    justify-content: center !important;
+}
+
+.resume-design-wrapper[data-header-arrange="stacked"] .cp-contact-row,
+.resume-design-wrapper[data-header-arrange="stacked"] .ma-contact-grid,
+.resume-design-wrapper[data-header-arrange="stacked"] .ex-contact-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+}
+.resume-design-wrapper[data-header-arrange="horizontal"] .cp-contact-row,
+.resume-design-wrapper[data-header-arrange="horizontal"] .ma-contact-grid,
+.resume-design-wrapper[data-header-arrange="horizontal"] .ex-contact-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+    gap: 6px 16px !important;
+}
+.resume-design-wrapper[data-header-arrange="columns"] .cp-contact-row,
+.resume-design-wrapper[data-header-arrange="columns"] .ma-contact-grid,
+.resume-design-wrapper[data-header-arrange="columns"] .ex-contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+}
+
+.resume-design-wrapper[data-header-icons="bullet"] .cp-contact-item i,
+.resume-design-wrapper[data-header-icons="bullet"] .ma-contact-item i,
+.resume-design-wrapper[data-header-icons="bullet"] .ex-contact-item i {
+    font-size: 0 !important;
+}
+.resume-design-wrapper[data-header-icons="bullet"] .cp-contact-item i::before,
+.resume-design-wrapper[data-header-icons="bullet"] .ma-contact-item i::before,
+.resume-design-wrapper[data-header-icons="bullet"] .ex-contact-item i::before {
+    content: '•';
+    font-size: 10pt;
+    font-style: normal;
+    font-family: inherit;
+}
+.resume-design-wrapper[data-header-icons="bar"] .cp-contact-item i,
+.resume-design-wrapper[data-header-icons="bar"] .ma-contact-item i,
+.resume-design-wrapper[data-header-icons="bar"] .ex-contact-item i { display: none !important; }
+.resume-design-wrapper[data-header-icons="bar"] .cp-contact-item:not(:last-child)::after,
+.resume-design-wrapper[data-header-icons="bar"] .ma-contact-item:not(:last-child)::after,
+.resume-design-wrapper[data-header-icons="bullet"] .ss-contact li::before {
+    content: '• ';
+}
+.resume-design-wrapper[data-header-icons="bar"] .ss-contact li:not(:last-child)::after {
+    content: ' |';
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.resume-design-wrapper[data-heading-style="line-text-line"] .cp-section-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .mp-section-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .ma-section-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .ex-section-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .crp-section-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .rx-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .ss-title,
+.resume-design-wrapper[data-heading-style="line-text-line"] .pp-section > h2,
+.resume-design-wrapper[data-heading-style="line-text-line"] .pp-side-block > h2 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border: none !important;
+    background: transparent !important;
+}
+.resume-design-wrapper[data-heading-style="line-text-line"] .rx-title::after,
+.resume-design-wrapper[data-heading-style="line-text-line"] .ss-title::after,
+.resume-design-wrapper[data-heading-style="line-text-line"] .cp-section-title::after,
+.resume-design-wrapper[data-heading-style="line-text-line"] .pp-section > h2::after,
+.resume-design-wrapper[data-heading-style="line-text-line"] .pp-side-block > h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--resume-line-color, currentColor);
+}
+
+.resume-design-wrapper[data-list="hyphen"] .ss-bullets,
+.resume-design-wrapper[data-list="hyphen"] .pp-bullets,
+.resume-design-wrapper[data-list="hyphen"] .cm-bullets,
+.resume-design-wrapper[data-list="hyphen"] .cm-cert-list {
+    list-style: none;
+    padding-left: 0;
+}
+.resume-design-wrapper[data-list="hyphen"] .ss-bullets li::before,
+.resume-design-wrapper[data-list="hyphen"] .pp-bullets li::before,
+.resume-design-wrapper[data-list="hyphen"] .cm-bullets li::before,
+.resume-design-wrapper[data-list="hyphen"] .cm-cert-list li::before {
+    content: '– ';
+}
+
+.resume-design-wrapper[data-desc-indent="true"] .ss-bullets,
+.resume-design-wrapper[data-desc-indent="true"] .pp-bullet {
+    padding-left: 16px !important;
+}
+
+.resume-design-wrapper[data-link-underline="true"] a,
+.resume-design-wrapper[data-link-underline="true"] .cp-proj-link,
+.resume-design-wrapper[data-link-underline="true"] .mp-proj-link,
+.resume-design-wrapper[data-link-underline="true"] .ss-loc,
+.resume-design-wrapper[data-link-underline="true"] .pp-link,
+.resume-design-wrapper[data-link-underline="true"] .ss-contact li,
+.resume-design-wrapper[data-link-underline="true"] .cp-contact-item,
+.resume-design-wrapper[data-link-underline="true"] .cm-contact-item,
+.resume-design-wrapper[data-link-underline="true"] .pp-contact span {
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+}
+.resume-design-wrapper[data-link-underline="false"] a,
+.resume-design-wrapper[data-link-underline="false"] .cp-proj-link,
+.resume-design-wrapper[data-link-underline="false"] .ss-loc,
+.resume-design-wrapper[data-link-underline="false"] .ss-contact li,
+.resume-design-wrapper[data-link-underline="false"] .cp-contact-item,
+.resume-design-wrapper[data-link-underline="false"] .cm-contact-item,
+.resume-design-wrapper[data-link-underline="false"] .pp-contact span {
+    text-decoration: none !important;
+}
+.resume-design-wrapper[data-link-blue="true"] a,
+.resume-design-wrapper[data-link-blue="true"] .cp-proj-link,
+.resume-design-wrapper[data-link-blue="true"] .mp-proj-link,
+.resume-design-wrapper[data-link-blue="true"] .ss-loc,
+.resume-design-wrapper[data-link-blue="true"] .pp-link,
+.resume-design-wrapper[data-link-blue="true"] .ss-contact li,
+.resume-design-wrapper[data-link-blue="true"] .cp-contact-item,
+.resume-design-wrapper[data-link-blue="true"] .cm-contact-item,
+.resume-design-wrapper[data-link-blue="true"] .pp-contact {
+    color: #2563EB !important;
+}
+.resume-design-wrapper[data-link-icon="true"] .ss-contact li::before {
+    content: '\f0c1';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 7pt;
+    margin-right: 4px;
+}
+.resume-design-wrapper[data-link-icon="false"] .cp-contact-item i,
+.resume-design-wrapper[data-link-icon="false"] .ma-contact-item i,
+.resume-design-wrapper[data-link-icon="false"] .ex-contact-item i,
+.resume-design-wrapper[data-link-icon="false"] .mp-contact-item i,
+.resume-design-wrapper[data-link-icon="false"] .pp-contact i {
+    display: none !important;
+}
+
+.resume-design-wrapper[data-header-align="center"] .ss-header,
+.resume-design-wrapper[data-header-align="center"] .cm-header,
+.resume-design-wrapper[data-header-align="center"] .pp-identity {
+    text-align: center !important;
+}
+.resume-design-wrapper[data-header-align="center"] .ss-contact {
+    justify-content: center !important;
+}
+
+.resume-design-wrapper[data-header-arrange="stacked"] .ss-contact {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+}
+.resume-design-wrapper[data-header-arrange="horizontal"] .ss-contact {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+}
+.resume-design-wrapper[data-header-arrange="columns"] .ss-contact {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+}
+
+.resume-design-wrapper[data-role-pos="beside"] .ss-identity {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}
+.resume-design-wrapper[data-role-pos="beside"] .ss-role {
+    margin: 0 !important;
+}
+
+.resume-design-wrapper[data-role-pos="beside"] .cp-header,
+.resume-design-wrapper[data-role-pos="beside"] .mp-header-name-block,
+.resume-design-wrapper[data-role-pos="beside"] .ma-header-copy,
+.resume-design-wrapper[data-role-pos="beside"] .ex-header-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}
+.resume-design-wrapper[data-role-pos="beside"] .cp-job-title,
+.resume-design-wrapper[data-role-pos="beside"] .mp-job-title,
+.resume-design-wrapper[data-role-pos="beside"] .ma-job-title,
+.resume-design-wrapper[data-role-pos="beside"] .ex-job-title {
+    margin: 0 !important;
+}
+
+/* Columns on single-column templates */
+.resume-design-wrapper[data-columns="two"] .cp-body,
+.resume-design-wrapper[data-columns="mix"] .cp-body,
+.resume-design-wrapper[data-columns="two"] .ma-body,
+.resume-design-wrapper[data-columns="mix"] .ma-body,
+.resume-design-wrapper[data-columns="two"] .ex-body,
+.resume-design-wrapper[data-columns="mix"] .ex-body {
+    display: grid !important;
+    grid-template-columns: var(--resume-left-col, 35%) 1fr !important;
+    column-gap: 16px;
+    align-items: start;
+}
+.resume-design-wrapper[data-columns="mix"] [data-section="summary"] {
+    grid-column: 1 / -1;
+}
+.resume-design-wrapper[data-columns="two"] .mp-sidebar,
+.resume-design-wrapper[data-columns="mix"] .mp-sidebar,
+.resume-design-wrapper[data-columns="two"] .crp-sidebar,
+.resume-design-wrapper[data-columns="mix"] .crp-sidebar {
+    width: var(--resume-left-col, 35%) !important;
+    min-width: var(--resume-left-col, 35%) !important;
+}
+.resume-design-wrapper[data-columns="one"] .mp-layout,
+.resume-design-wrapper[data-columns="one"] .crp-layout {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.resume-design-wrapper[data-columns="one"] .mp-sidebar,
+.resume-design-wrapper[data-columns="one"] .crp-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.resume-design-wrapper[data-header-pos="left"] .cp-resume,
+.resume-design-wrapper[data-header-pos="left"] .ma-resume,
+.resume-design-wrapper[data-header-pos="left"] .ex-resume {
+    display: grid;
+    grid-template-columns: var(--resume-left-col, 32%) 1fr;
+}
+.resume-design-wrapper[data-header-pos="left"] .cp-header,
+.resume-design-wrapper[data-header-pos="left"] .ma-header,
+.resume-design-wrapper[data-header-pos="left"] .ex-header {
+    grid-row: 1 / span 20;
+    min-height: 100%;
+}
+.resume-design-wrapper[data-header-pos="right"] .cp-resume,
+.resume-design-wrapper[data-header-pos="right"] .ma-resume,
+.resume-design-wrapper[data-header-pos="right"] .ex-resume {
+    display: grid;
+    grid-template-columns: 1fr var(--resume-left-col, 32%);
+}
+.resume-design-wrapper[data-header-pos="right"] .cp-header,
+.resume-design-wrapper[data-header-pos="right"] .ma-header,
+.resume-design-wrapper[data-header-pos="right"] .ex-header { order: 2; }
+.resume-design-wrapper[data-header-pos="right"] .cp-body,
+.resume-design-wrapper[data-header-pos="right"] .ma-body,
+.resume-design-wrapper[data-header-pos="right"] .ex-body { order: 1; }
+
+.resume-print-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px var(--resume-pad-x, 12mm) 10px;
+    font-size: 8pt;
+    color: #64748b;
+    border-top: 1px solid #e5e7eb;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.resume-print-footer span { min-width: 0; }
+.resume-print-footer span:nth-child(2) { text-align: center; }
+.resume-print-footer span:nth-child(3) { text-align: right; }
+
+.resume-design-wrapper[data-accent-dates="true"] .pp-entry-top span,
+.resume-design-wrapper[data-accent-dates="true"] .cp-meta-date,
+.resume-design-wrapper[data-accent-dates="true"] .cm-date,
+.resume-design-wrapper[data-accent-dates="true"] .mp-date-badge,
+.resume-design-wrapper[data-accent-dates="true"] .ma-split-left,
+.resume-design-wrapper[data-accent-dates="true"] .ex-split-left {
+    color: var(--resume-accent) !important;
+}
+
+.resume-design-wrapper .pp-name,
+.resume-design-wrapper .bc-header h1 {
+    font-weight: var(--resume-name-weight, 700);
+    color: var(--resume-name-color, inherit);
+}
+
+.resume-design-wrapper .pp-section h2,
+.resume-design-wrapper .pp-side-block > h2,
+.resume-design-wrapper .bc-section h2 {
+    text-transform: var(--resume-heading-transform, uppercase);
+    text-align: var(--resume-heading-align, left);
+    color: var(--resume-heading-color, var(--resume-accent, inherit));
+}
+
+.resume-design-wrapper .pp-section,
+.resume-design-wrapper .pp-side-block {
+    margin-bottom: 0;
+}
+
+.resume-design-wrapper .pp-main {
+    gap: 8px !important;
+    justify-content: flex-start !important;
+}
+
+.resume-design-wrapper .pp-sidebar {
+    gap: 16px !important;
+    justify-content: flex-start !important;
+}
+
+.resume-design-wrapper--preview,
+.resume-design-wrapper--preview .pp-resume,
+.resume-design-wrapper--preview .cp-resume,
+.resume-design-wrapper--preview .ss-resume,
+.resume-design-wrapper--preview .cm-resume {
+    height: var(--resume-page-h, 297mm) !important;
+    min-height: var(--resume-page-h, 297mm) !important;
+    max-height: var(--resume-page-h, 297mm) !important;
+    overflow: hidden !important;
+}
+
+.resume-design-wrapper--preview:not(:has(.cm-resume)) {
+    --resume-section-spacing: 8px;
+    --resume-entry-gap: 6px;
+}
+
+.resume-design-wrapper .pp-resume {
+    min-height: var(--resume-page-h, 297mm) !important;
+}
+
+.resume-design-wrapper:has(.ss-resume),
+.resume-design-wrapper:has(.cm-resume) {
+    padding: 0 !important;
+    display: block;
+    min-height: var(--resume-page-h, 297mm) !important;
+}
+
+.resume-design-wrapper:has(.pp-resume) {
+    min-height: var(--resume-page-h, 297mm) !important;
+    padding: 0 !important;
+    display: block;
+}
+.resume-design-wrapper .bc-resume {
+    font-size: 9pt !important;
+    line-height: 1.35 !important;
+}
+
+/* Shared hooks — new templates should use these classes */
+.resume-design-wrapper .rx-name {
+    font-size: var(--resume-name-size, 24pt) !important;
+    font-weight: var(--resume-name-weight, 700) !important;
+    color: var(--resume-name-color, inherit);
+}
+.resume-design-wrapper .rx-role {
+    font-size: var(--resume-title-size, 11pt) !important;
+    font-style: var(--resume-title-style, normal) !important;
+    color: var(--resume-title-color, inherit);
+}
+.resume-design-wrapper .rx-subtitle,
+.resume-design-wrapper .rx-org,
+.resume-design-wrapper .rx-entry span {
+    font-style: var(--resume-subtitle-style, normal) !important;
+    font-weight: var(--resume-subtitle-weight, 400) !important;
+}
+.resume-design-wrapper .rx-entry {
+    margin-bottom: var(--resume-entry-gap, 10px) !important;
+}
+.resume-design-wrapper .rx-copy {
+    line-height: var(--resume-line-height, 1.5);
+}
+.resume-design-wrapper[data-desc-indent="true"] .rx-copy,
+.resume-design-wrapper[data-desc-indent="true"] .rx-bullets,
+.resume-design-wrapper[data-desc-indent="true"] .cm-copy,
+.resume-design-wrapper[data-desc-indent="true"] .cm-bullets {
+    padding-left: 18px !important;
+}
+.resume-design-wrapper[data-list="hyphen"] .rx-bullets {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+.resume-design-wrapper[data-list="hyphen"] .rx-bullets li {
+    padding-left: 0;
+}
+.resume-design-wrapper[data-list="hyphen"] .rx-bullets li::before {
+    content: '– ';
+}
+.resume-design-wrapper[data-list="bullet"] .rx-bullets {
+    list-style: disc;
+    padding-left: 18px;
+}
+.resume-design-wrapper[data-list="none"] .rx-bullets {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+.resume-design-wrapper[data-list="none"] .rx-bullets li::before {
+    content: none;
+}
+.resume-design-wrapper[data-accent-dates="true"] .rx-date {
+    color: var(--resume-accent) !important;
+}
+.resume-design-wrapper[data-header-align="left"] .rx-header {
+    text-align: left !important;
+}
+.resume-design-wrapper[data-header-align="center"] .rx-header,
+.resume-design-wrapper[data-header-align="center"] .rx-contact {
+    text-align: center !important;
+    justify-content: center !important;
+}
+.resume-design-wrapper[data-header-arrange="stacked"] .rx-contact {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 4px !important;
+}
+.resume-design-wrapper[data-header-arrange="horizontal"] .rx-contact {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 8px 28px !important;
+}
+.resume-design-wrapper[data-header-arrange="columns"] .rx-contact {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    justify-items: center;
+}
+.resume-design-wrapper[data-role-pos="beside"] .rx-header {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px 14px;
+}
+.resume-design-wrapper[data-role-pos="beside"] .rx-role {
+    margin: 0 !important;
+}
+.resume-design-wrapper[data-role-pos="below"] .rx-header {
+    display: block;
+}
+.resume-design-wrapper[data-link-underline="true"] .rx-contact-item {
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+}
+.resume-design-wrapper[data-link-underline="false"] .rx-contact-item {
+    text-decoration: none !important;
+}
+.resume-design-wrapper[data-link-blue="true"] .rx-contact-item {
+    color: #2563EB !important;
+}
+.resume-design-wrapper[data-link-icon="true"] .rx-contact-item::before {
+    content: '\f0c1';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 7pt;
+    margin-right: 4px;
+}
+
+/* Base font size drives body copy; name/role/headings keep their own sliders */
+.resume-design-wrapper .cp-resume,
+.resume-design-wrapper .pp-resume,
+.resume-design-wrapper .ss-resume,
+.resume-design-wrapper .cm-resume {
+    font-size: calc(var(--resume-fs, 10) * 1pt) !important;
+}
+
+.resume-design-wrapper .rx-copy,
+.resume-design-wrapper .rx-bullets,
+.resume-design-wrapper .rx-bullets li,
+.resume-design-wrapper .rx-contact,
+.resume-design-wrapper .rx-contact-item,
+.resume-design-wrapper .rx-date,
+.resume-design-wrapper .rx-chips span,
+.resume-design-wrapper .pp-copy,
+.resume-design-wrapper .pp-item,
+.resume-design-wrapper .pp-item p,
+.resume-design-wrapper .pp-item li,
+.resume-design-wrapper .pp-skill,
+.resume-design-wrapper .pp-lang,
+.resume-design-wrapper .pp-contact,
+.resume-design-wrapper .pp-contact li,
+.resume-design-wrapper .cm-copy,
+.resume-design-wrapper .cm-bullets,
+.resume-design-wrapper .cm-bullets li,
+.resume-design-wrapper .cm-org,
+.resume-design-wrapper .ss-copy,
+.resume-design-wrapper .ss-item,
+.resume-design-wrapper .ss-item p,
+.resume-design-wrapper .ss-meta,
+.resume-design-wrapper .cp-item,
+.resume-design-wrapper .cp-item p,
+.resume-design-wrapper .cp-item li,
+.resume-design-wrapper .cp-desc,
+.resume-design-wrapper .rx-entry p,
+.resume-design-wrapper .rx-entry span {
+    font-size: 1em !important;
+}
+
+.resume-design-wrapper .pp-name,
+.resume-design-wrapper .cp-name,
+.resume-design-wrapper .ss-name,
+.resume-design-wrapper .cm-name {
+    font-size: var(--resume-name-size, 24pt) !important;
+}
+.resume-design-wrapper .pp-role,
+.resume-design-wrapper .cp-job-title,
+.resume-design-wrapper .ss-role,
+.resume-design-wrapper .cm-role {
+    font-size: var(--resume-title-size, 11pt) !important;
+}
+
+@keyframes rx-edit-glow {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(238, 195, 12, 0.55), 0 0 14px rgba(238, 195, 12, 0.35); }
+    50% { box-shadow: 0 0 0 3px rgba(238, 195, 12, 0.85), 0 0 22px rgba(238, 195, 12, 0.5); }
+}
+
+.resume-design-wrapper [data-rx-glow] {
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.resume-design-wrapper[data-preview-focus="name"] .rx-name,
+.resume-design-wrapper[data-preview-focus="name"] .pp-name,
+.resume-design-wrapper[data-preview-focus="name"] .cp-name,
+.resume-design-wrapper[data-preview-focus="name"] .ss-name,
+.resume-design-wrapper[data-preview-focus="name"] .cm-name,
+.resume-design-wrapper[data-preview-focus="role"] .rx-role,
+.resume-design-wrapper[data-preview-focus="role"] .pp-role,
+.resume-design-wrapper[data-preview-focus="role"] .cp-job-title,
+.resume-design-wrapper[data-preview-focus="role"] .ss-role,
+.resume-design-wrapper[data-preview-focus="role"] .cm-role,
+.resume-design-wrapper[data-preview-focus="contact"] .rx-contact,
+.resume-design-wrapper[data-preview-focus="contact"] .pp-contact,
+.resume-design-wrapper[data-preview-focus="contact"] .cm-contact-bar,
+.resume-design-wrapper[data-preview-focus="contact"] .ss-contact,
+.resume-design-wrapper[data-preview-focus="contact"] .cp-contact,
+.resume-design-wrapper[data-preview-focus="headings"] .rx-title,
+.resume-design-wrapper[data-preview-focus="headings"] .pp-section h2,
+.resume-design-wrapper[data-preview-focus="headings"] .pp-side-block h2,
+.resume-design-wrapper[data-preview-focus="headings"] .cm-section h2,
+.resume-design-wrapper[data-preview-focus="headings"] .ss-section h2,
+.resume-design-wrapper[data-preview-focus="headings"] .cp-section h2,
+.resume-design-wrapper[data-preview-focus="entries"] .rx-entry,
+.resume-design-wrapper[data-preview-focus="body"] .rx-copy,
+.resume-design-wrapper[data-preview-focus="body"] .rx-bullets,
+.resume-design-wrapper[data-preview-focus="body"] .pp-copy,
+.resume-design-wrapper[data-preview-focus="body"] .cm-copy,
+.resume-design-wrapper[data-preview-focus="body"] .ss-copy,
+.resume-design-wrapper[data-preview-focus="page"] .pp-resume,
+.resume-design-wrapper[data-preview-focus="page"] .cm-resume,
+.resume-design-wrapper[data-preview-focus="page"] .ss-resume,
+.resume-design-wrapper[data-preview-focus="page"] .cp-resume,
+.resume-design-wrapper[data-preview-focus="accent"] .rx-name,
+.resume-design-wrapper[data-preview-focus="accent"] .rx-title,
+.resume-design-wrapper[data-preview-focus="summary"] [data-section="summary"],
+.resume-design-wrapper[data-preview-focus="experience"] [data-section="experience"],
+.resume-design-wrapper[data-preview-focus="education"] [data-section="education"],
+.resume-design-wrapper[data-preview-focus="skills"] [data-section="skills"],
+.resume-design-wrapper[data-preview-focus="projects"] [data-section="projects"],
+.resume-design-wrapper[data-preview-focus="certifications"] [data-section="certifications"],
+.resume-design-wrapper[data-preview-focus="languages"] [data-section="languages"],
+.resume-design-wrapper[data-preview-focus="interests"] [data-section="interests"],
+.resume-design-wrapper[data-preview-focus="awards"] [data-section="awards"],
+.resume-design-wrapper[data-preview-focus="organisations"] [data-section="organisations"],
+.resume-design-wrapper[data-preview-focus="publications"] [data-section="publications"],
+.resume-design-wrapper[data-preview-focus="courses"] [data-section="courses"],
+.resume-design-wrapper[data-preview-focus="references"] [data-section="references"],
+.resume-design-wrapper[data-preview-focus="declaration"] [data-section="declaration"],
+.resume-design-wrapper[data-preview-focus="custom"] [data-section="custom"] {
+    background-color: rgba(238, 195, 12, 0.14);
+    animation: rx-edit-glow 1.1s ease-in-out infinite;
+    border-radius: 4px;
+}
+
+.resume-design-wrapper[data-preview-focus="personal"] .rx-header,
+.resume-design-wrapper[data-preview-focus="personal"] .cp-header,
+.resume-design-wrapper[data-preview-focus="personal"] .ss-header,
+.resume-design-wrapper[data-preview-focus="personal"] .cm-header,
+.resume-design-wrapper[data-preview-focus="personal"] .pp-name,
+.resume-design-wrapper[data-preview-focus="personal"] .pp-role {
+    background-color: rgba(238, 195, 12, 0.14);
+    animation: rx-edit-glow 1.1s ease-in-out infinite;
+    border-radius: 4px;
+}
+

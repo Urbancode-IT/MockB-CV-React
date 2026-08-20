@@ -1,14 +1,5 @@
 // ======================================
 // Resume Template Configuration
-//
-// This is the single source of truth for
-// all available resume templates.
-//
-// To add a new template:
-// 1. Add an entry here
-// 2. Create the React component in ./components/resume/templates/
-// 3. Add it to ResumeTemplateRenderer.jsx templateMap
-// 4. Add the id to ALLOWED_TEMPLATES in the backend
 // ======================================
 
 export const RESUME_TEMPLATES = [
@@ -20,48 +11,64 @@ export const RESUME_TEMPLATES = [
         accentColor: "#1A3A5C",
         layout: "single",
         tags: ["ats", "professional", "clean"],
+        supportsPhoto: false,
     },
     {
-        id: "modern-professional",
-        name: "Modern Professional",
+        id: "portrait-profile",
+        name: "Portrait Profile",
         category: "modern",
-        description: "Sleek two-column layout with sidebar. Modern look.",
-        accentColor: "#2563EB",
+        description: "One-page sidebar layout with a profile photo.",
+        accentColor: "#2A7A6D",
         layout: "two-column",
-        tags: ["modern", "sidebar", "professional"],
+        tags: ["photo", "sidebar", "one-page"],
+        supportsPhoto: true,
+        onePage: true,
     },
     {
-        id: "minimal-ats",
-        name: "Minimal ATS",
-        category: "ats",
-        description: "Ultra-clean, ATS-optimized. Zero design distractions.",
-        accentColor: "#374151",
-        layout: "single",
-        tags: ["ats", "minimal", "simple"],
+        id: "structured-split",
+        name: "Structured Split",
+        category: "modern",
+        description: "Two-column editorial layout that fills one A4 page.",
+        accentColor: "#8B3A3A",
+        layout: "split",
+        tags: ["two-column", "compact", "one-page"],
+        supportsPhoto: false,
+        onePage: true,
     },
     {
-        id: "executive",
-        name: "Executive",
+        id: "centered-minimal",
+        name: "Centered Minimal",
         category: "professional",
-        description: "Bold dark header and refined typography. For senior professionals.",
-        accentColor: "#0F172A",
+        description: "Centered name, gray contact bar, and single-column ATS layout.",
+        accentColor: "#0E7490",
         layout: "single",
-        tags: ["executive", "premium", "bold"],
-    },
-    {
-        id: "creative-professional",
-        name: "Creative Professional",
-        category: "creative",
-        description: "Vibrant two-column with color sidebar. Perfect for creative roles.",
-        accentColor: "#7C3AED",
-        layout: "two-column",
-        tags: ["creative", "colorful", "sidebar"],
+        tags: ["ats", "centered", "one-page"],
+        supportsPhoto: false,
+        onePage: true,
     },
 ];
 
-// Default template used when none is specified
 export const DEFAULT_TEMPLATE = "classic-professional";
 
-// For quick lookup by id
+const LEGACY_TEMPLATE_MAP = {
+    "balanced-column": "classic-professional",
+    "modern-professional": "classic-professional",
+    "minimal-ats": "classic-professional",
+    "executive": "portrait-profile",
+    "creative-professional": "portrait-profile",
+};
+
+export const resolveTemplateId = (id) => {
+    if (RESUME_TEMPLATES.some((t) => t.id === id)) return id;
+    return LEGACY_TEMPLATE_MAP[id] || DEFAULT_TEMPLATE;
+};
+
+export const templateSupportsPhoto = (id) =>
+    Boolean(RESUME_TEMPLATES.find((t) => t.id === resolveTemplateId(id))?.supportsPhoto);
+
 export const getTemplateById = (id) =>
-    RESUME_TEMPLATES.find((t) => t.id === id) || RESUME_TEMPLATES[0];
+    RESUME_TEMPLATES.find((t) => t.id === resolveTemplateId(id)) || RESUME_TEMPLATES[0];
+
+export const isTwoColumnTemplate = (id) => getTemplateById(id).layout === "two-column";
+
+export const isOnePageTemplate = (id) => Boolean(getTemplateById(id).onePage);

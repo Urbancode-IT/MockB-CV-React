@@ -7,6 +7,10 @@ const { body } = require("express-validator");
 
 const ALLOWED_TEMPLATES = [
     "classic-professional",
+    "portrait-profile",
+    "structured-split",
+    "centered-minimal",
+    "balanced-column",
     "modern-professional",
     "minimal-ats",
     "executive",

@@ -95,6 +95,14 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     logger.info(`Server running on port ${PORT}`);
+});
+
+server.on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+        logger.error(`Port ${PORT} is already in use`);
+        process.exit(1);
+    }
+    throw err;
 });
