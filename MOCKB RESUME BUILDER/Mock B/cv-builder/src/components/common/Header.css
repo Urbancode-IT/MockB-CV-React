@@ -3,11 +3,14 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
-    z-index: 1000;
-    padding: 1.5rem 0;
+    z-index: 10000;
+    padding: 1.1rem 0;
     transition: var(--transition);
-    background: #0D0D0D;
+    background: rgba(13, 13, 13, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 

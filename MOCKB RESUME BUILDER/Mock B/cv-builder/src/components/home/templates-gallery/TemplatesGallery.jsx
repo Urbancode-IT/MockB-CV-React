@@ -9,21 +9,9 @@ import CoverLetterRenderer from '../../cover-letter/CoverLetterRenderer';
 import './TemplatesGallery.css';
 import '../../../pages/ResumeTemplates.css';
 
-const EXTRA_CARDS = [
-  {
-    id: 'port-1',
-    category: 'portfolios',
-    title: 'Developer Hub',
-    description: 'Dark-themed, project-focused portfolio design.',
-    image: '/images/templates.png',
-  },
-];
-
-const tagLabel = (category) => {
-  if (category === 'resumes') return 'Resume';
-  if (category === 'cover-letters') return 'Cover Letter';
-  return 'Portfolio';
-};
+const tagLabel = (category) => (
+  category === 'cover-letters' ? 'Cover Letter' : 'Resume'
+);
 
 export default function TemplatesGallery() {
   const navigate = useNavigate();
@@ -46,7 +34,7 @@ export default function TemplatesGallery() {
       description: t.description,
       coverLetterTemplateId: t.id,
     }));
-    return [...resumes, ...letters, ...EXTRA_CARDS];
+    return [...resumes, ...letters];
   }, []);
 
   const cardStep = () => {
@@ -127,7 +115,6 @@ export default function TemplatesGallery() {
           <button className={`tab-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => handleFilterChange('all')}>All</button>
           <button className={`tab-btn ${activeFilter === 'resumes' ? 'active' : ''}`} onClick={() => handleFilterChange('resumes')}>Resumes</button>
           <button className={`tab-btn ${activeFilter === 'cover-letters' ? 'active' : ''}`} onClick={() => handleFilterChange('cover-letters')}>Cover Letters</button>
-          <button className={`tab-btn ${activeFilter === 'portfolios' ? 'active' : ''}`} onClick={() => handleFilterChange('portfolios')}>Portfolios</button>
         </div>
       </div>
 
@@ -142,7 +129,6 @@ export default function TemplatesGallery() {
                   state: { template: card.coverLetterTemplateId, startMode: 'sample' },
                 });
               }
-              else if (card.category === 'portfolios') navigate('/portfolio-builder');
             };
             return (
             <div

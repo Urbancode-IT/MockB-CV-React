@@ -45,9 +45,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home-page fade-in">
+    <div className="home-page">
       <Navbar />
-      <main>
+      <main className="fade-in">
         <Hero />
         <TemplatesGallery />
         <Features />
