@@ -26,10 +26,10 @@ import JDResumeBuilder from "./pages/JDResumeBuilder";
 import JDCoverLetterBuilder from "./pages/JDCoverLetterBuilder";
 import ResumeUpgrader from "./pages/ResumeUpgrader";
 import CoverLetterUpgrader from "./pages/CoverLetterUpgrader";
-import CoverLetterCustomizer from "./pages/CoverLetterCustomizer";
 import ResumeTemplates from "./pages/ResumeTemplates";
 import CoverLetterTemplates from "./pages/CoverLetterTemplates";
 import ResumeBuilder from "./pages/ResumeBuilder";
+import CoverLetterBuilder from "./pages/CoverLetterBuilder";
 
 const router = createBrowserRouter([
     {
@@ -58,14 +58,14 @@ const router = createBrowserRouter([
                     { path: "/cover-letter/jd-builder", element: <JDCoverLetterBuilder /> },
                     { path: "/cover-letter/guidelines", element: <CoverLetterGuidelines /> },
                     { path: "/cover-letter/upgrader", element: <CoverLetterUpgrader /> },
-                    { path: "/cover-letter/customizer", element: <CoverLetterCustomizer /> },
+                    { path: "/cover-letter/customizer", element: <CoverLetterBuilder /> },
                     { path: "/cover-letter/templates", element: <CoverLetterTemplates /> },
                     { path: "/portfolio-builder", element: <PortfolioBuilder /> },
                     { path: "/why-portfolio", element: <WhyPortfolio /> },
                     { path: "/ai-resume-builder", element: <AIResumeBuilder /> },
                     { path: "/ai-cover-letter-builder", element: <AICoverLetterBuilder /> },
                     { path: "/resume-customizer", element: <ResumeBuilder /> },
-                    { path: "/cover-letter-customizer", element: <CoverLetterCustomizer /> },
+                    { path: "/cover-letter-customizer", element: <CoverLetterBuilder /> },
                 ],
             },
         ],

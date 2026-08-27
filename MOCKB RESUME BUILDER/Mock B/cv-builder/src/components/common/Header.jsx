@@ -79,159 +79,12 @@ export default function Header() {
                         <li>
                             <Link to="/" onClick={handleLinkClick}>Home</Link>
                         </li>
-
-                        {/* Resume Mega Menu */}
-                        <li className={`has-mega-menu ${activeMenu === 'resume' ? 'active' : ''}`}>
-                            <button className="nav-toggle-btn" onClick={() => toggleMenu('resume')}>
-                                Resume<span className="hover-suffix"> Builder</span> <i className="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div className={`mega-menu ${activeMenu === 'resume' ? 'active' : ''}`}>
-                                <div className="container">
-                                    <div className="mega-menu-grid">
-                                        <Link to="/resume/ai-builder" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-robot"></i></div>
-                                            <div className="item-text">
-                                                <h4>AI Resume Builder ATS Friendly</h4>
-                                                <p>Generate professional resumes with AI power.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/ats-checker" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-gauge-high"></i></div>
-                                            <div className="item-text">
-                                                <h4>Resume ATS Score Checker</h4>
-                                                <p>Analyze your resume against ATS algorithms.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/role-based" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-user-tie"></i></div>
-                                            <div className="item-text">
-                                                <h4>Role-based Resume Building</h4>
-                                                <p>Tailored templates for specific job roles.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/jd-builder" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-file-invoice"></i></div>
-                                            <div className="item-text">
-                                                <h4>Create Resume Based on Job Description</h4>
-                                                <p>Match your resume to specific job requirements.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/guidelines" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-book-open"></i></div>
-                                            <div className="item-text">
-                                                <h4>How to Build Resume: Keywords and Guideline</h4>
-                                                <p>Expert tips on keywords and formatting.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/upgrader" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-arrow-trend-up"></i></div>
-                                            <div className="item-text">
-                                                <h4>Resume Upgrader</h4>
-                                                <p>Enhance and elevate your existing resume.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/resume/customizer" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-pen-to-square"></i></div>
-                                            <div className="item-text">
-                                                <h4>Resume Customizer</h4>
-                                                <p>Customize and design your resume style.</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
+                        <li>
+                            <Link to="/resume/templates" onClick={handleLinkClick}>Resume builder</Link>
                         </li>
-
-                        {/* Cover Letter Mega Menu */}
-                        <li className={`has-mega-menu ${activeMenu === 'cover-letter' ? 'active' : ''}`}>
-                            <button className="nav-toggle-btn" onClick={() => toggleMenu('cover-letter')}>
-                                Cover Letter<span className="hover-suffix"> Builder</span> <i className="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div className={`mega-menu ${activeMenu === 'cover-letter' ? 'active' : ''}`}>
-                                <div className="container">
-                                    <div className="mega-menu-grid">
-                                        <Link to="/cover-letter/ai-builder" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-robot"></i></div>
-                                            <div className="item-text">
-                                                <h4>AI Cover Letter Builder ATS Friendly</h4>
-                                                <p>Generate professional cover letters with AI power.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/ats-checker" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-gauge-high"></i></div>
-                                            <div className="item-text">
-                                                <h4>Cover Letter ATS Score Checker</h4>
-                                                <p>Analyze your cover letter against ATS algorithms.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/role-based" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-user-tie"></i></div>
-                                            <div className="item-text">
-                                                <h4>Role-based Cover Letter Building</h4>
-                                                <p>Tailored templates for specific job roles.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/jd-builder" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-file-invoice"></i></div>
-                                            <div className="item-text">
-                                                <h4>Create Cover Letter Based on Job Description</h4>
-                                                <p>Match your cover letter to specific job requirements.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/guidelines" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-book-open"></i></div>
-                                            <div className="item-text">
-                                                <h4>How to Build Cover Letter: Keywords and Guideline</h4>
-                                                <p>Expert tips on keywords and formatting.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/upgrader" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-arrow-trend-up"></i></div>
-                                            <div className="item-text">
-                                                <h4>Cover Letter Upgrader</h4>
-                                                <p>Enhance and elevate your existing cover letter.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/customizer" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-pen-to-square"></i></div>
-                                            <div className="item-text">
-                                                <h4>Cover letter Customizer</h4>
-                                                <p>Customize and design your cover letter style.</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
+                        <li>
+                            <Link to="/cover-letter/templates" onClick={handleLinkClick}>Cover letter builder</Link>
                         </li>
-
-                        {/* Portfolio Mega Menu */}
-                        <li className={`has-mega-menu ${activeMenu === 'portfolio' ? 'active' : ''}`}>
-                            <button className="nav-toggle-btn" onClick={() => toggleMenu('portfolio')}>
-                                Portfolio<span className="hover-suffix"> Builder</span> <i className="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div className={`mega-menu ${activeMenu === 'portfolio' ? 'active' : ''}`}>
-                                <div className="container">
-                                    <div className="mega-menu-grid">
-                                        <Link to="/portfolio-builder" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-laptop-code"></i></div>
-                                            <div className="item-text">
-                                                <h4>Build Portfolio</h4>
-                                                <p>Generate professional web portfolios with AI power.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/why-portfolio" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-circle-question"></i></div>
-                                            <div className="item-text">
-                                                <h4>Why Portfolio and its Uses</h4>
-                                                <p>Discover the power and key benefits of a professional portfolio.</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        {/* Templates Mega Menu */}
                         <li className={`has-mega-menu ${activeMenu === 'templates' ? 'active' : ''}`}>
                             <button className="nav-toggle-btn" onClick={() => toggleMenu('templates')}>
                                 Templates <i className="fa-solid fa-chevron-down"></i>
@@ -257,8 +110,6 @@ export default function Header() {
                                 </div>
                             </div>
                         </li>
-
-                        {/* Languages Dropdown */}
                         <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`}>
                             <button className="nav-toggle-btn" onClick={() => toggleMenu('languages')}>
                                 Languages <i className="fa-solid fa-chevron-down"></i>
@@ -282,7 +133,6 @@ export default function Header() {
                                 </div>
                             </div>
                         </li>
-
                         <li>
                             <Link to="/about" onClick={handleLinkClick}>About</Link>
                         </li>

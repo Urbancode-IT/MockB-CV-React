@@ -1,0 +1,14 @@
+.cl-render-wrap {
+    margin: 0 auto;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.cl-render-wrap .cl-classic {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+.cl-render-wrap--preview .cl-classic {
+    box-shadow: none;
+}

@@ -33,19 +33,44 @@ const app = express();
 
 app.use(helmet());
 
-const allowedOrigins = [
-    process.env.CLIENT_URL,
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175",
-    "http://localhost:5176",
-    "http://localhost:5177",
-].filter(Boolean);
+const stripTrailingSlash = (url) => (url ? url.trim().replace(/\/+$/, "") : "");
+
+const allowedOrigins = new Set(
+    [
+        process.env.CLIENT_URL,
+        process.env.CORS_ORIGINS,
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "http://localhost:5176",
+        "http://localhost:5177",
+        "https://mock-b-cv-react.vercel.app",
+    ]
+        .filter(Boolean)
+        .flatMap((value) => String(value).split(","))
+        .map(stripTrailingSlash)
+        .filter(Boolean)
+);
+
+const isAllowedOrigin = (origin) => {
+    const normalized = stripTrailingSlash(origin);
+    if (allowedOrigins.has(normalized)) return true;
+    try {
+        const { protocol, hostname } = new URL(normalized);
+        return (
+            protocol === "https:" &&
+            hostname.endsWith(".vercel.app") &&
+            hostname.includes("mock-b-cv-react")
+        );
+    } catch {
+        return false;
+    }
+};
 
 app.use(cors({
     origin(origin, callback) {
-        // Allow non-browser tools (no Origin) and local Vite ports
-        if (!origin || allowedOrigins.includes(origin)) {
+        // Allow non-browser tools (no Origin), local Vite, and deployed frontend
+        if (!origin || isAllowedOrigin(origin)) {
             return callback(null, true);
         }
         return callback(new Error(`CORS blocked for origin: ${origin}`));

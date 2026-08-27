@@ -49,10 +49,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Features />
-        <Showcase />
-        <DetailedFeatures />
         <TemplatesGallery />
+        <Features />
         <CoreFeatures />
         <CombinedFeatures />
         <Testimonials />

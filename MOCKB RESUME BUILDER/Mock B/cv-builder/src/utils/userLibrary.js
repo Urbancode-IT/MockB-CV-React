@@ -147,6 +147,61 @@ export const updateUserTemplate = (id, patch) => {
     return updated;
 };
 
+const RESUMES_KEY = 'mockb.cv.userResumes';
+
+export const listUserResumes = () => {
+    const list = readJson(RESUMES_KEY, []);
+    return Array.isArray(list) ? list : [];
+};
+
+export const resumeDisplayName = (title, resumeData, baseName) => {
+    const typed = (title || '').trim();
+    if (typed && typed.toLowerCase() !== 'untitled resume') return typed;
+    const person = (resumeData?.personal?.name || '').trim();
+    if (person) return `${person} – Resume`;
+    return `${baseName || 'Resume'} – Your resume`;
+};
+
+export const upsertUserResume = ({
+    id,
+    resumeId,
+    title,
+    selectedTemplate,
+    resumeData,
+    userTemplateId,
+    userTemplateName,
+    baseName,
+}) => {
+    const list = listUserResumes();
+    const existing = list.find((item) => (id && item.id === id)
+        || (resumeId && item.resumeId && item.resumeId === resumeId));
+    const entry = {
+        id: existing?.id || `resume-${Date.now()}`,
+        resumeId: resumeId || existing?.resumeId || null,
+        name: resumeDisplayName(title, resumeData, baseName),
+        title: title || 'Untitled Resume',
+        selectedTemplate,
+        resumeData: resumeData ? JSON.parse(JSON.stringify(resumeData)) : {},
+        userTemplateId: userTemplateId || existing?.userTemplateId || null,
+        userTemplateName: userTemplateName || existing?.userTemplateName || '',
+        createdAt: existing?.createdAt || new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+    };
+    const next = existing
+        ? list.map((item) => (item.id === existing.id ? entry : item))
+        : [entry, ...list];
+    localStorage.setItem(RESUMES_KEY, JSON.stringify(next));
+    return entry;
+};
+
+export const deleteUserResume = (id) => {
+    const next = listUserResumes().filter((item) => item.id !== id);
+    localStorage.setItem(RESUMES_KEY, JSON.stringify(next));
+    return next;
+};
+
+export const getUserResume = (id) => listUserResumes().find((item) => item.id === id) || null;
+
 export const deleteUserTemplate = (id) => {
     const next = listUserTemplates().filter((item) => item.id !== id);
     localStorage.setItem(TEMPLATES_KEY, JSON.stringify(next));

@@ -12,7 +12,7 @@ import { DEFAULT_TEMPLATE, resolveTemplateId, getTemplateById, isTwoColumnTempla
 import { withPortraitDefaults } from '../config/portraitDefaults';
 import { flattenColumnSections, moveColumnSection as moveColumn, normalizeColumnSections, columnsWithActiveSections } from '../config/columnLayout';
 import { sampleForTemplate, blankForTemplate } from '../data/sampleResumeData';
-import { saveResumeDraft, loadResumeDraft, clearResumeDraft, saveUserTemplate, updateUserTemplate, upsertYourWorkTemplate } from '../utils/userLibrary';
+import { saveResumeDraft, loadResumeDraft, clearResumeDraft, saveUserTemplate, updateUserTemplate, upsertUserResume, getUserResume } from '../utils/userLibrary';
 import { captureDesignSnapshot } from '../config/resumeDesign';
 
 import './ResumeBuilder.css';
@@ -92,13 +92,16 @@ export default function ResumeBuilder() {
     const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const draft = !id && location.state?.restoreDraft ? loadResumeDraft() : null;
+    const restoredResume = location.state?.restoreUserResume
+        || (!id && location.state?.userResumeId ? getUserResume(location.state.userResumeId) : null);
+    const draft = !id && !restoredResume && location.state?.restoreDraft ? loadResumeDraft() : null;
 
-    const [title, setTitle] = useState(draft?.title || 'Untitled Resume');
+    const [title, setTitle] = useState(restoredResume?.title || draft?.title || 'Untitled Resume');
     const [selectedTemplate, setSelectedTemplate] = useState(
-        resolveTemplateId(draft?.selectedTemplate || location.state?.template || DEFAULT_TEMPLATE)
+        resolveTemplateId(restoredResume?.selectedTemplate || draft?.selectedTemplate || location.state?.template || DEFAULT_TEMPLATE)
     );
     const [resumeData, setResumeData] = useState(() => {
+        if (restoredResume?.resumeData) return restoredResume.resumeData;
         if (id) return defaultResumeData;
         if (draft?.resumeData) return draft.resumeData;
         const templateId = resolveTemplateId(location.state?.template || DEFAULT_TEMPLATE);
@@ -107,12 +110,15 @@ export default function ResumeBuilder() {
             : sampleForTemplate(templateId);
         return applySavedDesign(base, location.state || {});
     });
-    const [resumeId, setResumeId] = useState(draft?.resumeId || id || null);
+    const [resumeId, setResumeId] = useState(restoredResume?.resumeId || draft?.resumeId || id || null);
     const [userTemplateId, setUserTemplateId] = useState(
-        draft?.userTemplateId || location.state?.userTemplateId || null
+        restoredResume?.userTemplateId || draft?.userTemplateId || location.state?.userTemplateId || null
     );
     const [userTemplateName, setUserTemplateName] = useState(
-        draft?.userTemplateName || location.state?.userTemplateName || ''
+        restoredResume?.userTemplateName || draft?.userTemplateName || location.state?.userTemplateName || ''
+    );
+    const [userResumeId, setUserResumeId] = useState(
+        restoredResume?.id || draft?.userResumeId || location.state?.userResumeId || null
     );
 
     // ── UI state ──
@@ -182,6 +188,10 @@ export default function ResumeBuilder() {
     // ── Load existing resume from backend ──
     useEffect(() => {
         if (!id) return;
+        if (location.state?.restoreUserResume?.resumeData) {
+            setLoading(false);
+            return;
+        }
 
         const loadResume = async () => {
             try {
@@ -208,7 +218,7 @@ export default function ResumeBuilder() {
         };
 
         loadResume();
-    }, [id]);
+    }, [id, location.state?.restoreUserResume]);
 
     // ── Handle template change
     // IMPORTANT: Only the template changes — resumeData stays intact ──
@@ -268,67 +278,76 @@ export default function ResumeBuilder() {
     }, [resumeId]);
 
     // ── Save / Update ──
-    const persistUserWorkCopy = useCallback(() => {
-        const accent = resumeData.themeColor
-            || resumeData.design?.accentColor
-            || getTemplateById(selectedTemplate)?.accentColor;
-        const payload = {
-            baseTemplate: selectedTemplate,
-            baseName: getTemplateById(selectedTemplate)?.name,
-            design: captureDesignSnapshot(resumeData, accent),
-            themeColor: accent,
-            sectionOrder: resumeData.sectionOrder,
-            columnSections: resumeData.columnSections,
-        };
-        if (userTemplateId) {
-            return updateUserTemplate(userTemplateId, payload)
-                || upsertYourWorkTemplate({ ...payload, existingId: userTemplateId });
-        }
-        return upsertYourWorkTemplate(payload);
-    }, [userTemplateId, resumeData, selectedTemplate]);
-
     const handleSave = useCallback(async () => {
         setSaving(true);
         setSaveStatus(null);
-        const work = persistUserWorkCopy();
-        if (work) {
-            setUserTemplateId(work.id);
-            setUserTemplateName(work.name);
-        }
-        saveResumeDraft({
-            resumeId: resumeId || null,
-            title,
-            selectedTemplate,
-            resumeData,
-            userTemplateId: work?.id || userTemplateId,
-            userTemplateName: work?.name || userTemplateName,
-        });
-        lastSavedRef.current = snapshotOf(title, selectedTemplate, resumeData);
-
         try {
-            const payload = {
-                title: title || 'Untitled Resume',
-                template: selectedTemplate,
-                data: resumeData,
-            };
+            const savedResume = upsertUserResume({
+                id: userResumeId,
+                resumeId,
+                title,
+                selectedTemplate,
+                resumeData,
+                userTemplateId,
+                userTemplateName,
+                baseName: getTemplateById(selectedTemplate)?.name,
+            });
+            setUserResumeId(savedResume.id);
+            saveResumeDraft({
+                resumeId: resumeId || null,
+                title,
+                selectedTemplate,
+                resumeData,
+                userTemplateId,
+                userTemplateName,
+                userResumeId: savedResume.id,
+            });
+            lastSavedRef.current = snapshotOf(title, selectedTemplate, resumeData);
 
-            let saved;
-            if (resumeId) {
-                const response = await updateResume(resumeId, payload);
-                saved = response.data;
-            } else {
-                const response = await createResume(payload);
-                saved = response.data;
-                setResumeId(saved._id);
-                saveResumeDraft({
-                    resumeId: saved._id,
-                    title,
-                    selectedTemplate,
-                    resumeData,
-                    userTemplateId: work?.id || userTemplateId,
-                    userTemplateName: work?.name || userTemplateName,
-                });
-                navigate(`/resume/customizer/${saved._id}`, { replace: true });
+            try {
+                const payload = {
+                    title: savedResume.name || title || 'Untitled Resume',
+                    template: selectedTemplate,
+                    data: resumeData,
+                };
+                if (resumeId) {
+                    await updateResume(resumeId, payload);
+                } else {
+                    const result = await createResume(payload);
+                    const saved = result?.data || result;
+                    const cloudId = saved?._id;
+                    if (cloudId) {
+                        setResumeId(cloudId);
+                        upsertUserResume({
+                            id: savedResume.id,
+                            resumeId: cloudId,
+                            title,
+                            selectedTemplate,
+                            resumeData,
+                            userTemplateId,
+                            userTemplateName,
+                            baseName: getTemplateById(selectedTemplate)?.name,
+                        });
+                        saveResumeDraft({
+                            resumeId: cloudId,
+                            title,
+                            selectedTemplate,
+                            resumeData,
+                            userTemplateId,
+                            userTemplateName,
+                            userResumeId: savedResume.id,
+                        });
+                        navigate(`/resume/customizer/${cloudId}`, {
+                            replace: true,
+                            state: {
+                                userResumeId: savedResume.id,
+                                restoreUserResume: { ...savedResume, resumeId: cloudId },
+                            },
+                        });
+                    }
+                }
+            } catch (apiErr) {
+                console.warn('Cloud save skipped; progress is stored in Your resumes.', apiErr);
             }
 
             setSaveStatus('saved');
@@ -336,13 +355,13 @@ export default function ResumeBuilder() {
         } catch (err) {
             setSaveStatus('error');
             console.error('Save failed:', err);
-            return true;
+            return false;
         } finally {
             setSaving(false);
             if (saveStatusTimer.current) clearTimeout(saveStatusTimer.current);
             saveStatusTimer.current = setTimeout(() => setSaveStatus(null), 3000);
         }
-    }, [title, selectedTemplate, resumeData, resumeId, navigate, persistUserWorkCopy, userTemplateId, userTemplateName]);
+    }, [title, selectedTemplate, resumeData, resumeId, navigate, userTemplateId, userTemplateName, userResumeId]);
 
     useEffect(() => {
         if (blocker.state === 'blocked') setLeaveOpen(true);
@@ -780,7 +799,7 @@ export default function ResumeBuilder() {
                 <div className="rb-leave-modal" role="dialog" aria-modal="true">
                     <div className="rb-leave-dialog">
                         <h2>Save your progress?</h2>
-                        <p>If you save, this resume stays in progress and you can continue it from Templates → Continue editing.</p>
+                        <p>If you save, this resume is stored under Templates → Your resumes. The original library template stays unchanged.</p>
                         <div className="rb-leave-actions">
                             <button type="button" className="rb-nav-btn rb-nav-btn--outline" onClick={closeLeavePrompt}>Stay</button>
                             <button type="button" className="rb-nav-btn rb-nav-btn--ghost" onClick={leaveWithoutSaving}>Leave without saving</button>

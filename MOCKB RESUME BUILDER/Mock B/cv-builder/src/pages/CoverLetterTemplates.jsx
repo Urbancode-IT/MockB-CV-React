@@ -1,133 +1,285 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './CoverLetterTemplates.css';
-
-const allTemplates = [
-  { id: 1, name: 'Executive Pro', category: 'formal', level: 'senior', accent: '#EEC30C' },
-  { id: 2, name: 'Clean Modern', category: 'modern', level: 'junior', accent: '#4a90e2' },
-  { id: 3, name: 'Bold Impact', category: 'bold', level: 'mid', accent: '#e24a4a' },
-  { id: 4, name: 'Creative Flow', category: 'creative', level: 'junior', accent: '#e67e22' },
-  { id: 5, name: 'Minimalist', category: 'minimal', level: 'mid', accent: '#1abc9c' },
-  { id: 6, name: 'Elegant Classic', category: 'formal', level: 'senior', accent: '#9b59b6' },
-  { id: 7, name: 'Tech Ready', category: 'modern', level: 'mid', accent: '#27ae60' },
-  { id: 8, name: 'Startup Energy', category: 'bold', level: 'junior', accent: '#f39c12' },
-  { id: 9, name: 'Soft Professional', category: 'minimal', level: 'senior', accent: '#3498db' },
-];
-
-const categories = ['all', 'formal', 'modern', 'bold', 'creative', 'minimal'];
-const levels = ['all', 'junior', 'mid', 'senior'];
+import { useState, useLayoutEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { COVER_LETTER_TEMPLATES, getCoverLetterTemplateById } from '../config/coverLetterTemplates';
+import { sampleForCoverLetter } from '../data/sampleCoverLetterData';
+import CoverLetterRenderer from '../components/cover-letter/CoverLetterRenderer';
+import StartModeModal from '../components/resume/StartModeModal';
+import {
+    listUserCoverLetters,
+    deleteUserCoverLetter,
+    listUserCoverLetterTemplates,
+    deleteUserCoverLetterTemplate,
+} from '../utils/coverLetterLibrary';
+import './ResumeTemplates.css';
 
 export default function CoverLetterTemplates() {
   const navigate = useNavigate();
-  const [catFilter, setCatFilter] = useState('all');
-  const [levelFilter, setLevelFilter] = useState('all');
+  const location = useLocation();
   const [hoveredId, setHoveredId] = useState(null);
+  const [previewTemplate, setPreviewTemplate] = useState(null);
+  const [startTemplate, setStartTemplate] = useState(null);
+  const [userTemplates, setUserTemplates] = useState(() => listUserCoverLetterTemplates());
+  const [userLetters, setUserLetters] = useState(() => listUserCoverLetters());
+  const [libraryView, setLibraryView] = useState('library');
 
-  const filtered = allTemplates.filter(t => {
-    const matchCat = catFilter === 'all' || t.category === catFilter;
-    const matchLvl = levelFilter === 'all' || t.level === levelFilter;
-    return matchCat && matchLvl;
-  });
+  useLayoutEffect(() => {
+    const prev = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    const hash = location.hash.replace('#', '');
+    const goLibrary = Boolean(location.state?.scrollToLibrary) || hash === 'library-templates';
+    if (hash === 'your-cover-letters') setLibraryView('letters');
+    else if (hash === 'your-templates') setLibraryView('templates');
+    else if (goLibrary) setLibraryView('library');
+
+    const jumpToLibrary = () => {
+      const el = document.getElementById(hash || 'library-templates');
+      const target = el || document.getElementById('library-templates');
+      if (!goLibrary && !hash) {
+        window.scrollTo(0, 0);
+        return;
+      }
+      if (!target) {
+        window.scrollTo(0, 0);
+        return;
+      }
+      const headerOffset = 96;
+      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+      window.scrollTo(0, top);
+    };
+    jumpToLibrary();
+    const frame = window.requestAnimationFrame(jumpToLibrary);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.history.scrollRestoration = prev;
+    };
+  }, [location.hash, location.state]);
+
+  const openStartChoice = (templateId) => setStartTemplate(templateId);
+
+  const openUserLetter = (item) => {
+    navigate('/cover-letter/customizer', {
+      state: {
+        restoreUserLetter: item,
+        userLetterId: item.id,
+        userTemplateId: item.userTemplateId,
+        userTemplateName: item.userTemplateName,
+        template: item.selectedTemplate,
+      },
+    });
+  };
+
+  const openSavedTemplate = (item) => {
+    navigate('/cover-letter/customizer', {
+      state: {
+        template: item.baseTemplate,
+        startMode: 'sample',
+        userTemplateId: item.id,
+        userTemplateName: item.name,
+        savedDesign: item.design,
+      },
+    });
+  };
+
+  const beginCustomizer = (mode) => {
+    const template = startTemplate || previewTemplate;
+    if (!template) return;
+    setStartTemplate(null);
+    setPreviewTemplate(null);
+    navigate('/cover-letter/customizer', { state: { template, startMode: mode } });
+  };
 
   return (
-    <main className="clt-page">
-      {/* Hero */}
-      <section className="clt-hero">
+    <main className="rt-page">
+      <section className="rt-hero">
         <div className="container">
-          <h1>Cover Letter <span>Templates</span></h1>
-          <p>Professional, ATS-optimized cover letter templates for every style and career level. Fully editable and ready to download.</p>
-          <div className="clt-stats">
-            <div className="cs"><strong>30+</strong><span>Templates</span></div>
-            <div className="cs-div"></div>
-            <div className="cs"><strong>100%</strong><span>ATS Compatible</span></div>
-            <div className="cs-div"></div>
-            <div className="cs"><strong>Free</strong><span>To Use</span></div>
-          </div>
+          <h1>Professional <span>Cover Letter</span></h1>
+          <p>One ATS-friendly letter layout. Customize colors, type, and margins, then download a PDF.</p>
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="clt-filters">
+      <section className="rt-filters-bar" id="library-templates">
         <div className="container">
-          <div className="clt-filter-row">
-            <div className="clt-filter-group">
-              <span>Style:</span>
-              {categories.map(c => (
-                <button key={c} className={`clt-filter-btn ${catFilter === c ? 'active' : ''}`} onClick={() => setCatFilter(c)}>
-                  {c.charAt(0).toUpperCase() + c.slice(1)}
-                </button>
-              ))}
-            </div>
-            <div className="clt-filter-group">
-              <span>Level:</span>
-              {levels.map(l => (
-                <button key={l} className={`clt-filter-btn ${levelFilter === l ? 'active' : ''}`} onClick={() => setLevelFilter(l)}>
-                  {l.charAt(0).toUpperCase() + l.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Grid */}
-      <section className="clt-grid-section">
-        <div className="container">
-          <div className="clt-grid">
-            {filtered.map(t => (
-              <div
-                key={t.id}
-                className="clt-card"
-                onMouseEnter={() => setHoveredId(t.id)}
-                onMouseLeave={() => setHoveredId(null)}
+          <div className="filters-row">
+            <div className="filter-group rt-view-switch" style={{ marginLeft: 0 }}>
+              <button
+                type="button"
+                className={`rt-view-btn ${libraryView === 'library' ? 'active' : ''}`}
+                onClick={() => setLibraryView('library')}
               >
-                <div className="clt-mock">
-                  <div className="clt-mock-bar" style={{ background: t.accent }}></div>
-                  <div className="clt-mock-body">
-                    <div className="clt-sender">
-                      <strong>Full Name</strong>
-                      <span style={{ color: t.accent }}>Job Title</span>
-                    </div>
-                    <div className="clt-date-line" style={{ borderColor: t.accent }}>Date & Recipient</div>
-                    <div className="clt-greeting" style={{ color: t.accent }}>Dear Hiring Manager,</div>
-                    <div className="clt-para-lines">
-                      <div className="cl-line long"></div>
-                      <div className="cl-line medium"></div>
-                      <div className="cl-line long"></div>
-                      <div className="cl-line short"></div>
-                    </div>
-                    <div className="clt-para-lines" style={{ marginTop: '0.5rem' }}>
-                      <div className="cl-line long"></div>
-                      <div className="cl-line medium"></div>
-                    </div>
-                    <div className="clt-sign">Sincerely,<br /><strong style={{ color: t.accent }}>Full Name</strong></div>
-                  </div>
-                  {hoveredId === t.id && (
-                    <div className="clt-overlay">
-                      <button className="btn btn-primary" onClick={() => navigate('/cover-letter-customizer')}>
-                        <i className="fa-solid fa-edit"></i> Customize
-                      </button>
-                      <button className="btn-outline-light">
-                        <i className="fa-solid fa-download"></i> Download
-                      </button>
-                    </div>
-                  )}
-                </div>
-                <div className="clt-card-footer">
-                  <div>
-                    <h4>{t.name}</h4>
-                    <div className="clt-tags">
-                      <span className="clt-tag">{t.category}</span>
-                      <span className="clt-tag">{t.level}</span>
-                    </div>
-                  </div>
-                  <div className="clt-accent-dot" style={{ background: t.accent }}></div>
-                </div>
-              </div>
-            ))}
+                Library templates
+              </button>
+              <button
+                type="button"
+                className={`rt-view-btn ${libraryView === 'letters' ? 'active' : ''}`}
+                onClick={() => setLibraryView('letters')}
+              >
+                Your cover letters{userLetters.length ? ` (${userLetters.length})` : ''}
+              </button>
+              <button
+                type="button"
+                className={`rt-view-btn ${libraryView === 'templates' ? 'active' : ''}`}
+                onClick={() => setLibraryView('templates')}
+              >
+                Your cover letter templates{userTemplates.length ? ` (${userTemplates.length})` : ''}
+              </button>
+            </div>
           </div>
         </div>
       </section>
+
+      <section className="rt-grid-section">
+        <div className="container">
+          {libraryView === 'letters' && (
+            <>
+              {userLetters.length === 0 ? (
+                <div className="no-results">
+                  <i className="fa-solid fa-envelope-open-text"></i>
+                  <p>No saved cover letters yet. Open the library template, edit it, and click Save.</p>
+                  <button type="button" className="btn btn-secondary" onClick={() => setLibraryView('library')}>Browse library</button>
+                </div>
+              ) : (
+                <div className="rt-grid">
+                  {userLetters.map((item) => {
+                    const base = getCoverLetterTemplateById(item.selectedTemplate);
+                    return (
+                      <div key={item.id} className="rt-card">
+                        <div className="rt-preview-box" onClick={() => openUserLetter(item)}>
+                          <div className="rt-preview-scale-wrapper">
+                            <CoverLetterRenderer template={item.selectedTemplate} letterData={item.letterData} preview />
+                          </div>
+                        </div>
+                        <div className="rt-mine-meta">
+                          <h4 className="rt-card-name" onClick={() => openUserLetter(item)}>{item.name}</h4>
+                          <button
+                            type="button"
+                            className="rt-mine-delete"
+                            onClick={() => setUserLetters(deleteUserCoverLetter(item.id))}
+                            aria-label={`Delete ${item.name}`}
+                          >
+                            <i className="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                        <p className="rt-mine-base">
+                          {base.name}
+                          {item.updatedAt ? ` · ${new Date(item.updatedAt).toLocaleString()}` : ''}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          )}
+
+          {libraryView === 'templates' && (
+            <>
+              {userTemplates.length === 0 ? (
+                <div className="no-results">
+                  <i className="fa-solid fa-palette"></i>
+                  <p>No saved templates yet. Customize the design and choose Save as template.</p>
+                  <button type="button" className="btn btn-secondary" onClick={() => setLibraryView('library')}>Browse library</button>
+                </div>
+              ) : (
+                <div className="rt-grid">
+                  {userTemplates.map((item) => {
+                    const sample = sampleForCoverLetter(item.baseTemplate);
+                    const previewData = { ...sample, design: { ...(sample.design || {}), ...(item.design || {}) } };
+                    const base = getCoverLetterTemplateById(item.baseTemplate);
+                    return (
+                      <div key={item.id} className="rt-card">
+                        <div className="rt-preview-box" onClick={() => openSavedTemplate(item)}>
+                          <div className="rt-preview-scale-wrapper">
+                            <CoverLetterRenderer template={item.baseTemplate} letterData={previewData} preview />
+                          </div>
+                        </div>
+                        <div className="rt-mine-meta">
+                          <h4 className="rt-card-name" onClick={() => openSavedTemplate(item)}>{item.name}</h4>
+                          <button
+                            type="button"
+                            className="rt-mine-delete"
+                            onClick={() => setUserTemplates(deleteUserCoverLetterTemplate(item.id))}
+                            aria-label={`Delete ${item.name}`}
+                          >
+                            <i className="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                        <p className="rt-mine-base">Based on {base.name}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          )}
+
+          {libraryView === 'library' && (
+            <div className="rt-grid">
+              {COVER_LETTER_TEMPLATES.map((t) => (
+                <div
+                  key={t.id}
+                  className={`rt-card ${hoveredId === t.id ? 'rt-card--hovered' : ''}`}
+                  onMouseEnter={() => setHoveredId(t.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <div className="rt-preview-box" onClick={() => setPreviewTemplate(t.id)}>
+                    <div className="rt-preview-scale-wrapper">
+                      <CoverLetterRenderer template={t.id} letterData={sampleForCoverLetter(t.id)} preview />
+                    </div>
+                    <div className="rt-overlay">
+                      <button
+                        className="rt-btn-preview"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setPreviewTemplate(t.id);
+                        }}
+                      >
+                        <i className="fa-solid fa-eye"></i> Preview
+                      </button>
+                    </div>
+                  </div>
+                  <h4 className="rt-card-name" onClick={() => openStartChoice(t.id)}>{t.name}</h4>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {previewTemplate && (
+        <div className="rt-modal-backdrop" onClick={() => setPreviewTemplate(null)}>
+          <div className="rt-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="rt-modal-header">
+              <h3>{getCoverLetterTemplateById(previewTemplate).name} — Preview</h3>
+              <div className="rt-modal-actions">
+                <button
+                  className="rt-modal-use-btn"
+                  onClick={() => setStartTemplate(previewTemplate)}
+                >
+                  <i className="fa-solid fa-edit"></i>
+                  Use template
+                </button>
+                <button className="rt-modal-close" onClick={() => setPreviewTemplate(null)}>
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <div className="rt-modal-body">
+              <div className="rt-modal-resume">
+                <CoverLetterRenderer template={previewTemplate} letterData={sampleForCoverLetter(previewTemplate)} preview />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {startTemplate && (
+        <StartModeModal
+          kind="cover-letter"
+          templateId={startTemplate}
+          onClose={() => setStartTemplate(null)}
+          onChoose={beginCustomizer}
+        />
+      )}
     </main>
   );
 }

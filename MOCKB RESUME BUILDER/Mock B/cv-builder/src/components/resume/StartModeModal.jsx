@@ -1,10 +1,12 @@
 import { getTemplateById, isTwoColumnTemplate } from '../../config/templates';
+import { getCoverLetterTemplateById } from '../../config/coverLetterTemplates';
 import './StartModeModal.css';
 
-export default function StartModeModal({ templateId, onClose, onChoose }) {
+export default function StartModeModal({ templateId, onClose, onChoose, kind = 'resume' }) {
     if (!templateId) return null;
-    const meta = getTemplateById(templateId);
-    const twoCol = isTwoColumnTemplate(templateId);
+    const isLetter = kind === 'cover-letter';
+    const meta = isLetter ? getCoverLetterTemplateById(templateId) : getTemplateById(templateId);
+    const twoCol = !isLetter && isTwoColumnTemplate(templateId);
 
     return (
         <div className="sm-backdrop" onClick={onClose}>
@@ -20,7 +22,7 @@ export default function StartModeModal({ templateId, onClose, onChoose }) {
                 <div className="sm-options">
                     <button type="button" className="sm-option" onClick={() => onChoose('sample')}>
                         <span className="sm-icon"><i className="fa-solid fa-file-lines"></i></span>
-                        <span className="sm-option-title">Use example resume</span>
+                        <span className="sm-option-title">{isLetter ? 'Use example cover letter' : 'Use example resume'}</span>
                         <span className="sm-option-copy">
                             Start with sample content you can replace. Fastest way to see the finished look.
                         </span>
@@ -29,8 +31,9 @@ export default function StartModeModal({ templateId, onClose, onChoose }) {
                         <span className="sm-icon"><i className="fa-solid fa-pen-to-square"></i></span>
                         <span className="sm-option-title">Build from scratch</span>
                         <span className="sm-option-copy">
-                            Empty {twoCol ? 'two-column' : 'single-column'} layout. Add personal details first, then sections one by one
-                            {twoCol ? ', and choose left or right column.' : '.'}
+                            {isLetter
+                                ? 'Empty letter with greeting and closing. Fill in your details and write the body.'
+                                : `Empty ${twoCol ? 'two-column' : 'single-column'} layout. Add personal details first, then sections one by one${twoCol ? ', and choose left or right column.' : '.'}`}
                         </span>
                     </button>
                 </div>
