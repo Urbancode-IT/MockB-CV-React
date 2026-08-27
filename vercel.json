@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm install --prefix \"MOCKB RESUME BUILDER/Mock B/cv-builder\"",
+  "buildCommand": "npm run build --prefix \"MOCKB RESUME BUILDER/Mock B/cv-builder\"",
+  "outputDirectory": "MOCKB RESUME BUILDER/Mock B/cv-builder/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
