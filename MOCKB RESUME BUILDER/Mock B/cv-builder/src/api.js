@@ -3,19 +3,21 @@ import axios from "axios";
 const PRODUCTION_API = "https://mockb-cv-react.onrender.com/api";
 
 function resolveApiBaseUrl() {
+    if (!import.meta.env.DEV) {
+        return PRODUCTION_API;
+    }
+
     const raw = String(import.meta.env.VITE_API_URL ?? "").trim();
     let url = (raw || PRODUCTION_API).replace(/\/+$/, "");
 
     const isRelative = url.startsWith("/");
-    const isVercel = /vercel\.app/i.test(url);
-    const isLoopback = /localhost|127\.0\.0\.1/i.test(url);
+    const isFrontendHost = /vercel\.app|netlify\.app/i.test(url);
 
-    // Never call the Vercel SPA (POST /auth/login returns 405 there).
-    if (isRelative || isVercel || (!import.meta.env.DEV && isLoopback)) {
+    if (isRelative || isFrontendHost) {
         return PRODUCTION_API;
     }
 
-    if (/^https:\/\/mockb-cv-react\.onrender\.com$/i.test(url)) {
+    if (/^https:\/\/mockb-cv-react\.onrender.com$/i.test(url)) {
         return PRODUCTION_API;
     }
 

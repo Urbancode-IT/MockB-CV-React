@@ -31,14 +31,16 @@ connectDB();
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+}));
 
-<<<<<<< HEAD
 const stripTrailingSlash = (url) => (url ? url.trim().replace(/\/+$/, "") : "");
 
 const allowedOrigins = new Set(
     [
         process.env.CLIENT_URL,
+        process.env.CLIENT_URLS,
         process.env.CORS_ORIGINS,
         "http://localhost:5173",
         "http://localhost:5174",
@@ -46,6 +48,8 @@ const allowedOrigins = new Set(
         "http://localhost:5176",
         "http://localhost:5177",
         "https://mock-b-cv-react.vercel.app",
+        "https://mockbcv.netlify.app",
+        "https://www.mockbcv.netlify.app",
     ]
         .filter(Boolean)
         .flatMap((value) => String(value).split(","))
@@ -58,44 +62,24 @@ const isAllowedOrigin = (origin) => {
     if (allowedOrigins.has(normalized)) return true;
     try {
         const { protocol, hostname } = new URL(normalized);
-        return (
-            protocol === "https:" &&
-            hostname.endsWith(".vercel.app") &&
-            hostname.includes("mock-b-cv-react")
-        );
+        if (protocol !== "https:") return false;
+        if (hostname.endsWith(".vercel.app") && hostname.includes("mock-b-cv-react")) return true;
+        if (hostname.endsWith(".netlify.app") && hostname.includes("mockbcv")) return true;
+        return false;
     } catch {
         return false;
     }
 };
-=======
-const deployedClientUrl = "https://mockbcv.netlify.app";
-const envClientUrls = [
-    process.env.CLIENT_URL,
-    ...(process.env.CLIENT_URLS || "").split(","),
-];
-
-const allowedOrigins = [
-    deployedClientUrl,
-    ...envClientUrls,
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175",
-    "http://localhost:5176",
-    "http://localhost:5177",
-]
-    .map((origin) => origin && origin.trim())
-    .filter(Boolean);
->>>>>>> 858b9b4d0168185d5ee916f867596c9f90044cb0
 
 const corsOptions = {
     origin(origin, callback) {
-        // Allow non-browser tools (no Origin), local Vite, and deployed frontend
         if (!origin || isAllowedOrigin(origin)) {
             return callback(null, true);
         }
-        return callback(new Error(`CORS blocked for origin: ${origin}`));
+        // Do not throw — a thrown CORS error returns 500 without ACAO headers.
+        return callback(null, false);
     },
-    credentials: true
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
