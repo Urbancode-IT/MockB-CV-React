@@ -7,6 +7,7 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [submitting, setSubmitting] = useState(false);
@@ -155,7 +156,8 @@ const Register = () => {
                             <div className="auth-input-wrap">
                                 <input
                                     id="register-password"
-                                    type="password"
+                                    className="has-password-toggle"
+                                    type={showPassword ? 'text' : 'password'}
                                     placeholder="At least 6 characters"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -164,6 +166,14 @@ const Register = () => {
                                     autoComplete="new-password"
                                 />
                                 <i className="fa-solid fa-lock auth-input-icon"></i>
+                                <button
+                                    type="button"
+                                    className="auth-password-toggle"
+                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    onClick={() => setShowPassword((visible) => !visible)}
+                                >
+                                    <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                                </button>
                             </div>
                         </div>
 

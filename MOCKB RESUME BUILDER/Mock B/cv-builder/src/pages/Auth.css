@@ -331,6 +331,35 @@
     color: #EEC30C;
 }
 
+.auth-field input.has-password-toggle {
+    padding-right: 44px;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.auth-password-toggle:hover,
+.auth-password-toggle:focus-visible {
+    color: #EEC30C;
+    outline: none;
+}
+
 /* ── Error Banner ── */
 .auth-error {
     display: flex;

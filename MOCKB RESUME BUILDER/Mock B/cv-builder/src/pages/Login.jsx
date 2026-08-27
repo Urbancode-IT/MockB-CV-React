@@ -6,6 +6,7 @@ import './Auth.css';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
@@ -119,7 +120,8 @@ const Login = () => {
                             <div className="auth-input-wrap">
                                 <input
                                     id="login-password"
-                                    type="password"
+                                    className="has-password-toggle"
+                                    type={showPassword ? 'text' : 'password'}
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -127,6 +129,14 @@ const Login = () => {
                                     autoComplete="current-password"
                                 />
                                 <i className="fa-solid fa-lock auth-input-icon"></i>
+                                <button
+                                    type="button"
+                                    className="auth-password-toggle"
+                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    onClick={() => setShowPassword((visible) => !visible)}
+                                >
+                                    <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                                </button>
                             </div>
                         </div>
 
