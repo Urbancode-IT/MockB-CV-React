@@ -33,6 +33,7 @@ const app = express();
 
 app.use(helmet());
 
+<<<<<<< HEAD
 const stripTrailingSlash = (url) => (url ? url.trim().replace(/\/+$/, "") : "");
 
 const allowedOrigins = new Set(
@@ -66,8 +67,27 @@ const isAllowedOrigin = (origin) => {
         return false;
     }
 };
+=======
+const deployedClientUrl = "https://mockbcv.netlify.app";
+const envClientUrls = [
+    process.env.CLIENT_URL,
+    ...(process.env.CLIENT_URLS || "").split(","),
+];
 
-app.use(cors({
+const allowedOrigins = [
+    deployedClientUrl,
+    ...envClientUrls,
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5175",
+    "http://localhost:5176",
+    "http://localhost:5177",
+]
+    .map((origin) => origin && origin.trim())
+    .filter(Boolean);
+>>>>>>> 858b9b4d0168185d5ee916f867596c9f90044cb0
+
+const corsOptions = {
     origin(origin, callback) {
         // Allow non-browser tools (no Origin), local Vite, and deployed frontend
         if (!origin || isAllowedOrigin(origin)) {
@@ -76,7 +96,10 @@ app.use(cors({
         return callback(new Error(`CORS blocked for origin: ${origin}`));
     },
     credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
