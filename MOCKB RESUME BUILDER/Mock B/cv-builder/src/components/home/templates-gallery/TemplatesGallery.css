@@ -48,8 +48,10 @@
 }
 
 .tab-btn.active {
-    background: var(--primary-color, #EEC30C);
-    color: #000;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    color: #1a1200;
 }
 
 .slider-container {
@@ -96,7 +98,7 @@
 }
 
 .template-card:hover {
-    border-color: var(--primary-color, #EEC30C);
+    border-color: var(--primary-color, #D4AF37);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -221,8 +223,8 @@
     padding: 0.18rem 0.55rem;
     border-radius: 999px;
     background: transparent;
-    border: 1px solid rgba(238, 195, 12, 0.55);
-    color: #EEC30C;
+    border: 1px solid rgba(212, 199, 122, 0.55);
+    color: #D4AF37;
     font-size: 0.62rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -261,8 +263,10 @@
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: var(--primary-color, #EEC30C);
-    color: #000;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    color: #1a1200;
     border: none;
     cursor: pointer;
     display: flex;
@@ -270,7 +274,7 @@
     justify-content: center;
     font-size: 1rem;
     pointer-events: auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255,255,255,0.5);
     transition: all 0.3s ease;
     z-index: 10;
     opacity: 0.5;

@@ -89,7 +89,7 @@
 .tab-btn.active {
     background: var(--primary-color);
     color: #000;
-    box-shadow: 0 4px 12px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 4px 12px rgba(212, 199, 122, 0.3);
 }
 
 .header-right {
@@ -505,7 +505,7 @@
 
 .template-card.active {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
 }
 
 .template-card-preview {
@@ -961,8 +961,8 @@ input:checked + .toggle-slider:before {
 }
 
 .content-block:hover {
-    border-color: rgba(238, 195, 12, 0.4);
-    background: rgba(238, 195, 12, 0.01);
+    border-color: rgba(212, 199, 122, 0.4);
+    background: rgba(212, 199, 122, 0.01);
 }
 
 .block-display {

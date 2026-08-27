@@ -48,8 +48,8 @@
 }
 .ats-checker-page .back-btn:hover {
     color: #000 !important;
-    background: #EEC30C !important;
-    border-color: #EEC30C !important;
+    background: #D4C77A !important;
+    border-color: #D4C77A !important;
     transform: translateX(-4px);
 }
 
@@ -150,7 +150,7 @@
 .ats-checker-page .card-icon {
     width: 60px;
     height: 60px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -217,7 +217,7 @@
 .ats-checker-page .gateway-card:hover .btn-recruiter {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
 }
 
 /* ── HERO ── */
@@ -244,8 +244,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(238, 195, 12, 0.1);
-    border: 1px solid rgba(238, 195, 12, 0.25);
+    background: rgba(212, 199, 122, 0.1);
+    border: 1px solid rgba(212, 199, 122, 0.25);
     color: var(--primary-color);
     padding: 6px 18px;
     border-radius: 50px;
@@ -313,7 +313,7 @@
 }
 
 .ats-checker-page .upload-card {
-    border: 2px dashed rgba(238, 195, 12, 0.3);
+    border: 2px dashed rgba(212, 199, 122, 0.3);
     border-radius: 24px;
     background: var(--bg-card);
     padding: 3.5rem 2rem;
@@ -327,13 +327,13 @@
 
 .ats-checker-page .upload-card:hover {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.04);
+    background: rgba(212, 199, 122, 0.04);
 }
 
 .ats-checker-page .upload-icon-wrap {
     width: 80px;
     height: 80px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -716,8 +716,8 @@
 
 /* Regen & Optimization */
 .ats-checker-page .regen-section {
-    background: linear-gradient(135deg, rgba(238, 195, 12, 0.08) 0%, rgba(99, 102, 241, 0.06) 100%);
-    border: 1px solid rgba(238, 195, 12, 0.2);
+    background: linear-gradient(135deg, rgba(212, 199, 122, 0.08) 0%, rgba(99, 102, 241, 0.06) 100%);
+    border: 1px solid rgba(212, 199, 122, 0.2);
     border-radius: 24px;
     padding: 48px;
     text-align: center;
@@ -907,7 +907,7 @@
     color: #666;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #EEC30C;
+    border-bottom: 2px solid #D4C77A;
 }
 
 .ats-checker-page .rp-section-title {
@@ -915,7 +915,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #EEC30C;
+    color: #D4C77A;
     margin: 20px 0 10px;
     padding-bottom: 3px;
     border-bottom: 1px solid #eee;
@@ -971,7 +971,7 @@
 }
 
 .ats-checker-page .rp-badge {
-    background: #EEC30C;
+    background: #D4C77A;
     color: #000;
     font-size: 0.68rem;
     font-weight: 800;
@@ -1054,7 +1054,7 @@
 .ats-checker-page .orb-1 {
     width: 500px;
     height: 500px;
-    background: #EEC30C;
+    background: #D4C77A;
     top: -150px;
     right: -150px;
     animation: floatOrbAts 18s infinite alternate;

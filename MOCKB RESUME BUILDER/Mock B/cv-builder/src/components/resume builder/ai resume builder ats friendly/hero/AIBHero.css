@@ -13,7 +13,7 @@
     transform: translate(-50%, -60%);
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(238,195,12,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 199, 122,0.12) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -21,9 +21,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(238,195,12,0.1);
-    border: 1px solid rgba(238,195,12,0.25);
-    color: #EEC30C;
+    background: rgba(212, 199, 122,0.1);
+    border: 1px solid rgba(212, 199, 122,0.25);
+    color: #D4C77A;
     padding: 6px 18px;
     border-radius: 50px;
     font-size: 0.82rem;
@@ -42,7 +42,7 @@
 }
 
 .ai-builder-page .aib-hero h1 .gold {
-    color: #EEC30C;
+    color: #D4C77A;
 }
 
 .ai-builder-page .hero-sub {
@@ -74,7 +74,7 @@
 }
 
 .ai-builder-page .trust-pill i {
-    color: #EEC30C;
+    color: #D4C77A;
 }
 
 .ai-builder-page .btn-lg {

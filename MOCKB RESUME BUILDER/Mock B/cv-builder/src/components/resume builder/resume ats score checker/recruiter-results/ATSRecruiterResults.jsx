@@ -3,7 +3,7 @@ import './ATSRecruiterResults.css';
 
 function getBarColor(pct) {
   if (pct >= 75) return '#22c55e';
-  if (pct >= 50) return '#EEC30C';
+  if (pct >= 50) return '#D4C77A';
   if (pct >= 30) return '#f97316';
   return '#ef4444';
 }
@@ -28,7 +28,7 @@ export default function ATSRecruiterResults({ results }) {
           <tbody>
             {results.map((res, index) => (
               <tr key={res.id}>
-                <td style={{ fontWeight: 'bold', color: index === 0 ? '#EEC30C' : '#fff' }}>#{index + 1}</td>
+                <td style={{ fontWeight: 'bold', color: index === 0 ? '#D4C77A' : '#fff' }}>#{index + 1}</td>
                 <td>{res.candidateName}</td>
                 <td style={{ fontWeight: 'bold', color: getBarColor(res.score) }}>{res.score}%</td>
                 <td>{res.topSkill}</td>

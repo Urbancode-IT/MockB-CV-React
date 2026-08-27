@@ -38,13 +38,13 @@
 }
 
 .detailed-features .detailed-feature-card:hover {
-    border-color: #EEC30C !important;
+    border-color: #D4AF37 !important;
     transform: translateY(-5px) !important;
 }
 
 .detailed-features .detailed-feature-icon {
     font-size: 1.5rem !important;
-    color: #EEC30C !important;
+    color: #D4AF37 !important;
     margin-bottom: 1rem !important;
 }
 

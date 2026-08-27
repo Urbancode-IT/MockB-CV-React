@@ -9,8 +9,8 @@ body:has(.cl-upgrader-override-wrapper) #root > div > .main-footer {
 
 /* Cover Letter Upgrader Unique Styles */
 :root {
-    --primary-color: #EEC30C;
-    --primary-glow: rgba(238, 195, 12, 0.4);
+    --primary-color: #D4C77A;
+    --primary-glow: rgba(212, 199, 122, 0.4);
     --bg-dark: #0D0D0D;
     --bg-card: rgba(26, 26, 26, 0.6);
     --text-white: #FFFFFF;
@@ -130,7 +130,7 @@ body {
 .cl-step-number {
     font-size: 4rem;
     font-weight: 900;
-    color: rgba(238, 195, 12, 0.1);
+    color: rgba(212, 199, 122, 0.1);
     margin-bottom: 10px;
     line-height: 1;
 }
@@ -149,7 +149,7 @@ body {
 
 /* Upload UI */
 .cl-upload-box {
-    border: 2px dashed rgba(238, 195, 12, 0.5);
+    border: 2px dashed rgba(212, 199, 122, 0.5);
     border-radius: 20px;
     padding: 50px 30px;
     text-align: center;
@@ -159,7 +159,7 @@ body {
 }
 
 .cl-upload-box:hover, .cl-upload-box.dragover {
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
     border-color: var(--primary-color);
 }
 
@@ -209,7 +209,7 @@ body {
 .cl-role-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(238, 195, 12, 0.2);
+    box-shadow: 0 0 15px rgba(212, 199, 122, 0.2);
 }
 
 /* Buttons */
@@ -227,7 +227,7 @@ body {
 }
 
 .cl-btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), #D4B00B);
+    background: linear-gradient(135deg, var(--primary-color), #C4B56A);
     color: #000;
 }
 
@@ -244,7 +244,7 @@ body {
 .cl-radar-spinner {
     width: 100px;
     height: 100px;
-    border: 4px solid rgba(238, 195, 12, 0.2);
+    border: 4px solid rgba(212, 199, 122, 0.2);
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -439,7 +439,7 @@ body {
 
 .cl-template-option.active .cl-template-thumb {
     border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 0 10px rgba(212, 199, 122, 0.3);
 }
 
 .cl-template-option.active span {
@@ -521,7 +521,7 @@ body {
     justify-content: center;
     font-size: 1.5rem;
     color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(238, 195, 12, 0.2);
+    box-shadow: 0 0 20px rgba(212, 199, 122, 0.2);
 }
 
 .error-message {

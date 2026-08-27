@@ -12,9 +12,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(238,195,12,0.1);
-    border: 1px solid rgba(238,195,12,0.25);
-    color: #EEC30C;
+    background: rgba(212, 199, 122,0.1);
+    border: 1px solid rgba(212, 199, 122,0.25);
+    color: #D4C77A;
     padding: 6px 18px;
     border-radius: 50px;
     font-size: 0.8rem;
@@ -30,7 +30,7 @@
     margin-bottom: 1.2rem;
     color: #fff;
 }
-.jb-hero h1 span { color: #EEC30C; }
+.jb-hero h1 span { color: #D4C77A; }
 
 .jb-hero p {
     color: #A0A0A0;
@@ -50,7 +50,7 @@
     font-size: 0.9rem;
 }
 .hs-item { display: flex; align-items: center; gap: 8px; }
-.hs-item i { color: #EEC30C; }
+.hs-item i { color: #D4C77A; }
 .hs-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.07); }
 
 @keyframes fadeDown {

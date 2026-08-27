@@ -22,7 +22,7 @@
 }
 
 .feat-card:hover {
-    border-color: rgba(238,195,12,0.3);
+    border-color: rgba(212, 199, 122,0.3);
     transform: translateY(-5px);
 }
 
@@ -36,7 +36,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: rgba(238, 195, 12, 0.35);
+    background: rgba(212, 199, 122, 0.35);
     filter: blur(40px);
     pointer-events: none;
 }

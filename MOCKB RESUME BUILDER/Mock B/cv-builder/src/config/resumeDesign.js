@@ -68,7 +68,7 @@ export const FONT_MAP = {
     mono: ['IBM Plex Mono', 'Source Code Pro', 'Space Mono', 'Inconsolata', 'Courier Prime'],
 };
 
-export const PRESET_COLORS = ['#1A3A5C', '#2A7A6D', '#2563EB', '#0F172A', '#7C3AED', '#374151', '#FCD34D', '#EEC30C', '#ff6b6b', '#4ecdc4', '#45b7d1', '#000000', '#ffffff'];
+export const PRESET_COLORS = ['#1A3A5C', '#2A7A6D', '#2563EB', '#0F172A', '#7C3AED', '#374151', '#D4C77A', '#C4B56A', '#ff6b6b', '#4ecdc4', '#45b7d1', '#000000', '#ffffff'];
 
 export const HEADING_STYLES = [
     { id: 'full-underline', name: 'Underline' },

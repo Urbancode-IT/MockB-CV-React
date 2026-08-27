@@ -10,7 +10,7 @@ export default function CoverLetterCustomizer() {
   // Design Settings
   const [margins, setMargins] = useState(5);
   const [spacing, setSpacing] = useState(3);
-  const [accentColor, setAccentColor] = useState('#EEC30C');
+  const [accentColor, setAccentColor] = useState('#D4C77A');
   const [fontStyle, setFontStyle] = useState('Satoshi');
   const [fontSize, setFontSize] = useState('M'); // XS, S, M, L, XL
   const [lineHeight, setLineHeight] = useState(1.4);
@@ -142,7 +142,7 @@ export default function CoverLetterCustomizer() {
   const resetDesign = () => {
     setMargins(5);
     setSpacing(3);
-    setAccentColor('#EEC30C');
+    setAccentColor('#D4C77A');
     setFontStyle('Satoshi');
     setFontSize('M');
     setLineHeight(1.4);
@@ -273,7 +273,7 @@ export default function CoverLetterCustomizer() {
                   <div className="control-group">
                     <span className="control-label">Colors</span>
                     <div className="color-grid">
-                      {['#EEC30C', '#4A4A4A', '#2E7D32', '#D84315', '#1565C0', '#283593', '#FF5722', '#6A1B9A', '#00838F', '#6D4C41'].map(c => (
+                      {['#D4C77A', '#4A4A4A', '#2E7D32', '#D84315', '#1565C0', '#283593', '#FF5722', '#6A1B9A', '#00838F', '#6D4C41'].map(c => (
                         <div 
                           key={c} 
                           className={`color-option ${accentColor === c ? 'active' : ''}`} 
@@ -402,7 +402,7 @@ export default function CoverLetterCustomizer() {
                   
                   <div className="templates-list">
                     {[
-                      { id: 'modern', label: 'Modern Style', bg: '#EEC30C' },
+                      { id: 'modern', label: 'Modern Style', bg: '#D4C77A' },
                       { id: 'traditional', label: 'Traditional Serif', bg: '#1b2a47' },
                       { id: 'creative', label: 'Creative Accent', bg: '#e91e63' },
                       { id: 'minimalist', label: 'Minimalist', bg: '#111111' }
@@ -463,7 +463,7 @@ export default function CoverLetterCustomizer() {
                     </div>
 
                     {!showPhoto && (
-                      <button onClick={handlePhotoUploadClick} className="btn-sidebar-footer" style={{ background: 'rgba(238,195,12,0.1)', border: '1px solid var(--primary-color)', color: 'var(--primary-color)' }}>
+                      <button onClick={handlePhotoUploadClick} className="btn-sidebar-footer" style={{ background: 'rgba(212, 199, 122,0.1)', border: '1px solid var(--primary-color)', color: 'var(--primary-color)' }}>
                         <i className="fa-solid fa-camera"></i> Upload Profile Picture
                       </button>
                     )}

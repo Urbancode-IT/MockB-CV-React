@@ -20,13 +20,13 @@
 }
 
 .home-feature-card:hover {
-    border-color: #EEC30C !important;
+    border-color: #D4AF37 !important;
     transform: translateY(-5px) !important;
 }
 
 .home-feature-icon {
     font-size: 2rem !important;
-    color: #EEC30C !important;
+    color: #D4AF37 !important;
     margin-bottom: 1.5rem !important;
 }
 

@@ -5,7 +5,7 @@ const router = express.Router();
 
 const User = require("../models/User");
 
-const authMiddleware = require("../middleware/authMiddleware");
+const { readToken } = require("../middleware/authMiddleware");
 const asyncHandler = require("../middleware/asyncHandler");
 const validate = require("../middleware/validate");
 
@@ -17,13 +17,23 @@ const {
 } = require("../validators/authValidator");
 
 const generateToken = require("../utils/generateToken");
+const jwt = require("jsonwebtoken");
+
+const useCrossSiteCookies =
+    process.env.NODE_ENV === "production" || Boolean(process.env.RENDER);
 
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: useCrossSiteCookies,
+    sameSite: useCrossSiteCookies ? "none" : "lax",
     maxAge: 5 * 24 * 60 * 60 * 1000,
 };
+
+const userPayload = (user) => ({
+    id: user._id,
+    name: user.name,
+    email: user.email,
+});
 
 
 // ======================================
@@ -62,11 +72,8 @@ router.post(
         return success(
             res,
             {
-                user: {
-                    id: user._id,
-                    name: user.name,
-                    email: user.email,
-                },
+                token,
+                user: userPayload(user),
             },
             "User registered successfully",
             201
@@ -113,11 +120,8 @@ router.post(
         return success(
             res,
             {
-                user: {
-                    id: user._id,
-                    name: user.name,
-                    email: user.email,
-                },
+                token,
+                user: userPayload(user),
             },
             "Login successful"
         );
@@ -133,26 +137,31 @@ router.post(
 
 router.get(
     "/user",
-    authMiddleware,
     asyncHandler(async (req, res) => {
+        const token = readToken(req);
 
-        const user = await User.findById(req.user.id)
-            .select("-password");
+        if (!token) {
+            return success(res, null, "Not signed in");
+        }
+
+        let decoded;
+        try {
+            decoded = jwt.verify(token, process.env.JWT_SECRET);
+        } catch {
+            return success(res, null, "Not signed in");
+        }
+
+        const user = await User.findById(decoded.user.id).select("-password");
 
         if (!user) {
-            return error(res, "User not found", 404);
+            return success(res, null, "Not signed in");
         }
 
         return success(
             res,
-            {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-            },
+            userPayload(user),
             "User fetched successfully"
         );
-
     })
 );
 
@@ -166,11 +175,7 @@ router.post(
     "/logout",
     (req, res) => {
 
-        res.clearCookie("token", {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        });
+        res.clearCookie("token", cookieOptions);
 
         return success(
             res,

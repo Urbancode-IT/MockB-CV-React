@@ -176,7 +176,7 @@ export default function RBGeneratorWizard({
                           width: '100%', height: '250px', objectFit: 'cover', objectPosition: 'top',
                           borderRadius: '10px',
                           border: formData.template === 'modern' ? '3px solid var(--primary-color)' : '3px solid transparent',
-                          boxShadow: formData.template === 'modern' ? '0 0 20px rgba(238, 195, 12, 0.4)' : 'none',
+                          boxShadow: formData.template === 'modern' ? '0 0 20px rgba(212, 199, 122, 0.4)' : 'none',
                           transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)'
                         }}
                       />
@@ -198,7 +198,7 @@ export default function RBGeneratorWizard({
                           width: '100%', height: '250px', objectFit: 'cover', objectPosition: 'top',
                           borderRadius: '10px',
                           border: formData.template === 'creative' ? '3px solid var(--primary-color)' : '3px solid transparent',
-                          boxShadow: formData.template === 'creative' ? '0 0 20px rgba(238, 195, 12, 0.4)' : 'none',
+                          boxShadow: formData.template === 'creative' ? '0 0 20px rgba(212, 199, 122, 0.4)' : 'none',
                           transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)'
                         }}
                       />

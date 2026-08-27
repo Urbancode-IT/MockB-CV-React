@@ -45,19 +45,19 @@
 
 /* Blue shape -> Yellow shape */
 .rbrb-page .role-card:nth-child(3n+1)::before {
-    background: var(--primary-color, #EEC30C);
+    background: var(--primary-color, #D4C77A);
     transform: rotate(-6deg) scale(1.02);
 }
 
 /* Green shape -> Yellow shape */
 .rbrb-page .role-card:nth-child(3n+2)::before {
-    background: var(--primary-color, #EEC30C);
+    background: var(--primary-color, #D4C77A);
     transform: rotate(6deg) scale(1.02);
 }
 
 /* Teal shape -> Yellow shape */
 .rbrb-page .role-card:nth-child(3n+3)::before {
-    background: var(--primary-color, #EEC30C);
+    background: var(--primary-color, #D4C77A);
     transform: rotate(-6deg) scale(1.02);
 }
 
@@ -96,7 +96,7 @@
     justify-content: center !important;
     padding-top: 8px !important;
     font-size: 2rem !important;
-    color: var(--primary-color, #EEC30C) !important;
+    color: var(--primary-color, #D4C77A) !important;
     z-index: 2 !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
     margin: 0 !important;
@@ -112,7 +112,7 @@
 }
 
 .rbrb-page .role-card:hover .role-icon::before {
-    background: linear-gradient(to right, #000 30%, var(--primary-color, #EEC30C) 50%, #000 70%) !important;
+    background: linear-gradient(to right, #000 30%, var(--primary-color, #D4C77A) 50%, #000 70%) !important;
     background-size: 200% auto !important;
     color: transparent !important;
     -webkit-background-clip: text !important;
@@ -154,7 +154,7 @@
     visibility: hidden;
     padding: 0.8rem 1.5rem;
     border-radius: 30px;
-    background: var(--primary-color, #EEC30C);
+    background: var(--primary-color, #D4C77A);
     color: #000;
     font-size: 0.9rem;
     font-weight: 700;
@@ -176,5 +176,5 @@
 
 .rbrb-page .generate-btn:hover {
     background: #000;
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4C77A);
 }

@@ -4,12 +4,16 @@ const { error } = require("../utils/apiResponse");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+function readToken(req) {
+    const cookieToken = req.cookies?.token;
+    const header = req.headers.authorization || "";
+    const bearer = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+    return bearer || cookieToken || "";
+}
+
 module.exports = (req, res, next) => {
-
     try {
-
-        // Read token from HttpOnly Cookie
-        const token = req.cookies.token;
+        const token = readToken(req);
 
         if (!token) {
             return error(
@@ -19,26 +23,12 @@ module.exports = (req, res, next) => {
             );
         }
 
-        // Verify JWT
-        const decoded = jwt.verify(
-            token,
-            JWT_SECRET
-        );
-
+        const decoded = jwt.verify(token, JWT_SECRET);
         req.user = decoded.user;
-
         next();
-
+    } catch {
+        return error(res, "Invalid or expired token", 401);
     }
-
-    catch (err) {
-
-        return error(
-            res,
-            "Invalid or expired token",
-            401
-        );
-
-    }
-
 };
+
+module.exports.readToken = readToken;

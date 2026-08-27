@@ -61,7 +61,7 @@
 }
 
 .ref-section-toggle-left i {
-    color: #EEC30C;
+    color: #D4C77A;
     width: 14px;
     font-size: 0.8rem;
 }
@@ -119,8 +119,8 @@
 }
 
 .ref-input:focus {
-    border-color: #EEC30C;
-    box-shadow: 0 0 0 2px rgba(238, 195, 12, 0.12);
+    border-color: #D4C77A;
+    box-shadow: 0 0 0 2px rgba(212, 199, 122, 0.12);
 }
 
 .ref-input::placeholder {
@@ -145,8 +145,8 @@
 }
 
 .ref-textarea:focus {
-    border-color: #EEC30C;
-    box-shadow: 0 0 0 2px rgba(238, 195, 12, 0.12);
+    border-color: #D4C77A;
+    box-shadow: 0 0 0 2px rgba(212, 199, 122, 0.12);
 }
 
 .ref-textarea::placeholder {
@@ -189,7 +189,7 @@ select.ref-input option {
 .ref-entry-label {
     font-size: 0.75rem;
     font-weight: 700;
-    color: #EEC30C;
+    color: #D4C77A;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -237,9 +237,9 @@ select.ref-input option {
 }
 
 .ref-add-btn:hover {
-    background: rgba(238, 195, 12, 0.06);
-    border-color: #EEC30C;
-    color: #EEC30C;
+    background: rgba(212, 199, 122, 0.06);
+    border-color: #D4C77A;
+    color: #D4C77A;
 }
 
 /* ── Skills / Languages row ── */
@@ -283,7 +283,7 @@ select.ref-input option {
     border: 1px solid #0d0d0d;
 }
 .ref-form::-webkit-scrollbar-thumb:hover {
-    background-color: #EEC30C;
+    background-color: #D4C77A;
 }
 .ref-form::-webkit-scrollbar-corner {
     background: transparent;
@@ -317,7 +317,7 @@ select.ref-input option {
 
 .ref-color-swatch.active {
     border-color: #fff;
-    box-shadow: 0 0 0 2px #EEC30C;
+    box-shadow: 0 0 0 2px #D4C77A;
 }
 
 .ref-color-custom input {
@@ -339,7 +339,7 @@ select.ref-input option {
     width: 100%;
     padding: 14px;
     margin-top: 10px;
-    background: linear-gradient(135deg, #EEC30C 0%, #D4A000 100%);
+    background: linear-gradient(135deg, #D4C77A 0%, #D4A000 100%);
     color: #111;
     border: none;
     border-radius: 8px;
@@ -348,13 +348,13 @@ select.ref-input option {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(238, 195, 12, 0.2);
+    box-shadow: 0 4px 12px rgba(212, 199, 122, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .ref-add-content-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 6px 16px rgba(212, 199, 122, 0.3);
 }
 
 .ref-add-content-btn:active {
@@ -425,8 +425,8 @@ select.ref-input option {
     align-items: center;
     gap: 8px;
     background: transparent;
-    border: 1px solid #EEC30C;
-    color: #EEC30C;
+    border: 1px solid #D4C77A;
+    color: #D4C77A;
     border-radius: 999px;
     padding: 7px 14px;
     font-size: 0.82rem;
@@ -436,7 +436,7 @@ select.ref-input option {
 }
 
 .ref-import-btn:hover {
-    background: rgba(238, 195, 12, 0.12);
+    background: rgba(212, 199, 122, 0.12);
 }
 
 .ref-modal-close {
@@ -479,7 +479,7 @@ select.ref-input option {
     border-radius: 999px;
 }
 .ref-modal-grid::-webkit-scrollbar-thumb:hover {
-    background-color: #EEC30C;
+    background-color: #D4C77A;
 }
 
 .ref-modal-item {
@@ -502,9 +502,9 @@ select.ref-input option {
 
 .ref-modal-item:hover:not(.ref-modal-item--added) {
     background: #fff;
-    border-color: #EEC30C;
+    border-color: #D4C77A;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(238, 195, 12, 0.18);
+    box-shadow: 0 6px 16px rgba(212, 199, 122, 0.18);
 }
 
 .ref-modal-item-icon {
@@ -609,15 +609,15 @@ select.ref-input option {
 
 .ref-overview-bar {
     fill: none;
-    stroke: #EEC30C;
+    stroke: #D4C77A;
     stroke-width: 6;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.4s ease;
 }
 
-.ref-overview-ring--mid .ref-overview-bar { stroke: #EEC30C; }
+.ref-overview-ring--mid .ref-overview-bar { stroke: #D4C77A; }
 .ref-overview-ring--strong .ref-overview-bar { stroke: #3dd68c; }
-.ref-overview-ring--low .ref-overview-bar { stroke: #f59e0b; }
+.ref-overview-ring--low .ref-overview-bar { stroke: #C4B56A; }
 
 .ref-overview-ring span {
     position: absolute;
@@ -676,7 +676,7 @@ select.ref-input option {
 }
 
 .ref-overview-item i:first-child {
-    color: #EEC30C;
+    color: #D4C77A;
 }
 
 .ref-overview-item span {
@@ -689,7 +689,7 @@ select.ref-input option {
 }
 
 .ref-overview-item:hover {
-    border-color: #EEC30C;
+    border-color: #D4C77A;
 }
 
 .ref-add-hint {
@@ -762,7 +762,7 @@ select.ref-input option {
 
 .ref-column-btn.is-suggested,
 .ref-column-btn:hover {
-    border-color: #EEC30C;
+    border-color: #D4C77A;
 }
 
 .ref-column-back {
@@ -785,7 +785,7 @@ select.ref-input option {
 .ref-personal-card {
     position: relative;
     background: #121212;
-    border: 1px solid #EEC30C;
+    border: 1px solid #D4C77A;
     border-radius: 14px;
     padding: 22px 20px 20px;
 }
@@ -798,7 +798,7 @@ select.ref-input option {
     height: 32px;
     border-radius: 50%;
     border: none;
-    background: #EEC30C;
+    background: #D4C77A;
     color: #111;
     cursor: pointer;
     display: flex;
@@ -917,7 +917,7 @@ select.ref-input option {
 }
 
 .ref-done-btn {
-    background: #EEC30C;
+    background: #D4C77A;
     border: none;
     border-radius: 999px;
     padding: 6px 14px;
@@ -974,7 +974,7 @@ select.ref-input option {
 }
 
 .ref-content-head-left > i {
-    color: #EEC30C;
+    color: #D4C77A;
 }
 
 .ref-content-head h3 {
@@ -989,7 +989,7 @@ select.ref-input option {
 
 .ref-heading-input {
     background: #0d0d0d;
-    border: 1px solid #EEC30C;
+    border: 1px solid #D4C77A;
     color: #fff;
     border-radius: 6px;
     padding: 4px 8px;
@@ -1011,7 +1011,7 @@ select.ref-input option {
     height: 32px;
     border-radius: 50%;
     border: none;
-    background: #EEC30C;
+    background: #D4C77A;
     color: #111;
     cursor: pointer;
     display: flex;

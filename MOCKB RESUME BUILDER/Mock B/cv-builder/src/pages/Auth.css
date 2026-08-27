@@ -41,7 +41,7 @@
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(238, 195, 12, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 199, 122, 0.12) 0%, transparent 70%);
     top: -120px;
     left: -120px;
     animation: orbFloat 9s ease-in-out infinite;
@@ -53,7 +53,7 @@
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(238, 195, 12, 0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 199, 122, 0.07) 0%, transparent 70%);
     bottom: -80px;
     right: -80px;
     animation: orbFloat 12s ease-in-out infinite reverse;
@@ -79,15 +79,28 @@
 .auth-brand-logo .logo-icon-wrap {
     width: 44px;
     height: 44px;
-    background: #EEC30C;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: #000;
-    box-shadow: 0 4px 20px rgba(238, 195, 12, 0.35);
+    color: #1a1200;
+    box-shadow: 0 4px 22px var(--primary-glow), inset 0 1px 0 rgba(255,255,255,0.55);
     flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-brand-logo span {
+    background: linear-gradient(90deg, #B8860B, #F8E7A8, #D4AF37, #FFF8DC, #E8C547);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
 }
 
 .auth-brand-content {
@@ -104,7 +117,12 @@
 }
 
 .auth-brand-content h2 span {
-    color: #EEC30C;
+    background: linear-gradient(90deg, #B8860B, #F8E7A8, #D4AF37, #FFF8DC, #E8C547);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
 }
 
 .auth-brand-content p {
@@ -134,20 +152,20 @@
 }
 
 .auth-feature-item:hover {
-    background: rgba(238, 195, 12, 0.06);
-    border-color: rgba(238, 195, 12, 0.2);
+    background: rgba(212, 199, 122, 0.06);
+    border-color: rgba(212, 199, 122, 0.2);
     transform: translateX(5px);
 }
 
 .auth-feature-item .feat-icon {
     width: 38px;
     height: 38px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #EEC30C;
+    color: #D4AF37;
     font-size: 1rem;
     flex-shrink: 0;
 }
@@ -187,7 +205,7 @@
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(circle, rgba(238, 195, 12, 0.04) 1px, transparent 1px);
+        radial-gradient(circle, rgba(212, 199, 122, 0.04) 1px, transparent 1px);
     background-size: 28px 28px;
     pointer-events: none;
     z-index: 0;
@@ -210,14 +228,16 @@
 .auth-mobile-logo .logo-icon-wrap {
     width: 40px;
     height: 40px;
-    background: #EEC30C;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    color: #000;
-    box-shadow: 0 4px 15px rgba(238, 195, 12, 0.3);
+    color: #1a1200;
+    box-shadow: 0 4px 15px var(--primary-glow), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
 @media (min-width: 900px) {
@@ -246,7 +266,7 @@
 }
 
 .auth-form-header h1 span {
-    color: #EEC30C;
+    color: #D4AF37;
 }
 
 .auth-form-header p {
@@ -255,7 +275,7 @@
 }
 
 .auth-form-header p a {
-    color: #EEC30C;
+    color: #D4AF37;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s;
@@ -321,14 +341,14 @@
 }
 
 .auth-field input:focus {
-    border-color: #EEC30C;
+    border-color: #D4AF37;
     background: #141414;
-    box-shadow: 0 0 0 4px rgba(238, 195, 12, 0.1);
+    box-shadow: 0 0 0 4px rgba(212, 199, 122, 0.1);
 }
 
 .auth-field input:focus + .auth-input-icon,
 .auth-input-wrap:focus-within .auth-input-icon {
-    color: #EEC30C;
+    color: #D4AF37;
 }
 
 .auth-field input.has-password-toggle {
@@ -356,7 +376,7 @@
 
 .auth-password-toggle:hover,
 .auth-password-toggle:focus-visible {
-    color: #EEC30C;
+    color: #D4AF37;
     outline: none;
 }
 
@@ -397,8 +417,10 @@
 .auth-submit-btn {
     width: 100%;
     padding: 14px;
-    background: #EEC30C;
-    color: #000;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    color: #1a1200;
     border: none;
     border-radius: 10px;
     font-size: 1rem;
@@ -410,26 +432,24 @@
     position: relative;
     overflow: hidden;
     margin-top: 6px;
-    box-shadow: 0 4px 24px rgba(238, 195, 12, 0.25);
+    box-shadow: 0 4px 24px var(--primary-glow), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
 .auth-submit-btn::before {
     content: '';
     position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    transition: left 0.5s;
-}
-
-.auth-submit-btn:hover::before {
-    left: 100%;
+    top: 0;
+    left: 0;
+    width: 38%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+    animation: goldSweep 2.8s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .auth-submit-btn:hover:not(:disabled) {
-    background: #ffd740;
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255,255,255,0.7);
 }
 
 .auth-submit-btn:active:not(:disabled) {
@@ -467,7 +487,7 @@
 }
 
 .auth-footer-link a {
-    color: #EEC30C;
+    color: #D4AF37;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s;
@@ -509,8 +529,8 @@
 .auth-page-loading .page-spinner {
     width: 44px;
     height: 44px;
-    border: 3px solid rgba(238, 195, 12, 0.15);
-    border-top-color: #EEC30C;
+    border: 3px solid rgba(212, 199, 122, 0.15);
+    border-top-color: #D4AF37;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -538,7 +558,7 @@
 }
 
 .auth-terms a {
-    color: #EEC30C;
+    color: #D4AF37;
     text-decoration: none;
     font-weight: 600;
 }

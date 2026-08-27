@@ -294,7 +294,7 @@ export default function CoverLetterGuidelines() {
                         <h2 style={{ textAlign: 'center', width: '100%' }}>Ready to Build a Winning Cover Letter?</h2>
                         <p style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 3rem' }}>Don't write it manually. Apply all these expert guidelines, formatting standards, and keyword configurations automatically using our AI-driven systems.</p>
                         <div className="cta-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', width: '100%' }}>
-                            <Link to="/cover-letter/ai-builder" className="btn btn-primary" style={{ backgroundColor: '#EEC30C', color: '#000', borderRadius: '50px' }}>Start Builder Engine</Link>
+                            <Link to="/cover-letter/ai-builder" className="btn btn-primary" style={{ backgroundColor: '#D4C77A', color: '#000', borderRadius: '50px' }}>Start Builder Engine</Link>
                             <Link to="/cover-letter/ai-builder" className="btn btn-secondary" style={{ borderRadius: '50px', color: '#E5E5E5' }}>Analyze Existing Letter</Link>
                         </div>
                     </div>

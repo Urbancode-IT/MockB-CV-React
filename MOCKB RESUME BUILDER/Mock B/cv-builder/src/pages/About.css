@@ -3,9 +3,9 @@
     --bg-dark-about: #050505;
     --card-bg: #111111;
     --card-border: #222222;
-    --yellow-accent: #F4C20D;
-    --yellow-glow: rgba(244, 194, 13, 0.2);
-    --yellow-glow-strong: rgba(244, 194, 13, 0.4);
+    --yellow-accent: #D4AF37;
+    --yellow-glow: rgba(212, 175, 55, 0.28);
+    --yellow-glow-strong: rgba(243, 229, 168, 0.45);
     --text-main: #FFFFFF;
     --text-muted: #A0A0A0;
     
@@ -387,7 +387,7 @@
 .roadmap-header h2 {
     font-size: 3rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #FFFFFF 30%, #F4C20D 100%);
+    background: linear-gradient(135deg, #FFFFFF 30%, #D4C77A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
@@ -483,7 +483,7 @@
 .card-year {
     font-size: 0.9rem;
     font-weight: 800;
-    color: #F4C20D;
+    color: #D4C77A;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -517,12 +517,12 @@
     height: 46px;
     background: rgba(20, 20, 20, 0.85);
     backdrop-filter: blur(5px);
-    border: 1.5px solid #F4C20D;
+    border: 1.5px solid #D4C77A;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #F4C20D;
+    color: #D4C77A;
     font-size: 1.15rem;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 15px rgba(244, 194, 13, 0.3);
@@ -544,9 +544,9 @@
 
 .roadmap-icon-wrapper:hover {
     transform: translate(-50%, -50%) scale(1.15) rotate(15deg);
-    background-color: #F4C20D;
+    background-color: #D4C77A;
     color: #000000;
-    box-shadow: 0 0 25px #F4C20D;
+    box-shadow: 0 0 25px #D4C77A;
 }
 
 /* WALKING CHARACTER */
@@ -605,9 +605,9 @@
     position: absolute;
     width: 3px;
     height: 3px;
-    background: #F4C20D;
+    background: #D4C77A;
     border-radius: 50%;
-    box-shadow: 0 0 8px #F4C20D;
+    box-shadow: 0 0 8px #D4C77A;
     pointer-events: none;
     animation: riseParticlesAbout 15s linear infinite;
 }

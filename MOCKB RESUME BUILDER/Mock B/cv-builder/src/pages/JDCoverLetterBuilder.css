@@ -41,7 +41,7 @@
 .badge {
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     color: var(--primary-color);
     border-radius: 50px;
     font-size: 0.85rem;
@@ -154,7 +154,7 @@
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(238, 195, 12, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 199, 122, 0.4) 0%, transparent 70%);
     z-index: -1;
     filter: blur(80px);
 }
@@ -318,7 +318,7 @@
     outline: none;
     border-color: var(--primary-color);
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(238, 195, 12, 0.1);
+    box-shadow: 0 0 0 3px rgba(212, 199, 122, 0.1);
 }
 
 textarea.form-input {
@@ -369,7 +369,7 @@ textarea.form-input {
 
 .upload-box:hover {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
 }
 
 .upload-box i {
@@ -379,7 +379,7 @@ textarea.form-input {
 
 .upload-box.active {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
 }
 
 .uploaded-file {
@@ -508,7 +508,7 @@ textarea.form-input {
 
 .template-option.active .template-thumb {
     border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 0 15px rgba(212, 199, 122, 0.4);
 }
 
 .template-option.active span {
@@ -867,8 +867,8 @@ textarea.form-input {
     font-size: 2rem; font-weight: bold;
 }
 .sa-warning {
-    border: 3px solid #EEC30C;
-    color: #EEC30C;
+    border: 3px solid #D4C77A;
+    color: #D4C77A;
 }
 .sa-warning::before {
     content: '!';
@@ -880,7 +880,7 @@ textarea.form-input {
     color: #A0A0A0; font-size: 0.95rem; margin-bottom: 25px;
 }
 .sa-confirm-btn {
-    background: #EEC30C; color: #000;
+    background: #D4C77A; color: #000;
     border: none; border-radius: 6px;
     padding: 10px 30px; font-weight: bold; cursor: pointer;
 }
@@ -918,7 +918,7 @@ textarea.form-input {
 .close-magnify {
     position: absolute;
     top: -15px; right: -15px;
-    background: #EEC30C; color: #000;
+    background: #D4C77A; color: #000;
     border: none; border-radius: 50%;
     width: 40px; height: 40px;
     font-size: 1.2rem; cursor: pointer;

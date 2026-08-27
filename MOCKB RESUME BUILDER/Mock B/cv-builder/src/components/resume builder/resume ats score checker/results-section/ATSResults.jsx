@@ -19,7 +19,7 @@ const METRICS_LIST = [
 
 function getBarColor(pct) {
   if (pct >= 75) return '#22c55e';
-  if (pct >= 50) return '#EEC30C';
+  if (pct >= 50) return '#D4C77A';
   if (pct >= 30) return '#f97316';
   return '#ef4444';
 }
@@ -122,7 +122,7 @@ function MetricCard({ metric, pct, delay }) {
     return () => clearTimeout(t);
   }, [pct, circumference]);
 
-  const color = '#EEC30C'; // Always yellow as per original design
+  const color = '#D4C77A'; // Always yellow as per original design
 
   return (
     <div className="metric-card" style={{ animationDelay: `${delay}s` }}>

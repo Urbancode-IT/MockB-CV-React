@@ -36,7 +36,15 @@ nav {
     align-items: center;
     gap: 0.5rem;
     flex: 1;
-    background: linear-gradient(to right, var(--primary-color), #FFFFFF, var(--primary-color));
+    background: linear-gradient(
+        90deg,
+        #B8860B,
+        #F8E7A8,
+        #D4AF37,
+        #FFF8DC,
+        #E8C547,
+        #B8860B
+    );
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -185,19 +193,33 @@ nav {
     font-size: 0.9rem;
     font-weight: 700;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--primary-color, #eec30c), #f59e0b);
-    color: #000;
+    background: linear-gradient(135deg, #FFF8DC, #D4AF37, #B8860B, #F0D78C);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    color: #1a1200;
     border: none;
     cursor: pointer;
     transition: all 0.25s ease;
     white-space: nowrap;
     text-decoration: none;
-    box-shadow: 0 3px 14px rgba(238, 195, 12, 0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 16px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 38%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: goldSweep 2.8s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(238, 195, 12, 0.45);
+    box-shadow: 0 6px 22px rgba(212, 175, 55, 0.55), inset 0 1px 0 rgba(255,255,255,0.7);
 }
 
 /* ── Logout button ── */
@@ -320,8 +342,8 @@ nav {
     width: 100%;
     background: rgba(13, 13, 13, 0.98);
     backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(238, 195, 12, 0.1);
-    border-bottom: 1px solid rgba(238, 195, 12, 0.1);
+    border-top: 1px solid rgba(212, 199, 122, 0.1);
+    border-bottom: 1px solid rgba(212, 199, 122, 0.1);
     padding: 3.5rem 0;
     opacity: 0;
     visibility: hidden;
@@ -356,7 +378,7 @@ nav {
 }
 
 .mega-menu-item:hover {
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
     border-color: var(--primary-color);
     transform: translateY(-5px);
 }
@@ -364,7 +386,7 @@ nav {
 .item-icon {
     width: 45px;
     height: 45px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 10px;
     display: flex;
     align-items: center;

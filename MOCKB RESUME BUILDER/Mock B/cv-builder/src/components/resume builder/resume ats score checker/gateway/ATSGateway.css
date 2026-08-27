@@ -22,9 +22,9 @@
     margin-bottom: 1.5rem;
     font-weight: 700;
     font-size: 1.2rem;
-    color: #EEC30C;
+    color: #D4C77A;
 }
-.logo-icon { color: #EEC30C; font-size: 1.5rem; }
+.logo-icon { color: #D4C77A; font-size: 1.5rem; }
 
 .welcome-title {
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -33,7 +33,7 @@
     margin-bottom: 1.2rem;
     color: #fff;
 }
-.welcome-title span { color: #EEC30C; }
+.welcome-title span { color: #D4C77A; }
 
 .welcome-desc {
     color: #A0A0A0;
@@ -70,7 +70,7 @@
 
 .gateway-card:hover {
     transform: translateY(-10px);
-    border-color: #EEC30C;
+    border-color: #D4C77A;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -81,7 +81,7 @@
     transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
-    background: rgba(238, 195, 12, 0.4);
+    background: rgba(212, 199, 122, 0.4);
     filter: blur(80px);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -92,13 +92,13 @@
 .card-icon {
     width: 60px;
     height: 60px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: #EEC30C;
+    color: #D4C77A;
     margin-bottom: 1.5rem;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -139,11 +139,11 @@
 }
 
 .btn-jobseeker {
-    background: #EEC30C;
+    background: #D4C77A;
     color: #000;
 }
 .btn-jobseeker:hover {
-    box-shadow: 0 10px 20px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 10px 20px rgba(212, 199, 122, 0.4);
     transform: translateY(-2px);
 }
 
@@ -153,9 +153,9 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .gateway-card:hover .btn-recruiter {
-    border-color: #EEC30C;
-    color: #EEC30C;
-    background: rgba(238, 195, 12, 0.05);
+    border-color: #D4C77A;
+    color: #D4C77A;
+    background: rgba(212, 199, 122, 0.05);
 }
 
 @media (max-width: 900px) {

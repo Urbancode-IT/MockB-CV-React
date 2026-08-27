@@ -26,7 +26,7 @@
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(238, 195, 12, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 199, 122, 0.1) 0%, transparent 70%);
     z-index: 0;
 }
 
@@ -121,7 +121,7 @@
 
 .hero-btns .btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(238, 195, 12, 0.2);
+    box-shadow: 0 10px 30px rgba(212, 199, 122, 0.2);
 }
 
 .secure-tag {
@@ -184,7 +184,7 @@
 .avatar {
     width: 50px;
     height: 50px;
-    background: rgba(238, 195, 12, 0.2);
+    background: rgba(212, 199, 122, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -208,7 +208,7 @@
 .line.short { width: 40%; }
 .line.medium { width: 70%; }
 .line.long { width: 100%; }
-.line.highlighted { background: rgba(238, 195, 12, 0.3); }
+.line.highlighted { background: rgba(212, 199, 122, 0.3); }
 
 .analysis-indicator {
     position: absolute;
@@ -223,14 +223,14 @@
     justify-content: center;
     color: #000;
     font-size: 1.5rem;
-    box-shadow: 0 15px 30px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 15px 30px rgba(212, 199, 122, 0.4);
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(238, 195, 12, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(238, 195, 12, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(238, 195, 12, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 199, 122, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 199, 122, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 199, 122, 0); }
 }
 
 .hero-visual::after {
@@ -265,7 +265,7 @@
     right: -50px;
     width: 200px;
     height: 200px;
-    background-image: radial-gradient(rgba(238, 195, 12, 0.15) 2px, transparent 2px);
+    background-image: radial-gradient(rgba(212, 199, 122, 0.15) 2px, transparent 2px);
     background-size: 20px 20px;
     z-index: 1;
 }
@@ -364,13 +364,13 @@
 
 .ui-drop-zone.highlight {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.08);
+    background: rgba(212, 199, 122, 0.08);
     transform: scale(1.02);
 }
 
 .ui-drop-zone:hover {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.02);
+    background: rgba(212, 199, 122, 0.02);
 }
 
 .ui-icons-wrapper {
@@ -580,7 +580,7 @@
 .ui-btn-save:hover {
     background: #d4b00b;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 5px 15px rgba(212, 199, 122, 0.3);
 }
 
 .secure-info {
@@ -675,7 +675,7 @@
 .feat-icon {
     width: 50px;
     height: 50px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -712,7 +712,7 @@
 
 .cta-banner {
     background: var(--bg-card);
-    border: 1px solid rgba(238, 195, 12, 0.3);
+    border: 1px solid rgba(212, 199, 122, 0.3);
     border-radius: 20px;
     padding: 35px 45px;
     display: flex;
@@ -791,7 +791,7 @@
 .spinner {
     width: 60px;
     height: 60px;
-    border: 5px solid rgba(238, 195, 12, 0.1);
+    border: 5px solid rgba(212, 199, 122, 0.1);
     border-top-color: var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -1103,7 +1103,7 @@
 .download-btns .btn-primary:hover {
     background: #d4b00b;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 5px 15px rgba(212, 199, 122, 0.3);
 }
 
 .download-btns .btn-outline {

@@ -1,7 +1,7 @@
 /* ResumeTemplates.css */
 .rt-page { background: var(--bg-dark); color: var(--text-white); min-height: 100vh; }
 
-.rt-hero { padding: 7rem 0 4rem; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(238,195,12,0.1) 0%, transparent 65%); }
+.rt-hero { padding: 7rem 0 4rem; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(212, 199, 122,0.1) 0%, transparent 65%); }
 .rt-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; margin-bottom: 1rem; }
 .rt-hero h1 span { color: var(--primary-color); }
 .rt-hero p { color: var(--text-gray); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
@@ -27,7 +27,7 @@
 .filter-group { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
 .filter-label { font-size: 0.82rem; color: var(--text-gray); white-space: nowrap; }
 .filter-btn { padding: 0.45rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--text-gray); cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
-.filter-btn.active, .filter-btn:hover { border-color: var(--primary-color); background: rgba(238,195,12,0.1); color: var(--primary-color); }
+.filter-btn.active, .filter-btn:hover { border-color: var(--primary-color); background: rgba(212, 199, 122,0.1); color: var(--primary-color); }
 
 .rt-view-switch {
   margin-left: auto;
@@ -46,12 +46,12 @@
   transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 .rt-view-btn:hover {
-  border-color: #EEC30C;
-  color: #EEC30C;
+  border-color: #D4C77A;
+  color: #D4C77A;
 }
 .rt-view-btn.active {
-  background: #EEC30C;
-  border-color: #EEC30C;
+  background: #D4C77A;
+  border-color: #D4C77A;
   color: #111;
 }
 
@@ -67,7 +67,7 @@
   align-items: center;
   gap: 16px;
   background: #161616;
-  border: 1px solid #EEC30C;
+  border: 1px solid #D4C77A;
   border-radius: 12px;
   padding: 16px 18px;
   margin-bottom: 28px;
@@ -75,7 +75,7 @@
 .rt-continue h3 { margin: 0 0 4px; color: #fff; font-size: 1rem; }
 .rt-continue p { margin: 0; color: #9a9a9a; font-size: 0.82rem; }
 .rt-continue-btn {
-  background: #EEC30C;
+  background: #D4C77A;
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
@@ -126,7 +126,7 @@
 }
 .rt-card:hover .rt-preview-box,
 .rt-card--hovered .rt-preview-box {
-  outline: 1px solid #EEC30C;
+  outline: 1px solid #D4C77A;
 }
 
 /* Live Preview Wrapper */
@@ -251,7 +251,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #EEC30C;
+  background: #D4C77A;
   color: #000;
   border: none;
   border-radius: 7px;

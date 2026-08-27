@@ -81,15 +81,15 @@
 
 .ai-builder-page .prompt-tips {
     margin: 0 20px 16px;
-    background: rgba(238,195,12,0.05);
-    border: 1px solid rgba(238,195,12,0.12);
+    background: rgba(212, 199, 122,0.05);
+    border: 1px solid rgba(212, 199, 122,0.12);
     border-radius: 10px;
     padding: 14px 16px;
     font-size: 0.8rem;
 }
 
 .ai-builder-page .prompt-tips p {
-    color: #EEC30C;
+    color: #D4C77A;
     margin-bottom: 8px;
 }
 
@@ -111,7 +111,7 @@
     width: calc(100% - 40px);
     margin: 0 20px 20px;
     padding: 14px;
-    background: #EEC30C;
+    background: #D4C77A;
     color: #000;
     border: none;
     border-radius: 10px;
@@ -125,17 +125,17 @@
 .ai-builder-page .btn-generate:hover {
     background: #d4a90a;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(238,195,12,0.3);
+    box-shadow: 0 8px 24px rgba(212, 199, 122,0.3);
 }
 
 .ai-builder-page .btn-generate.secondary {
-    background: rgba(238,195,12,0.1);
-    color: #EEC30C;
-    border: 1px solid rgba(238,195,12,0.25);
+    background: rgba(212, 199, 122,0.1);
+    color: #D4C77A;
+    border: 1px solid rgba(212, 199, 122,0.25);
 }
 
 .ai-builder-page .btn-generate.secondary:hover {
-    background: rgba(238,195,12,0.18);
+    background: rgba(212, 199, 122,0.18);
 }
 
 /* ===== PREVIEW PANEL ===== */
@@ -168,20 +168,20 @@
 .ai-builder-page .empty-icon {
     width: 80px !important;
     height: 80px !important;
-    background: rgba(238,195,12,0.08) !important;
+    background: rgba(212, 199, 122,0.08) !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     font-size: 2rem !important;
-    color: #EEC30C !important;
+    color: #D4C77A !important;
     margin-bottom: 22px !important;
     animation: pulse-glow 2.5s ease-in-out infinite !important;
 }
 
 @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(238,195,12,0.2); }
-    50% { box-shadow: 0 0 0 16px rgba(238,195,12,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 199, 122,0.2); }
+    50% { box-shadow: 0 0 0 16px rgba(212, 199, 122,0); }
 }
 
 .ai-builder-page .preview-empty h3 {
@@ -224,9 +224,9 @@
     animation: spin 1.4s linear infinite;
 }
 
-.ai-builder-page .loader-ring:nth-child(1) { border-top-color: #EEC30C; animation-duration: 1.4s; }
-.ai-builder-page .loader-ring:nth-child(2) { border-right-color: rgba(238,195,12,0.5); animation-duration: 1.8s; inset: 10px; }
-.ai-builder-page .loader-ring:nth-child(3) { border-bottom-color: rgba(238,195,12,0.25); animation-duration: 2.2s; inset: 20px; }
+.ai-builder-page .loader-ring:nth-child(1) { border-top-color: #D4C77A; animation-duration: 1.4s; }
+.ai-builder-page .loader-ring:nth-child(2) { border-right-color: rgba(212, 199, 122,0.5); animation-duration: 1.8s; inset: 10px; }
+.ai-builder-page .loader-ring:nth-child(3) { border-bottom-color: rgba(212, 199, 122,0.25); animation-duration: 2.2s; inset: 20px; }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
@@ -258,7 +258,7 @@
 }
 
 .ai-builder-page .load-step.active {
-    color: #EEC30C;
+    color: #D4C77A;
 }
 
 .ai-builder-page .load-step.done {
@@ -280,7 +280,7 @@
 .ai-builder-page .preview-label {
     font-size: 0.82rem !important;
     font-weight: 600 !important;
-    color: #EEC30C !important;
+    color: #D4C77A !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
@@ -312,8 +312,8 @@
 
 .ai-builder-page .prev-action-btn:hover {
     background: rgba(255,255,255,0.1) !important;
-    border-color: #EEC30C !important;
-    color: #EEC30C !important;
+    border-color: #D4C77A !important;
+    color: #D4C77A !important;
 }
 
 .ai-builder-page #btn-pdf:hover {
@@ -378,7 +378,7 @@
     gap: 14px;
     font-size: 0.75rem;
     color: #666;
-    border-bottom: 2px solid #EEC30C;
+    border-bottom: 2px solid #D4C77A;
     padding-bottom: 12px;
     margin-bottom: 18px;
 }
@@ -398,7 +398,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #EEC30C;
+    color: #D4C77A;
     border-bottom: 1px solid #f0e68c;
     padding-bottom: 4px;
     margin-bottom: 10px;

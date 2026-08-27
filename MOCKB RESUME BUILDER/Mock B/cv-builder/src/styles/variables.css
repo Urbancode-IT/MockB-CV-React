@@ -1,13 +1,69 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap');
 
 :root {
-    --primary-color: #EEC30C;
+    --primary-gold-shine: #FFF8DC;
+    --primary-gold-light: #F3E5A8;
+    --primary-color: #D4AF37;
+    --primary-gold-deep: #B8860B;
+    --primary-gold-bronze: #9A7209;
+    --primary-gradient: linear-gradient(
+        135deg,
+        #FFF8DC 0%,
+        #F3E5A8 16%,
+        #E8C547 34%,
+        #D4AF37 52%,
+        #C5A028 70%,
+        #B8860B 84%,
+        #F0D78C 100%
+    );
+    --primary-glow: rgba(212, 175, 55, 0.5);
     --bg-dark: #0D0D0D;
     --bg-card: #1A1A1A;
     --text-white: #FFFFFF;
     --text-gray: #A0A0A0;
     --font-main: 'Satoshi', sans-serif;
     --transition: all 0.3s ease;
+}
+
+@keyframes goldShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes goldSweep {
+    0% { transform: translateX(-130%) skewX(-20deg); }
+    100% { transform: translateX(280%) skewX(-20deg); }
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+.gold-text {
+    background: linear-gradient(
+        90deg,
+        #B8860B,
+        #F8E7A8,
+        #D4AF37,
+        #FFF8DC,
+        #E8C547,
+        #B8860B
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+.gold-fill {
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    box-shadow:
+        0 4px 22px var(--primary-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 /* Common container and reset classes for imported pages */
@@ -26,15 +82,35 @@
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    color: #000;
+    background-image: var(--primary-gradient);
+    background-size: 220% 220%;
+    animation: goldShift 5s ease infinite;
+    color: #1a1200;
     border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 4px 18px var(--primary-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    animation: goldSweep 2.8s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .btn-primary:hover {
-    background: #D4B00B;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(238, 195, 12, 0.3);
+    box-shadow:
+        0 8px 28px rgba(212, 175, 55, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .btn-secondary {
@@ -45,7 +121,7 @@
 
 .btn-secondary:hover {
     border-color: var(--primary-color);
-    color: var(--primary-color);
+    color: var(--primary-gold-light);
 }
 
 .btn-white {

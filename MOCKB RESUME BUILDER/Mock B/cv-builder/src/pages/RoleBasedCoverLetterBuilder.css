@@ -118,7 +118,7 @@
     bottom: 20px;
     right: 50px;
     opacity: 0.9;
-    box-shadow: 0 0 60px rgba(238, 195, 12, 0.15);
+    box-shadow: 0 0 60px rgba(212, 199, 122, 0.15);
 }
 
 .person-circle {
@@ -141,7 +141,7 @@
         transform: translate(0, 0) scale(1);
         z-index: 5; 
         border-color: var(--primary-color);
-        box-shadow: 0 30px 60px rgba(238, 195, 12, 0.3);
+        box-shadow: 0 30px 60px rgba(212, 199, 122, 0.3);
     }
     33.33%, 58.33% { 
         transform: translate(80px, -140px) scale(0.71);
@@ -198,7 +198,7 @@
 
 .dot-purple { width: 30px; height: 30px; background: #7B61FF; top: 10%; left: -20px; box-shadow: 0 0 20px rgba(123, 97, 255, 0.3); }
 .dot-blue { width: 18px; height: 18px; background: #38B6FF; bottom: 40%; left: -30px; box-shadow: 0 0 15px rgba(56, 182, 255, 0.3); }
-.dot-yellow { width: 45px; height: 45px; background: #FFD233; bottom: 5%; right: -30px; box-shadow: 0 0 25px rgba(255, 210, 51, 0.3); }
+.dot-yellow { width: 45px; height: 45px; background: #D4C77A; bottom: 5%; right: -30px; box-shadow: 0 0 25px rgba(212, 199, 122, 0.3); }
 .dot-pink { width: 22px; height: 22px; background: #FF61D2; top: 15%; right: -10px; box-shadow: 0 0 15px rgba(255, 97, 210, 0.3); }
 .dot-cyan { width: 12px; height: 12px; background: #00F0FF; top: calc(80% + 15px); left: -25px; box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
 .dot-white { width: 8px; height: 8px; background: #FFFFFF; top: 5%; right: 10%; opacity: 0.5; }
@@ -587,7 +587,7 @@
 .page-features-section {
     padding: 120px 0 !important;
     margin-top: 100px;
-    background: radial-gradient(circle at right, rgba(238, 195, 12, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at right, rgba(212, 199, 122, 0.05) 0%, transparent 50%);
     margin-left: auto;
     margin-right: auto;
 }
@@ -656,7 +656,7 @@
 .feat-icon-box {
     width: 60px;
     height: 60px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border: 1px solid var(--primary-color);
     border-radius: 15px;
     display: flex;
@@ -724,7 +724,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 10px 20px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 10px 20px rgba(212, 199, 122, 0.4);
     animation: float-anim 4s ease-in-out infinite;
 }
 
@@ -802,9 +802,9 @@
     height: 200%;
     background: linear-gradient(
         to right,
-        rgba(238, 195, 12, 0) 0%,
-        rgba(238, 195, 12, 0.4) 50%,
-        rgba(238, 195, 12, 0) 100%
+        rgba(212, 199, 122, 0) 0%,
+        rgba(212, 199, 122, 0.4) 50%,
+        rgba(212, 199, 122, 0) 100%
     );
     transform: rotate(25deg);
     animation: tab-shine 5s infinite;
@@ -819,7 +819,7 @@
 .categories-slideshow .role-tab:hover {
     color: var(--primary-color) !important;
     transform: translateY(-5px);
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border-color: var(--primary-color);
 }
 
@@ -855,7 +855,7 @@
     background: var(--primary-color);
     color: black !important;
     transform: translateX(-10px) scale(1.05);
-    box-shadow: 0 5px 20px rgba(238, 195, 12, 0.4);
+    box-shadow: 0 5px 20px rgba(212, 199, 122, 0.4);
 }
 
 /* Generator Form Wizard */
@@ -1035,7 +1035,7 @@
 
 .custom-select-option.selected {
     color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
 }
 
 .custom-select-option.selected:hover {
@@ -1059,7 +1059,7 @@
 
 .drop-zone.drag-over {
     border-color: var(--primary-color);
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
 }
 
 .drop-zone i {
@@ -1083,7 +1083,7 @@
 .spinner {
     width: 60px;
     height: 60px;
-    border: 4px solid rgba(238, 195, 12, 0.1);
+    border: 4px solid rgba(212, 199, 122, 0.1);
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     margin: 0 auto 2rem;
@@ -1180,7 +1180,7 @@
 .kw {
     color: #111;
     font-weight: 700;
-    background: rgba(238, 195, 12, 0.2);
+    background: rgba(212, 199, 122, 0.2);
     padding: 0 4px;
     border-radius: 3px;
 }
@@ -1211,7 +1211,7 @@
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     color: var(--primary-color);
     display: flex;
     align-items: center;

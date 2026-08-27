@@ -141,8 +141,8 @@
 }
 
 .gl-badge-tag {
-    display: inline-block; background: rgba(238,195,12,0.1);
-    border: 1px solid rgba(238,195,12,0.2); color: var(--primary-color);
+    display: inline-block; background: rgba(212, 199, 122,0.1);
+    border: 1px solid rgba(212, 199, 122,0.2); color: var(--primary-color);
     padding: 4px 12px; border-radius: 50px; font-size: 0.8rem;
     font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;
 }

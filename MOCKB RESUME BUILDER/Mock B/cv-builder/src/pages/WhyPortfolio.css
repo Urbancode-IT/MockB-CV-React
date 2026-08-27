@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 8rem 0 4rem;
-    background: radial-gradient(circle at center, rgba(238, 195, 12, 0.08) 0%, #000000 60%);
+    background: radial-gradient(circle at center, rgba(212, 199, 122, 0.08) 0%, #000000 60%);
     position: relative;
     overflow: hidden;
 }
@@ -67,8 +67,8 @@
 }
 
 .why-portfolio-container .feature-card:hover {
-    background: rgba(238, 195, 12, 0.1);
-    border-color: rgba(238, 195, 12, 0.3);
+    background: rgba(212, 199, 122, 0.1);
+    border-color: rgba(212, 199, 122, 0.3);
     transform: translateY(-3px);
 }
 
@@ -101,9 +101,9 @@
 }
 
 .compare-card.mockb {
-    background: linear-gradient(145deg, rgba(238, 195, 12, 0.05) 0%, rgba(20, 20, 20, 0.9) 100%);
-    border: 1px solid rgba(238, 195, 12, 0.2);
-    box-shadow: 0 10px 40px rgba(238, 195, 12, 0.05);
+    background: linear-gradient(145deg, rgba(212, 199, 122, 0.05) 0%, rgba(20, 20, 20, 0.9) 100%);
+    border: 1px solid rgba(212, 199, 122, 0.2);
+    box-shadow: 0 10px 40px rgba(212, 199, 122, 0.05);
 }
 
 .card-head {
@@ -188,7 +188,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(238, 195, 12, 0.3);
+    box-shadow: 0 5px 20px rgba(212, 199, 122, 0.3);
 }
 
 .use-content {
@@ -251,7 +251,7 @@
 }
 
 .persona-card:hover {
-    background: rgba(238, 195, 12, 0.05);
+    background: rgba(212, 199, 122, 0.05);
     transform: translateY(-5px);
 }
 
@@ -381,8 +381,8 @@
 
 .final-cta {
     padding: 4rem 2rem;
-    background: linear-gradient(145deg, rgba(238, 195, 12, 0.1) 0%, rgba(20, 20, 20, 0.8) 100%);
-    border: 1px solid rgba(238, 195, 12, 0.3);
+    background: linear-gradient(145deg, rgba(212, 199, 122, 0.1) 0%, rgba(20, 20, 20, 0.8) 100%);
+    border: 1px solid rgba(212, 199, 122, 0.3);
     border-radius: 24px;
 }
 

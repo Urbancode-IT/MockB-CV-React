@@ -55,15 +55,15 @@
 }
 .home-step-card:hover {
     transform: translateY(-5px) !important;
-    border-color: rgba(238, 195, 12, 0.3) !important;
+    border-color: rgba(212, 199, 122, 0.3) !important;
 }
 
 .home-step-number {
     width: 70px !important;
     height: 70px !important;
     background: #0D0D0D !important;
-    border: 2px solid #EEC30C !important;
-    color: #EEC30C !important;
+    border: 2px solid #D4AF37 !important;
+    color: #D4AF37 !important;
     font-size: 2rem !important;
     font-weight: 800 !important;
     border-radius: 50% !important;
@@ -71,7 +71,7 @@
     align-items: center !important;
     justify-content: center !important;
     margin-bottom: 2rem !important;
-    box-shadow: 0 0 20px rgba(238, 195, 12, 0.2) !important;
+    box-shadow: 0 0 20px rgba(212, 199, 122, 0.2) !important;
 }
 
 .home-step-card h3 {

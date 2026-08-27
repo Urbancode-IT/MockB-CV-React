@@ -387,8 +387,8 @@ export default function AICoverLetterBuilder() {
                                             {updateNotes.map((note, idx) => (
                                                 <div key={idx} style={{
                                                     marginTop: '20px',
-                                                    color: '#EEC30C',
-                                                    borderTop: '1px dashed #EEC30C',
+                                                    color: '#D4C77A',
+                                                    borderTop: '1px dashed #D4C77A',
                                                     paddingTop: '10px',
                                                     fontStyle: 'italic',
                                                     fontSize: '0.8rem'

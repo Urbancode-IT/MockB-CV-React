@@ -13,7 +13,7 @@
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
     margin-bottom: 1rem;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .accordion-trigger:hover {
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
 }
 
 .acc-num {
@@ -63,7 +63,7 @@
 
 .accordion-trigger:hover .acc-num,
 .accordion-item.open .acc-num {
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
 }
 
 .acc-title {
@@ -74,7 +74,7 @@
 }
 
 .accordion-item.open .acc-title {
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
 }
 
 .acc-icon {
@@ -85,7 +85,7 @@
 
 .accordion-item.open .acc-icon {
     transform: rotate(45deg);
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
 }
 
 .accordion-body {
@@ -139,7 +139,7 @@
 
 .acc-roles li i {
     font-size: 0.45rem;
-    color: var(--primary-color, #EEC30C);
+    color: var(--primary-color, #D4AF37);
 }
 
 @media (max-width: 768px) {

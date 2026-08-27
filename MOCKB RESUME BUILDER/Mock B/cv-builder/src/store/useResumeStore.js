@@ -34,7 +34,7 @@ export const useResumeStore = create((set) => ({
     certifications: [],
     languages: ['English', 'Spanish'],
     awards: [],
-    themeColor: '#EEC30C', // Accent color
+    themeColor: '#D4C77A', // Accent color
     fontFamily: "'Satoshi', sans-serif",
 
     // Actions

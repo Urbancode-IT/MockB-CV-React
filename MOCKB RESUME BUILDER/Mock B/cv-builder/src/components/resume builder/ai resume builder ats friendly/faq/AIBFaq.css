@@ -21,7 +21,7 @@
 }
 
 .ai-builder-page .faq-item.open {
-    border-color: rgba(238,195,12,0.35);
+    border-color: rgba(212, 199, 122,0.35);
 }
 
 .ai-builder-page .faq-q {
@@ -36,7 +36,7 @@
 }
 
 .ai-builder-page .faq-q i {
-    color: #EEC30C;
+    color: #D4C77A;
     flex-shrink: 0;
     transition: transform 0.25s;
 }

@@ -56,11 +56,11 @@ const Register = () => {
                     <span className="logo-icon-wrap">
                         <i className="fa-solid fa-file-lines"></i>
                     </span>
-                    MockB <span style={{ color: '#EEC30C' }}>CV</span>
+                    MockB <span>CV</span>
                 </Link>
 
                 <div className="auth-brand-content">
-                    <h2>Start Building Your<br /><span style={{color:'#EEC30C'}}>Dream Career Today</span></h2>
+                    <h2>Start Building Your<br /><span>Dream Career Today</span></h2>
                     <p>
                         Join thousands of job seekers who have landed their dream roles
                         using MockB CV&apos;s AI-powered tools — completely free.
@@ -93,7 +93,7 @@ const Register = () => {
                         <span className="logo-icon-wrap">
                             <i className="fa-solid fa-file-lines"></i>
                         </span>
-                        MockB <span style={{ color: '#EEC30C' }}>CV</span>
+                        MockB <span>CV</span>
                     </Link>
 
                     <div className="auth-form-header">

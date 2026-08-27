@@ -38,7 +38,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #EEC30C;
+    color: #D4C77A;
     font-weight: 700;
 }
 
@@ -72,11 +72,11 @@
 
 .sm-option:hover,
 .sm-option--accent:hover {
-    border-color: #EEC30C;
+    border-color: #D4C77A;
 }
 
 .sm-option--accent {
-    background: linear-gradient(180deg, rgba(238, 195, 12, 0.12), rgba(238, 195, 12, 0.02));
+    background: linear-gradient(180deg, rgba(212, 199, 122, 0.12), rgba(212, 199, 122, 0.02));
 }
 
 .sm-icon {
@@ -86,8 +86,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: rgba(238, 195, 12, 0.15);
-    color: #EEC30C;
+    background: rgba(212, 199, 122, 0.15);
+    color: #D4C77A;
     margin-bottom: 12px;
 }
 

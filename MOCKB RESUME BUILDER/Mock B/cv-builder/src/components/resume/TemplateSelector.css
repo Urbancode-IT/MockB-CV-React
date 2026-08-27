@@ -58,7 +58,7 @@
 
 .ts-card--hovered .ts-preview-wrap,
 .ts-card--selected .ts-preview-wrap {
-    outline: 1px solid #EEC30C;
+    outline: 1px solid #D4C77A;
 }
 
 .ts-card--selected {
@@ -237,7 +237,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: #EEC30C;
+    background: #D4C77A;
     color: #000;
     border: none;
     border-radius: 7px;

@@ -131,7 +131,7 @@ const templatesData = [
 ];
 
 const themeColors = {
-  gold:   { color: '#EEC30C', bg: 'rgba(238,195,12,0.1)',  border: 'rgba(238,195,12,0.2)',  rgb: '238,195,12',  boxShadow: '0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(238,195,12,0.05)' },
+  gold:   { color: '#D4C77A', bg: 'rgba(212, 199, 122,0.1)',  border: 'rgba(212, 199, 122,0.2)',  rgb: '212,199,122',  boxShadow: '0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(212, 199, 122,0.05)' },
   blue:   { color: '#2A82E6', bg: 'rgba(42,130,230,0.1)',  border: 'rgba(42,130,230,0.2)',  rgb: '42,130,230',  boxShadow: '0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(42,130,230,0.05)' },
   purple: { color: '#9B51E0', bg: 'rgba(155,81,224,0.1)',  border: 'rgba(155,81,224,0.2)',  rgb: '155,81,224',  boxShadow: '0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(155,81,224,0.05)' },
   red:    { color: '#EB5757', bg: 'rgba(235,87,87,0.1)',   border: 'rgba(235,87,87,0.2)',   rgb: '235,87,87',   boxShadow: '0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(235,87,87,0.05)' }

@@ -97,7 +97,7 @@ const templates = [
   }
 ];
 
-const colorSwatches = ['#EEC30C', '#4A90D9', '#E74C3C', '#27AE60', '#1A3A5C', '#9b59b6', '#1abc9c', '#888888'];
+const colorSwatches = ['#D4C77A', '#4A90D9', '#E74C3C', '#27AE60', '#1A3A5C', '#9b59b6', '#1abc9c', '#888888'];
 
 const personalDetailsPills = [
   { key: 'passport', name: 'Passport or Id' },
@@ -452,7 +452,7 @@ const defaultResumeData = {
 };
 
 // Custom RTE editor component
-function RichTextEditor({ value, onChange, placeholder, accentColor = '#EEC30C' }) {
+function RichTextEditor({ value, onChange, placeholder, accentColor = '#D4C77A' }) {
   const editorRef = useRef(null);
   const [activeCmds, setActiveCmds] = useState({});
   const [showLinkInput, setShowLinkInput] = useState(false);
@@ -791,7 +791,7 @@ function SchoolInputWithLink({ value, onChange, urlValue, onUrlChange, placehold
   );
 }
 
-function CustomDatePicker({ value, onChange, placeholder, isEnd, accentColor = '#EEC30C' }) {
+function CustomDatePicker({ value, onChange, placeholder, isEnd, accentColor = '#D4C77A' }) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -902,7 +902,7 @@ function CustomDatePicker({ value, onChange, placeholder, isEnd, accentColor = '
   );
 }
 
-function CustomAwardsSelect({ options, value, onChange, placeholder, accentColor = '#EEC30C' }) {
+function CustomAwardsSelect({ options, value, onChange, placeholder, accentColor = '#D4C77A' }) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -1248,8 +1248,8 @@ export default function ResumeCustomizer() {
           onDrop={(e) => handleLayoutSectionDrop(e, sec.id, col)}
           style={{ 
             height: '45px', 
-            background: 'rgba(238, 195, 12, 0.1)', 
-            border: '2px dashed #EEC30C', 
+            background: 'rgba(212, 199, 122, 0.1)', 
+            border: '2px dashed #D4C77A', 
             borderRadius: '8px', 
             marginBottom: '0.4rem',
             animation: 'expandDown 0.2s ease-out forwards'
@@ -1340,7 +1340,7 @@ export default function ResumeCustomizer() {
   const [pageFormat, setPageFormat] = useState('a4');
   const [pageWidth, setPageWidth] = useState(210);
   const [pageHeight, setPageHeight] = useState(297);
-  const [accentColor, setAccentColor] = useState('#EEC30C');
+  const [accentColor, setAccentColor] = useState('#D4C77A');
   const [headingStyle, setHeadingStyle] = useState('full-underline');
   const [headingTransform, setHeadingTransform] = useState('uppercase');
   const [headingSize, setHeadingSize] = useState(12); // pt
@@ -1506,7 +1506,7 @@ export default function ResumeCustomizer() {
     setDraggedPersonal(null);
   };
 
-  const presetColors = ['#FCD34D', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeead', '#ff9999', '#ffb347', '#ffcc5c', '#88d8b0', '#ffffff', '#000000'];
+  const presetColors = ['#D4C77A', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#E6D9A8', '#ff9999', '#D4C77A', '#C4B56A', '#88d8b0', '#ffffff', '#000000'];
   
   const stepValue = (current, step, min, max, setter) => {
     let next = current + step;
@@ -2705,19 +2705,19 @@ export default function ResumeCustomizer() {
               <div style={{ marginBottom: '1.5rem' }}>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Text Alignment</div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                  <button onClick={() => setHeaderAlignment('left')} style={{ flex: 1, padding: '12px', borderRadius: '8px', border: `1px solid ${headerAlignment === 'left' ? '#EEC30C' : '#333'}`, background: headerAlignment === 'left' ? '#1a1a1a' : '#111', color: headerAlignment === 'left' ? '#EEC30C' : '#ccc', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                  <button onClick={() => setHeaderAlignment('left')} style={{ flex: 1, padding: '12px', borderRadius: '8px', border: `1px solid ${headerAlignment === 'left' ? '#D4C77A' : '#333'}`, background: headerAlignment === 'left' ? '#1a1a1a' : '#111', color: headerAlignment === 'left' ? '#D4C77A' : '#ccc', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'flex-start' }}>
-                      <div style={{ width: '20px', height: '3px', background: headerAlignment === 'left' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '12px', height: '3px', background: headerAlignment === 'left' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '20px', height: '3px', background: headerAlignment === 'left' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '12px', height: '3px', background: headerAlignment === 'left' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                     </div>
-                    <span style={{ fontSize: '0.8rem', color: headerAlignment === 'left' ? '#EEC30C' : '#ccc' }}>Left</span>
+                    <span style={{ fontSize: '0.8rem', color: headerAlignment === 'left' ? '#D4C77A' : '#ccc' }}>Left</span>
                   </button>
-                  <button onClick={() => setHeaderAlignment('center')} style={{ flex: 1, padding: '12px', borderRadius: '8px', border: `1px solid ${headerAlignment === 'center' ? '#EEC30C' : '#333'}`, background: headerAlignment === 'center' ? '#1a1a1a' : '#111', color: headerAlignment === 'center' ? '#EEC30C' : '#ccc', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                  <button onClick={() => setHeaderAlignment('center')} style={{ flex: 1, padding: '12px', borderRadius: '8px', border: `1px solid ${headerAlignment === 'center' ? '#D4C77A' : '#333'}`, background: headerAlignment === 'center' ? '#1a1a1a' : '#111', color: headerAlignment === 'center' ? '#D4C77A' : '#ccc', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                      <div style={{ width: '20px', height: '3px', background: headerAlignment === 'center' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '12px', height: '3px', background: headerAlignment === 'center' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '20px', height: '3px', background: headerAlignment === 'center' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '12px', height: '3px', background: headerAlignment === 'center' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                     </div>
-                    <span style={{ fontSize: '0.8rem', color: headerAlignment === 'center' ? '#EEC30C' : '#ccc' }}>Center</span>
+                    <span style={{ fontSize: '0.8rem', color: headerAlignment === 'center' ? '#D4C77A' : '#ccc' }}>Center</span>
                   </button>
                 </div>
               </div>
@@ -2725,28 +2725,28 @@ export default function ResumeCustomizer() {
               <div style={{ marginBottom: '1.5rem' }}>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Details Arrangement</div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                  <button onClick={() => setHeaderArrangement('stacked')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'stacked' ? '#EEC30C' : '#333'}`, background: headerArrangement === 'stacked' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                  <button onClick={() => setHeaderArrangement('stacked')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'stacked' ? '#D4C77A' : '#333'}`, background: headerArrangement === 'stacked' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '24px', height: '4px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                   </button>
-                  <button onClick={() => setHeaderArrangement('horizontal')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'horizontal' ? '#EEC30C' : '#333'}`, background: headerArrangement === 'horizontal' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: '4px' }}>
-                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                  <button onClick={() => setHeaderArrangement('horizontal')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'horizontal' ? '#D4C77A' : '#333'}`, background: headerArrangement === 'horizontal' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: '4px' }}>
+                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                      <div style={{ width: '12px', height: '4px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                   </button>
-                  <button onClick={() => setHeaderArrangement('columns')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'columns' ? '#EEC30C' : '#333'}`, background: headerArrangement === 'columns' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: '4px' }}>
+                  <button onClick={() => setHeaderArrangement('columns')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerArrangement === 'columns' ? '#D4C77A' : '#333'}`, background: headerArrangement === 'columns' ? '#1a1a1a' : '#111', cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: '4px' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '6px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                        <div style={{ width: '12px', height: '4px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                       </div>
                     </button>
                 </div>
@@ -2756,7 +2756,7 @@ export default function ResumeCustomizer() {
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Header Contact Icons</div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                   {['icon', 'bullet', 'bar'].map(icType => (
-                    <button key={icType} onClick={() => setHeaderIconType(icType)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerIconType === icType ? '#EEC30C' : '#333'}`, background: headerIconType === icType ? '#1a1a1a' : '#111', color: headerIconType === icType ? '#EEC30C' : '#ccc', cursor: 'pointer', textTransform: 'capitalize', fontSize: '0.85rem' }}>{icType}</button>
+                    <button key={icType} onClick={() => setHeaderIconType(icType)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${headerIconType === icType ? '#D4C77A' : '#333'}`, background: headerIconType === icType ? '#1a1a1a' : '#111', color: headerIconType === icType ? '#D4C77A' : '#ccc', cursor: 'pointer', textTransform: 'capitalize', fontSize: '0.85rem' }}>{icType}</button>
                   ))}
                 </div>
               </div>
@@ -2774,10 +2774,10 @@ export default function ResumeCustomizer() {
                       { key: 'square-outline', style: { borderRadius: '0', border: '1px solid #444', background: '#111', color: '#ccc' } }
                     ].map(iconOpt => {
                       const isActive = headerIconStyle === iconOpt.key;
-                      const activeStyle = isActive ? { border: '1px solid #EEC30C', background: '#1a1a1a', color: '#EEC30C' } : iconOpt.style;
+                      const activeStyle = isActive ? { border: '1px solid #D4C77A', background: '#1a1a1a', color: '#D4C77A' } : iconOpt.style;
                       return (
-                        <button key={iconOpt.key} onClick={() => setHeaderIconStyle(iconOpt.key)} style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0, ...activeStyle, ...(iconOpt.style.border && !isActive ? { border: iconOpt.style.border } : { border: isActive && iconOpt.style.border ? '1px solid #EEC30C' : 'none' }) }}>
-                          <i className="fa-solid fa-link" style={{ color: isActive ? '#EEC30C' : iconOpt.style.color }}></i>
+                        <button key={iconOpt.key} onClick={() => setHeaderIconStyle(iconOpt.key)} style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0, ...activeStyle, ...(iconOpt.style.border && !isActive ? { border: iconOpt.style.border } : { border: isActive && iconOpt.style.border ? '1px solid #D4C77A' : 'none' }) }}>
+                          <i className="fa-solid fa-link" style={{ color: isActive ? '#D4C77A' : iconOpt.style.color }}></i>
                         </button>
                       );
                     })}
@@ -2803,15 +2803,15 @@ export default function ResumeCustomizer() {
                     <div style={{ marginBottom: '1.5rem' }}>
                       <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Professional Title Position</div>
                       <div style={{ display: 'flex', gap: '1rem' }}>
-                        <button onClick={() => setRolePosition('beside')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${rolePosition === 'beside' ? '#EEC30C' : '#333'}`, background: rolePosition === 'beside' ? '#1a1a1a' : '#111', color: rolePosition === 'beside' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Try Same Line</button>
-                        <button onClick={() => setRolePosition('below')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${rolePosition === 'below' ? '#EEC30C' : '#333'}`, background: rolePosition === 'below' ? '#1a1a1a' : '#111', color: rolePosition === 'below' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Below</button>
+                        <button onClick={() => setRolePosition('beside')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${rolePosition === 'beside' ? '#D4C77A' : '#333'}`, background: rolePosition === 'beside' ? '#1a1a1a' : '#111', color: rolePosition === 'beside' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Try Same Line</button>
+                        <button onClick={() => setRolePosition('below')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${rolePosition === 'below' ? '#D4C77A' : '#333'}`, background: rolePosition === 'below' ? '#1a1a1a' : '#111', color: rolePosition === 'below' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Below</button>
                       </div>
                     </div>
                     <div>
                       <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Professional Title Style</div>
                       <div style={{ display: 'flex', gap: '1rem' }}>
-                        <button onClick={() => setRoleStyle('normal')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${roleStyle === 'normal' ? '#EEC30C' : '#333'}`, background: roleStyle === 'normal' ? '#1a1a1a' : '#111', color: roleStyle === 'normal' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Normal</button>
-                        <button onClick={() => setRoleStyle('italic')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${roleStyle === 'italic' ? '#EEC30C' : '#333'}`, background: roleStyle === 'italic' ? '#1a1a1a' : '#111', color: roleStyle === 'italic' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Italic</button>
+                        <button onClick={() => setRoleStyle('normal')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${roleStyle === 'normal' ? '#D4C77A' : '#333'}`, background: roleStyle === 'normal' ? '#1a1a1a' : '#111', color: roleStyle === 'normal' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Normal</button>
+                        <button onClick={() => setRoleStyle('italic')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${roleStyle === 'italic' ? '#D4C77A' : '#333'}`, background: roleStyle === 'italic' ? '#1a1a1a' : '#111', color: roleStyle === 'italic' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Italic</button>
                       </div>
                     </div>
                   </>
@@ -2825,15 +2825,15 @@ export default function ResumeCustomizer() {
               <div style={{ marginBottom: '1.5rem' }}>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Style</div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                  <button onClick={() => setNameBold(false)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${!nameBold ? '#EEC30C' : '#333'}`, background: !nameBold ? '#1a1a1a' : '#111', color: !nameBold ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Normal</button>
-                  <button onClick={() => setNameBold(true)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameBold ? '#EEC30C' : '#333'}`, background: nameBold ? '#1a1a1a' : '#111', color: nameBold ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Bold</button>
+                  <button onClick={() => setNameBold(false)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${!nameBold ? '#D4C77A' : '#333'}`, background: !nameBold ? '#1a1a1a' : '#111', color: !nameBold ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Normal</button>
+                  <button onClick={() => setNameBold(true)} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameBold ? '#D4C77A' : '#333'}`, background: nameBold ? '#1a1a1a' : '#111', color: nameBold ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Bold</button>
                 </div>
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ccc', marginBottom: '0.8rem' }}>Font Family</div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                  <button onClick={() => setNameFont('body')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameFont === 'body' ? '#EEC30C' : '#333'}`, background: nameFont === 'body' ? '#1a1a1a' : '#111', color: nameFont === 'body' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Body Font</button>
-                  <button onClick={() => setNameFont('creative')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameFont === 'creative' ? '#EEC30C' : '#333'}`, background: nameFont === 'creative' ? '#1a1a1a' : '#111', color: nameFont === 'creative' ? '#EEC30C' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Creative</button>
+                  <button onClick={() => setNameFont('body')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameFont === 'body' ? '#D4C77A' : '#333'}`, background: nameFont === 'body' ? '#1a1a1a' : '#111', color: nameFont === 'body' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Body Font</button>
+                  <button onClick={() => setNameFont('creative')} style={{ flex: 1, padding: '10px', borderRadius: '8px', border: `1px solid ${nameFont === 'creative' ? '#D4C77A' : '#333'}`, background: nameFont === 'creative' ? '#1a1a1a' : '#111', color: nameFont === 'creative' ? '#D4C77A' : '#ccc', cursor: 'pointer', fontSize: '0.85rem' }}>Creative</button>
                 </div>
               </div>
               {nameFont === 'creative' && (
@@ -2850,7 +2850,7 @@ export default function ResumeCustomizer() {
                         fontFamily: `'${font}', cursive`, 
                         padding: '10px 0', 
                         background: '#111', 
-                        border: `1px solid ${nameCreativeFont === font ? '#EEC30C' : '#333'}`, 
+                        border: `1px solid ${nameCreativeFont === font ? '#D4C77A' : '#333'}`, 
                         borderRadius: '6px', 
                         color: '#fff', 
                         cursor: 'pointer', 
@@ -2877,7 +2877,7 @@ export default function ResumeCustomizer() {
                         key={size}
                         className={`style-option ${roleSize === size ? 'active' : ''}`} 
                         onClick={() => setRoleSize(size)}
-                        style={{ flex: 1, padding: '8px 0', background: '#111', border: `1px solid ${roleSize === size ? '#EEC30C' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem', textTransform: 'uppercase' }}
+                        style={{ flex: 1, padding: '8px 0', background: '#111', border: `1px solid ${roleSize === size ? '#D4C77A' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem', textTransform: 'uppercase' }}
                       >
                         {size}
                       </div>
@@ -2893,7 +2893,7 @@ export default function ResumeCustomizer() {
                         key={pos.key}
                         className={`style-option ${rolePosition === pos.key ? 'active' : ''}`} 
                         onClick={() => setRolePosition(pos.key)}
-                        style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${rolePosition === pos.key ? '#EEC30C' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem' }}
+                        style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${rolePosition === pos.key ? '#D4C77A' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem' }}
                       >
                         {pos.label}
                       </div>
@@ -2909,7 +2909,7 @@ export default function ResumeCustomizer() {
                         key={style.key}
                         className={`style-option ${roleStyle === style.key ? 'active' : ''}`} 
                         onClick={() => setRoleStyle(style.key)}
-                        style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${roleStyle === style.key ? '#EEC30C' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem' }}
+                        style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${roleStyle === style.key ? '#D4C77A' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textAlign: 'center', fontSize: '0.8rem' }}
                       >
                         {style.label}
                       </div>
@@ -2934,7 +2934,7 @@ export default function ResumeCustomizer() {
                       id="photo-show" 
                       checked={showPhoto} 
                       onChange={(e) => setShowPhoto(e.target.checked)} 
-                      style={{ accentColor: '#EEC30C', width: '16px', height: '16px', cursor: 'pointer' }} 
+                      style={{ accentColor: '#D4C77A', width: '16px', height: '16px', cursor: 'pointer' }} 
                     />
                     <label htmlFor="photo-show" style={{ cursor: 'pointer', userSelect: 'none' }}>Show</label>
                   </div>
@@ -2944,7 +2944,7 @@ export default function ResumeCustomizer() {
                       id="photo-grayscale" 
                       checked={photoGrayscale} 
                       onChange={(e) => setPhotoGrayscale(e.target.checked)} 
-                      style={{ accentColor: '#EEC30C', width: '16px', height: '16px', cursor: 'pointer' }} 
+                      style={{ accentColor: '#D4C77A', width: '16px', height: '16px', cursor: 'pointer' }} 
                     />
                     <label htmlFor="photo-grayscale" style={{ cursor: 'pointer', userSelect: 'none' }}>Grayscale</label>
                   </div>
@@ -2957,7 +2957,7 @@ export default function ResumeCustomizer() {
                           key={shape}
                           onClick={() => setPhotoShape(shape)}
                           className={`style-option ${photoShape === shape ? 'active' : ''}`} 
-                          style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${photoShape === shape ? '#EEC30C' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}
+                          style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${photoShape === shape ? '#D4C77A' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}
                         >
                           {shape}
                         </button>
@@ -2973,7 +2973,7 @@ export default function ResumeCustomizer() {
                           key={size}
                           onClick={() => setPhotoSize(size)}
                           className={`style-option ${photoSize === size ? 'active' : ''}`} 
-                          style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${photoSize === size ? '#EEC30C' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}
+                          style={{ flex: 1, padding: '8px', background: '#111', border: `1px solid ${photoSize === size ? '#D4C77A' : '#333'}`, borderRadius: '6px', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}
                         >
                           {size}
                         </button>
@@ -3043,7 +3043,7 @@ export default function ResumeCustomizer() {
                       handleUpdateSectionCustomization(section.id, 'displayInHeader', e.target.checked);
                       setSummaryInHeader(e.target.checked);
                     }} 
-                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#EEC30C' }} 
+                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#D4C77A' }} 
                   />
                   <label htmlFor={`sum-header-${section.id}`} style={{ color: '#ccc', fontSize: '0.9rem', cursor: 'pointer' }}>
                     Display summary as part of header
@@ -3058,7 +3058,7 @@ export default function ResumeCustomizer() {
                       handleUpdateSectionCustomization(section.id, 'showHeading', e.target.checked);
                       setShowSummaryHeading(e.target.checked);
                     }} 
-                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#EEC30C' }} 
+                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#D4C77A' }} 
                   />
                   <label htmlFor={`sum-heading-${section.id}`} style={{ color: '#ccc', fontSize: '0.9rem', cursor: 'pointer' }}>
                     Show summary heading
@@ -3076,7 +3076,7 @@ export default function ResumeCustomizer() {
                     id={`decl-heading-${section.id}`} 
                     checked={c.showHeading !== false} 
                     onChange={(e) => handleUpdateSectionCustomization(section.id, 'showHeading', e.target.checked)} 
-                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#EEC30C' }} 
+                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#D4C77A' }} 
                   />
                   <label htmlFor={`decl-heading-${section.id}`} style={{ color: '#ccc', fontSize: '0.9rem', cursor: 'pointer' }}>
                     Show section heading
@@ -3087,13 +3087,13 @@ export default function ResumeCustomizer() {
                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
                   <button 
                     onClick={() => handleUpdateSectionCustomization(section.id, 'position', 'Left')} 
-                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${(!c.position || c.position === 'Left') ? '#EEC30C' : '#444'}`, background: (!c.position || c.position === 'Left') ? 'rgba(238,195,12,0.1)' : '#2a2a2a', color: (!c.position || c.position === 'Left') ? '#EEC30C' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
+                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${(!c.position || c.position === 'Left') ? '#D4C77A' : '#444'}`, background: (!c.position || c.position === 'Left') ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', color: (!c.position || c.position === 'Left') ? '#D4C77A' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
                   >
                     Left
                   </button>
                   <button 
                     onClick={() => handleUpdateSectionCustomization(section.id, 'position', 'Right')} 
-                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${c.position === 'Right' ? '#EEC30C' : '#444'}`, background: c.position === 'Right' ? 'rgba(238,195,12,0.1)' : '#2a2a2a', color: c.position === 'Right' ? '#EEC30C' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
+                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${c.position === 'Right' ? '#D4C77A' : '#444'}`, background: c.position === 'Right' ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', color: c.position === 'Right' ? '#D4C77A' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
                   >
                     Right
                   </button>
@@ -3103,13 +3103,13 @@ export default function ResumeCustomizer() {
                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
                   <button 
                     onClick={() => handleUpdateSectionCustomization(section.id, 'signatureLine', 'None')} 
-                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${(!c.signatureLine || c.signatureLine === 'None') ? '#EEC30C' : '#444'}`, background: (!c.signatureLine || c.signatureLine === 'None') ? 'rgba(238,195,12,0.1)' : '#2a2a2a', color: (!c.signatureLine || c.signatureLine === 'None') ? '#EEC30C' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
+                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${(!c.signatureLine || c.signatureLine === 'None') ? '#D4C77A' : '#444'}`, background: (!c.signatureLine || c.signatureLine === 'None') ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', color: (!c.signatureLine || c.signatureLine === 'None') ? '#D4C77A' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
                   >
                     None
                   </button>
                   <button 
                     onClick={() => handleUpdateSectionCustomization(section.id, 'signatureLine', 'Solid')} 
-                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${c.signatureLine === 'Solid' ? '#EEC30C' : '#444'}`, background: c.signatureLine === 'Solid' ? 'rgba(238,195,12,0.1)' : '#2a2a2a', color: c.signatureLine === 'Solid' ? '#EEC30C' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
+                    style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: `1px solid ${c.signatureLine === 'Solid' ? '#D4C77A' : '#444'}`, background: c.signatureLine === 'Solid' ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', color: c.signatureLine === 'Solid' ? '#D4C77A' : '#aaa', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
                   >
                     Solid
                   </button>
@@ -3131,9 +3131,9 @@ export default function ResumeCustomizer() {
                       flex: 1, 
                       padding: '0.6rem', 
                       borderRadius: '8px', 
-                      border: `1px solid ${c.order === 'title-employer' || c.order === 'title-first' || !c.order ? '#EEC30C' : '#444'}`, 
-                      background: c.order === 'title-employer' || c.order === 'title-first' || !c.order ? 'rgba(238,195,12,0.1)' : '#2a2a2a', 
-                      color: c.order === 'title-employer' || c.order === 'title-first' || !c.order ? '#EEC30C' : '#aaa', 
+                      border: `1px solid ${c.order === 'title-employer' || c.order === 'title-first' || !c.order ? '#D4C77A' : '#444'}`, 
+                      background: c.order === 'title-employer' || c.order === 'title-first' || !c.order ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', 
+                      color: c.order === 'title-employer' || c.order === 'title-first' || !c.order ? '#D4C77A' : '#aaa', 
                       fontSize: '0.85rem', 
                       fontWeight: 600, 
                       cursor: 'pointer' 
@@ -3150,9 +3150,9 @@ export default function ResumeCustomizer() {
                       flex: 1, 
                       padding: '0.6rem', 
                       borderRadius: '8px', 
-                      border: `1px solid ${c.order === 'employer-title' || c.order === 'subtitle-first' ? '#EEC30C' : '#444'}`, 
-                      background: c.order === 'employer-title' || c.order === 'subtitle-first' ? 'rgba(238,195,12,0.1)' : '#2a2a2a', 
-                      color: c.order === 'employer-title' || c.order === 'subtitle-first' ? '#EEC30C' : '#aaa', 
+                      border: `1px solid ${c.order === 'employer-title' || c.order === 'subtitle-first' ? '#D4C77A' : '#444'}`, 
+                      background: c.order === 'employer-title' || c.order === 'subtitle-first' ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', 
+                      color: c.order === 'employer-title' || c.order === 'subtitle-first' ? '#D4C77A' : '#aaa', 
                       fontSize: '0.85rem', 
                       fontWeight: 600, 
                       cursor: 'pointer' 
@@ -3168,7 +3168,7 @@ export default function ResumeCustomizer() {
                     id={`group-promo-${section.id}`} 
                     checked={!!c.groupPromotions} 
                     onChange={(e) => handleUpdateSectionCustomization(section.id, 'groupPromotions', e.target.checked)} 
-                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#EEC30C' }} 
+                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#D4C77A' }} 
                   />
                   <label htmlFor={`group-promo-${section.id}`} style={{ color: '#ccc', fontSize: '0.9rem', cursor: 'pointer' }}>
                     Group promotions
@@ -3188,9 +3188,9 @@ export default function ResumeCustomizer() {
                       flex: 1, 
                       padding: '0.6rem', 
                       borderRadius: '8px', 
-                      border: `1px solid ${c.order === 'degree-school' || c.order === 'title-first' || !c.order ? '#EEC30C' : '#444'}`, 
-                      background: c.order === 'degree-school' || c.order === 'title-first' || !c.order ? 'rgba(238,195,12,0.1)' : '#2a2a2a', 
-                      color: c.order === 'degree-school' || c.order === 'title-first' || !c.order ? '#EEC30C' : '#aaa', 
+                      border: `1px solid ${c.order === 'degree-school' || c.order === 'title-first' || !c.order ? '#D4C77A' : '#444'}`, 
+                      background: c.order === 'degree-school' || c.order === 'title-first' || !c.order ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', 
+                      color: c.order === 'degree-school' || c.order === 'title-first' || !c.order ? '#D4C77A' : '#aaa', 
                       fontSize: '0.85rem', 
                       fontWeight: 600, 
                       cursor: 'pointer' 
@@ -3204,9 +3204,9 @@ export default function ResumeCustomizer() {
                       flex: 1, 
                       padding: '0.6rem', 
                       borderRadius: '8px', 
-                      border: `1px solid ${c.order === 'school-degree' || c.order === 'subtitle-first' ? '#EEC30C' : '#444'}`, 
-                      background: c.order === 'school-degree' || c.order === 'subtitle-first' ? 'rgba(238,195,12,0.1)' : '#2a2a2a', 
-                      color: c.order === 'school-degree' || c.order === 'subtitle-first' ? '#EEC30C' : '#aaa', 
+                      border: `1px solid ${c.order === 'school-degree' || c.order === 'subtitle-first' ? '#D4C77A' : '#444'}`, 
+                      background: c.order === 'school-degree' || c.order === 'subtitle-first' ? 'rgba(212, 199, 122,0.1)' : '#2a2a2a', 
+                      color: c.order === 'school-degree' || c.order === 'subtitle-first' ? '#D4C77A' : '#aaa', 
                       fontSize: '0.85rem', 
                       fontWeight: 600, 
                       cursor: 'pointer' 
@@ -3234,10 +3234,10 @@ export default function ResumeCustomizer() {
                       style={{
                         flex: 1,
                         padding: '0.5rem',
-                        border: `1px solid ${layout === lay ? '#EEC30C' : '#444'}`,
+                        border: `1px solid ${layout === lay ? '#D4C77A' : '#444'}`,
                         borderRadius: '8px',
-                        background: layout === lay ? 'rgba(238,195,12,0.1)' : 'transparent',
-                        color: layout === lay ? '#EEC30C' : '#ccc',
+                        background: layout === lay ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                        color: layout === lay ? '#D4C77A' : '#ccc',
                         cursor: 'pointer',
                         fontSize: '0.85rem',
                         fontWeight: 600
@@ -3259,10 +3259,10 @@ export default function ResumeCustomizer() {
                         style={{
                           flex: 1,
                           padding: '0.5rem',
-                          border: `1px solid ${(c.columns || 2) === cols ? '#EEC30C' : '#444'}`,
+                          border: `1px solid ${(c.columns || 2) === cols ? '#D4C77A' : '#444'}`,
                           borderRadius: '8px',
-                          background: (c.columns || 2) === cols ? 'rgba(238,195,12,0.1)' : 'transparent',
-                          color: (c.columns || 2) === cols ? '#EEC30C' : '#ccc',
+                          background: (c.columns || 2) === cols ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                          color: (c.columns || 2) === cols ? '#D4C77A' : '#ccc',
                           cursor: 'pointer'
                         }}
                       >
@@ -3300,10 +3300,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.subinfoStyle || 'None') === style ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.subinfoStyle || 'None') === style ? '#EEC30C' : '#ccc',
+                            background: (c.subinfoStyle || 'None') === style ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.subinfoStyle || 'None') === style ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3329,10 +3329,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.rowSpacing || 'Tight') === spacing ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.rowSpacing || 'Tight') === spacing ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.rowSpacing || 'Tight') === spacing ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.rowSpacing || 'Tight') === spacing ? '#EEC30C' : '#ccc',
+                            background: (c.rowSpacing || 'Tight') === spacing ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.rowSpacing || 'Tight') === spacing ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3347,7 +3347,7 @@ export default function ResumeCustomizer() {
                         id={`start-bullets-${section.id}`} 
                         checked={!!c.startBullets} 
                         onChange={(e) => handleUpdateSectionCustomization(section.id, 'startBullets', e.target.checked)} 
-                        style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#EEC30C' }} 
+                        style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#D4C77A' }} 
                       />
                       <label htmlFor={`start-bullets-${section.id}`} style={{ color: '#ccc', fontSize: '0.9rem', cursor: 'pointer' }}>
                         Start rows with bullets
@@ -3362,10 +3362,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.subinfoStyle || 'None') === style ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.subinfoStyle || 'None') === style ? '#EEC30C' : '#ccc',
+                            background: (c.subinfoStyle || 'None') === style ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.subinfoStyle || 'None') === style ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3390,10 +3390,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.separator || 'Comma') === sep ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.separator || 'Comma') === sep ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.separator || 'Comma') === sep ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.separator || 'Comma') === sep ? '#EEC30C' : '#ccc',
+                            background: (c.separator || 'Comma') === sep ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.separator || 'Comma') === sep ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3411,10 +3411,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.subinfoStyle || 'None') === style ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.subinfoStyle || 'None') === style ? '#EEC30C' : '#ccc',
+                            background: (c.subinfoStyle || 'None') === style ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.subinfoStyle || 'None') === style ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3440,10 +3440,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.subinfoStyle || 'None') === style ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.subinfoStyle || 'None') === style ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.subinfoStyle || 'None') === style ? '#EEC30C' : '#ccc',
+                            background: (c.subinfoStyle || 'None') === style ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.subinfoStyle || 'None') === style ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3468,10 +3468,10 @@ export default function ResumeCustomizer() {
                           style={{
                             flex: 1,
                             padding: '0.5rem',
-                            border: `1px solid ${(c.levelStyle || 'Dots') === style ? '#EEC30C' : '#444'}`,
+                            border: `1px solid ${(c.levelStyle || 'Dots') === style ? '#D4C77A' : '#444'}`,
                             borderRadius: '8px',
-                            background: (c.levelStyle || 'Dots') === style ? 'rgba(238,195,12,0.1)' : 'transparent',
-                            color: (c.levelStyle || 'Dots') === style ? '#EEC30C' : '#ccc',
+                            background: (c.levelStyle || 'Dots') === style ? 'rgba(212, 199, 122,0.1)' : 'transparent',
+                            color: (c.levelStyle || 'Dots') === style ? '#D4C77A' : '#ccc',
                             cursor: 'pointer',
                             fontSize: '0.85rem'
                           }}
@@ -3481,7 +3481,7 @@ export default function ResumeCustomizer() {
                       ))}
                     </div>
                     {!(section.items || []).some(item => typeof item === 'object' && item.level) && (
-                      <div style={{ background: 'rgba(238,195,12,0.1)', color: '#EEC30C', border: '1px solid #EEC30C', padding: '1rem', borderRadius: '8px', display: 'flex', gap: '8px', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                      <div style={{ background: 'rgba(212, 199, 122,0.1)', color: '#D4C77A', border: '1px solid #D4C77A', padding: '1rem', borderRadius: '8px', display: 'flex', gap: '8px', fontSize: '0.9rem', marginBottom: '1rem' }}>
                         <i className="fa-solid fa-circle-info" style={{ marginTop: '2px' }} />
                         <span>Assign levels to your {section.type} option above to unlock this display style</span>
                       </div>
@@ -4434,7 +4434,7 @@ export default function ResumeCustomizer() {
                 <p style={{ color: '#A0A0A0', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem' }}>Create resumes aligned with your professional identity using advanced visual customization.</p>
               </div>
               <div className="color-cards">
-                <div className="color-card feature-card-custom"><div className="color-circle" style={{ background: '#EEC30C' }}></div><h4>Accent Colors</h4></div>
+                <div className="color-card feature-card-custom"><div className="color-circle" style={{ background: '#D4C77A' }}></div><h4>Accent Colors</h4></div>
                 <div className="color-card feature-card-custom"><div className="color-circle" style={{ background: '#1A1A1A' }}></div><h4>Background Colors</h4></div>
                 <div className="color-card feature-card-custom"><div className="color-circle border-example"></div><h4>Border Styling</h4></div>
                 <div className="color-card feature-card-custom"><div className="color-circle text-example">T</div><h4>Text Colors</h4></div>
@@ -4610,7 +4610,7 @@ export default function ResumeCustomizer() {
 
               {/* CTA Overlay Trigger */}
               <div className={`start-customizing-wrap ${selectedTemplate ? 'visible' : ''}`} style={{ textAlign: 'center', marginTop: '3rem' }}>
-                <div className="selected-template-info" style={{ color: '#EEC30C', fontWeight: '700', fontSize: '1.1rem', marginBottom: '1rem' }}>
+                <div className="selected-template-info" style={{ color: '#D4C77A', fontWeight: '700', fontSize: '1.1rem', marginBottom: '1rem' }}>
                   ✓ {selectedTemplate?.name} template selected — ready to customize!
                 </div>
                 <button className="btn btn-primary btn-lg btn-start-customizing" onClick={() => setStep('upload')}>
@@ -4913,7 +4913,7 @@ export default function ResumeCustomizer() {
                     <h3 style={{ marginBottom: '0.5rem' }}>Resume Status</h3>
                     <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '1rem' }}>Keep track of your resume completion score.</p>
                     <div style={{ background: '#222', height: '10px', borderRadius: '5px', overflow: 'hidden', marginBottom: '0.5rem' }}>
-                      <div style={{ background: '#EEC30C', width: '65%', height: '100%' }}></div>
+                      <div style={{ background: '#D4C77A', width: '65%', height: '100%' }}></div>
                     </div>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>65% Completed</span>
                   </div>
@@ -5362,7 +5362,7 @@ export default function ResumeCustomizer() {
                                         <button
                                           key={i}
                                           onClick={() => { setSectionIcons(prev => ({ ...prev, [section.id]: ic.cls })); setShowIconPicker(prev => ({ ...prev, [section.id]: false })); }}
-                                          style={{ background: currentIconClass === ic.cls ? 'rgba(238,195,12,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${currentIconClass === ic.cls ? '#EEC30C' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+                                          style={{ background: currentIconClass === ic.cls ? 'rgba(212, 199, 122,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${currentIconClass === ic.cls ? '#D4C77A' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
                                         >
                                           <i className={ic.cls} />
                                         </button>
@@ -5374,7 +5374,7 @@ export default function ResumeCustomizer() {
                                         <button
                                           key={i}
                                           onClick={() => { setSectionIcons(prev => ({ ...prev, [section.id]: ic.cls })); setShowIconPicker(prev => ({ ...prev, [section.id]: false })); }}
-                                          style={{ background: currentIconClass === ic.cls ? 'rgba(238,195,12,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${currentIconClass === ic.cls ? '#EEC30C' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+                                          style={{ background: currentIconClass === ic.cls ? 'rgba(212, 199, 122,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${currentIconClass === ic.cls ? '#D4C77A' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
                                         >
                                           <i className={ic.cls} />
                                         </button>
@@ -5509,7 +5509,7 @@ export default function ResumeCustomizer() {
                                               <button
                                                 key={i}
                                                 onClick={() => { setSectionIcons(prev => ({ ...prev, [section.id]: ic.cls })); setShowIconPicker(prev => ({ ...prev, [section.id]: false })); }}
-                                                style={{ background: (sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? 'rgba(238,195,12,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${(sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? '#EEC30C' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+                                                style={{ background: (sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? 'rgba(212, 199, 122,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${(sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? '#D4C77A' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
                                               >
                                                 <i className={ic.cls} />
                                               </button>
@@ -5521,7 +5521,7 @@ export default function ResumeCustomizer() {
                                               <button
                                                 key={i}
                                                 onClick={() => { setSectionIcons(prev => ({ ...prev, [section.id]: ic.cls })); setShowIconPicker(prev => ({ ...prev, [section.id]: false })); }}
-                                                style={{ background: (sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? 'rgba(238,195,12,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${(sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? '#EEC30C' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
+                                                style={{ background: (sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? 'rgba(212, 199, 122,0.15)' : 'rgba(255,255,255,0.04)', border: `1px solid ${(sectionIcons[section.id] || iconClass || 'fa-solid fa-list') === ic.cls ? '#D4C77A' : '#333'}`, borderRadius: '8px', padding: '0.6rem', color: '#e5e7eb', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
                                               >
                                                 <i className={ic.cls} />
                                               </button>
@@ -5563,7 +5563,7 @@ export default function ResumeCustomizer() {
                                           setResumeData(prev => ({ ...prev, sections: prev.sections.map(s => s.id === section.id ? { ...s, customType: 'normal' } : s) }));
                                           updateResumeData(prev => ({ ...prev, sections: prev.sections.map(s => s.id === section.id ? { ...s, customType: 'normal' } : s) }));
                                         }}
-                                        style={{ flex: 1, padding: '0.7rem', borderRadius: '8px', background: section.customType !== 'skill' ? 'rgba(238,195,12,0.15)' : 'transparent', border: `1px solid ${section.customType !== 'skill' ? '#EEC30C' : '#333'}`, color: section.customType !== 'skill' ? '#EEC30C' : '#ccc', cursor: 'pointer', transition: 'all 0.2s', fontWeight: section.customType !== 'skill' ? 600 : 400 }}
+                                        style={{ flex: 1, padding: '0.7rem', borderRadius: '8px', background: section.customType !== 'skill' ? 'rgba(212, 199, 122,0.15)' : 'transparent', border: `1px solid ${section.customType !== 'skill' ? '#D4C77A' : '#333'}`, color: section.customType !== 'skill' ? '#D4C77A' : '#ccc', cursor: 'pointer', transition: 'all 0.2s', fontWeight: section.customType !== 'skill' ? 600 : 400 }}
                                       >
                                         Normal
                                       </button>
@@ -5572,7 +5572,7 @@ export default function ResumeCustomizer() {
                                           setResumeData(prev => ({ ...prev, sections: prev.sections.map(s => s.id === section.id ? { ...s, customType: 'skill' } : s) }));
                                           updateResumeData(prev => ({ ...prev, sections: prev.sections.map(s => s.id === section.id ? { ...s, customType: 'skill' } : s) }));
                                         }}
-                                        style={{ flex: 1, padding: '0.7rem', borderRadius: '8px', background: section.customType === 'skill' ? 'rgba(238,195,12,0.15)' : 'transparent', border: `1px solid ${section.customType === 'skill' ? '#EEC30C' : '#333'}`, color: section.customType === 'skill' ? '#EEC30C' : '#ccc', cursor: 'pointer', transition: 'all 0.2s', fontWeight: section.customType === 'skill' ? 600 : 400 }}
+                                        style={{ flex: 1, padding: '0.7rem', borderRadius: '8px', background: section.customType === 'skill' ? 'rgba(212, 199, 122,0.15)' : 'transparent', border: `1px solid ${section.customType === 'skill' ? '#D4C77A' : '#333'}`, color: section.customType === 'skill' ? '#D4C77A' : '#ccc', cursor: 'pointer', transition: 'all 0.2s', fontWeight: section.customType === 'skill' ? 600 : 400 }}
                                       >
                                         Skill
                                       </button>
@@ -6561,7 +6561,7 @@ export default function ResumeCustomizer() {
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                             {[1, 2, 3, 4].map(num => {
                               const isActive = entryLayout === num;
-                              const color = isActive ? 'var(--accent, #EEC30C)' : '#888';
+                              const color = isActive ? 'var(--accent, #D4C77A)' : '#888';
                               return (
                                 <button
                                   key={num}
@@ -7199,15 +7199,15 @@ export default function ResumeCustomizer() {
                           <div style={{ display: 'flex', gap: '8px' }}>
                             <button className={`style-option ${headerAlignment === 'left' ? 'active' : ''}`} onClick={() => setHeaderAlignment('left')} style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', borderRadius: '6px' }}>
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'flex-start' }}>
-                                <div style={{ width: '20px', height: '3px', background: headerAlignment === 'left' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                <div style={{ width: '12px', height: '3px', background: headerAlignment === 'left' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                <div style={{ width: '20px', height: '3px', background: headerAlignment === 'left' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                <div style={{ width: '12px', height: '3px', background: headerAlignment === 'left' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                               </div>
                               <span style={{ fontSize: '0.75rem' }}>Left</span>
                             </button>
                             <button className={`style-option ${headerAlignment === 'center' ? 'active' : ''}`} onClick={() => setHeaderAlignment('center')} style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', borderRadius: '6px' }}>
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '3px', background: headerAlignment === 'center' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                <div style={{ width: '12px', height: '3px', background: headerAlignment === 'center' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                <div style={{ width: '20px', height: '3px', background: headerAlignment === 'center' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                <div style={{ width: '12px', height: '3px', background: headerAlignment === 'center' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                               </div>
                               <span style={{ fontSize: '0.75rem' }}>Center</span>
                             </button>
@@ -7219,29 +7219,29 @@ export default function ResumeCustomizer() {
                           <div style={{ display: 'flex', gap: '8px' }}>
                             <button className={`style-option ${headerArrangement === 'stacked' ? 'active' : ''}`} onClick={() => setHeaderArrangement('stacked')} style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', borderRadius: '6px' }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '20px', height: '3px', background: headerArrangement === 'stacked' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                                 </div>
                                 <span style={{ fontSize: '0.75rem' }}>Stacked</span>
                             </button>
                             <button className={`style-option ${headerArrangement === 'horizontal' ? 'active' : ''}`} onClick={() => setHeaderArrangement('horizontal')} style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', borderRadius: '6px' }}>
                                 <div style={{ display: 'flex', gap: '3px', padding: '3px 0' }}>
-                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                  <div style={{ width: '8px', height: '3px', background: headerArrangement === 'horizontal' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                                 </div>
                                 <span style={{ fontSize: '0.75rem' }}>Horizontal</span>
                             </button>
                             <button className={`style-option ${headerArrangement === 'columns' ? 'active' : ''}`} onClick={() => setHeaderArrangement('columns')} style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', borderRadius: '6px' }}>
                                 <div style={{ display: 'flex', gap: '5px' }}>
                                   <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                                    <div style={{ width: '5px', height: '3px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                    <div style={{ width: '10px', height: '3px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                    <div style={{ width: '5px', height: '3px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                    <div style={{ width: '10px', height: '3px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                                   </div>
                                   <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
-                                    <div style={{ width: '5px', height: '3px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
-                                    <div style={{ width: '10px', height: '3px', background: headerArrangement === 'columns' ? '#EEC30C' : '#888', borderRadius: '2px' }}></div>
+                                    <div style={{ width: '5px', height: '3px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
+                                    <div style={{ width: '10px', height: '3px', background: headerArrangement === 'columns' ? '#D4C77A' : '#888', borderRadius: '2px' }}></div>
                                   </div>
                                 </div>
                                 <span style={{ fontSize: '0.75rem' }}>Columns</span>
@@ -7372,7 +7372,7 @@ export default function ResumeCustomizer() {
                                       fontSize: '0.8rem', 
                                       borderRadius: '15px', 
                                       cursor: 'pointer',
-                                      border: nameCreativeFont === font ? '1px solid #EEC30C' : '1px solid transparent'
+                                      border: nameCreativeFont === font ? '1px solid #D4C77A' : '1px solid transparent'
                                     }}
                                   >
                                     {font}
@@ -7603,7 +7603,7 @@ export default function ResumeCustomizer() {
                             setLayoutConfig(prev => ({ ...prev, columns: col.id }));
                           }}
                           style={{
-                            background: layoutConfig.columns === col.id ? 'var(--accent, #EEC30C)' : 'transparent',
+                            background: layoutConfig.columns === col.id ? 'var(--accent, #D4C77A)' : 'transparent',
                             color: layoutConfig.columns === col.id ? '#000' : '#888',
                             border: 'none',
                             padding: '6px 12px',
@@ -7647,7 +7647,7 @@ export default function ResumeCustomizer() {
                               const left = parseInt(e.target.value);
                               setLayoutConfig(prev => ({ ...prev, leftWidth: left, rightWidth: 100 - left }));
                             }}
-                            style={{ flexGrow: 1, accentColor: 'var(--accent, #EEC30C)' }}
+                            style={{ flexGrow: 1, accentColor: 'var(--accent, #D4C77A)' }}
                           />
                           <button
                             className="btn btn-secondary btn-sm"
@@ -7677,7 +7677,7 @@ export default function ResumeCustomizer() {
                       {resumeData.sections.map((sec, idx) => (
                         <div key={sec.id}>
                           {dragOverSectionId === sec.id && (
-                            <div style={{ height: '42px', marginBottom: '8px', borderRadius: '8px', background: 'rgba(238,195,12,0.08)', border: '1px dashed #EEC30C' }} />
+                            <div style={{ height: '42px', marginBottom: '8px', borderRadius: '8px', background: 'rgba(212, 199, 122,0.08)', border: '1px dashed #D4C77A' }} />
                           )}
                           <div
                             draggable="true"
@@ -7690,7 +7690,7 @@ export default function ResumeCustomizer() {
                           <div>
                             <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.85rem' }}>{sec.title}</span>
                             {layoutConfig.columns !== 'one' && (
-                              <span style={{ fontSize: '0.7rem', color: 'var(--accent, #EEC30C)', marginLeft: '10px', textTransform: 'uppercase' }}>
+                              <span style={{ fontSize: '0.7rem', color: 'var(--accent, #D4C77A)', marginLeft: '10px', textTransform: 'uppercase' }}>
                                 Column: {sec.column || 'left'}
                               </span>
                             )}
@@ -7768,7 +7768,7 @@ export default function ResumeCustomizer() {
           </div>
 
           <section className="preview-panel" style={{ flexGrow: 1, background: '#1d1d1d', overflowY: 'auto', display: 'flex', justifyContent: 'center', padding: '2rem 1.5rem', boxSizing: 'border-box', position: 'relative' }}>
-            <button className="btn-full-preview" onClick={() => setShowFullPreview(true)} style={{ position: 'absolute', top: '0', right: '1rem', background: '#EEC30C', color: '#000', border: 'none', padding: '0.4rem 0.8rem', borderBottomLeftRadius: '6px', borderBottomRightRadius: '6px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', fontWeight: 600 }}>
+            <button className="btn-full-preview" onClick={() => setShowFullPreview(true)} style={{ position: 'absolute', top: '0', right: '1rem', background: '#D4C77A', color: '#000', border: 'none', padding: '0.4rem 0.8rem', borderBottomLeftRadius: '6px', borderBottomRightRadius: '6px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', fontWeight: 600 }}>
               <i className="fa-solid fa-expand"></i> Full Preview
             </button>
             {mockupImage ? (
@@ -8114,7 +8114,7 @@ export default function ResumeCustomizer() {
                   step="0.05"
                   value={photoZoom}
                   onChange={(e) => setPhotoZoom(parseFloat(e.target.value))}
-                  style={{ width: '100%', accentColor: 'var(--accent, #EEC30C)' }}
+                  style={{ width: '100%', accentColor: 'var(--accent, #D4C77A)' }}
                 />
               </div>
 
@@ -8151,7 +8151,7 @@ export default function ResumeCustomizer() {
                   type="checkbox"
                   checked={photoGrayscale}
                   onChange={(e) => setPhotoGrayscale(e.target.checked)}
-                  style={{ accentColor: 'var(--accent, #EEC30C)' }}
+                  style={{ accentColor: 'var(--accent, #D4C77A)' }}
                 />
                 Grayscale filter
               </label>
@@ -8252,18 +8252,18 @@ export default function ResumeCustomizer() {
             <div style={{ padding: '1.5rem', background: '#fff' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                 <i className="fa-solid fa-image" style={{ color: '#888' }}></i>
-                <input type="range" min="1" max="3" step="0.1" value={photoZoom} onChange={(e) => setPhotoZoom(parseFloat(e.target.value))} style={{ flex: 1, accentColor: '#EEC30C' }} />
+                <input type="range" min="1" max="3" step="0.1" value={photoZoom} onChange={(e) => setPhotoZoom(parseFloat(e.target.value))} style={{ flex: 1, accentColor: '#D4C77A' }} />
                 <i className="fa-solid fa-image" style={{ color: '#000', fontSize: '1.2rem' }}></i>
               </div>
               <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                <button onClick={() => setPhotoShape('circle')} style={{ width: '35px', height: '35px', borderRadius: '50%', border: photoShape === 'circle' ? '2px solid #EEC30C' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
-                <button onClick={() => setPhotoShape('square')} style={{ width: '35px', height: '35px', borderRadius: '0', border: photoShape === 'square' ? '2px solid #EEC30C' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
-                <button onClick={() => setPhotoShape('rounded')} style={{ width: '35px', height: '35px', borderRadius: '8px', border: photoShape === 'rounded' ? '2px solid #EEC30C' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
-                <button onClick={() => setPhotoShape('portrait')} style={{ width: '26px', height: '35px', borderRadius: '0', border: photoShape === 'portrait' ? '2px solid #EEC30C' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
-                <button onClick={() => setPhotoShape('portrait-rounded')} style={{ width: '26px', height: '35px', borderRadius: '6px', border: photoShape === 'portrait-rounded' ? '2px solid #EEC30C' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
+                <button onClick={() => setPhotoShape('circle')} style={{ width: '35px', height: '35px', borderRadius: '50%', border: photoShape === 'circle' ? '2px solid #D4C77A' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
+                <button onClick={() => setPhotoShape('square')} style={{ width: '35px', height: '35px', borderRadius: '0', border: photoShape === 'square' ? '2px solid #D4C77A' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
+                <button onClick={() => setPhotoShape('rounded')} style={{ width: '35px', height: '35px', borderRadius: '8px', border: photoShape === 'rounded' ? '2px solid #D4C77A' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
+                <button onClick={() => setPhotoShape('portrait')} style={{ width: '26px', height: '35px', borderRadius: '0', border: photoShape === 'portrait' ? '2px solid #D4C77A' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
+                <button onClick={() => setPhotoShape('portrait-rounded')} style={{ width: '26px', height: '35px', borderRadius: '6px', border: photoShape === 'portrait-rounded' ? '2px solid #D4C77A' : '1px solid #ddd', background: '#fff', cursor: 'pointer' }}></button>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <button style={{ width: '100%', margin: 0, padding: '0.8rem', borderRadius: '8px', fontWeight: 600, background: '#EEC30C', color: '#000', border: 'none', cursor: 'pointer' }} onClick={() => setShowPhotoModal(false)}>
+                <button style={{ width: '100%', margin: 0, padding: '0.8rem', borderRadius: '8px', fontWeight: 600, background: '#D4C77A', color: '#000', border: 'none', cursor: 'pointer' }} onClick={() => setShowPhotoModal(false)}>
                   <i className="fa-solid fa-check"></i> Save
                 </button>
                 <button onClick={() => profilePhotoInputRef.current.click()} style={{ width: '100%', padding: '0.8rem', background: '#fff', border: '1px solid #e0e0e0', borderRadius: '8px', color: '#000', cursor: 'pointer', fontWeight: 600 }}>

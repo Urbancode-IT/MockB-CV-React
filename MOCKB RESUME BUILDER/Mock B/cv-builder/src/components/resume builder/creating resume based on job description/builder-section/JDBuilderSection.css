@@ -41,7 +41,7 @@
 }
 
 .input-card:hover {
-    border-color: rgba(238,195,12,0.2);
+    border-color: rgba(212, 199, 122,0.2);
 }
 
 .input-card-header {
@@ -125,7 +125,7 @@
 .jd-textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(238, 195, 12, 0.35);
+    box-shadow: 0 0 0 3px rgba(212, 199, 122, 0.35);
 }
 
 .jd-meta {
@@ -217,7 +217,7 @@
 }
 
 .add-btn:hover {
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
 }
 
 .experience-item {
@@ -259,8 +259,8 @@
 }
 
 .skill-tag {
-    background: rgba(238,195,12,0.1);
-    border: 1px solid rgba(238,195,12,0.3);
+    background: rgba(212, 199, 122,0.1);
+    border: 1px solid rgba(212, 199, 122,0.3);
     color: var(--primary-color);
     padding: 4px 14px;
     border-radius: 50px;
@@ -333,7 +333,7 @@
 
 .preview-header {
     height: 20px;
-    background: rgba(238,195,12,0.4);
+    background: rgba(212, 199, 122,0.4);
     border-radius: 4px;
 }
 
@@ -387,14 +387,14 @@
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     font-family: 'Satoshi', sans-serif;
-    box-shadow: 0 8px 30px rgba(238, 195, 12, 0.35);
+    box-shadow: 0 8px 30px rgba(212, 199, 122, 0.35);
     width: 100%;
     justify-content: center;
 }
 
 .generate-resume-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(238, 195, 12, 0.35);
+    box-shadow: 0 12px 40px rgba(212, 199, 122, 0.35);
 }
 
 .generate-resume-btn.loading {
@@ -617,9 +617,9 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 199, 122, 0.1);
     border: 2px solid var(--primary-color);
-    box-shadow: 0 0 20px rgba(238, 195, 12, 0.35);
+    box-shadow: 0 0 20px rgba(212, 199, 122, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -42,7 +42,7 @@
 
 .slide-content h1 span {
   color: var(--primary-color);
-  text-shadow: 0 0 20px rgba(238, 195, 12, 0.4);
+  text-shadow: 0 0 20px rgba(212, 199, 122, 0.4);
 }
 
 .slide-content p {
@@ -109,7 +109,7 @@
 .nav-dot.active {
   background: var(--primary-color);
   width: 80px;
-  box-shadow: 0 0 15px rgba(238, 195, 12, 0.4);
+  box-shadow: 0 0 15px rgba(212, 199, 122, 0.4);
 }
 
 .btn-premium {

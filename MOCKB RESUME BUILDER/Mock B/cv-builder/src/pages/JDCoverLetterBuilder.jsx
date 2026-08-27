@@ -265,7 +265,7 @@ export default function JDCoverLetterBuilder() {
                 <li style={{ marginBottom: '1rem' }}><i className="fa-solid fa-check" style={{ color: 'var(--primary-color)', marginRight: '10px' }}></i> <strong>Value Proposition:</strong> We highlight the exact metrics in your experience that solve the company's pain points.</li>
               </ul>
             </div>
-            <div style={{ background: 'rgba(238, 195, 12, 0.05)', padding: '2.5rem', borderRadius: '20px', border: '1px dashed var(--primary-color)', backdropFilter: 'blur(5px)' }}>
+            <div style={{ background: 'rgba(212, 199, 122, 0.05)', padding: '2.5rem', borderRadius: '20px', border: '1px dashed var(--primary-color)', backdropFilter: 'blur(5px)' }}>
               <h4 style={{ marginBottom: '1rem', color: 'var(--primary-color)', fontSize: '1.2rem' }}>Recruiter Insight</h4>
               <p style={{ fontSize: '1.1rem', fontStyle: 'italic', lineHeight: 1.6 }}>"A cover letter that explicitly references the needs mentioned in the job description has a 75% higher chance of being read fully by a human recruiter after passing the initial ATS scan."</p>
             </div>
@@ -489,7 +489,7 @@ export default function JDCoverLetterBuilder() {
       {showMagnify && hasGenerated && (
         <div className="sa-overlay magnify-overlay" onClick={() => setShowMagnify(false)} style={{ padding: '50px 20px', alignItems: 'flex-start', overflowY: 'auto' }}>
           <div className="magnify-modal" onClick={e => e.stopPropagation()} style={{ width: '794px', maxWidth: '100%', margin: '0 auto', background: 'transparent', position: 'relative' }}>
-            <button className="close-magnify" onClick={() => setShowMagnify(false)} style={{ position: 'absolute', top: '-15px', right: '-15px', zIndex: 100, background: '#EEC30C', color: '#000', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
+            <button className="close-magnify" onClick={() => setShowMagnify(false)} style={{ position: 'absolute', top: '-15px', right: '-15px', zIndex: 100, background: '#D4C77A', color: '#000', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
               <i className="fa-solid fa-xmark"></i>
             </button>
             <div className={`cv-document ${selectedTemplate}`} style={{ background: '#fff', borderRadius: '8px', padding: selectedTemplate === 'creative' ? '0' : '40px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', overflow: 'hidden' }}>

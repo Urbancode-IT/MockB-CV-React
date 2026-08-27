@@ -34,7 +34,15 @@ nav {
     align-items: center;
     gap: 0.5rem;
     flex: 1;
-    background: linear-gradient(to right, #EEC30C, #FFFFFF, #EEC30C);
+    background: linear-gradient(
+        90deg,
+        #B8860B,
+        #F8E7A8,
+        #D4AF37,
+        #FFF8DC,
+        #E8C547,
+        #B8860B
+    );
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -47,7 +55,7 @@ nav {
 }
 
 .logo-icon {
-    color: #EEC30C;
+    color: #D4AF37;
 }
 
 .nav-links {
@@ -108,7 +116,7 @@ nav {
 }
 
 .nav-links li > a:hover {
-    color: #EEC30C;
+    color: #D4AF37;
 }
 
 .nav-links li > a:hover::before {
@@ -154,8 +162,8 @@ nav {
     width: 100%;
     background: rgba(13, 13, 13, 0.98);
     backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(238, 195, 12, 0.1);
-    border-bottom: 1px solid rgba(238, 195, 12, 0.1);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     padding: 3.5rem 0;
     opacity: 0;
     visibility: hidden;
@@ -194,20 +202,20 @@ nav {
 }
 
 .mega-menu-item:hover {
-    background: rgba(238, 195, 12, 0.05);
-    border-color: #EEC30C;
+    background: rgba(212, 175, 55, 0.05);
+    border-color: #D4AF37;
     transform: translateY(-5px);
 }
 
 .item-icon {
     width: 45px;
     height: 45px;
-    background: rgba(238, 195, 12, 0.1);
+    background: rgba(212, 175, 55, 0.1);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #EEC30C;
+    color: #D4AF37;
     font-size: 1.2rem;
     flex-shrink: 0;
 }

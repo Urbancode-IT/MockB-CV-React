@@ -43,11 +43,11 @@ const Login = () => {
                     <span className="logo-icon-wrap">
                         <i className="fa-solid fa-file-lines"></i>
                     </span>
-                    MockB <span style={{ color: '#EEC30C' }}>CV</span>
+                    MockB <span>CV</span>
                 </Link>
 
                 <div className="auth-brand-content">
-                    <h2>Build Your Career Story<br /><span style={{color:'#EEC30C'}}>With Confidence</span></h2>
+                    <h2>Build Your Career Story<br /><span>With Confidence</span></h2>
                     <p>
                         Craft ATS-optimised resumes, cover letters, and stunning portfolios
                         — powered by AI and designed to get you hired faster.

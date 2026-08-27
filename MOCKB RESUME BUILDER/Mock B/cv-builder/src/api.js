@@ -1,6 +1,24 @@
 import axios from "axios";
 
 const PRODUCTION_API = "https://mockb-cv-react.onrender.com/api";
+const AUTH_TOKEN_KEY = "mockb_auth_token";
+
+export function getAuthToken() {
+    try {
+        return localStorage.getItem(AUTH_TOKEN_KEY) || "";
+    } catch {
+        return "";
+    }
+}
+
+export function setAuthToken(token) {
+    try {
+        if (token) localStorage.setItem(AUTH_TOKEN_KEY, token);
+        else localStorage.removeItem(AUTH_TOKEN_KEY);
+    } catch {
+        // ignore storage errors (private mode)
+    }
+}
 
 function resolveApiBaseUrl() {
     if (!import.meta.env.DEV) {
@@ -34,6 +52,14 @@ const api = axios.create({
     headers: {
         "Content-Type": "application/json",
     },
+});
+
+api.interceptors.request.use((config) => {
+    const token = getAuthToken();
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
 });
 
 api.interceptors.response.use(

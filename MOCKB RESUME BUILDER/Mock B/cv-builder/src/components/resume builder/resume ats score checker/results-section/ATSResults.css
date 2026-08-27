@@ -42,7 +42,7 @@
 }
 .label-poor { color: #ef4444; }
 .label-average { color: #f97316; }
-.label-good { color: #EEC30C; }
+.label-good { color: #D4C77A; }
 .label-excellent { color: #22c55e; }
 
 /* Metrics */
@@ -84,7 +84,7 @@
 }
 .metric-text-box { flex: 1; }
 .metric-name { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 8px; margin-bottom: 0.4rem; color: #fff; }
-.metric-name i { color: #EEC30C; font-size: 0.9rem; }
+.metric-name i { color: #D4C77A; font-size: 0.9rem; }
 .metric-note { color: #A0A0A0; font-size: 0.8rem; line-height: 1.4; }
 
 /* Strength & Weakness */

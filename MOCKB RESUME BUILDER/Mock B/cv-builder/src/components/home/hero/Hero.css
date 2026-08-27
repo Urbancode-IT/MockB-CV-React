@@ -13,8 +13,22 @@
 }
 
 .hero h1 span {
-    color: #EEC30C !important;
     display: block;
+    color: transparent !important;
+    background: linear-gradient(
+        90deg,
+        #B8860B,
+        #F8E7A8,
+        #D4AF37,
+        #FFF8DC,
+        #E8C547,
+        #B8860B
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    animation: shine 4s linear infinite;
 }
 
 .hero p {
@@ -72,7 +86,8 @@
 }
 
 .hero-badge i {
-    color: #EEC30C !important;
+    color: #D4AF37 !important;
+    filter: drop-shadow(0 0 8px rgba(243, 229, 168, 0.55));
 }
 
 @media (max-width: 1024px) {

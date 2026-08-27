@@ -464,7 +464,7 @@ export default function CoverLetterUpgrader() {
         {/*  Final CTA  */}
         <section style={{'padding': '100px 0', 'textAlign': 'center'}}>
             <div className="container">
-                <div className="glass" style={{'padding': '60px', 'borderRadius': '30px', 'background': 'linear-gradient(135deg, rgba(238, 195, 12, 0.1), rgba(0,0,0,0.5))', 'borderColor': 'var(--primary-color)'}}>
+                <div className="glass" style={{'padding': '60px', 'borderRadius': '30px', 'background': 'linear-gradient(135deg, rgba(212, 199, 122, 0.1), rgba(0,0,0,0.5))', 'borderColor': 'var(--primary-color)'}}>
                     <h2 style={{'fontSize': '3rem', 'marginBottom': '20px'}}>Stop blending in.</h2>
                     <p style={{'fontSize': '1.2rem', 'color': 'var(--text-gray)', 'maxWidth': '600px', 'margin': '0 auto 40px'}}>Transform your cover letter from ordinary to outstanding in seconds.</p>
                     <button className="cl-btn cl-btn-primary" onClick={scrollToUpload}>Upgrade Now</button>
