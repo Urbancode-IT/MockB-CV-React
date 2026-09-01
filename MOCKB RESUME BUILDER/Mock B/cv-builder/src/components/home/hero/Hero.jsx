@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 export default function Hero() {
-  const [email, setEmail] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/resume/ai-builder', { state: { email } });
-  };
 
   return (
     <section className="hero">
       <div className="container">
         <h1>Land your next <span>dream job</span></h1>
-        <p>Create a professional, ATS-optimized resume in minutes. Powered by advanced AI to help you stand out from the crowd and get hired faster.</p>
-        
-        <form className="cta-form" onSubmit={handleSubmit}>
-          <input 
-            type="email" 
-            placeholder="Your email address" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required 
-          />
-          <button type="submit" className="btn btn-primary">Get Started</button>
-        </form>
+        <p>Create a professional, ATS-friendly resume in minutes. Pick a template, fill in your details with live preview, and download a polished PDF.</p>
+
+        <div className="hero-actions">
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/resume/templates')}>
+            Browse templates
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={() => navigate('/resume/customizer')}>
+            Open resume builder
+          </button>
+        </div>
 
         <div className="trust-badges">
           <div className="hero-badge">
@@ -35,11 +27,11 @@ export default function Hero() {
           </div>
           <div className="hero-badge">
             <i className="fa-solid fa-circle-check"></i>
-            <span>Industry Experts</span>
+            <span>1 &amp; 2 Page Layouts</span>
           </div>
           <div className="hero-badge">
             <i className="fa-solid fa-circle-check"></i>
-            <span>AI-Powered</span>
+            <span>Live Preview &amp; PDF</span>
           </div>
         </div>
       </div>

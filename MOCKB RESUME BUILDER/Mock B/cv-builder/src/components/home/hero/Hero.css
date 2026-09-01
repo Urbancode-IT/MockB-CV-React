@@ -49,6 +49,15 @@
     border: 1px solid #333;
 }
 
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 0 auto 3rem;
+}
+
 .cta-form input {
     flex: 1;
     background: transparent;

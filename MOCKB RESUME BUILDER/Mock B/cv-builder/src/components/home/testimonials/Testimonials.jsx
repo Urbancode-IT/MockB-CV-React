@@ -5,7 +5,7 @@ const REVIEWS = [
   {
     stars: 5,
     time: '2 days ago',
-    text: '"MockB CV\'s AI tailored every bullet point to match the job description. I landed three interviews in one week — something that never happened before with my old resume."',
+    text: '"The live preview made it easy to see exactly how my resume would look. I updated the layout and downloaded a clean PDF in one sitting."',
     avatar: 'RK',
     name: 'Rahul K.',
     role: 'Senior Software Engineer'
@@ -13,7 +13,7 @@ const REVIEWS = [
   {
     stars: 5,
     time: '5 days ago',
-    text: '"The ATS score checker is a game-changer. I could see exactly why my resume was being filtered out and fix it instantly. Got my first C-suite interview within a week."',
+    text: '"I liked being able to switch templates without losing my content. The two-page layout gave me enough room for projects and certifications."',
     avatar: 'SP',
     name: 'Sarah P.',
     role: 'VP of Operations'
@@ -21,7 +21,7 @@ const REVIEWS = [
   {
     stars: 5,
     time: '1 week ago',
-    text: '"As a fresh graduate I had no idea how to write a resume. MockB CV walked me through everything. The cover letter generator alone saved me hours of stress."',
+    text: '"As a fresh graduate I had no idea how to structure a resume. The sample templates showed me what to include and where."',
     avatar: 'AM',
     name: 'Aisha M.',
     role: 'Recent Graduate, CS'
@@ -29,7 +29,7 @@ const REVIEWS = [
   {
     stars: 4.5,
     time: '2 weeks ago',
-    text: '"I was switching industries and didn\'t know how to reframe my experience. MockB CV\'s JD matching tool helped me present my skills in exactly the way recruiters were looking for."',
+    text: '"I was switching industries and needed a cleaner format. Reordering sections and renaming headings helped me tell a better story."',
     avatar: 'JT',
     name: 'James T.',
     role: 'Career Changer → Product Manager'
@@ -37,7 +37,7 @@ const REVIEWS = [
   {
     stars: 5,
     time: '3 weeks ago',
-    text: '"The multi-language support is brilliant. I was able to create my resume in both English and French, which opened up so many more opportunities across Europe."',
+    text: '"The cover letter templates matched my resume style, so my application looked consistent from start to finish."',
     avatar: 'LB',
     name: 'Léa B.',
     role: 'Marketing Director'
@@ -45,7 +45,7 @@ const REVIEWS = [
   {
     stars: 5,
     time: '1 month ago',
-    text: '"Premium templates, real AI, and actual results. My ATS score went from 48 to 91 in under 10 minutes. This is the only resume tool you\'ll ever need."',
+    text: '"Simple workflow: pick a template, edit sections, customize spacing, preview, download. Exactly what I needed."',
     avatar: 'DC',
     name: 'David C.',
     role: 'Finance Manager'
@@ -57,7 +57,7 @@ export default function Testimonials() {
     <section id="testimonials" className="container">
       <div className="home-testimonials-header">
         <p className="home-testimonials-label">What People Say</p>
-        <h2>Turn Your Resume into Real Opportunities Faster Than Ever</h2>
+        <h2>Build a resume you are proud to send</h2>
       </div>
 
       <div className="home-reviews-grid">

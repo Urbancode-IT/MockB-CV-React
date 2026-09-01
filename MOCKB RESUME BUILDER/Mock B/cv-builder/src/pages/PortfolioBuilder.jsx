@@ -141,28 +141,37 @@ const themeColors = {
 function EditableField({ tag = 'span', value, onChange, editable, placeholder, style, className, multiline = false }) {
   const El = tag;
   const contentRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
-  
+  const isEditingRef = useRef(false);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el || !editable || isEditingRef.current) return;
+    const next = value || '';
+    if (el.innerHTML !== next) {
+      el.innerHTML = next;
+    }
+  }, [value, editable]);
+
   if (!editable) return <El style={style} className={className} dangerouslySetInnerHTML={{ __html: value || placeholder || '' }} />;
-  
+
   return (
     <div style={{ position: 'relative', display: multiline ? 'block' : 'inline-block' }}>
-      
       <El
         ref={contentRef}
         contentEditable
         suppressContentEditableWarning
         data-placeholder={placeholder}
-        onFocus={() => setIsFocused(true)}
+        onFocus={() => {
+          isEditingRef.current = true;
+        }}
         onBlur={e => {
-          setIsFocused(false);
+          isEditingRef.current = false;
           onChange(e.currentTarget.innerHTML.trim());
         }}
         onKeyDown={e => {
           if (e.key === 'Enter' && !multiline) { e.preventDefault(); e.currentTarget.blur(); }
           if (e.key === 'Escape') { e.currentTarget.blur(); }
         }}
-        dangerouslySetInnerHTML={{ __html: value || '' }}
         style={{
           display: multiline ? 'block' : 'inline-block',
           ...style,

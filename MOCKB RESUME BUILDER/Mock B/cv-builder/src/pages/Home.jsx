@@ -4,8 +4,6 @@ import './Home.css';
 import Navbar from '../components/home/navbar/Navbar';
 import Hero from '../components/home/hero/Hero';
 import Features from '../components/home/features/Features';
-import Showcase from '../components/home/showcase/Showcase';
-import DetailedFeatures from '../components/home/detailed-features/DetailedFeatures';
 import TemplatesGallery from '../components/home/templates-gallery/TemplatesGallery';
 import CoreFeatures from '../components/home/core-features/CoreFeatures';
 import CombinedFeatures from '../components/home/combined-features/CombinedFeatures';

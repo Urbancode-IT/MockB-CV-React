@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 export default function Footer() {
@@ -10,42 +10,37 @@ export default function Footer() {
       <div className="container">
         <div className="footer-cta">
           <h2>Land what's next</h2>
-          <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
-          <button className="btn btn-dark" onClick={() => navigate('/resume/ai-builder')}>Get started today</button>
+          <p>Build a professional resume and cover letter with templates, live preview, customization, and PDF download — all in one place.</p>
+          <button type="button" className="btn btn-dark" onClick={() => navigate('/resume/customizer')}>Get started today</button>
         </div>
 
         <div className="footer-grid">
           <div className="footer-col">
             <h4>Platform</h4>
             <ul>
-              <li><a href="#">Plans and Pricing</a></li>
-              <li><a href="#">AI Cover Letters</a></li>
-              <li><a href="#">AI Resume Checker</a></li>
-              <li><a href="#">Resume Templates</a></li>
-              <li><a href="#">Affiliate Program</a></li>
-              <li><a href="#">Sell Templates</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><Link to="/resume/templates">Resume Templates</Link></li>
+              <li><Link to="/resume/customizer">Resume Builder</Link></li>
+              <li><Link to="/cover-letter/templates">Cover Letter Templates</Link></li>
+              <li><Link to="/cover-letter/customizer">Cover Letter Builder</Link></li>
+              <li><Link to="/#templates-gallery">Template Gallery</Link></li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>Features</h4>
             <ul>
-              <li><a href="#">AI Cover Letter Generator</a></li>
-              <li><a href="#">Resume Keyword Optimizer</a></li>
-              <li><a href="#">ATS Resume Checker</a></li>
-              <li><a href="#">Resume Design Templates</a></li>
-              <li><a href="#">AI Connection Request Writer</a></li>
-              <li><a href="#">AI Resignation Letter Writer</a></li>
+              <li><Link to="/resume/templates">One-Page Templates</Link></li>
+              <li><Link to="/resume/templates">Two-Page Templates</Link></li>
+              <li><Link to="/resume/customizer">Live Preview Editor</Link></li>
+              <li><Link to="/resume/customizer">Design Customization</Link></li>
+              <li><Link to="/resume/customizer">PDF Download</Link></li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>Resources</h4>
             <ul>
-              <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
-              <li><a href="#">How to Optimize Your Resume Keywords</a></li>
-              <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
-              <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
-              <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+              <li><Link to="/resume/guidelines">Resume Guidelines</Link></li>
+              <li><Link to="/cover-letter/guidelines">Cover Letter Guidelines</Link></li>
+              <li><Link to="/about">About MockB CV</Link></li>
             </ul>
           </div>
           <div className="footer-col">

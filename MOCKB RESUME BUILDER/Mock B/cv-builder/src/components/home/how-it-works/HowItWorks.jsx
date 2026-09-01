@@ -30,26 +30,26 @@ export default function HowItWorks() {
     <section ref={sectionRef} className="home-how-it-works-section container">
       <div className="home-how-it-works-header text-center">
         <h2>How MockB CV Works</h2>
-        <p>Your journey to a perfect resume in three simple steps.</p>
+        <p>Your journey to a finished resume in three simple steps.</p>
       </div>
-      
+
       <div className="home-steps-container">
         <div className={`home-step-card slide-in-left ${animate ? 'animate' : ''}`}>
           <div className="home-step-number">1</div>
-          <h3>Choose a Template or Role</h3>
-          <p>Start by selecting from our premium, ATS-friendly templates or let our AI guide you based on your target job role. Whether you are a developer, designer, or executive, we have the perfect starting point.</p>
+          <h3>Choose a Template</h3>
+          <p>Pick a one-page or two-page resume design from the gallery. Preview the layout, then start with sample content or build from scratch.</p>
         </div>
-        
+
         <div className={`home-step-card slide-in-bottom ${animate ? 'animate' : ''}`}>
           <div className="home-step-number">2</div>
-          <h3>Build & Optimize with AI</h3>
-          <p>Fill in your details manually, upload an existing resume, or paste a job description. Our advanced AI will instantly generate tailored bullet points, optimize keywords, and score your resume against ATS algorithms.</p>
+          <h3>Edit &amp; Customize</h3>
+          <p>Add your experience, education, and skills in the editor. Adjust fonts, colors, spacing, and section order while the live preview updates instantly.</p>
         </div>
-        
+
         <div className={`home-step-card slide-in-right ${animate ? 'animate' : ''}`}>
           <div className="home-step-number">3</div>
-          <h3>Download & Apply</h3>
-          <p>Preview your perfectly formatted resume in real-time. Once you're satisfied with the design and the ATS score, download it as a PDF or Word document and start applying with total confidence.</p>
+          <h3>Preview &amp; Download</h3>
+          <p>Review the final PDF preview, confirm both pages if needed, and download a polished resume ready to send.</p>
         </div>
       </div>
     </section>

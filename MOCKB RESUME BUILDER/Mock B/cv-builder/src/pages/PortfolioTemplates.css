@@ -1,0 +1,84 @@
+.portfolio-templates-page .rt-hero {
+  padding-top: 6rem;
+}
+
+.pt-thumb-scale {
+  height: 100%;
+  overflow: hidden;
+  transform-origin: top center;
+  transform: scale(0.42);
+  width: 238%;
+  margin-left: -69%;
+  pointer-events: none;
+}
+
+.pt-feature-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.pt-feature-list i {
+  color: #2563eb;
+  margin-right: 0.35rem;
+}
+
+.pt-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 45000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pt-preview-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.pt-preview-dialog {
+  position: relative;
+  width: min(1100px, 100%);
+  max-height: calc(100vh - 2rem);
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.pt-preview-header,
+.pt-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pt-preview-footer {
+  border-bottom: none;
+  border-top: 1px solid #e2e8f0;
+  justify-content: flex-end;
+}
+
+.pt-preview-close {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.pt-preview-body {
+  overflow: auto;
+  max-height: calc(100vh - 180px);
+}

@@ -1236,7 +1236,6 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
             onBlurCapture={(e) => {
                 if (!e.currentTarget.contains(e.relatedTarget)) onPreviewFocus?.(null);
             }}
-            onInput={(e) => onPreviewFocus?.(previewFocusFromEvent(e.target))}
         >
             <div className="ref-title-section">
                 <label className="ref-label">Resume Title</label>

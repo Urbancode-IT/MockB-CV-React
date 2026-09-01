@@ -6,28 +6,28 @@ const ACCORDIONS = [
     id: 'acc-1',
     num: '01',
     title: 'Senior Professionals & Executives',
-    desc: "You've built a powerful career. MockB CV helps you present it at the level it deserves — with executive-grade formatting and strategic keyword placement that opens C-suite doors.",
+    desc: "You've built a strong career. MockB CV helps you present it with clean formatting, flexible templates, and section control that fits senior-level applications.",
     roles: ['VP & Directors', 'C-Level Executives', 'Department Heads', 'Senior Managers']
   },
   {
     id: 'acc-2',
     num: '02',
     title: 'First-Time Job Seekers',
-    desc: 'Landing your first job is a big moment. Our AI guides you through every section — even if you have little experience — helping you showcase projects, skills, and potential in the best possible light.',
+    desc: 'Landing your first job is a big moment. Use guided templates and sample content to structure projects, education, and skills even with limited experience.',
     roles: ['Fresh Graduates', 'Students & Interns', 'Bootcamp Completers', 'Career Beginners']
   },
   {
     id: 'acc-3',
     num: '03',
     title: 'Professionals Seeking ATS-Friendly Resumes',
-    desc: 'Getting past automated filters is half the battle. Our real-time ATS score and keyword optimizer ensures your resume reaches a real human before it gets filtered out by a bot.',
+    desc: 'Use clean, readable templates with clear headings and structured sections so recruiters and applicant tracking systems can scan your resume easily.',
     roles: ['Tech & IT Professionals', 'Finance & Banking', 'Healthcare Workers', 'Corporate Job Hunters']
   },
   {
     id: 'acc-4',
     num: '04',
     title: 'Career Changers & Freelancers',
-    desc: 'Pivoting careers or going independent? MockB CV helps you re-frame your existing experience for a brand new industry, building a portfolio and cover letter that tells your story compellingly.',
+    desc: 'Pivoting careers or going independent? Reorder sections, rename headings, and pair your resume with a matching cover letter template.',
     roles: ['Industry Switchers', 'Freelance Consultants', 'Gig Economy Workers', 'Entrepreneurs & Founders']
   }
 ];
@@ -48,12 +48,12 @@ export default function UseCases() {
 
       <div className="accordion-list">
         {ACCORDIONS.map((item) => (
-          <div 
-            key={item.id} 
+          <div
+            key={item.id}
             className={`accordion-item ${activeAccordion === item.id ? 'open' : ''}`}
             id={item.id}
           >
-            <button className="accordion-trigger" onClick={() => toggleAccordion(item.id)}>
+            <button type="button" className="accordion-trigger" onClick={() => toggleAccordion(item.id)}>
               <span className="acc-num">{item.num}</span>
               <span className="acc-title">{item.title}</span>
               <i className="fa-solid fa-plus acc-icon"></i>

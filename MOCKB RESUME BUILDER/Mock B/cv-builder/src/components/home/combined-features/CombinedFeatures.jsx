@@ -8,23 +8,23 @@ export default function CombinedFeatures() {
       <div className="home-combined-features">
         <div className="home-split-row">
           <div className="home-split-content">
-            <h2>AI cover letter generator powered by GPT</h2>
-            <p>Tried writing your cover letter or resume with AI but got frustrated with generic chatbot responses? MockBee's built-in web scraping means we generate better, more personalized responses—every time.</p>
-            <Link to="/cover-letter/ai-builder" className="home-btn-white">Get started</Link>
+            <h2>Build resumes with live preview</h2>
+            <p>Pick a template, fill in your details, and watch the resume update in real time. Customize fonts, colors, spacing, and section order before you download.</p>
+            <Link to="/resume/customizer" className="home-btn-white">Open resume builder</Link>
           </div>
           <div className="home-split-image">
-            <img src="/images/ai_writing.png" alt="AI Writing Illustration" />
+            <img src="/images/interface.png" alt="Resume builder interface" />
           </div>
         </div>
 
         <div className="home-split-row home-reverse-row">
           <div className="home-split-image">
-            <img src="/images/optimization.png" alt="Optimization Illustration" />
+            <img src="/images/templates.png" alt="Resume templates" />
           </div>
           <div className="home-split-content">
-            <h2>Optimize the keywords in your resume</h2>
-            <p>Get past applicant tracking system (ATS) bots by optimizing your resume for job-specific keywords. Optimize your resume and watch your score improve over time.</p>
-            <Link to="/resume/ats-checker" className="home-btn-white">Optimize your resume</Link>
+            <h2>One-page and two-page templates</h2>
+            <p>Browse professional resume and cover letter templates, preview them at full size, and start with sample content or a blank page.</p>
+            <Link to="/resume/templates" className="home-btn-white">Browse templates</Link>
           </div>
         </div>
       </div>
