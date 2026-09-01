@@ -42,13 +42,24 @@ export const proficiencyDots = (level) => {
     return map[String(level || '').toLowerCase()] || 3;
 };
 
-export const orderStyle = (section, sectionOrder) => ({
-    order: Math.max(0, Array.isArray(sectionOrder) ? sectionOrder.indexOf(section) : 0),
-    marginBottom: 'var(--resume-section-spacing, 18px)',
-});
+export const orderStyle = (section, sectionOrder) => {
+    const index = Array.isArray(sectionOrder) ? sectionOrder.indexOf(section) : -1;
+    return {
+        order: index >= 0 ? index : 999,
+    };
+};
 
 export const sectionTitle = (resumeData, id, fallback) =>
     resumeData?.sectionTitles?.[id] || fallback;
+
+export const sectionListStyle = (resumeData, id) =>
+    resumeData?.sectionStyles?.[id]?.listStyle
+    || resumeData?.design?.listStyle
+    || 'bullet';
+
+export const sectionListProps = (resumeData, id) => ({
+    'data-sec-list': sectionListStyle(resumeData, id),
+});
 
 export const getVisibleResume = (resumeData = {}) => {
     const hidden = resumeData.hiddenEntries || {};

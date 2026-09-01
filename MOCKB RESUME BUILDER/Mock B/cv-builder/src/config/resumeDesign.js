@@ -81,6 +81,12 @@ export const HEADING_STYLES = [
     { id: 'none', name: 'None' },
 ];
 
+export const parseSectionSpacing = (value, fallback = 16) => {
+    const n = Number.parseFloat(String(value ?? '').replace(/px/gi, '').trim());
+    if (!Number.isFinite(n)) return fallback;
+    return Math.min(48, Math.max(0, n));
+};
+
 export const hexToRgba = (hex = '#2A7A6D', alpha = 1) => {
     const raw = String(hex).replace('#', '').trim();
     const full = raw.length === 3 ? raw.split('').map((c) => c + c).join('') : raw.padEnd(6, '0').slice(0, 6);
@@ -95,6 +101,7 @@ export const mergeDesign = (design = {}, templateAccent) => {
     if (design.bottomMargin == null && design.tbMargin != null) merged.bottomMargin = design.tbMargin;
     if (design.sideMargin == null && design.lrMargin != null) merged.sideMargin = design.lrMargin;
     if (design.accentColor == null && templateAccent) merged.accentColor = templateAccent;
+    merged.sectionSpacing = parseSectionSpacing(merged.sectionSpacing, DEFAULT_DESIGN.sectionSpacing);
     return merged;
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RESUME_TEMPLATES } from '../../config/templates';
-import ResumeTemplateRenderer from './ResumeTemplateRenderer';
+import ResumePagedView from './ResumePagedView';
+import ResumeTemplateThumb from './ResumeTemplateThumb';
 import { sampleForTemplate } from '../../data/sampleResumeData';
 import './TemplateSelector.css';
 
@@ -48,13 +49,10 @@ const TemplateSelector = ({ selectedTemplate, onSelect }) => {
                                     className="ts-preview-wrap"
                                     onClick={() => setPreviewTemplate(tmpl.id)}
                                 >
-                                    <div className="ts-preview-scale">
-                                        <ResumeTemplateRenderer
-                                            template={tmpl.id}
-                                            resumeData={sampleForTemplate(tmpl.id)}
-                                            preview
-                                        />
-                                    </div>
+                                    <ResumeTemplateThumb
+                                        template={tmpl.id}
+                                        resumeData={sampleForTemplate(tmpl.id)}
+                                    />
 
                                     {/* Overlay */}
                                     <div className="ts-overlay">
@@ -112,10 +110,9 @@ const TemplateSelector = ({ selectedTemplate, onSelect }) => {
                         </div>
                         <div className="ts-modal-body">
                             <div className="ts-modal-resume">
-                                <ResumeTemplateRenderer
+                                <ResumePagedView
                                     template={previewTemplate}
                                     resumeData={sampleForTemplate(previewTemplate)}
-                                    preview
                                 />
                             </div>
                         </div>

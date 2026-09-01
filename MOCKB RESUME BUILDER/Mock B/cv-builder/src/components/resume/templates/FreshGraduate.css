@@ -1,0 +1,216 @@
+.fg-resume {
+    font-family: inherit;
+    color: #111;
+    background: #fff;
+    width: 210mm;
+    height: var(--resume-page-h, 297mm);
+    min-height: var(--resume-page-h, 297mm);
+    max-height: var(--resume-page-h, 297mm);
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: var(--resume-pad-top, 11mm) var(--resume-pad-side, 16mm) var(--resume-pad-bottom, 14mm);
+    display: flex;
+    flex-direction: column;
+}
+
+.fg-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--resume-header-gap, 12px);
+    flex-shrink: 0;
+}
+
+.fg-head-row {
+    display: grid;
+    grid-template-columns: 82px 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+.fg-photo {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ececec;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20pt;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.fg-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fg-identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.fg-name {
+    margin: 0;
+    font-size: var(--resume-name-size, 22pt);
+    font-weight: var(--resume-name-weight, 700);
+    color: var(--resume-name-color, #111);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    line-height: 1.15;
+}
+
+.fg-role {
+    margin: 6px 0 0;
+    font-size: var(--resume-title-size, 11pt);
+    font-style: var(--resume-title-style, normal);
+    color: var(--resume-title-color, #333);
+    font-weight: 400;
+}
+
+.fg-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--resume-line-color, #111);
+    font-size: 9pt;
+}
+
+.fg-contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.fg-contact i {
+    font-size: 9px;
+}
+
+.fg-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: var(--resume-section-spacing, 14px);
+    overflow: hidden;
+}
+
+.fg-section {
+    min-width: 0;
+}
+
+.fg-title {
+    margin: 0 0 5px;
+    padding: 0 0 3px;
+    font-size: var(--resume-heading-size, 11pt);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: var(--resume-heading-transform, uppercase);
+    text-align: var(--resume-heading-align, left);
+    color: var(--resume-heading-color, #111);
+    border-bottom: 1.5px solid var(--resume-line-color, #111);
+}
+
+.fg-copy {
+    margin: 0;
+    font-size: 10pt;
+    line-height: var(--resume-line-height, 1.5);
+    text-align: justify;
+}
+
+.fg-split {
+    display: grid;
+    grid-template-columns: var(--resume-entry-left, 28%) 1fr;
+    gap: 6px 16px;
+    margin-bottom: var(--resume-entry-gap, 9px);
+}
+
+.fg-split:last-child {
+    margin-bottom: 0;
+}
+
+.fg-split-meta strong {
+    display: block;
+    font-size: 10pt;
+    margin-bottom: 2px;
+}
+
+.fg-split-meta span,
+.fg-muted {
+    display: block;
+    font-size: 9pt;
+    color: #444;
+    font-style: var(--resume-subtitle-style, normal);
+    font-weight: var(--resume-subtitle-weight, 400);
+}
+
+.fg-split-body h3 {
+    margin: 0 0 4px;
+    font-size: var(--resume-entry-title-size, 10.5pt);
+    font-weight: 700;
+}
+
+.fg-split-body p {
+    margin: 0;
+    font-size: 9.5pt;
+    line-height: var(--resume-line-height, 1.45);
+    color: #222;
+}
+
+.fg-skills {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px 14px;
+    margin: 0;
+    padding: 0 0 0 16px;
+}
+
+.fg-skills li {
+    font-size: 9.5pt;
+    line-height: 1.5;
+}
+
+.fg-refs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 28px;
+}
+
+.fg-ref h3 {
+    margin: 0 0 3px;
+    font-size: 10.5pt;
+}
+
+.fg-ref p {
+    margin: 0;
+    font-size: 8.5pt;
+    line-height: 1.35;
+}
+
+.fg-ref strong {
+    margin-right: 6px;
+}
+
+.fg-body .rx-section {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .fg-skills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .fg-split,
+    .fg-refs {
+        grid-template-columns: 1fr;
+    }
+}

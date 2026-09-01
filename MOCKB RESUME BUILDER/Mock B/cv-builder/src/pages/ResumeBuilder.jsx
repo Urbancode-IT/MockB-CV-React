@@ -11,6 +11,8 @@ import { createResume, getResumeById, updateResume } from '../services/resumeSer
 import { DEFAULT_TEMPLATE, resolveTemplateId, getTemplateById, isTwoColumnTemplate } from '../config/templates';
 import { withPortraitDefaults } from '../config/portraitDefaults';
 import { flattenColumnSections, moveColumnSection as moveColumn, normalizeColumnSections, columnsWithActiveSections } from '../config/columnLayout';
+import { movePageSection as movePage } from '../config/pageLayout';
+import { listCustomSections } from '../config/customSections';
 import { sampleForTemplate, blankForTemplate } from '../data/sampleResumeData';
 import { saveResumeDraft, loadResumeDraft, clearResumeDraft, saveUserTemplate, updateUserTemplate, upsertUserResume, getUserResume } from '../utils/userLibrary';
 import { captureDesignSnapshot } from '../config/resumeDesign';
@@ -173,7 +175,7 @@ export default function ResumeBuilder() {
             const normalized = withPortraitDefaults(prev);
             const next = {
                 ...normalized,
-                columnSections: normalizeColumnSections(normalized),
+                columnSections: normalized.columnSections || normalizeColumnSections(normalized),
                 design: {
                     ...(normalized.design || {}),
                     columns: normalized.design?.columns === 'mix' ? 'mix' : 'two',
@@ -456,79 +458,68 @@ export default function ResumeBuilder() {
     const confirmDownload = async () => {
         const preview = downloadPreviewRef.current;
         if (!preview) return;
-        const resumeWrapper = preview.querySelector('.cm-resume')
-            || preview.querySelector('.ss-resume')
-            || preview.querySelector('.pp-resume')
-            || preview.querySelector('[data-resume-capture]')?.querySelector('.resume-design-wrapper')
-            || preview.querySelector('.resume-design-wrapper')
-            || preview;
         setDownloading(true);
         try {
             const html2canvas = (await import('html2canvas')).default;
             const { jsPDF } = await import('jspdf');
             const fileName = `${(title || 'resume').trim().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'resume'}.pdf`;
+            const sheets = [...preview.querySelectorAll('.resume-sheet')];
+            const captureNodes = (sheets.length ? sheets : [
+                preview.querySelector('.resume-design-wrapper') || preview,
+            ]).filter(Boolean);
 
             const isLetter = resumeData.design?.pageSize === 'letter';
             const pageWidthMm = isLetter ? 216 : 210;
             const pageHeightMm = isLetter ? 279 : 297;
-            const canvas = await html2canvas(resumeWrapper, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                foreignObjectRendering: false,
-                logging: false,
-                width: Math.max(resumeWrapper.scrollWidth, resumeWrapper.offsetWidth, 1),
-                height: Math.max(resumeWrapper.scrollHeight, resumeWrapper.offsetHeight, 1),
-                windowWidth: Math.max(resumeWrapper.scrollWidth, resumeWrapper.offsetWidth, 1),
-                windowHeight: Math.max(resumeWrapper.scrollHeight, resumeWrapper.offsetHeight, 1),
-                scrollX: 0,
-                scrollY: 0,
-                x: 0,
-                y: 0,
-                onclone: (_doc, cloned) => {
-                    cloned.querySelectorAll('*').forEach((el) => {
-                        const style = el.getAttribute('style');
-                        if (style && style.includes('color-mix')) {
-                            el.setAttribute('style', style.replace(/color-mix\([^)]+\)/g, '#e8f4f1'));
-                        }
-                    });
-                },
-            });
-            if (!canvas.width || !canvas.height) {
-                throw new Error('Empty PDF canvas');
-            }
-
             const pdf = new jsPDF({ unit: 'mm', format: [pageWidthMm, pageHeightMm], orientation: 'portrait' });
-            const pageHeightPx = (pageHeightMm / pageWidthMm) * canvas.width;
-            const remainder = canvas.height % pageHeightPx;
-            let totalPages = Math.max(1, Math.ceil(canvas.height / pageHeightPx));
-            if (totalPages > 1 && remainder > 0 && remainder < pageHeightPx * 0.04) {
-                totalPages -= 1;
-            }
 
-            for (let page = 0; page < totalPages; page += 1) {
-                const sourceY = page * pageHeightPx;
-                const sliceHeight = Math.min(pageHeightPx, canvas.height - sourceY);
-                const pageCanvas = document.createElement('canvas');
-                pageCanvas.width = canvas.width;
-                pageCanvas.height = Math.ceil(pageHeightPx);
-                const ctx = pageCanvas.getContext('2d');
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-                ctx.drawImage(
-                    canvas,
-                    0,
-                    sourceY,
-                    canvas.width,
-                    sliceHeight,
-                    0,
-                    0,
-                    canvas.width,
-                    sliceHeight
-                );
-                if (page > 0) pdf.addPage([pageWidthMm, pageHeightMm], 'portrait');
-                pdf.addImage(pageCanvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, pageWidthMm, pageHeightMm);
+            const host = document.createElement('div');
+            host.setAttribute('data-pdf-capture-host', '');
+            host.style.cssText = 'position:fixed;left:-12000px;top:0;z-index:-1;background:#fff;';
+            document.body.appendChild(host);
+
+            try {
+                for (let i = 0; i < captureNodes.length; i += 1) {
+                    const clone = captureNodes[i].cloneNode(true);
+                    clone.style.width = `${pageWidthMm}mm`;
+                    clone.style.height = `${pageHeightMm}mm`;
+                    clone.style.maxHeight = `${pageHeightMm}mm`;
+                    clone.style.overflow = 'hidden';
+                    clone.style.background = '#ffffff';
+                    host.replaceChildren(clone);
+
+                    const canvas = await html2canvas(clone, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#ffffff',
+                        foreignObjectRendering: false,
+                        logging: false,
+                        width: Math.max(clone.offsetWidth, 1),
+                        height: Math.max(clone.offsetHeight, 1),
+                        windowWidth: Math.max(clone.offsetWidth, 1),
+                        windowHeight: Math.max(clone.offsetHeight, 1),
+                        scrollX: 0,
+                        scrollY: 0,
+                        x: 0,
+                        y: 0,
+                        onclone: (_doc, cloned) => {
+                            cloned.querySelectorAll('*').forEach((el) => {
+                                const style = el.getAttribute('style');
+                                if (style && style.includes('color-mix')) {
+                                    el.setAttribute('style', style.replace(/color-mix\([^)]+\)/g, '#e8f4f1'));
+                                }
+                            });
+                        },
+                    });
+                    if (!canvas.width || !canvas.height) {
+                        throw new Error('Empty PDF canvas');
+                    }
+                    if (i > 0) pdf.addPage([pageWidthMm, pageHeightMm], 'portrait');
+                    pdf.addImage(canvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, pageWidthMm, pageHeightMm);
+                }
+            } finally {
+                host.remove();
             }
             pdf.save(fileName);
             setShowDownloadPreview(false);
@@ -546,12 +537,23 @@ export default function ResumeBuilder() {
     };
 
     const design = resumeData.design || {};
+    const customizeSectionOptions = [
+        ...sectionOptions.filter((section) => section.id !== 'custom'),
+        ...listCustomSections(resumeData).map((block) => ({
+            id: block.id,
+            label: resumeData.sectionTitles?.[block.id] || block.title || 'Custom',
+            icon: 'fa-asterisk',
+        })),
+    ];
     const sectionOrder = resumeData.sectionOrder?.length
         ? resumeData.sectionOrder
-        : sectionOptions.map((section) => section.id);
+        : customizeSectionOptions.map((section) => section.id);
 
     const updateDesign = (field, value) => {
-        setResumeData((prev) => ({ ...prev, design: { ...(prev.design || {}), [field]: value } }));
+        setResumeData((prev) => ({
+            ...prev,
+            design: { ...(prev.design || {}), [field]: value },
+        }));
     };
 
     const reorderSections = (sourceId, targetId) => {
@@ -578,6 +580,19 @@ export default function ResumeBuilder() {
                 ...prev,
                 columnSections: nextColumns,
                 sectionOrder: [...nextColumns.left, ...nextColumns.right],
+            };
+        });
+        setDraggedSection(null);
+    };
+
+    const movePageSection = (sourceId, targetPage, targetId) => {
+        if (!sourceId) return;
+        setResumeData((prev) => {
+            const next = movePage(prev, sourceId, targetPage, targetId, selectedTemplate);
+            return {
+                ...prev,
+                pageSections: next.pageSections,
+                sectionOrder: next.sectionOrder,
             };
         });
         setDraggedSection(null);
@@ -717,7 +732,7 @@ export default function ResumeBuilder() {
             <div className="rb-main">
 
                 {/* LEFT PANEL — Editor or Template Selector */}
-                <div className={`rb-panel-left ${activePanel === 'templates' ? 'rb-panel-left--templates' : ''} ${activePanel === 'customize' ? 'rb-panel-left--customize' : ''} ${activePanel === 'customize' && isTwoColumnTemplate(selectedTemplate) && resumeData.design?.columns !== 'one' ? 'rb-panel-left--customize-split' : ''} ${showMobilePreview ? 'rb-panel-left--hidden' : ''}`}>
+                <div className={`rb-panel-left ${activePanel === 'templates' ? 'rb-panel-left--templates' : ''} ${activePanel === 'customize' ? 'rb-panel-left--customize' : ''} ${activePanel === 'customize' && isTwoColumnTemplate(selectedTemplate) && (getTemplateById(selectedTemplate)?.layout === 'split' || resumeData.design?.columns !== 'one') ? 'rb-panel-left--customize-split' : ''} ${showMobilePreview ? 'rb-panel-left--hidden' : ''}`}>
                     {activePanel === 'editor' ? (
                         <ResumeEditorForm
                             resumeData={resumeData}
@@ -733,14 +748,12 @@ export default function ResumeBuilder() {
                             design={design}
                             updateDesign={updateDesign}
                             sectionOrder={sectionOrder}
-                            sectionOptions={sectionOptions.map((section) => ({
-                                ...section,
-                                label: resumeData.sectionTitles?.[section.id] || section.label,
-                            }))}
+                            sectionOptions={customizeSectionOptions}
                             draggedSection={draggedSection}
                             setDraggedSection={setDraggedSection}
                             reorderSections={reorderSections}
                             moveColumnSection={moveColumnSection}
+                            movePageSection={movePageSection}
                             selectedTemplate={selectedTemplate}
                             resumeData={resumeData}
                             setResumeData={setResumeData}

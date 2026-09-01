@@ -1,0 +1,78 @@
+.ce-resume {
+    font-family: inherit;
+    color: #16323c;
+    background: #fff;
+    width: 210mm;
+    min-height: var(--resume-page-h, 297mm);
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: visible;
+    padding: var(--resume-pad-top, 14mm) var(--resume-pad-side, 16mm) var(--resume-pad-bottom, 14mm);
+    border-left: 10px solid var(--resume-accent, #1f4e5f);
+    display: flex;
+    flex-direction: column;
+}
+
+.ce-header { margin-bottom: var(--resume-header-gap, 16px); }
+.ce-kicker {
+    margin: 0 0 6px;
+    font-size: 8pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--resume-accent, #1f4e5f);
+    font-weight: 700;
+}
+.ce-name {
+    margin: 0;
+    font-size: var(--resume-name-size, 22pt);
+    font-weight: var(--resume-name-weight, 700);
+    color: var(--resume-name-color, #12262e);
+    line-height: 1.1;
+}
+.ce-role {
+    margin: 4px 0 10px;
+    font-size: var(--resume-title-size, 11pt);
+    color: var(--resume-title-color, #1f4e5f);
+}
+.ce-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    font-size: 8.5pt;
+    border-top: 1px solid var(--resume-line-color, #c5d5d9);
+    padding-top: 8px;
+}
+.ce-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--resume-section-spacing, 16px);
+    flex: 1;
+    overflow: visible;
+}
+.ce-title {
+    margin: 0 0 8px;
+    padding-bottom: 3px;
+    font-size: var(--resume-heading-size, 10.5pt);
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: var(--resume-heading-transform, uppercase);
+    color: var(--resume-heading-color, #1f4e5f);
+    border-bottom: 1px solid var(--resume-line-color, #1f4e5f);
+}
+.ce-copy { margin: 0; font-size: 9.5pt; line-height: var(--resume-line-height, 1.45); }
+.ce-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: var(--resume-entry-gap, 8px);
+}
+.ce-row h3, .ce-block h3 {
+    margin: 0;
+    font-size: var(--resume-entry-title-size, 10.5pt);
+}
+.ce-row p { margin: 2px 0 0; font-size: 9pt; color: #456; }
+.ce-row span { font-size: 8.5pt; color: var(--resume-accent, #1f4e5f); white-space: nowrap; }
+.ce-block { margin-bottom: var(--resume-entry-gap, 10px); }
+.ce-skills { margin: 0; font-size: 9.5pt; line-height: 1.5; }

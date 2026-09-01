@@ -1,48 +1,82 @@
 .resume-paged {
     width: var(--page-w, 210mm);
     position: relative;
-}
-
-.resume-measure {
-    position: absolute;
-    left: -12000px;
-    top: 0;
-    width: var(--page-w, 210mm);
-    pointer-events: none;
+    background: transparent;
 }
 
 .resume-sheets {
     display: flex;
     flex-direction: column;
-    gap: 18px;
     align-items: stretch;
+    gap: 18mm;
+    padding: 6px 0 16px;
+    background: transparent;
 }
 
 .resume-sheet {
     width: var(--page-w, 210mm);
     height: var(--page-h, 297mm);
+    max-height: var(--page-h, 297mm);
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
     position: relative;
 }
 
 .resume-sheet-inner {
     width: var(--page-w, 210mm);
+    height: var(--page-h, 297mm);
+    overflow: hidden;
+}
+
+.resume-paged .pp-resume,
+.resume-paged .ss-resume,
+.resume-paged .cm-resume,
+.resume-paged .fg-resume,
+.resume-paged .ce-resume,
+.resume-paged .ib-resume,
+.resume-paged .cd-resume,
+.resume-paged .ns-resume,
+.resume-paged .gr-resume,
+.resume-paged .cp-resume,
+.resume-paged .resume-design-wrapper {
+    height: var(--page-h, 297mm) !important;
+    max-height: var(--page-h, 297mm) !important;
+    min-height: var(--page-h, 297mm) !important;
+    overflow: hidden !important;
+}
+
+.resume-paged .pp-sidebar,
+.resume-paged .pp-main,
+.resume-paged .ss-body,
+.resume-paged .ss-col,
+.resume-paged .cm-body,
+.resume-paged .fg-body,
+.resume-paged .ce-body,
+.resume-paged .ib-body,
+.resume-paged .cd-body,
+.resume-paged .ns-body,
+.resume-paged .gr-body,
+.resume-paged .cp-body {
+    overflow: hidden;
+    min-height: 0;
 }
 
 .resume-sheet .resume-design-wrapper,
 .resume-sheet .cp-resume,
 .resume-sheet .pp-resume,
 .resume-sheet .ss-resume,
-.resume-sheet .cm-resume {
+.resume-sheet .cm-resume,
+.resume-sheet .fg-resume,
+.resume-sheet .ce-resume,
+.resume-sheet .ib-resume,
+.resume-sheet .cd-resume,
+.resume-sheet .ns-resume,
+.resume-sheet .gr-resume {
     box-shadow: none !important;
 }
 
 @media print {
-    .resume-measure {
-        display: none !important;
-    }
     .resume-sheets {
         gap: 0;
     }

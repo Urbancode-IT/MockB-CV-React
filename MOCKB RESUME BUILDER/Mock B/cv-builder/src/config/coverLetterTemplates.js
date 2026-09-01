@@ -35,6 +35,15 @@ export const COVER_LETTER_TEMPLATES = [
         headerAlign: 'left',
         fontFamily: 'Source Sans 3',
     },
+    {
+        id: 'beacon-letter',
+        name: 'Beacon Letter',
+        description: 'Geometric cover letter with navy bars, a light-green mark, and a corner stripe.',
+        accentColor: '#6EE7B7',
+        category: 'modern',
+        headerAlign: 'left',
+        fontFamily: 'Inter',
+    },
 ];
 
 export const DEFAULT_COVER_LETTER_TEMPLATE = 'classic-letter';

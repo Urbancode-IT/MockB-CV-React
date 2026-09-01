@@ -120,6 +120,35 @@ export const SAMPLE_COVER_LETTERS = {
             nameSize: 24,
         },
     },
+    'beacon-letter': {
+        title: 'Account Manager Cover Letter',
+        personal: {
+            name: 'John Smith',
+            jobTitle: 'Account Manager',
+            email: 'john.smith@email.com',
+            phone: '+44 7700 900441',
+            location: 'London, UK',
+            linkedin: 'johnsmith.co',
+            website: 'www.johnsmith.co',
+        },
+        date: '18 November 2026',
+        recipientName: 'Jordan Hale',
+        recipientTitle: 'Managing Director',
+        company: 'Northline Group',
+        companyAddress: 'Canary Wharf, London',
+        greeting: 'Dear Jordan Hale,',
+        body: 'I am writing to apply for the Account Manager role at Northline Group. I build long-running client relationships that still leave room for a clear weekly plan, and I am looking for a house where account work is treated as a craft, not a mailbox.\n\nAt Fieldwork Studio I owned a book of eight retainers across media and professional services. We held 94 percent of revenue through a renewal year, and the monthly review I wrote became the default pack for two other pods. I did that by putting the number, the risk, and the next action on one page — not a slide deck.\n\nI would welcome a conversation about how I can help Northline keep clients close without adding noise. Thank you for your time, and I look forward to hearing from you.',
+        closing: 'Sincerely,',
+        signature: 'John Smith',
+        design: {
+            ...baseDesign,
+            accentColor: '#6EE7B7',
+            fontFamily: 'Inter',
+            headerAlign: 'left',
+            fontSize: 11,
+            lineHeight: 1.65,
+        },
+    },
 };
 
 export const sampleCoverLetter = SAMPLE_COVER_LETTERS['classic-letter'];

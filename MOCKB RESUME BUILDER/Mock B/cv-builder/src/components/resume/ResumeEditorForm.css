@@ -15,6 +15,19 @@
     scrollbar-color: #3f3f3f transparent;
 }
 
+.ref-page-label {
+    margin: 8px 0 0;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d4c77a;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+}
+
 /* ── Title section ── */
 .ref-title-section {
     padding: 12px 14px;
@@ -1121,4 +1134,48 @@ select.ref-input option {
 .ref-section-trash:hover {
     color: #ef4444;
 }
+
+.ref-style-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px 4px;
+    font-size: 0.72rem;
+}
+
+.ref-style-bar span {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #888;
+    margin-right: 2px;
+}
+
+.ref-style-bar button {
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.ref-style-bar button.is-on {
+    border-color: #1a3a5c;
+    background: #1a3a5c;
+    color: #fff;
+}
+
+.ref-style-bar label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 6px;
+    color: #555;
+    cursor: pointer;
+}
+
 

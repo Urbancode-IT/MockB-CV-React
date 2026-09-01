@@ -1,0 +1,169 @@
+.gr-resume {
+    font-family: var(--resume-font, 'Segoe UI', Inter, sans-serif);
+    color: #111;
+    background: #fff;
+    width: 210mm;
+    height: var(--resume-page-h, 297mm);
+    min-height: var(--resume-page-h, 297mm);
+    max-height: var(--resume-page-h, 297mm);
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: var(--resume-pad-top, 16mm) var(--resume-pad-side, 16mm) var(--resume-pad-bottom, 14mm);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--resume-font-size, 10pt);
+    line-height: var(--resume-line-height, 1.45);
+}
+
+.gr-resume--p2 {
+    padding-top: var(--resume-pad-top, 16mm);
+}
+
+.gr-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--resume-header-gap, 16px);
+}
+
+.gr-first {
+    margin: 0;
+    font-size: var(--resume-name-size, 22pt);
+    font-weight: var(--resume-name-weight, 800);
+    color: var(--resume-accent, #C9A227);
+    line-height: 1.15;
+}
+
+.gr-last {
+    margin: 2px 0 8px;
+    font-family: inherit;
+    font-size: calc(var(--resume-name-size, 22pt) + 4pt);
+    font-weight: var(--resume-name-weight, 700);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    color: var(--resume-name-color, #111);
+}
+
+.gr-role {
+    margin: 0;
+    font-size: var(--resume-title-size, 9pt);
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-style: var(--resume-title-style, normal);
+    color: var(--resume-title-color, inherit);
+}
+
+.gr-contact {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    font-size: 0.92em;
+}
+
+.gr-contact li {
+    margin: 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.gr-contact i {
+    color: var(--resume-accent, #C9A227);
+    width: 12px;
+}
+
+.gr-rule {
+    border: 0;
+    border-top: 1px solid var(--resume-line-color, #cfcfcf);
+    margin: 10px 0 12px;
+    width: 100%;
+}
+
+.gr-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--resume-section-spacing, 16px);
+    min-height: 0;
+}
+
+.gr-h {
+    margin: 0 0 8px;
+    font-size: var(--resume-heading-size, 11pt);
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: var(--resume-heading-transform, uppercase);
+    text-align: var(--resume-heading-align, left);
+    color: var(--resume-heading-color, #111);
+}
+
+.gr-lead {
+    margin: 0 0 8px;
+    font-size: 1em;
+    line-height: inherit;
+    font-weight: 400;
+}
+
+.gr-list {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 1em;
+    line-height: inherit;
+    font-weight: 400;
+}
+
+.gr-list li { margin: 0 0 5px; }
+.gr-list strong { font-weight: 700; }
+
+.gr-edu {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+    font-size: 1em;
+    line-height: inherit;
+}
+
+.gr-edu li {
+    position: relative;
+    margin: 0 0 8px;
+    padding-left: 4px;
+}
+
+.gr-edu li::before {
+    content: '➢';
+    position: absolute;
+    left: -16px;
+    color: #111;
+}
+
+.gr-job { margin: 0 0 var(--resume-entry-gap, 12px); }
+.gr-job:last-child { margin-bottom: 0; }
+
+.gr-job-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.gr-job-top h3 {
+    margin: 0;
+    font-size: var(--resume-entry-title-size, 10.5pt);
+    font-weight: 800;
+}
+
+.gr-job-top em {
+    font-size: 0.92em;
+    font-style: var(--resume-subtitle-style, italic);
+    font-weight: var(--resume-subtitle-weight, 400);
+    white-space: nowrap;
+    color: #222;
+}
+
+.gr-resume--p2 section { flex: 0 0 auto; }

@@ -1,4 +1,5 @@
 import ClassicLetter from './ClassicLetter';
+import BeaconLetter from './BeaconLetter';
 import './CoverLetterRenderer.css';
 
 export default function CoverLetterRenderer({ letterData, template, preview = false }) {
@@ -6,9 +7,10 @@ export default function CoverLetterRenderer({ letterData, template, preview = fa
     const isLetter = design.pageSize === 'letter';
     const pageW = isLetter ? 216 : 210;
     const pageH = isLetter ? 279 : 297;
+    const resolved = template || letterData?.selectedTemplate || 'classic-letter';
     const data = {
         ...letterData,
-        selectedTemplate: template || letterData?.selectedTemplate || 'classic-letter',
+        selectedTemplate: resolved,
     };
 
     return (
@@ -21,7 +23,11 @@ export default function CoverLetterRenderer({ letterData, template, preview = fa
                 overflow: preview ? 'hidden' : undefined,
             }}
         >
-            <ClassicLetter letterData={data} />
+            {resolved === 'beacon-letter' ? (
+                <BeaconLetter letterData={data} />
+            ) : (
+                <ClassicLetter letterData={data} />
+            )}
         </div>
     );
 }

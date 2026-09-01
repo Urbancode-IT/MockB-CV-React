@@ -1,0 +1,233 @@
+.cd-resume {
+    font-family: inherit;
+    color: #1f2937;
+    background: #fff;
+    width: 210mm;
+    height: var(--resume-page-h, 297mm);
+    min-height: var(--resume-page-h, 297mm);
+    max-height: var(--resume-page-h, 297mm);
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cd-masthead {
+    padding: 16px 16mm 14px;
+    flex-shrink: 0;
+    background: #f3f4f6;
+    border-bottom: 1px solid #d1d5db;
+    text-align: left;
+}
+
+.cd-masthead-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.cd-name {
+    margin: 0;
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    line-height: 1.1;
+    color: #111111;
+    text-align: left;
+}
+
+.cd-role {
+    margin: 6px 0 10px;
+    font-size: 10.5pt;
+    color: #4b5563;
+    font-weight: 600;
+    text-align: left;
+}
+
+.cd-contact {
+    font-size: 8.5pt;
+    color: #6b7280;
+    width: 100%;
+    text-align: left;
+    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+}
+
+.cd-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--resume-section-spacing, 13px);
+    padding: 12px 16mm 12mm;
+    overflow: hidden;
+}
+
+.cd-resume--p2 .cd-body {
+    padding-top: 16mm;
+    padding-bottom: 14mm;
+    gap: 16px;
+    justify-content: flex-start;
+}
+
+.cd-resume--p2 .cd-title {
+    font-size: 13pt;
+}
+
+.cd-resume--p2 .cd-inline,
+.cd-resume--p2 .cd-entry p,
+.cd-resume--p2 .cd-bullets li,
+.cd-resume--p2 .cd-sub {
+    font-size: 9.5pt;
+    line-height: 1.45;
+}
+
+.cd-block {
+    break-inside: avoid;
+}
+
+.cd-title {
+    margin: 0 0 9px;
+    padding: 0;
+    font-size: var(--resume-heading-size, 12pt);
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #111111;
+    border: none !important;
+    background: none !important;
+    display: block;
+    text-align: left;
+}
+
+.cd-title::before,
+.cd-title::after {
+    content: none !important;
+    display: none !important;
+}
+
+.cd-lead {
+    margin: 0;
+    font-size: 9.5pt;
+    line-height: var(--resume-line-height, 1.45);
+}
+
+.cd-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.cd-entry { margin: 0 0 8px; }
+.cd-entry:last-child { margin-bottom: 0; }
+
+.cd-entry-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.cd-job-title {
+    display: block;
+    font-size: var(--resume-entry-title-size, 10pt);
+    font-weight: 700;
+    color: #111111;
+}
+
+.cd-job-title--plain {
+    font-weight: 400 !important;
+}
+
+.cd-sub {
+    display: block;
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: #4b5563;
+}
+
+.cd-meta {
+    font-style: normal;
+    font-size: 8pt;
+    color: #6b7280;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.cd-lead,
+.cd-inline,
+.cd-sub,
+.cd-meta,
+.cd-entry p,
+.cd-entry li,
+.cd-bullets,
+.cd-bullets li {
+    font-weight: 400 !important;
+}
+
+.cd-entry p {
+    margin: 3px 0 0;
+    font-size: 8.5pt;
+    line-height: 1.35;
+}
+
+.cd-bullets {
+    margin: 3px 0 0;
+    padding-left: 16px;
+    font-weight: 400;
+}
+.cd-bullets li {
+    font-size: 8.5pt;
+    line-height: 1.32;
+    margin: 0;
+    font-weight: 400;
+}
+
+.cd-tags,
+.cd-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+.cd-tags span,
+.cd-chips span {
+    background: #f3f4f6;
+    color: #111111;
+    border: 1px solid #d1d5db;
+    padding: 1px 7px;
+    font-size: 7.5pt;
+    font-weight: 600;
+}
+
+.cd-skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 18px;
+}
+
+.cd-skill {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px dotted #d1d5db;
+    padding-bottom: 3px;
+    font-size: 8.5pt;
+}
+.cd-skill b {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 7.5pt;
+}
+
+.cd-inline {
+    margin: 0;
+    font-size: 9pt;
+    line-height: 1.5;
+}

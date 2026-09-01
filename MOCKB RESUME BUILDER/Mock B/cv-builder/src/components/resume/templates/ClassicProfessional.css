@@ -76,9 +76,13 @@
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: var(--resume-section-spacing, 16px);
     padding: var(--resume-header-gap, 12px) var(--resume-pad-side, 10mm) var(--resume-pad-bottom, 10mm);
+}
+
+.cp-body--continued {
+    padding-top: 14mm;
 }
 
 .cp-section {

@@ -8,6 +8,7 @@ import {
     formatRange,
     toBullets,
     sectionTitle,
+    sectionListProps,
 } from './templateUtils';
 
 const skillName = (skill) => (typeof skill === 'string' ? skill : skill.name);
@@ -23,9 +24,10 @@ const CenteredMinimal = ({ resumeData = {} }) => {
     const awards = visibleList(resumeData.awards, hidden.awards);
     const t = (id, fallback) => sectionTitle(resumeData, id, fallback);
     const order = resumeData.sectionOrder || [];
-    const styleFor = (id) => ({
-        order: order.includes(id) ? order.indexOf(id) : 40,
-    });
+    const styleFor = (id) => {
+        const index = order.indexOf(id);
+        return { order: index >= 0 ? index : 40 };
+    };
 
     const contacts = [personal.location, personal.email, personal.website || personal.linkedin].filter(Boolean);
 
@@ -72,10 +74,10 @@ const CenteredMinimal = ({ resumeData = {} }) => {
                 )}
 
                 {hasContent(experience) && (
-                    <section className="cm-section rx-section" data-section="experience" style={styleFor('experience')}>
+                    <section className="cm-section rx-section" data-section="experience" style={styleFor('experience')} {...sectionListProps(resumeData, 'experience')}>
                         <h2 className="cm-title rx-title">{t('experience', 'Professional Experience')}</h2>
                         {experience.map((exp, i) => (
-                            <article key={i} className="cm-entry rx-entry">
+                            <article key={i} className="cm-entry rx-entry" data-keep={`experience-${i}`}>
                                 <div className="cm-row">
                                     <strong>{exp.role || exp.title}</strong>
                                     <span className="cm-date rx-date">{formatRange(exp.startDate, exp.endDate)}</span>
@@ -97,7 +99,7 @@ const CenteredMinimal = ({ resumeData = {} }) => {
                     <section className="cm-section rx-section" data-section="education" style={styleFor('education')}>
                         <h2 className="cm-title rx-title">{t('education', 'Education')}</h2>
                         {education.map((edu, i) => (
-                            <article key={i} className="cm-entry rx-entry">
+                            <article key={i} className="cm-entry rx-entry" data-keep={`education-${i}`}>
                                 <div className="cm-row">
                                     <strong>
                                         {edu.degree}{edu.field ? ` in ${edu.field}` : ''}

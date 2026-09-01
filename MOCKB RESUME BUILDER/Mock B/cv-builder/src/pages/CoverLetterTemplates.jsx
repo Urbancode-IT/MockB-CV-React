@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { COVER_LETTER_TEMPLATES, getCoverLetterTemplateById } from '../config/coverLetterTemplates';
 import { sampleForCoverLetter } from '../data/sampleCoverLetterData';
 import CoverLetterRenderer from '../components/cover-letter/CoverLetterRenderer';
+import TemplatePreviewModal from '../components/resume/TemplatePreviewModal';
 import StartModeModal from '../components/resume/StartModeModal';
 import {
     listUserCoverLetters,
@@ -247,30 +248,17 @@ export default function CoverLetterTemplates() {
       </section>
 
       {previewTemplate && (
-        <div className="rt-modal-backdrop" onClick={() => setPreviewTemplate(null)}>
-          <div className="rt-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="rt-modal-header">
-              <h3>{getCoverLetterTemplateById(previewTemplate).name} — Preview</h3>
-              <div className="rt-modal-actions">
-                <button
-                  className="rt-modal-use-btn"
-                  onClick={() => setStartTemplate(previewTemplate)}
-                >
-                  <i className="fa-solid fa-edit"></i>
-                  Use template
-                </button>
-                <button className="rt-modal-close" onClick={() => setPreviewTemplate(null)}>
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div>
-            <div className="rt-modal-body">
-              <div className="rt-modal-resume">
-                <CoverLetterRenderer template={previewTemplate} letterData={sampleForCoverLetter(previewTemplate)} preview />
-              </div>
-            </div>
-          </div>
-        </div>
+        <TemplatePreviewModal
+          title={getCoverLetterTemplateById(previewTemplate).name}
+          templateId={previewTemplate}
+          kind="cover-letter"
+          letterData={sampleForCoverLetter(previewTemplate)}
+          onClose={() => setPreviewTemplate(null)}
+          onUseTemplate={() => {
+            setStartTemplate(previewTemplate);
+            setPreviewTemplate(null);
+          }}
+        />
       )}
       {startTemplate && (
         <StartModeModal

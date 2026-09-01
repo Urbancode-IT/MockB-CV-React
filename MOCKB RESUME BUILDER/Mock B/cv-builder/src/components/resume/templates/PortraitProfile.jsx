@@ -15,6 +15,7 @@ import {
     formatRange,
     toBullets,
     getVisibleResume,
+    sectionListProps,
 } from './templateUtils';
 
 const skillWidth = (level) => {
@@ -133,7 +134,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <div key={id} className="pp-side-block" data-section="certifications">
                     <h2>{t('certifications', 'Certificates')}</h2>
                     {certifications.map((cert, i) => (
-                        <div key={i} className="pp-side-entry">
+                            <div key={i} className="pp-side-entry" data-keep={`${id}-${i}`}>
                             <strong>{cert.name}</strong>
                             <span>{[cert.issuer, cert.date].filter(Boolean).join(' · ')}</span>
                         </div>
@@ -166,7 +167,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <div key={id} className="pp-side-block" data-section="awards">
                     <h2>{t('awards', 'Awards')}</h2>
                     {awardItems.map((award, i) => (
-                        <div key={i} className="pp-side-entry">
+                            <div key={i} className="pp-side-entry" data-keep={`${id}-${i}`}>
                             <strong>{award.name}</strong>
                             <span>{[award.issuer, award.date].filter(Boolean).join(' · ')}</span>
                         </div>
@@ -192,10 +193,10 @@ const PortraitProfile = ({ resumeData = {} }) => {
         }
         if (id === 'experience' && hasContent(experience)) {
             return (
-                <section key={id} className={wrap} data-section="experience">
+                <section key={id} className={wrap} data-section="experience" {...sectionListProps(resumeData, 'experience')}>
                     <h2>{t('experience', 'Experience')}</h2>
                     {experience.map((exp, i) => (
-                        <article key={i} className="pp-entry">
+                        <article key={i} className="pp-entry" data-keep={`${id}-${i}`}>
                             <div className="pp-entry-top">
                                 <div>
                                     <h3>{exp.role || exp.title}</h3>
@@ -216,7 +217,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <section key={id} className={wrap} data-section="education">
                     <h2>{t('education', 'Education')}</h2>
                     {education.map((edu, i) => (
-                        <article key={i} className="pp-entry">
+                        <article key={i} className="pp-entry" data-keep={`${id}-${i}`}>
                             <div className="pp-entry-top">
                                 <div>
                                     <h3>{[edu.degree, edu.field].filter(Boolean).join(' in ')}</h3>
@@ -235,7 +236,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <section key={id} className={wrap} data-section="projects">
                     <h2>{t('projects', 'Projects')}</h2>
                     {projects.map((proj, i) => (
-                        <article key={i} className="pp-entry">
+                        <article key={i} className="pp-entry" data-keep={`${id}-${i}`}>
                             <div className="pp-entry-top">
                                 <h3>{proj.name}</h3>
                                 {proj.link && <span className="pp-link">{proj.link}</span>}
@@ -258,7 +259,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <section key={id} className={`${wrap} pp-section--awards`} data-section="awards">
                     <h2>{t('awards', 'Awards')}</h2>
                     {awardItems.map((award, i) => (
-                        <article key={i} className="pp-entry">
+                        <article key={i} className="pp-entry" data-keep={`${id}-${i}`}>
                             <div className="pp-entry-top">
                                 <div>
                                     <h3>{award.name}</h3>
@@ -276,7 +277,7 @@ const PortraitProfile = ({ resumeData = {} }) => {
                 <section key={id} className={wrap} data-section="organisations">
                     <h2>{t('organisations', 'Organisations')}</h2>
                     {orgItems.map((org, i) => (
-                        <article key={i} className="pp-entry">
+                        <article key={i} className="pp-entry" data-keep={`${id}-${i}`}>
                             <div className="pp-entry-top">
                                 <div>
                                     <h3>{org.name}</h3>

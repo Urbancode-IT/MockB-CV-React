@@ -1,18 +1,38 @@
 import { useState, useLayoutEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { RESUME_TEMPLATES, getTemplateById } from '../config/templates';
+import { RESUME_TEMPLATES, getTemplateById, isOnePageTemplate } from '../config/templates';
 import { sampleForTemplate } from '../data/sampleResumeData';
-import ResumeTemplateRenderer from '../components/resume/ResumeTemplateRenderer';
+import ResumeTemplateThumb from '../components/resume/ResumeTemplateThumb';
+import TemplatePreviewModal from '../components/resume/TemplatePreviewModal';
 import StartModeModal from '../components/resume/StartModeModal';
 import { listUserTemplates, deleteUserTemplate, listUserResumes, deleteUserResume } from '../utils/userLibrary';
 import './ResumeTemplates.css';
 
-const categories = ['all', 'professional', 'modern'];
+const categories = ['all', 'professional', 'modern', 'fresher'];
+const pageFilters = [
+  { id: 'all', label: 'All lengths' },
+  { id: 'one', label: 'Single page' },
+  { id: 'two', label: 'Multiple pages' },
+];
+
+const matchesSearch = (template, query) => {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const twoPage = !isOnePageTemplate(template.id);
+  const haystack = [
+    template.name,
+    template.description,
+    ...(template.tags || []),
+    twoPage ? '2 page two-page two pages' : '1 page one-page one page',
+  ].join(' ').toLowerCase();
+  return haystack.includes(q);
+};
 
 export default function ResumeTemplates() {
   const navigate = useNavigate();
   const location = useLocation();
   const [catFilter, setCatFilter] = useState('all');
+  const [pageFilter, setPageFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [hoveredId, setHoveredId] = useState(null);
   const [previewTemplate, setPreviewTemplate] = useState(null);
@@ -57,10 +77,14 @@ export default function ResumeTemplates() {
     };
   }, [location.hash, location.state]);
 
-  const filtered = RESUME_TEMPLATES.filter(t => {
+  const filtered = RESUME_TEMPLATES.filter((t) => {
     const matchCat = catFilter === 'all' || t.category === catFilter;
-    const matchSearch = t.name.toLowerCase().includes(search.toLowerCase());
-    return matchCat && matchSearch;
+    const twoPage = !isOnePageTemplate(t.id);
+    const matchPages =
+      pageFilter === 'all'
+      || (pageFilter === 'one' && !twoPage)
+      || (pageFilter === 'two' && twoPage);
+    return matchCat && matchPages && matchesSearch(t, search);
   });
 
   const openStartChoice = (templateId) => {
@@ -121,14 +145,29 @@ export default function ResumeTemplates() {
               <input type="text" placeholder="Search templates..." value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
             {libraryView === 'library' && (
-              <div className="filter-group">
-                <span className="filter-label">Style:</span>
-                {categories.map(c => (
-                  <button key={c} className={`filter-btn ${catFilter === c ? 'active' : ''}`} onClick={() => setCatFilter(c)}>
-                    {c.charAt(0).toUpperCase() + c.slice(1)}
-                  </button>
-                ))}
-              </div>
+              <>
+                <div className="filter-group">
+                  <span className="filter-label">Style:</span>
+                  {categories.map(c => (
+                    <button key={c} className={`filter-btn ${catFilter === c ? 'active' : ''}`} onClick={() => setCatFilter(c)}>
+                      {c.charAt(0).toUpperCase() + c.slice(1)}
+                    </button>
+                  ))}
+                </div>
+                <div className="filter-group">
+                  <span className="filter-label">Pages:</span>
+                  {pageFilters.map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      className={`filter-btn ${pageFilter === p.id ? 'active' : ''}`}
+                      onClick={() => setPageFilter(p.id)}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
             <div className="filter-group rt-view-switch">
               <button
@@ -175,9 +214,7 @@ export default function ResumeTemplates() {
                     return (
                       <div key={item.id} className="rt-card">
                         <div className="rt-preview-box" onClick={() => openUserResume(item)}>
-                          <div className="rt-preview-scale-wrapper">
-                            <ResumeTemplateRenderer template={item.selectedTemplate} resumeData={item.resumeData} preview />
-                          </div>
+                          <ResumeTemplateThumb template={item.selectedTemplate} resumeData={item.resumeData} />
                         </div>
                         <div className="rt-mine-meta">
                           <h4 className="rt-card-name" onClick={() => openUserResume(item)}>{item.name}</h4>
@@ -225,9 +262,7 @@ export default function ResumeTemplates() {
                     return (
                       <div key={item.id} className="rt-card">
                         <div className="rt-preview-box" onClick={() => openSavedTemplate(item)}>
-                          <div className="rt-preview-scale-wrapper">
-                            <ResumeTemplateRenderer template={item.baseTemplate} resumeData={previewData} preview />
-                          </div>
+                          <ResumeTemplateThumb template={item.baseTemplate} resumeData={previewData} />
                         </div>
                         <div className="rt-mine-meta">
                           <h4 className="rt-card-name" onClick={() => openSavedTemplate(item)}>{item.name}</h4>
@@ -263,9 +298,7 @@ export default function ResumeTemplates() {
                       className="rt-preview-box"
                       onClick={() => setPreviewTemplate(t.id)}
                     >
-                      <div className="rt-preview-scale-wrapper">
-                        <ResumeTemplateRenderer template={t.id} resumeData={sampleForTemplate(t.id)} preview />
-                      </div>
+                      <ResumeTemplateThumb template={t.id} resumeData={sampleForTemplate(t.id)} />
 
                       <div className="rt-overlay">
                         <button
@@ -280,7 +313,10 @@ export default function ResumeTemplates() {
                       </div>
                     </div>
 
-                    <h4 className="rt-card-name" onClick={() => openStartChoice(t.id)}>{t.name}</h4>
+                    <h4 className="rt-card-name" onClick={() => openStartChoice(t.id)}>
+                      {t.name}
+                      {!isOnePageTemplate(t.id) && <span className="rt-page-badge">2 pages</span>}
+                    </h4>
                   </div>
                 ))}
               </div>
@@ -288,7 +324,7 @@ export default function ResumeTemplates() {
                 <div className="no-results">
                   <i className="fa-solid fa-search"></i>
                   <p>No templates match your filters.</p>
-                  <button className="btn btn-secondary" onClick={() => { setCatFilter('all'); setSearch(''); }}>Clear Filters</button>
+                  <button className="btn btn-secondary" onClick={() => { setCatFilter('all'); setPageFilter('all'); setSearch(''); }}>Clear Filters</button>
                 </div>
               )}
             </>
@@ -297,32 +333,16 @@ export default function ResumeTemplates() {
       </section>
 
       {previewTemplate && (
-        <div className="rt-modal-backdrop" onClick={() => setPreviewTemplate(null)}>
-          <div className="rt-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="rt-modal-header">
-              <h3>{RESUME_TEMPLATES.find(t => t.id === previewTemplate)?.name} — Preview</h3>
-              <div className="rt-modal-actions">
-                <button
-                  className="rt-modal-use-btn"
-                  onClick={() => {
-                    setStartTemplate(previewTemplate);
-                  }}
-                >
-                  <i className="fa-solid fa-edit"></i>
-                  Use template
-                </button>
-                <button className="rt-modal-close" onClick={() => setPreviewTemplate(null)}>
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div>
-            <div className="rt-modal-body">
-              <div className="rt-modal-resume">
-                <ResumeTemplateRenderer template={previewTemplate} resumeData={sampleForTemplate(previewTemplate)} preview />
-              </div>
-            </div>
-          </div>
-        </div>
+        <TemplatePreviewModal
+          title={RESUME_TEMPLATES.find((t) => t.id === previewTemplate)?.name}
+          templateId={previewTemplate}
+          resumeData={sampleForTemplate(previewTemplate)}
+          onClose={() => setPreviewTemplate(null)}
+          onUseTemplate={() => {
+            setStartTemplate(previewTemplate);
+            setPreviewTemplate(null);
+          }}
+        />
       )}
       {startTemplate && (
         <StartModeModal

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { FONT_MAP, PRESET_COLORS, HEADING_STYLES, mergeDesign } from '../../config/resumeDesign';
-import { isTwoColumnTemplate, getTemplateById } from '../../config/templates';
+import { isTwoColumnTemplate, getTemplateById, isOnePageTemplate } from '../../config/templates';
 import { columnsWithActiveSections, orderedActiveSectionIds } from '../../config/columnLayout';
+import { getPageSectionLists } from '../../config/pageLayout';
 import './CustomizePanel.css';
 
 const Accordion = ({ id, title, openId, setOpenId, children }) => {
@@ -77,6 +78,7 @@ export default function CustomizePanel({
     setDraggedSection,
     reorderSections,
     moveColumnSection,
+    movePageSection,
     selectedTemplate,
     resumeData,
     setResumeData,
@@ -94,7 +96,9 @@ export default function CustomizePanel({
     const headerPos = columns === 'mix'
         ? 'top'
         : rawDesign?.headerPos === 'right' ? 'right' : rawDesign?.headerPos === 'top' ? 'top' : 'left';
-    const showTwoColControls = twoColTemplate && columns !== 'one';
+    const showTwoColControls = twoColTemplate && (getTemplateById(selectedTemplate)?.layout === 'split' || columns !== 'one');
+    const twoPageTemplate = !isOnePageTemplate(selectedTemplate);
+    const pageLists = twoPageTemplate ? getPageSectionLists(resumeData, selectedTemplate) : { page1: [], page2: [] };
     const layoutSections = orderedActiveSectionIds(resumeData, sectionOrder);
     const columnSections = columnsWithActiveSections(resumeData);
     const [openId, setOpenId] = useState('layout');
@@ -180,14 +184,48 @@ export default function CustomizePanel({
                     <div>
                         <div className="cz-label">Change Section Layout</div>
                         <p className="cz-help">
-                            {showTwoColControls
+                            {twoPageTemplate
+                                ? 'This is a 2-page resume. Drag sections between Page 1 and Page 2. Both pages stay one column.'
+                                : showTwoColControls
                                 ? 'Drag sections between Left and Right to match the two-column template.'
                                 : 'Drag to change the order of sections on the page.'}
                         </p>
                         {layoutSections.length === 0 && (
                             <p className="cz-help">Add sections in the editor first. They will show up here.</p>
                         )}
-                        {showTwoColControls ? (
+                        {twoPageTemplate ? (
+                            <div className="cz-split">
+                                {['page1', 'page2'].map((pageKey) => (
+                                    <div
+                                        key={pageKey}
+                                        className="cz-split-col"
+                                        onDragOver={(e) => e.preventDefault()}
+                                        onDrop={(e) => {
+                                            e.preventDefault();
+                                            const sourceId = draggedSection || e.dataTransfer.getData('text/plain');
+                                            if (sourceId) movePageSection?.(sourceId, pageKey);
+                                        }}
+                                    >
+                                        <h5>{pageKey === 'page1' ? 'Page 1' : 'Page 2'}</h5>
+                                        {(pageLists[pageKey] || []).filter((id) => layoutSections.includes(id)).map((sectionId) => {
+                                            const section = sectionOptions.find((item) => item.id === sectionId);
+                                            if (!section) return null;
+                                            return (
+                                                <SortRow
+                                                    key={section.id}
+                                                    section={section}
+                                                    draggedSection={draggedSection}
+                                                    setDraggedSection={setDraggedSection}
+                                                    column={pageKey}
+                                                    onDropOn={(sourceId, col, targetId) => movePageSection?.(sourceId, col, targetId)}
+                                                    onPreviewFocus={onPreviewFocus}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : showTwoColControls ? (
                             <div className="cz-split">
                                 {['left', 'right'].map((column) => (
                                     <div
@@ -256,7 +294,7 @@ export default function CustomizePanel({
                     <Slider label="Bottom Margin" value={d.bottomMargin} min={4} max={28} unit="mm" onChange={(v) => set('bottomMargin', v)} focusKey="page" onPreviewFocus={onPreviewFocus} />
                     <Slider label="Header to content" value={d.headerGap} min={0} max={36} unit="px" onChange={(v) => set('headerGap', v)} focusKey="page" onPreviewFocus={onPreviewFocus} />
                     <Slider label="Space between Entries" value={d.entrySpacing} min={0} max={5} onChange={(v) => set('entrySpacing', v)} focusKey="entries" onPreviewFocus={onPreviewFocus} />
-                    <Slider label="Space between Sections" value={d.sectionSpacing} min={4} max={36} unit="px" onChange={(v) => set('sectionSpacing', v)} focusKey="body" onPreviewFocus={onPreviewFocus} />
+                    <Slider label="Space between Sections" value={Number(d.sectionSpacing) || 16} min={4} max={36} unit="px" onChange={(v) => set('sectionSpacing', v)} focusKey="body" onPreviewFocus={onPreviewFocus} />
                 </Accordion>
 
                 <Accordion id="content" title="Lists & text" openId={openId} setOpenId={setOpenId}>
@@ -275,11 +313,44 @@ export default function CustomizePanel({
                     <div>
                         <div className="cz-label">List style</div>
                         <div className="cz-row">
-                            {['bullet', 'hyphen', 'none'].map((st) => (
+                            {['bullet', 'hyphen', 'number', 'none'].map((st) => (
                                 <Opt key={st} active={d.listStyle === st} onClick={() => set('listStyle', st)} style={{ flex: 1, textTransform: 'capitalize' }}>{st}</Opt>
                             ))}
                         </div>
                     </div>
+                    {layoutSections.length > 0 && (
+                        <div>
+                            <div className="cz-label">Per-section list style</div>
+                            <p className="cz-help">Override the global list style for any section.</p>
+                            {layoutSections.map((sectionId) => {
+                                const section = sectionOptions.find((item) => item.id === sectionId);
+                                const current = resumeData?.sectionStyles?.[sectionId]?.listStyle || d.listStyle;
+                                return (
+                                    <div key={sectionId} style={{ marginBottom: 10 }}>
+                                        <div className="cz-label">{section?.label || sectionId}</div>
+                                        <div className="cz-row">
+                                            {['bullet', 'hyphen', 'number', 'none'].map((st) => (
+                                                <Opt
+                                                    key={st}
+                                                    active={current === st}
+                                                    onClick={() => setResumeData((prev) => ({
+                                                        ...prev,
+                                                        sectionStyles: {
+                                                            ...(prev.sectionStyles || {}),
+                                                            [sectionId]: { ...(prev.sectionStyles?.[sectionId] || {}), listStyle: st },
+                                                        },
+                                                    }))}
+                                                    style={{ flex: 1, textTransform: 'capitalize' }}
+                                                >
+                                                    {st}
+                                                </Opt>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </Accordion>
 
                 <Accordion id="footer" title="Footer" openId={openId} setOpenId={setOpenId}>

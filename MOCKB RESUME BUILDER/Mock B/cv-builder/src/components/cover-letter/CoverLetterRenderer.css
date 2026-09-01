@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 
-.cl-render-wrap .cl-classic {
+.cl-render-wrap .cl-classic,
+.cl-render-wrap .cl-beacon {
     width: 100% !important;
     box-sizing: border-box;
 }
 
-.cl-render-wrap--preview .cl-classic {
+.cl-render-wrap--preview .cl-classic,
+.cl-render-wrap--preview .cl-beacon {
     box-shadow: none;
 }

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Home.css';
 import Navbar from '../components/home/navbar/Navbar';
 import Hero from '../components/home/hero/Hero';
@@ -15,6 +16,13 @@ import UseCases from '../components/home/use-cases/UseCases';
 import Footer from '../components/home/footer/Footer';
 
 export default function Home() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash === '#templates-gallery') {
+      document.getElementById('templates-gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location.hash]);
+
   useEffect(() => {
     // Simple Scroll Reveal Animation matching script.js
     const observerOptions = {

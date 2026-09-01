@@ -1,0 +1,176 @@
+.ns-resume {
+    font-family: inherit;
+    color: #1c2a32;
+    background: #fff;
+    width: 210mm;
+    height: var(--resume-page-h, 297mm);
+    min-height: var(--resume-page-h, 297mm);
+    max-height: var(--resume-page-h, 297mm);
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-left: 7px solid var(--resume-accent, #0F4C5C);
+}
+
+.ns-header {
+    flex-shrink: 0;
+    padding: 16px 12mm 14px 11mm;
+    background: #eef6f4;
+    text-align: left;
+}
+
+.ns-name {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+    color: var(--resume-accent, #0F4C5C);
+}
+
+.ns-role {
+    margin: 5px 0 8px;
+    font-size: 10.5pt;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3d6b63;
+}
+
+.ns-contact {
+    margin: 0;
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: #4b5c58;
+    line-height: 1.45;
+}
+
+.ns-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: calc(var(--resume-section-spacing, 13px) + 2pt);
+    padding: 12px 12mm 11mm 11mm;
+    overflow: hidden;
+}
+
+.ns-resume--p2 .ns-body {
+    padding-top: 16mm;
+    gap: calc(var(--resume-section-spacing, 13px) + 2pt);
+}
+
+.ns-block { break-inside: avoid; }
+
+.ns-title {
+    margin: 0 0 8px;
+    padding: 0 0 4px;
+    font-size: var(--resume-heading-size, 11pt);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--resume-accent, #0F4C5C);
+    border-bottom: 2px solid var(--resume-accent, #0F4C5C);
+    width: 100%;
+    background: none !important;
+}
+
+.ns-title::before,
+.ns-title::after {
+    content: none !important;
+    display: none !important;
+}
+
+.ns-lead {
+    margin: 0;
+    font-size: 9.5pt;
+    line-height: var(--resume-line-height, 1.45);
+    font-weight: 400;
+}
+
+.ns-entry {
+    display: block;
+    width: 100%;
+    margin: 0 0 9px;
+}
+
+.ns-entry:last-child { margin-bottom: 0; }
+
+.ns-entry-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    width: 100%;
+}
+
+.ns-entry-copy {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.ns-date {
+    flex: 0 0 auto;
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #3d6b63;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.ns-job {
+    display: block;
+    font-size: var(--resume-entry-title-size, 10pt);
+    font-weight: 700;
+    color: #14323a;
+}
+
+.ns-job--plain { font-weight: 400 !important; }
+
+.ns-sub {
+    display: block;
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: #4b5c58;
+}
+
+.ns-entry p,
+.ns-bullets li {
+    font-weight: 400 !important;
+    font-size: 8.5pt;
+    line-height: 1.35;
+}
+
+.ns-entry p { margin: 3px 0 0; }
+
+.ns-bullets {
+    margin: 3px 0 0;
+    padding-left: 16px;
+}
+
+.ns-pills,
+.ns-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.ns-pills span,
+.ns-tags span {
+    border: 1px solid #7aa89e;
+    color: #0F4C5C;
+    background: #f4faf8;
+    padding: 2px 8px;
+    font-size: 8pt;
+    font-weight: 400;
+}
+
+.ns-pills--soft span {
+    border-color: #c5dcd6;
+    background: #fff;
+}

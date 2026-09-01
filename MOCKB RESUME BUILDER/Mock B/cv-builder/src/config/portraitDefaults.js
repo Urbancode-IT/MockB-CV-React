@@ -65,6 +65,11 @@ export const PORTRAIT_DEFAULT_PUBS = [
     },
 ];
 
+export const PORTRAIT_COLUMN_SECTIONS = {
+    left: ['skills', 'languages', 'interests', 'certifications'],
+    right: ['summary', 'experience', 'education', 'projects', 'awards', 'organisations', 'courses'],
+};
+
 export const getPortraitLayout = (design = {}) => {
     const columns = design.columns === 'one' ? 'one' : design.columns === 'mix' ? 'mix' : 'two';
     const headerPos = columns === 'mix' || design.headerPos === 'top'
@@ -96,6 +101,13 @@ export const withPortraitDefaults = (data = {}) => {
     );
     if ((next.projects || []).length < 2) {
         next.projects = [...(next.projects || []), PORTRAIT_EXTRA_PROJECT];
+    }
+    const leftCol = next.columnSections?.left || [];
+    if (!next.columnSections || leftCol.includes('education') || leftCol.includes('awards')) {
+        next.columnSections = {
+            left: [...PORTRAIT_COLUMN_SECTIONS.left],
+            right: [...PORTRAIT_COLUMN_SECTIONS.right],
+        };
     }
     return next;
 };

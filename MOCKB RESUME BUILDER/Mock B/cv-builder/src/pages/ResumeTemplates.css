@@ -158,6 +158,9 @@
 .rt-preview-scale-wrapper .cp-resume,
 .rt-preview-scale-wrapper .ss-resume,
 .rt-preview-scale-wrapper .cm-resume,
+.rt-preview-scale-wrapper .cd-resume,
+.rt-preview-scale-wrapper .ns-resume,
+.rt-preview-scale-wrapper .gr-resume,
 .rt-preview-scale-wrapper .cl-render-wrap,
 .rt-preview-scale-wrapper .cl-classic {
     max-height: 297mm !important;
@@ -215,13 +218,31 @@
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rt-page-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 199, 122, 0.45);
+  background: rgba(212, 199, 122, 0.12);
+  color: var(--primary-color);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .rt-modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.8);
-  z-index: 9999;
+  z-index: 45000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,23 +294,54 @@
   cursor: pointer;
 }
 .rt-modal-body {
-  overflow: hidden;
-  flex: 1;
-  min-height: 0;
-  padding: 16px;
+  --rt-preview-scale: 0.56;
+  --rt-page-viewport-h: calc(297mm * var(--rt-preview-scale) + 36px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 0 0 auto;
+  height: var(--rt-page-viewport-h);
+  max-height: var(--rt-page-viewport-h);
+  padding: 16px 20px;
   background: #0d0d0d;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: #4a4a4a #161616;
+}
+.rt-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.rt-modal-body::-webkit-scrollbar-track {
+  background: #161616;
+  border-radius: 8px;
+}
+.rt-modal-body::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 8px;
+}
+.rt-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #D4C77A;
+}
+.rt-modal-resume-frame {
+  width: calc(210mm * var(--rt-preview-scale));
+  height: calc(297mm * var(--rt-preview-scale) + 8px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.rt-modal-resume-frame--scroll {
+  height: calc((297mm * 2 + 18mm + 12px) * var(--rt-preview-scale) + 12px);
+  overflow: visible;
 }
 .rt-modal-resume {
   width: 210mm;
-  height: 297mm;
-  flex-shrink: 0;
-  overflow: hidden;
-  background: #fff;
-  transform-origin: top center;
-  transform: scale(min(1, (92vh - 96px) / 297mm));
+  background: transparent;
+  transform: scale(var(--rt-preview-scale));
+  transform-origin: top left;
+}
+.rt-modal-resume .resume-sheets {
+  gap: 18mm;
+  padding: 0 0 8px;
 }
 
 .no-results { text-align: center; padding: 4rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ClassicProfessional.css';
 import ExtraSections from './ExtraSections';
-import { visibleList, isEntryVisible, sectionTitle } from './templateUtils';
+import { visibleList, isEntryVisible, sectionTitle, sectionListProps, toBullets } from './templateUtils';
 
 // ======================================
 // Classic Professional Template
@@ -26,12 +26,17 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
     const hasContent = (arr) => Array.isArray(arr) && arr.length > 0;
     const sectionOrder = resumeData.sectionOrder || ['summary', 'experience', 'education', 'skills', 'projects', 'certifications', 'languages'];
-    const orderStyle = (section) => ({ order: Math.max(0, sectionOrder.indexOf(section)) });
+    const orderStyle = (section) => {
+        const index = sectionOrder.indexOf(section);
+        return { order: index >= 0 ? index : 999 };
+    };
+
+    const continued = resumeData.pageMeta?.page > 1;
 
     return (
         <div className="cp-resume">
 
-            {/* ── HEADER ── */}
+            {!continued && (
             <div className="cp-header">
                 <h1 className="cp-name rx-name">
                     {personal.name || 'Your Name'}
@@ -78,8 +83,9 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                     )}
                 </div>
             </div>
+            )}
 
-            <div className="cp-body">
+            <div className={`cp-body${continued ? ' cp-body--continued' : ''}`}>
 
                 {/* ── SUMMARY ── */}
                 {summary && (
@@ -91,10 +97,10 @@ const ClassicProfessional = ({ resumeData = {} }) => {
 
                 {/* ── EXPERIENCE ── */}
                 {hasContent(experience) && (
-                    <section className="cp-section" style={orderStyle('experience')} data-section="experience">
+                    <section className="cp-section" style={orderStyle('experience')} data-section="experience" {...sectionListProps(resumeData, 'experience')}>
                         <h2 className="cp-section-title">{t('experience', 'Work Experience')}</h2>
                         {experience.map((exp, i) => (
-                            <div key={i} className="cp-entry">
+                            <div key={i} className="cp-entry" data-keep={`experience-${i}`}>
                                 <div className="cp-entry-header">
                                     <div>
                                         <h3 className="cp-entry-title">{exp.role || exp.title}</h3>
@@ -112,7 +118,15 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                                     </div>
                                 </div>
                                 {exp.description && (
-                                    <p className="cp-entry-desc">{exp.description}</p>
+                                    toBullets(exp.description).length > 1 ? (
+                                        <ul className="rx-bullets">
+                                            {toBullets(exp.description).map((line, j) => (
+                                                <li key={j}>{line.replace(/^[•\-]\s*/, '')}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className="cp-entry-desc">{exp.description}</p>
+                                    )
                                 )}
                             </div>
                         ))}
@@ -124,7 +138,7 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                     <section className="cp-section" style={orderStyle('education')} data-section="education">
                         <h2 className="cp-section-title">{t('education', 'Education')}</h2>
                         {education.map((edu, i) => (
-                            <div key={i} className="cp-entry">
+                            <div key={i} className="cp-entry" data-keep={`education-${i}`}>
                                 <div className="cp-entry-header">
                                     <div>
                                         <h3 className="cp-entry-title">
@@ -172,7 +186,7 @@ const ClassicProfessional = ({ resumeData = {} }) => {
                     <section className="cp-section" style={orderStyle('projects')} data-section="projects">
                         <h2 className="cp-section-title">{t('projects', 'Projects')}</h2>
                         {projects.map((proj, i) => (
-                            <div key={i} className="cp-entry">
+                            <div key={i} className="cp-entry" data-keep={`projects-${i}`}>
                                 <div className="cp-entry-header">
                                     <h3 className="cp-entry-title">{proj.name}</h3>
                                     {proj.link && (

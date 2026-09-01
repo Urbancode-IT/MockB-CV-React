@@ -4,7 +4,13 @@ import ClassicProfessional from './templates/ClassicProfessional';
 import PortraitProfile from './templates/PortraitProfile';
 import StructuredSplit from './templates/StructuredSplit';
 import CenteredMinimal from './templates/CenteredMinimal';
-import { mergeDesign, fillFooterTemplate, hexToRgba } from '../../config/resumeDesign';
+import FreshGraduate from './templates/FreshGraduate';
+import CampusEntry from './templates/CampusEntry';
+import InternBanner from './templates/InternBanner';
+import CareerDetail from './templates/CareerDetail';
+import NorthShore from './templates/NorthShore';
+import GoldRule from './templates/GoldRule';
+import { mergeDesign, fillFooterTemplate, hexToRgba, parseSectionSpacing } from '../../config/resumeDesign';
 import { resolveTemplateId, DEFAULT_TEMPLATE, getTemplateById, isOnePageTemplate } from '../../config/templates';
 import './resume-design.css';
 
@@ -13,6 +19,12 @@ const templateMap = {
     'portrait-profile': PortraitProfile,
     'structured-split': StructuredSplit,
     'centered-minimal': CenteredMinimal,
+    'fresh-graduate': FreshGraduate,
+    'campus-entry': CampusEntry,
+    'intern-banner': InternBanner,
+    'career-detail': CareerDetail,
+    'north-shore': NorthShore,
+    'gold-rule': GoldRule,
 };
 
 const NAME_SIZE = { xs: 16, s: 20, m: 24, l: 28, xl: 34 };
@@ -27,18 +39,30 @@ const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, pr
     const isLetter = design.pageSize === 'letter';
     const pageW = isLetter ? 216 : 210;
     const pageH = isLetter ? 279 : 297;
-    const accent = resumeData.themeColor
+    const rawAccent = resumeData.themeColor
         || resumeData.design?.accentColor
         || templateMeta.accentColor
         || '#1A3A5C';
+    const internLegacy = new Set(['#3D5A80', '#0F766E']);
+    const twoPageLegacy = new Set(['#C2410C', '#1B365D', '#5B21B6']);
+    let accent = rawAccent;
+    if (resolved === 'intern-banner' && internLegacy.has(String(rawAccent).toUpperCase())) {
+        accent = templateMeta.accentColor || '#3730A3';
+    } else if (resolved === 'career-detail' && twoPageLegacy.has(String(rawAccent).toUpperCase())) {
+        accent = '#111111';
+    }
     const entryLeft = design.entryColWidth === 'manual' ? `${design.manualLeftPercent}%` : '28%';
     const namePt = (NAME_SIZE[design.nameSize] || 24) + (design.nameSizeOffset - 12.5);
     const titlePt = (ROLE_SIZE[design.roleSize] || 11) + (design.titleSizeOffset - 5);
     const headingPt = (design.headingSize || 12) + (design.headingSizeOffset - 2);
     const entryPt = (ENTRY_TITLE[design.titleSize] || 10.5) + design.entryHeaderOffset;
-    const lockOnePage = preview || isOnePageTemplate(resolved);
-    const sectionGap = design.sectionSpacing;
-    const showFooter = design.footerPageNumbers || design.footerName || design.footerEmail || design.footerCustom;
+    const lockOnePage = true;
+    const lockOneCol = ['structured-split', 'centered-minimal', 'fresh-graduate', 'campus-entry', 'intern-banner', 'career-detail', 'north-shore', 'gold-rule'].includes(resolved);
+    const pageN = resumeData.pageMeta?.page || 1;
+    const pageC = resumeData.pageMeta?.pages || 1;
+    const sectionGap = parseSectionSpacing(design.sectionSpacing, 16);
+    const showFooter = isOnePageTemplate(resolved)
+        && (design.footerPageNumbers || design.footerName || design.footerEmail || design.footerCustom);
     const personal = resumeData.personal || {};
 
     const footerLeft = design.footerCustom
@@ -46,18 +70,18 @@ const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, pr
         : [design.footerName ? personal.name : '', design.footerEmail ? personal.email : ''].filter(Boolean).join('  ·  ');
     const footerRight = design.footerCustom
         ? fillFooterTemplate(design.footerRight, personal)
-        : (design.footerPageNumbers ? '1 / 1' : '');
+        : (design.footerPageNumbers ? `${pageN} / ${pageC}` : '');
     const footerCenter = design.footerCustom ? fillFooterTemplate(design.footerCenter, personal) : '';
 
     return (
         <div
             className={`resume-design-wrapper${lockOnePage ? ' resume-design-wrapper--preview' : ''}`}
-            data-columns={resolved === 'structured-split' || resolved === 'centered-minimal'
+            data-columns={lockOneCol
                 ? 'one'
                 : resolved === 'portrait-profile'
                 ? (resumeData.design?.columns === 'one' ? 'one' : resumeData.design?.columns === 'mix' ? 'mix' : 'two')
                 : design.columns}
-            data-header-pos={resolved === 'structured-split' || resolved === 'centered-minimal'
+            data-header-pos={lockOneCol
                 ? 'top'
                 : resolved === 'portrait-profile'
                 ? (resumeData.design?.columns === 'mix' || resumeData.design?.headerPos === 'top'
