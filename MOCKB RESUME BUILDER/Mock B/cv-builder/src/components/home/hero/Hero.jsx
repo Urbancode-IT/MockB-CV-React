@@ -9,11 +9,14 @@ export default function Hero() {
     <section className="hero">
       <div className="container">
         <h1>Land your next <span>dream job</span></h1>
-        <p>Create a professional, ATS-friendly resume in minutes. Pick a template, fill in your details with live preview, and download a polished PDF.</p>
+        <p>
+          Build a polished resume, matching cover letter, and personal portfolio in one place.
+          Choose a design, edit with live preview, and download when you are ready.
+        </p>
 
         <div className="hero-actions">
-          <button type="button" className="btn btn-primary" onClick={() => navigate('/resume/templates')}>
-            Browse templates
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/portfolio-maker')}>
+            Build portfolio
           </button>
           <button type="button" className="btn btn-secondary" onClick={() => navigate('/resume/customizer')}>
             Open resume builder
@@ -23,15 +26,15 @@ export default function Hero() {
         <div className="trust-badges">
           <div className="hero-badge">
             <i className="fa-solid fa-circle-check"></i>
-            <span>ATS-Friendly</span>
+            <span>Live preview</span>
           </div>
           <div className="hero-badge">
             <i className="fa-solid fa-circle-check"></i>
-            <span>1 &amp; 2 Page Layouts</span>
+            <span>1 &amp; 2 page layouts</span>
           </div>
           <div className="hero-badge">
             <i className="fa-solid fa-circle-check"></i>
-            <span>Live Preview &amp; PDF</span>
+            <span>PDF &amp; portfolio ZIP</span>
           </div>
         </div>
       </div>

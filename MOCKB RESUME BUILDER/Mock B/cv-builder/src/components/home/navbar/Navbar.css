@@ -155,6 +155,61 @@ nav {
     justify-content: flex-end;
 }
 
+.nav-actions .btn-outline-auth {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 199, 122, 0.45);
+    background: transparent;
+    color: #d4c77a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-actions .btn-outline-auth:hover {
+    background: rgba(212, 199, 122, 0.1);
+    border-color: #d4c77a;
+    color: #fff;
+}
+
+.nav-profile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nav-profile-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(212, 199, 122, 0.55);
+    background: #1a1a1a;
+    display: block;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-profile-avatar--fallback {
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #1a1200;
+    background-image: var(--primary-gradient);
+}
+
+.nav-profile:hover .nav-profile-avatar {
+    border-color: #d4c77a;
+    box-shadow: 0 0 0 3px rgba(212, 199, 122, 0.18);
+}
+
 /* Mega Menu Styles */
 .has-mega-menu {
     position: static;

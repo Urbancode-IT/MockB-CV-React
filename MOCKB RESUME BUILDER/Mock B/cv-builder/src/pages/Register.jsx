@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
+import PageLoader from '../components/common/PageLoader';
 import './Auth.css';
 
 const Register = () => {
@@ -12,7 +13,10 @@ const Register = () => {
     const [success, setSuccess] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
-    const { register } = useAuth();
+    const { register, user, loading } = useAuth();
+
+    if (loading) return <PageLoader label="Checking session…" />;
+    if (user) return <Navigate to="/" replace />;
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -36,8 +40,8 @@ const Register = () => {
         try {
             const res = await register({ name: normalizedName, email: normalizedEmail, password });
             if (res?.success) {
-                setSuccess('Account created! Taking you to your dashboard…');
-                setTimeout(() => navigate('/'), 700);
+                setSuccess('Account created. Taking you home…');
+                setTimeout(() => navigate('/'), 500);
             } else {
                 setError(res?.message || 'Registration failed. Please try again.');
             }
@@ -49,47 +53,11 @@ const Register = () => {
     };
 
     return (
-        <div className="auth-page">
-            {/* ── Left branding panel ── */}
-            <div className="auth-brand-panel">
-                <Link to="/" className="auth-brand-logo">
-                    <span className="logo-icon-wrap">
-                        <i className="fa-solid fa-file-lines"></i>
-                    </span>
-                    MockB <span>CV</span>
-                </Link>
-
-                <div className="auth-brand-content">
-                    <h2>Start Building Your<br /><span>Dream Career Today</span></h2>
-                    <p>
-                        Join thousands of job seekers who have landed their dream roles
-                        using MockB CV&apos;s AI-powered tools — completely free.
-                    </p>
-                </div>
-
-                <div className="auth-brand-features">
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-wand-magic-sparkles"></i></span>
-                        <span className="feat-text">Generate a resume in under 2 minutes</span>
-                    </div>
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-chart-line"></i></span>
-                        <span className="feat-text">Beat ATS filters with smart keyword analysis</span>
-                    </div>
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-shield-halved"></i></span>
-                        <span className="feat-text">Your data is always private &amp; secure</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* ── Right form panel ── */}
+        <div className="auth-page auth-page--solo">
             <div className="auth-form-panel">
-                <div className="auth-grid-bg"></div>
+                <div className="auth-grid-bg" aria-hidden="true" />
                 <div className="auth-form-inner">
-
-                    {/* Mobile logo */}
-                    <Link to="/" className="auth-mobile-logo">
+                    <Link to="/" className="auth-brand-link">
                         <span className="logo-icon-wrap">
                             <i className="fa-solid fa-file-lines"></i>
                         </span>
@@ -97,7 +65,7 @@ const Register = () => {
                     </Link>
 
                     <div className="auth-form-header">
-                        <h1>Create your <span>account</span> 🚀</h1>
+                        <h1>Create your <span>account</span></h1>
                         <p>
                             Already have an account?{' '}
                             <Link to="/login">Sign in</Link>
@@ -125,13 +93,12 @@ const Register = () => {
                                 <input
                                     id="register-name"
                                     type="text"
-                                    placeholder="John Doe"
+                                    placeholder="Your full name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     required
                                     autoComplete="name"
                                 />
-                                <i className="fa-solid fa-user auth-input-icon"></i>
                             </div>
                         </div>
 
@@ -147,7 +114,6 @@ const Register = () => {
                                     required
                                     autoComplete="email"
                                 />
-                                <i className="fa-solid fa-envelope auth-input-icon"></i>
                             </div>
                         </div>
 
@@ -165,7 +131,6 @@ const Register = () => {
                                     minLength={6}
                                     autoComplete="new-password"
                                 />
-                                <i className="fa-solid fa-lock auth-input-icon"></i>
                                 <button
                                     type="button"
                                     className="auth-password-toggle"
@@ -196,7 +161,7 @@ const Register = () => {
 
                     <p className="auth-footer-link">
                         Already have an account?{' '}
-                        <Link to="/login">Login here</Link>
+                        <Link to="/login">Sign in</Link>
                     </p>
                 </div>
             </div>

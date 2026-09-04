@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
+import PageLoader from '../components/common/PageLoader';
 import './Auth.css';
 
 const Login = () => {
@@ -10,7 +11,10 @@ const Login = () => {
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, user, loading } = useAuth();
+
+    if (loading) return <PageLoader label="Checking session…" />;
+    if (user) return <Navigate to="/" replace />;
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -36,55 +40,19 @@ const Login = () => {
     };
 
     return (
-        <div className="auth-page">
-            {/* ── Left branding panel ── */}
-            <div className="auth-brand-panel">
-                <Link to="/" className="auth-brand-logo">
-                    <span className="logo-icon-wrap">
-                        <i className="fa-solid fa-file-lines"></i>
-                    </span>
-                    MockB <span>CV</span>
-                </Link>
-
-                <div className="auth-brand-content">
-                    <h2>Build Your Career Story<br /><span>With Confidence</span></h2>
-                    <p>
-                        Craft ATS-optimised resumes, cover letters, and stunning portfolios
-                        — powered by AI and designed to get you hired faster.
-                    </p>
-                </div>
-
-                <div className="auth-brand-features">
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-robot"></i></span>
-                        <span className="feat-text">AI-powered resume &amp; cover letter generation</span>
-                    </div>
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-gauge-high"></i></span>
-                        <span className="feat-text">Real-time ATS score analysis</span>
-                    </div>
-                    <div className="auth-feature-item">
-                        <span className="feat-icon"><i className="fa-solid fa-laptop-code"></i></span>
-                        <span className="feat-text">Professional portfolio in minutes</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* ── Right form panel ── */}
+        <div className="auth-page auth-page--solo">
             <div className="auth-form-panel">
-                <div className="auth-grid-bg"></div>
+                <div className="auth-grid-bg" aria-hidden="true" />
                 <div className="auth-form-inner">
-
-                    {/* Mobile logo */}
-                    <Link to="/" className="auth-mobile-logo">
+                    <Link to="/" className="auth-brand-link">
                         <span className="logo-icon-wrap">
                             <i className="fa-solid fa-file-lines"></i>
                         </span>
-                        MockB CV
+                        MockB <span>CV</span>
                     </Link>
 
                     <div className="auth-form-header">
-                        <h1>Welcome <span>back</span> 👋</h1>
+                        <h1>Welcome <span>back</span></h1>
                         <p>
                             Don&apos;t have an account?{' '}
                             <Link to="/register">Create one free</Link>
@@ -111,7 +79,6 @@ const Login = () => {
                                     required
                                     autoComplete="email"
                                 />
-                                <i className="fa-solid fa-envelope auth-input-icon"></i>
                             </div>
                         </div>
 
@@ -122,13 +89,12 @@ const Login = () => {
                                     id="login-password"
                                     className="has-password-toggle"
                                     type={showPassword ? 'text' : 'password'}
-                                    placeholder="••••••••"
+                                    placeholder="Enter your password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                     autoComplete="current-password"
                                 />
-                                <i className="fa-solid fa-lock auth-input-icon"></i>
                                 <button
                                     type="button"
                                     className="auth-password-toggle"

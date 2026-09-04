@@ -8,7 +8,6 @@ import TemplatesGallery from '../components/home/templates-gallery/TemplatesGall
 import CoreFeatures from '../components/home/core-features/CoreFeatures';
 import CombinedFeatures from '../components/home/combined-features/CombinedFeatures';
 import Testimonials from '../components/home/testimonials/Testimonials';
-import TemplatesPromo from '../components/home/templates-promo/TemplatesPromo';
 import HowItWorks from '../components/home/how-it-works/HowItWorks';
 import UseCases from '../components/home/use-cases/UseCases';
 import PortfolioMakerSection from '../components/home/portfolio-maker/PortfolioMakerSection';
@@ -62,7 +61,6 @@ export default function Home() {
         <CoreFeatures />
         <CombinedFeatures />
         <Testimonials />
-        <TemplatesPromo />
         <HowItWorks />
         <UseCases />
       </main>

@@ -1,26 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthProvider';
+import { getLocalProfile } from '../../../utils/userProfile';
 import './Navbar.css';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null); // 'languages' | null
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [profileTick, setProfileTick] = useState(0);
   const headerRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menus on click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (headerRef.current && !headerRef.current.contains(event.target)) {
@@ -31,16 +31,32 @@ export default function Navbar() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Close menus on Escape key
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setActiveMenu(null);
-      }
+      if (event.key === 'Escape') setActiveMenu(null);
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    const refresh = () => setProfileTick((n) => n + 1);
+    window.addEventListener('mockb-profile-updated', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('mockb-profile-updated', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
+
+  useEffect(() => {
+    setProfileTick((n) => n + 1);
+  }, [location.pathname, user]);
+
+  const profile = useMemo(() => getLocalProfile(user), [user, profileTick]);
+  const avatarUrl = profile.avatar || user?.avatar || user?.photo || '';
+  const displayName = profile.name || user?.name || user?.email || 'User';
+  const initial = String(displayName).trim().charAt(0).toUpperCase() || 'U';
 
   const toggleMenu = (e, menuName) => {
     e.preventDefault();
@@ -48,8 +64,11 @@ export default function Navbar() {
     setActiveMenu(activeMenu === menuName ? null : menuName);
   };
 
-  const handleLinkClick = () => {
-    setActiveMenu(null);
+  const handleLinkClick = () => setActiveMenu(null);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
   };
 
   return (
@@ -97,7 +116,38 @@ export default function Navbar() {
             <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
           </ul>
           <div className="nav-actions">
-            <button className="btn btn-primary" onClick={() => navigate('/resume/customizer')}>Get Started</button>
+            {user ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="nav-profile"
+                  onClick={handleLinkClick}
+                  title={displayName}
+                  aria-label={`${displayName} dashboard`}
+                >
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt="" className="nav-profile-avatar" />
+                  ) : (
+                    <span className="nav-profile-avatar nav-profile-avatar--fallback">{initial}</span>
+                  )}
+                </Link>
+                <Link to="/dashboard" className="btn btn-outline-auth" onClick={handleLinkClick}>
+                  Dashboard
+                </Link>
+                <button type="button" className="btn btn-primary" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-outline-auth" onClick={handleLinkClick}>
+                  Login
+                </Link>
+                <Link to="/register" className="btn btn-primary" onClick={handleLinkClick}>
+                  Sign up
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </div>

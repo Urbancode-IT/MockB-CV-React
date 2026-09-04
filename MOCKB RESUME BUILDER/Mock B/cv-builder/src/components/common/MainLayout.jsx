@@ -10,6 +10,7 @@ export default function MainLayout() {
         location.pathname === '/' ||
         location.pathname === '/login' ||
         location.pathname === '/register' ||
+        location.pathname === '/dashboard' ||
         location.pathname === '/resume/ats-checker' ||
         location.pathname === '/resume/ats_checker' ||
         location.pathname === '/cover-letter/ats-checker' ||

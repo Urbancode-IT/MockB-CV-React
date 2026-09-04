@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
 import AIResumeBuilder from "./pages/AIResumeBuilder";
 import AICoverLetterBuilder from "./pages/AICoverLetterBuilder";
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
             {
                 element: <ProtectedRoute />,
                 children: [
+                    { path: "/dashboard", element: <Dashboard /> },
                     { path: "/resume/ai-builder", element: <AIResumeBuilder /> },
                     { path: "/resume/ats-checker", element: <ResumeATSScoreChecker /> },
                     { path: "/resume/ats_checker", element: <ResumeATSScoreChecker /> },
