@@ -6,6 +6,7 @@
 // Each template preview uses a different person.
 // ======================================
 
+import { ALL_BODY_SECTIONS } from '../config/pageLayout';
 import { getTemplateById, isTwoColumnTemplate } from '../config/templates';
 
 const sampleResumeData = {
@@ -942,8 +943,11 @@ const TEMPLATE_SAMPLES = {
             },
         ],
         pageSections: {
-            page1: ['summary', 'experience', 'education', 'skills', 'projects', 'certifications'],
-            page2: ['languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references'],
+            page1: [
+                'summary', 'experience', 'education', 'skills', 'projects', 'certifications',
+                'languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references',
+            ],
+            page2: [],
         },
         sectionTitles: {
             summary: "About",
@@ -1138,8 +1142,11 @@ const TEMPLATE_SAMPLES = {
             },
         ],
         pageSections: {
-            page1: ['summary', 'experience', 'education', 'skills', 'projects', 'certifications'],
-            page2: ['languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references'],
+            page1: [
+                'summary', 'experience', 'education', 'skills', 'projects', 'certifications',
+                'languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references',
+            ],
+            page2: [],
         },
         sectionTitles: {
             summary: "Profile",
@@ -1295,8 +1302,11 @@ const TEMPLATE_SAMPLES = {
         ],
         courses: [],
         pageSections: {
-            page1: ['summary', 'education', 'certifications', 'languages'],
-            page2: ['skills', 'experience', 'projects', 'awards'],
+            page1: [
+                'summary', 'education', 'certifications', 'languages',
+                'skills', 'experience', 'projects', 'awards',
+            ],
+            page2: [],
         },
         sectionTitles: {
             summary: "Profile",
@@ -1325,13 +1335,24 @@ const TEMPLATE_SAMPLES = {
 export const sampleForTemplate = (templateId) => {
     const next = cloneSample();
     const overlay = TEMPLATE_SAMPLES[templateId];
-    if (!overlay) return next;
+    if (!overlay) {
+        return {
+            ...next,
+            pageSections: { page1: [...ALL_BODY_SECTIONS], page2: [] },
+            pageEntrySlices: {},
+            startBlank: false,
+        };
+    }
     return {
         ...next,
         ...overlay,
         personal: { ...next.personal, ...(overlay.personal || {}) },
         design: { ...(next.design || {}), ...(overlay.design || {}) },
-        pageSections: overlay.pageSections || next.pageSections,
+        // Always start example resumes packed on page 1 so two-column layouts
+        // match the gallery preview; auto-pagination then spills per column.
+        pageSections: { page1: [...ALL_BODY_SECTIONS], page2: [] },
+        pageEntrySlices: {},
+        columnSections: overlay.columnSections || next.columnSections,
         sectionTitles: { ...(next.sectionTitles || {}), ...(overlay.sectionTitles || {}) },
         profileBullets: overlay.profileBullets || next.profileBullets,
         competencies: overlay.competencies || next.competencies,
@@ -1370,10 +1391,16 @@ export const blankForTemplate = (templateId) => {
         courses: [],
         custom: [],
         sectionTitles: {},
+        sectionOrder: [],
+        pageSections: {
+            page1: [...ALL_BODY_SECTIONS],
+            page2: [],
+        },
+        pageEntrySlices: {},
         themeColor: meta.accentColor,
         design: {
             accentColor: meta.accentColor,
-            applyAccentToName: true,
+            applyAccentToName: false,
             columns: twoCol ? 'two' : 'one',
             headerPos: twoCol ? 'left' : 'top',
         },

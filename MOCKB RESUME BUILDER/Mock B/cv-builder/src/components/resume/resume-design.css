@@ -94,7 +94,8 @@
 .resume-design-wrapper .mp-name,
 .resume-design-wrapper .ma-name,
 .resume-design-wrapper .ex-name,
-.resume-design-wrapper .crp-sidebar-name {
+.resume-design-wrapper .crp-sidebar-name,
+.resume-design-wrapper .ib-name {
     font-size: var(--resume-name-size, 24pt) !important;
     font-weight: var(--resume-name-weight, 700) !important;
     font-family: inherit !important;
@@ -710,6 +711,20 @@
     font-size: var(--resume-name-size, 24pt) !important;
     font-weight: var(--resume-name-weight, 700) !important;
     color: var(--resume-name-color, inherit);
+}
+
+/* Keep name/role readable on solid accent headers (Classic + Intern Banner). */
+.resume-design-wrapper .cp-header .cp-name,
+.resume-design-wrapper .cp-header .rx-name,
+.resume-design-wrapper .ib-banner .ib-name,
+.resume-design-wrapper .ib-banner .rx-name {
+    color: #ffffff !important;
+}
+.resume-design-wrapper .cp-header .cp-job-title,
+.resume-design-wrapper .cp-header .rx-role,
+.resume-design-wrapper .ib-banner .ib-role,
+.resume-design-wrapper .ib-banner .rx-role {
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 .resume-design-wrapper .rx-role {
     font-size: var(--resume-title-size, 11pt) !important;

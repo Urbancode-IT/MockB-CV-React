@@ -98,7 +98,8 @@ export default function CustomizePanel({
         : rawDesign?.headerPos === 'right' ? 'right' : rawDesign?.headerPos === 'top' ? 'top' : 'left';
     const showTwoColControls = twoColTemplate && (getTemplateById(selectedTemplate)?.layout === 'split' || columns !== 'one');
     const twoPageTemplate = !isOnePageTemplate(selectedTemplate);
-    const pageLists = twoPageTemplate ? getPageSectionLists(resumeData, selectedTemplate) : { page1: [], page2: [] };
+    const pageLists = getPageSectionLists(resumeData, selectedTemplate);
+    const showPageLayout = twoPageTemplate || pageLists.page2.length > 0;
     const layoutSections = orderedActiveSectionIds(resumeData, sectionOrder);
     const columnSections = columnsWithActiveSections(resumeData);
     const [openId, setOpenId] = useState('layout');
@@ -184,8 +185,8 @@ export default function CustomizePanel({
                     <div>
                         <div className="cz-label">Change Section Layout</div>
                         <p className="cz-help">
-                            {twoPageTemplate
-                                ? 'This is a 2-page resume. Drag sections between Page 1 and Page 2. Both pages stay one column.'
+                            {showPageLayout
+                                ? 'Drag sections between Page 1 and Page 2. Extra content automatically moves to page 2 when needed.'
                                 : showTwoColControls
                                 ? 'Drag sections between Left and Right to match the two-column template.'
                                 : 'Drag to change the order of sections on the page.'}
@@ -193,7 +194,7 @@ export default function CustomizePanel({
                         {layoutSections.length === 0 && (
                             <p className="cz-help">Add sections in the editor first. They will show up here.</p>
                         )}
-                        {twoPageTemplate ? (
+                        {showPageLayout ? (
                             <div className="cz-split">
                                 {['page1', 'page2'].map((pageKey) => (
                                     <div

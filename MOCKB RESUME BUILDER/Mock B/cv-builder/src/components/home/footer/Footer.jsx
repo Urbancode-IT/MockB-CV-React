@@ -22,6 +22,7 @@ export default function Footer() {
               <li><Link to="/resume/customizer">Resume Builder</Link></li>
               <li><Link to="/cover-letter/templates">Cover Letter Templates</Link></li>
               <li><Link to="/cover-letter/customizer">Cover Letter Builder</Link></li>
+              <li><Link to="/portfolio-maker">Portfolio Maker</Link></li>
               <li><Link to="/#templates-gallery">Template Gallery</Link></li>
             </ul>
           </div>

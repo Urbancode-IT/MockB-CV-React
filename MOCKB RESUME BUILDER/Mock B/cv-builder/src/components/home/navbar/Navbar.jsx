@@ -1,16 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null); // 'resume' | 'cover-letter' | 'portfolio' | 'templates' | 'languages' | null
+  const [activeMenu, setActiveMenu] = useState(null); // 'languages' | null
   const headerRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const onHome = location.pathname === '/';
-  const resumeTemplatesHref = onHome ? '/#templates-gallery' : '/resume/templates';
-  const coverLetterTemplatesHref = onHome ? '/#templates-gallery' : '/cover-letter/templates';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,35 +63,13 @@ export default function Navbar() {
           <ul className="nav-links">
             <li><Link to="/" onClick={handleLinkClick}>Home</Link></li>
             <li>
-              <Link to={resumeTemplatesHref} onClick={handleLinkClick}>Resume builder</Link>
+              <Link to="/resume/templates" onClick={handleLinkClick}>Resume builder</Link>
             </li>
             <li>
-              <Link to={coverLetterTemplatesHref} onClick={handleLinkClick}>Cover letter builder</Link>
+              <Link to="/cover-letter/templates" onClick={handleLinkClick}>Cover letter builder</Link>
             </li>
-            <li className={`has-mega-menu ${activeMenu === 'templates' ? 'active' : ''}`}>
-              <a href="#!" id="templates-trigger" onClick={(e) => toggleMenu(e, 'templates')}>
-                Templates <i className="fa-solid fa-chevron-down"></i>
-              </a>
-              <div className={`mega-menu ${activeMenu === 'templates' ? 'active' : ''}`} id="templates-mega-menu">
-                <div className="container">
-                  <div className="mega-menu-grid">
-                    <Link to={resumeTemplatesHref} className="mega-menu-item" onClick={handleLinkClick}>
-                      <div className="item-icon"><i className="fa-solid fa-file-lines"></i></div>
-                      <div className="item-text">
-                        <h4>Resume Templates</h4>
-                        <p>Explore our collection of professional resume templates.</p>
-                      </div>
-                    </Link>
-                    <Link to={coverLetterTemplatesHref} className="mega-menu-item" onClick={handleLinkClick}>
-                      <div className="item-icon"><i className="fa-solid fa-envelope-open-text"></i></div>
-                      <div className="item-text">
-                        <h4>Cover Letter Templates</h4>
-                        <p>Browse cover letter templates designed to get you hired.</p>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <li>
+              <Link to="/portfolio-maker" onClick={handleLinkClick}>Portfolio maker</Link>
             </li>
             <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`} id="lang-menu-parent">
               <a href="#!" id="languages-trigger" onClick={(e) => toggleMenu(e, 'languages')}>

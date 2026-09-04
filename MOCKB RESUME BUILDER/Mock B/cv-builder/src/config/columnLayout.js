@@ -128,6 +128,8 @@ export const getActiveSectionIds = (data = {}, ids = ALL_SECTION_IDS) => {
     return allIds.filter((id) => {
         if (id === 'summary') {
             if ((hidden.summary || []).includes(0)) return false;
+            // Keep an added-but-empty summary visible in the editor (build from scratch).
+            if ((data.sectionOrder || []).includes('summary')) return true;
             return Boolean(String(data.summary || '').trim());
         }
         if (id === 'custom' || String(id).startsWith('cs_')) {

@@ -596,10 +596,27 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
 
     const addListItem = (section, empty) => {
         const nextIndex = (resumeData[section] || []).length;
-        setResumeData((prev) => ({
-            ...prev,
-            [section]: [...(prev[section] || []), { ...empty }],
-        }));
+        setResumeData((prev) => {
+            const list = [...(prev[section] || []), { ...empty }];
+            const slices = { ...(prev.pageEntrySlices || {}) };
+            if (slices[section]) {
+                const keys = Object.keys(slices[section])
+                    .map(Number)
+                    .filter((n) => !Number.isNaN(n))
+                    .sort((a, b) => a - b);
+                const last = keys[keys.length - 1];
+                if (last != null) {
+                    const range = slices[section][last] || slices[section][String(last)];
+                    if (Array.isArray(range)) {
+                        slices[section] = {
+                            ...slices[section],
+                            [last]: [range[0], list.length],
+                        };
+                    }
+                }
+            }
+            return { ...prev, [section]: list, pageEntrySlices: slices };
+        });
         setOpenSections((prev) => ({ ...prev, [section]: true }));
         setExpandedEntry((prev) => ({ ...prev, [section]: nextIndex }));
     };
@@ -693,6 +710,19 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
             const next = { ...prev };
             if (sectionId === 'summary') delete next.summary;
             else next[sectionId] = [];
+            next.sectionOrder = (prev.sectionOrder || []).filter((id) => id !== sectionId);
+            if (prev.pageSections) {
+                const pageSections = {};
+                Object.keys(prev.pageSections).forEach((key) => {
+                    pageSections[key] = (prev.pageSections[key] || []).filter((id) => id !== sectionId);
+                });
+                next.pageSections = pageSections;
+            }
+            if (prev.pageEntrySlices?.[sectionId]) {
+                const pageEntrySlices = { ...prev.pageEntrySlices };
+                delete pageEntrySlices[sectionId];
+                next.pageEntrySlices = pageEntrySlices;
+            }
             return next;
         });
 
@@ -752,6 +782,19 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
             }
             const placedId = isNewCustom ? customId : sectionId;
             next.sectionOrder = appendSectionToOrder({ ...next, sectionOrder: prev.sectionOrder }, placedId);
+            // Keep new sections on page 1 so multipage templates grow like one-page resumes.
+            const lists = getPageSectionLists({ ...next, pageSections: prev.pageSections }, selectedTemplate);
+            const alreadyPlaced = Object.keys(lists).some(
+                (key) => /^page\d+$/.test(key) && (lists[key] || []).includes(placedId),
+            );
+            if (!alreadyPlaced) {
+                next.pageSections = {
+                    ...lists,
+                    page1: [...(lists.page1 || []).filter((id) => id !== placedId), placedId],
+                };
+            } else {
+                next.pageSections = lists;
+            }
             if (twoColumn && column) {
                 next.columnSections = placeSectionInColumn(
                     { ...next, columnSections: prev.columnSections || normalizeColumnSections(prev) },
@@ -1395,17 +1438,30 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
 
             {twoPageEditor ? (
                 <>
-                    <div className="ref-page-label">Page 1 · one column</div>
-                    {pageLists.page1.filter((id) => editorSectionIds.includes(id)).map((id) => (
-                        <React.Fragment key={id}>{renderEditorSection(id)}</React.Fragment>
-                    ))}
-                    <div className="ref-page-label">Page 2 · one column</div>
-                    {pageLists.page2.filter((id) => editorSectionIds.includes(id)).map((id) => (
-                        <React.Fragment key={id}>{renderEditorSection(id)}</React.Fragment>
-                    ))}
-                    {editorSectionIds.filter((id) => !pageLists.page1.includes(id) && !pageLists.page2.includes(id)).map((id) => (
-                        <React.Fragment key={id}>{renderEditorSection(id)}</React.Fragment>
-                    ))}
+                    {Object.keys(pageLists)
+                        .filter((k) => /^page\d+$/.test(k))
+                        .sort((a, b) => Number(a.slice(4)) - Number(b.slice(4)))
+                        .map((pageKey) => {
+                            const ids = (pageLists[pageKey] || [])
+                                .filter((id) => editorSectionIds.includes(id));
+                            if (!ids.length) return null;
+                            const pageNum = Number(pageKey.slice(4));
+                            return (
+                                <React.Fragment key={pageKey}>
+                                    <div className="ref-page-label">Page {pageNum} · one column</div>
+                                    {ids.map((id) => (
+                                        <React.Fragment key={id}>{renderEditorSection(id)}</React.Fragment>
+                                    ))}
+                                </React.Fragment>
+                            );
+                        })}
+                    {editorSectionIds
+                        .filter((id) => !Object.keys(pageLists)
+                            .filter((k) => /^page\d+$/.test(k))
+                            .some((k) => (pageLists[k] || []).includes(id)))
+                        .map((id) => (
+                            <React.Fragment key={id}>{renderEditorSection(id)}</React.Fragment>
+                        ))}
                 </>
             ) : (
                 editorSectionIds.map((id) => (

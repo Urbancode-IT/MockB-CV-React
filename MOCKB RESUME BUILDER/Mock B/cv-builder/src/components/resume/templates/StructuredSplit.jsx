@@ -172,21 +172,25 @@ const StructuredSplit = ({ resumeData = {} }) => {
         </>
     );
 
+    const continued = resumeData.pageMeta?.page > 1;
+
     return (
-        <div className="ss-resume">
-            <div className="ss-header">
-                <div className="ss-identity">
-                    <h1 className="ss-name rx-name">{personal.name || 'Your Name'}</h1>
-                    {personal.jobTitle && <p className="ss-role rx-role">{personal.jobTitle}</p>}
+        <div className={`ss-resume${continued ? ' ss-resume--continued' : ''}`}>
+            {!continued && (
+                <div className="ss-header">
+                    <div className="ss-identity">
+                        <h1 className="ss-name rx-name">{personal.name || 'Your Name'}</h1>
+                        {personal.jobTitle && <p className="ss-role rx-role">{personal.jobTitle}</p>}
+                    </div>
+                    {contacts.length > 0 && (
+                        <ul className="ss-contact">
+                            {contacts.map((item) => (
+                                <li key={item}>{item}</li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
-                {contacts.length > 0 && (
-                    <ul className="ss-contact">
-                        {contacts.map((item) => (
-                            <li key={item}>{item}</li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+            )}
 
             <div className="ss-body">
                 <div className="ss-col ss-col--side">{renderColumn(leftIds)}</div>

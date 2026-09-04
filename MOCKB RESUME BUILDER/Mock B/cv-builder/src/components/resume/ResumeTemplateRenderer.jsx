@@ -31,6 +31,9 @@ const NAME_SIZE = { xs: 16, s: 20, m: 24, l: 28, xl: 34 };
 const ROLE_SIZE = { s: 9, m: 11, l: 13 };
 const ENTRY_TITLE = { s: 9, m: 10.5, l: 12 };
 
+/** Name sits on the accent-colored header — never tint it with the same accent. */
+const ACCENT_HEADER_TEMPLATES = new Set(['classic-professional', 'intern-banner']);
+
 const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, previewFocus = null }) => {
     const resolved = resolveTemplateId(template);
     const TemplateComponent = templateMap[resolved] || templateMap[DEFAULT_TEMPLATE];
@@ -64,6 +67,13 @@ const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, pr
     const showFooter = isOnePageTemplate(resolved)
         && (design.footerPageNumbers || design.footerName || design.footerEmail || design.footerCustom);
     const personal = resumeData.personal || {};
+    const nameOnAccentHeader = ACCENT_HEADER_TEMPLATES.has(resolved);
+    const nameColor = nameOnAccentHeader
+        ? '#ffffff'
+        : (design.applyAccentToName ? accent : 'inherit');
+    const titleColor = nameOnAccentHeader
+        ? 'rgba(255, 255, 255, 0.9)'
+        : (design.applyAccentToJob ? accent : 'inherit');
 
     const footerLeft = design.footerCustom
         ? fillFooterTemplate(design.footerLeft, personal)
@@ -131,10 +141,10 @@ const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, pr
                 '--resume-name-size': `${namePt}pt`,
                 '--resume-name-weight': design.nameBold ? 700 : 400,
                 '--resume-name-font': 'inherit',
-                '--resume-name-color': design.applyAccentToName ? accent : 'inherit',
+                '--resume-name-color': nameColor,
                 '--resume-title-size': `${titlePt}pt`,
                 '--resume-title-style': design.roleStyle === 'italic' ? 'italic' : 'normal',
-                '--resume-title-color': design.applyAccentToJob ? accent : 'inherit',
+                '--resume-title-color': titleColor,
                 '--resume-heading-size': `${headingPt}pt`,
                 '--resume-heading-transform': design.headingTransform,
                 '--resume-heading-align': design.headingAlign,

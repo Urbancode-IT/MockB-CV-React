@@ -1,6 +1,6 @@
 import React from 'react';
 import { hasContent, sectionListProps } from './templateUtils';
-import { listCustomSections } from '../../../config/customSections';
+import { isCustomSectionId, listCustomSections } from '../../../config/customSections';
 import './ExtraSections.css';
 
 const titleOf = (resumeData, id, fallback) =>
@@ -20,7 +20,6 @@ const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = f
         references = [],
         declaration = [],
         custom = [],
-        customSections = [],
         projects = [],
         languages = [],
     } = resumeData;
@@ -34,8 +33,10 @@ const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = f
     const titleClass = compact ? 'rx-title' : 'cp-section-title rx-title';
     const show = (id) => {
         if (Array.isArray(only)) {
-            const allowCustom = only.includes('custom') && (id === 'custom' || String(id).startsWith('cs_'));
-            if (!only.includes(id) && !allowCustom) return false;
+            if (only.includes(id)) return !exclude.includes(id);
+            // Legacy `only={['custom']}` should still allow cs_* blocks.
+            if (only.includes('custom') && isCustomSectionId(id)) return !exclude.includes(id);
+            return false;
         }
         return !exclude.includes(id);
     };
@@ -75,7 +76,7 @@ const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = f
                     </div>
                 ) : (
                     items.map((item, i) => (
-                        <div key={i} className="rx-entry" data-keep={`${block.id}-${i}`}>
+                        <div key={i} className="rx-entry" data-entry="" data-keep={`${block.id}-${i}`}>
                             <strong>{item.title || item.name}</strong>
                             {style.showSubtitle !== false && (item.subtitle || item.location) && (
                                 <span>{[item.subtitle, item.location].filter(Boolean).join(' · ')}</span>

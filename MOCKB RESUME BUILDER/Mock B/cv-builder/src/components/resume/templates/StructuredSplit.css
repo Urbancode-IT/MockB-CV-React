@@ -91,6 +91,10 @@
     text-decoration-thickness: 1px;
 }
 
+.ss-resume--continued .ss-body {
+    padding-top: 2mm;
+}
+
 .ss-body {
     flex: 1 1 auto;
     min-height: 0;

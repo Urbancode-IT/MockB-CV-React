@@ -85,30 +85,8 @@ export default function Header() {
                         <li>
                             <Link to="/cover-letter/templates" onClick={handleLinkClick}>Cover letter builder</Link>
                         </li>
-                        <li className={`has-mega-menu ${activeMenu === 'templates' ? 'active' : ''}`}>
-                            <button className="nav-toggle-btn" onClick={() => toggleMenu('templates')}>
-                                Templates <i className="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div className={`mega-menu ${activeMenu === 'templates' ? 'active' : ''}`}>
-                                <div className="container">
-                                    <div className="mega-menu-grid">
-                                        <Link to="/resume/templates" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-file-lines"></i></div>
-                                            <div className="item-text">
-                                                <h4>Resume Templates</h4>
-                                                <p>Explore our collection of professional resume templates.</p>
-                                            </div>
-                                        </Link>
-                                        <Link to="/cover-letter/templates" className="mega-menu-item" onClick={handleLinkClick}>
-                                            <div className="item-icon"><i className="fa-solid fa-envelope-open-text"></i></div>
-                                            <div className="item-text">
-                                                <h4>Cover Letter Templates</h4>
-                                                <p>Browse cover letter templates designed to get you hired.</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
+                        <li>
+                            <Link to="/portfolio-maker" onClick={handleLinkClick}>Portfolio maker</Link>
                         </li>
                         <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`}>
                             <button className="nav-toggle-btn" onClick={() => toggleMenu('languages')}>

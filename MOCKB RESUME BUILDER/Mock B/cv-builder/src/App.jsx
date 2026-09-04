@@ -20,6 +20,9 @@ import CoverLetterGuidelines from "./pages/CoverLetterGuidelines";
 import WhyPortfolio from "./pages/WhyPortfolio";
 
 import PortfolioBuilder from "./pages/PortfolioBuilder";
+import PortfolioMakerGallery from "./features/portfolio-maker/pages/PortfolioMakerGallery";
+import PortfolioMakerEditor from "./features/portfolio-maker/pages/PortfolioMakerEditor";
+import PortfolioMakerPreviewPage from "./features/portfolio-maker/pages/PortfolioMakerPreviewPage";
 import RoleBasedResumeBuilder from "./pages/RoleBasedResumeBuilder";
 import RoleBasedCoverLetterBuilder from "./pages/RoleBasedCoverLetterBuilder";
 import JDResumeBuilder from "./pages/JDResumeBuilder";
@@ -39,6 +42,9 @@ const router = createBrowserRouter([
             { path: "/about", element: <About /> },
             { path: "/login", element: <Login /> },
             { path: "/register", element: <Register /> },
+            { path: "/portfolio-maker", element: <PortfolioMakerGallery /> },
+            { path: "/portfolio-maker/preview/:templateId", element: <PortfolioMakerPreviewPage /> },
+            { path: "/portfolio-maker/edit/:templateId", element: <PortfolioMakerEditor /> },
             {
                 element: <ProtectedRoute />,
                 children: [

@@ -11,6 +11,7 @@ import Testimonials from '../components/home/testimonials/Testimonials';
 import TemplatesPromo from '../components/home/templates-promo/TemplatesPromo';
 import HowItWorks from '../components/home/how-it-works/HowItWorks';
 import UseCases from '../components/home/use-cases/UseCases';
+import PortfolioMakerSection from '../components/home/portfolio-maker/PortfolioMakerSection';
 import Footer from '../components/home/footer/Footer';
 
 export default function Home() {
@@ -56,6 +57,7 @@ export default function Home() {
       <main className="fade-in">
         <Hero />
         <TemplatesGallery />
+        <PortfolioMakerSection />
         <Features />
         <CoreFeatures />
         <CombinedFeatures />

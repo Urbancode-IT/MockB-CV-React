@@ -36,7 +36,9 @@ const GoldRule = ({ resumeData = {} }) => {
     const awards = visibleList(resumeData.awards, hidden.awards);
     const t = (id, fallback) => sectionTitle(resumeData, id, fallback);
     const lists = getPageSectionLists(resumeData, 'gold-rule');
-    const order = continued ? lists.page2 : lists.page1;
+    const pageIdx = Math.max(0, (resumeData.pageMeta?.page || 1) - 1);
+    const pageList = lists[`page${pageIdx + 1}`] || (continued ? lists.page2 : lists.page1);
+    const order = pageList;
 
     const Heading = ({ id, fallback }) => (
         <h2 className="gr-h">{t(id, fallback)}</h2>

@@ -593,10 +593,19 @@ export default function ResumeBuilder() {
                 ...prev,
                 pageSections: next.pageSections,
                 sectionOrder: next.sectionOrder,
+                pageEntrySlices: next.pageEntrySlices,
             };
         });
         setDraggedSection(null);
     };
+
+    const handleAutoPaginate = useCallback((next) => {
+        setResumeData((prev) => ({
+            ...prev,
+            pageSections: next.pageSections,
+            pageEntrySlices: next.pageEntrySlices,
+        }));
+    }, []);
 
     // ── Cleanup timer ──
     useEffect(() => {
@@ -786,6 +795,7 @@ export default function ResumeBuilder() {
                                 template={selectedTemplate}
                                 resumeData={resumeData}
                                 previewFocus={previewFocus}
+                                onAutoPaginate={handleAutoPaginate}
                             />
                         </div>
                     </div>

@@ -149,8 +149,8 @@ export const isOnePageTemplate = (id) => getTemplateById(id).onePage !== false;
 
 export const getTemplateMaxPages = (id) => {
     const meta = getTemplateById(id);
-    if (meta.onePage === false) return meta.maxPages || 2;
-    return 1;
+    // Content may spill across as many sheets as needed (soft-capped in pageLayout).
+    return Math.max(meta.maxPages || 2, 12);
 };
 
 export const TEMPLATE_BODY_ORDER = {
