@@ -467,51 +467,116 @@
 
 /* ── Mobile behavior ── */
 @media (max-width: 899px) {
+    .rb-main {
+        position: relative;
+    }
+
     .rb-panel-left,
     .rb-panel-left--templates,
     .rb-panel-left--customize,
     .rb-panel-left--customize-split {
         position: absolute;
         left: 0;
-        top: 52px;
+        top: 0;
         bottom: 0;
         z-index: 50;
         width: 100%;
         min-width: unset;
+        max-width: none;
         transform: translateX(0);
+        transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .rb-panel-left--hidden {
-        transform: translateX(-100%);
+        transform: translateX(-105%);
+        pointer-events: none;
     }
 
     .rb-panel-right {
         position: absolute;
-        right: 0;
-        top: 52px;
-        bottom: 0;
+        inset: 0;
         width: 100%;
-        opacity: 1;
-        pointer-events: auto;
-        transition: opacity 0.25s;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 40;
+        transition: opacity 0.25s ease;
     }
 
     .rb-panel-right--visible {
         opacity: 1;
         pointer-events: auto;
-        z-index: 50;
+        z-index: 55;
+    }
+
+    .rb-nav {
+        padding: 0 8px;
+        gap: 4px;
+    }
+
+    .rb-nav-logo span,
+    .rb-nav-logo {
+        font-size: 0.78rem;
+    }
+
+    .rb-nav-divider {
+        display: none;
     }
 
     .rb-nav-title-input {
-        max-width: 120px;
+        max-width: 88px;
+        font-size: 0.78rem;
+        padding: 4px 6px;
     }
 
-    .rb-nav-btn span {
+    .rb-nav-center {
+        gap: 2px;
+    }
+
+    .rb-nav-tab {
+        padding: 6px 8px;
+        min-width: 36px;
+    }
+
+    .rb-nav-btn {
+        padding: 6px 8px;
+        min-width: 36px;
+    }
+
+    .rb-nav-btn span,
+    .rb-json-pill {
         display: none;
     }
 
     .rb-nav-tab span {
         display: none;
+    }
+
+    .rb-nav-btn--icon {
+        display: inline-flex !important;
+    }
+
+    .rb-nav-btn--icon.is-active {
+        color: #D4C77A;
+        border-color: rgba(212, 199, 122, 0.55);
+        background: rgba(212, 199, 122, 0.12);
+    }
+
+    .rb-preview-scale-wrap {
+        transform: scale(0.36) translateZ(0);
+        margin-bottom: 0;
+    }
+
+    .rb-preview-scroll {
+        padding: 16px 8px 24px;
+    }
+
+    .rb-leave-actions {
+        flex-direction: column;
+    }
+
+    .rb-leave-actions .rb-nav-btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 

@@ -817,12 +817,13 @@
 
 /* Responsiveness adjustments */
 @media (max-width: 1024px) {
-    .hero h1 { font-size: 4rem; }
-    .features-grid, .feature-list { grid-template-columns: repeat(2, 1fr); }
-    .combined-features { padding: 4rem 2rem; gap: 4rem; }
-    .split-row { grid-template-columns: 1fr; gap: 3rem; }
-    .reverse-row { display: flex; flex-direction: column-reverse; }
-    .extra-large { font-size: 6rem !important; }
+    .hero { padding: 9rem 1.25rem 4rem; }
+    .hero h1 { font-size: clamp(2.6rem, 6vw, 4rem); }
+    .features-grid, .feature-list, .home-features-grid { grid-template-columns: repeat(2, 1fr); }
+    .combined-features, .home-combined-features { padding: 3.5rem 1.5rem; gap: 3rem; }
+    .split-row, .home-split-row { grid-template-columns: 1fr; gap: 2.5rem; }
+    .reverse-row, .home-reverse-row { display: flex; flex-direction: column-reverse; }
+    .extra-large { font-size: 5rem !important; }
     .bento-grid { grid-template-columns: repeat(2, 1fr); }
     .bento-large, .bento-wide { grid-column: span 2; }
     .reviews-grid { grid-template-columns: repeat(2, 1fr); }
@@ -830,26 +831,32 @@
 }
 
 @media (max-width: 768px) {
-    .hero h1 { font-size: 3rem; }
-    .features-grid, .feature-list { grid-template-columns: 1fr; }
-    .highlight-section { padding: 4rem 1.5rem; }
-    .highlight-section h2 { font-size: 2rem; }
-    .extra-large { font-size: 4rem !important; margin-bottom: 1rem !important; }
+    .hero { padding: 7.5rem 1rem 3.5rem; }
+    .hero h1 { font-size: clamp(2.1rem, 9vw, 2.8rem); }
+    .hero p { font-size: 1rem; margin-bottom: 2rem; padding: 0 0.25rem; }
+    .hero-actions { gap: 0.75rem; }
+    .hero-actions .btn { width: min(100%, 280px); }
+    .features-grid, .feature-list, .home-features-grid { grid-template-columns: 1fr; }
+    .highlight-section { padding: 3.5rem 1.25rem; border-radius: 24px; margin-inline: 0.75rem; }
+    .highlight-section h2 { font-size: 1.85rem; }
+    .extra-large { font-size: 3.2rem !important; margin-bottom: 1rem !important; }
     .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
     .bento-large, .bento-wide, .bento-medium, .bento-small {
         grid-column: span 1;
         grid-row: span 1;
-        min-height: 250px;
+        min-height: 220px;
     }
-    .section-header .section-title { font-size: 2.5rem; }
-    .steps-container { flex-direction: column; gap: 3rem; }
+    .section-header .section-title,
+    .home-section-header .home-section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .steps-container { flex-direction: column; gap: 2.5rem; }
     .steps-container::before { display: none; }
     .step-card { opacity: 1 !important; transform: none !important; }
-    .use-cases-header h2 { font-size: 2.2rem; }
-    .acc-title { font-size: 1.1rem; }
+    .use-cases-header h2 { font-size: 2rem; }
+    .acc-title { font-size: 1.05rem; }
     .acc-content { padding-left: 0; }
     .reviews-grid { grid-template-columns: 1fr; }
-    .testimonials-header h2 { font-size: 2rem; }
+    .testimonials-header h2 { font-size: 1.85rem; }
+    .container { padding-inline: 1rem; }
 }
 
 /* Animations */

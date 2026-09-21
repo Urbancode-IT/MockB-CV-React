@@ -7,6 +7,7 @@ import './Navbar.css';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [profileTick, setProfileTick] = useState(0);
   const headerRef = useRef(null);
   const navigate = useNavigate();
@@ -14,12 +15,20 @@ export default function Navbar() {
   const { user, logout } = useAuth();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setActiveMenu(null);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle('nav-mobile-lock', mobileOpen);
+    return () => document.body.classList.remove('nav-mobile-lock');
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,7 +42,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') setActiveMenu(null);
+      if (event.key === 'Escape') {
+        setActiveMenu(null);
+        setMobileOpen(false);
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
@@ -64,31 +76,59 @@ export default function Navbar() {
     setActiveMenu(activeMenu === menuName ? null : menuName);
   };
 
-  const handleLinkClick = () => setActiveMenu(null);
+  const closeAll = () => {
+    setActiveMenu(null);
+    setMobileOpen(false);
+  };
 
   const handleLogout = async () => {
+    closeAll();
     await logout();
     navigate('/login');
   };
 
   return (
-    <header ref={headerRef} id="header" className={isScrolled ? 'scrolled' : ''}>
+    <header
+      ref={headerRef}
+      id="header"
+      className={`${isScrolled ? 'scrolled' : ''}${mobileOpen ? ' mobile-nav-open' : ''}`}
+    >
       <div className="container">
         <nav>
-          <Link to="/" className="logo" onClick={handleLinkClick}>
+          <Link to="/" className="logo" onClick={closeAll}>
             <i className="fa-solid fa-bee logo-icon"></i>
             <span>MockB CV</span>
           </Link>
-          <ul className="nav-links">
-            <li><Link to="/" onClick={handleLinkClick}>Home</Link></li>
+
+          <button
+            type="button"
+            className={`nav-hamburger${mobileOpen ? ' is-open' : ''}`}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="primary-nav"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <div
+            className={`nav-scrim${mobileOpen ? ' is-visible' : ''}`}
+            onClick={closeAll}
+            aria-hidden="true"
+          />
+
+          <ul id="primary-nav" className={`nav-links${mobileOpen ? ' mobile-open' : ''}`}>
+            <li><Link to="/" onClick={closeAll}>Home</Link></li>
             <li>
-              <Link to="/resume/templates" onClick={handleLinkClick}>Resume builder</Link>
+              <Link to="/resume/templates" onClick={closeAll}>Resume builder</Link>
             </li>
             <li>
-              <Link to="/cover-letter/templates" onClick={handleLinkClick}>Cover letter builder</Link>
+              <Link to="/cover-letter/templates" onClick={closeAll}>Cover letter builder</Link>
             </li>
             <li>
-              <Link to="/portfolio-maker" onClick={handleLinkClick}>Portfolio maker</Link>
+              <Link to="/portfolio-maker" onClick={closeAll}>Portfolio maker</Link>
             </li>
             <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`} id="lang-menu-parent">
               <a href="#!" id="languages-trigger" onClick={(e) => toggleMenu(e, 'languages')}>
@@ -97,15 +137,15 @@ export default function Navbar() {
               <div className={`mega-menu ${activeMenu === 'languages' ? 'active' : ''}`} id="languages-mega-menu">
                 <div className="container">
                   <div className="mega-menu-grid">
-                    <a href="#!" onClick={(e) => { e.preventDefault(); handleLinkClick(); if (window.changeLanguage) window.changeLanguage('en'); }} className="mega-menu-item">
+                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('en'); }} className="mega-menu-item">
                       <div className="item-icon"><i className="fa-solid fa-language"></i></div>
                       <div className="item-text"><h4>English</h4></div>
                     </a>
-                    <a href="#!" onClick={(e) => { e.preventDefault(); handleLinkClick(); if (window.changeLanguage) window.changeLanguage('fr'); }} className="mega-menu-item">
+                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('fr'); }} className="mega-menu-item">
                       <div className="item-icon"><i className="fa-solid fa-language"></i></div>
                       <div className="item-text"><h4>French</h4></div>
                     </a>
-                    <a href="#!" onClick={(e) => { e.preventDefault(); handleLinkClick(); if (window.changeLanguage) window.changeLanguage('es'); }} className="mega-menu-item">
+                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('es'); }} className="mega-menu-item">
                       <div className="item-icon"><i className="fa-solid fa-language"></i></div>
                       <div className="item-text"><h4>Spanish</h4></div>
                     </a>
@@ -113,15 +153,30 @@ export default function Navbar() {
                 </div>
               </div>
             </li>
-            <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
+            <li><Link to="/about" onClick={closeAll}>About</Link></li>
+
+            <li className="nav-mobile-auth">
+              {user ? (
+                <>
+                  <Link to="/dashboard" className="btn btn-outline-auth" onClick={closeAll}>Dashboard</Link>
+                  <button type="button" className="btn btn-primary" onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="btn btn-outline-auth" onClick={closeAll}>Login</Link>
+                  <Link to="/register" className="btn btn-primary" onClick={closeAll}>Sign up</Link>
+                </>
+              )}
+            </li>
           </ul>
+
           <div className="nav-actions">
             {user ? (
               <>
                 <Link
                   to="/dashboard"
                   className="nav-profile"
-                  onClick={handleLinkClick}
+                  onClick={closeAll}
                   title={displayName}
                   aria-label={`${displayName} dashboard`}
                 >
@@ -131,19 +186,19 @@ export default function Navbar() {
                     <span className="nav-profile-avatar nav-profile-avatar--fallback">{initial}</span>
                   )}
                 </Link>
-                <Link to="/dashboard" className="btn btn-outline-auth" onClick={handleLinkClick}>
+                <Link to="/dashboard" className="btn btn-outline-auth nav-actions-desktop" onClick={closeAll}>
                   Dashboard
                 </Link>
-                <button type="button" className="btn btn-primary" onClick={handleLogout}>
+                <button type="button" className="btn btn-primary nav-actions-desktop" onClick={handleLogout}>
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" className="btn btn-outline-auth" onClick={handleLinkClick}>
+                <Link to="/login" className="btn btn-outline-auth nav-actions-desktop" onClick={closeAll}>
                   Login
                 </Link>
-                <Link to="/register" className="btn btn-primary" onClick={handleLinkClick}>
+                <Link to="/register" className="btn btn-primary nav-actions-desktop" onClick={closeAll}>
                   Sign up
                 </Link>
               </>

@@ -5,7 +5,7 @@
 
 .templates-section h2 {
     font-size: 3rem;
-    color: #FFFFFF;
+    color: var(--primary-color);
 }
 
 .templates-section .split-row {

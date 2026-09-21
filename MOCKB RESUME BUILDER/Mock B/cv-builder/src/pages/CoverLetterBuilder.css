@@ -58,3 +58,19 @@
     }
 }
 
+@media (max-width: 899px) {
+    .rb-panel-left--customize-letter {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .cl-customize .cz-row,
+    .cl-customize .cl-font-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cl-customize .cl-swatch-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+

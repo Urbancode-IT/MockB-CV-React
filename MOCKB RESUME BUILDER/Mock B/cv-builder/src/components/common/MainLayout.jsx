@@ -28,9 +28,9 @@ export default function MainLayout() {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div className="main-layout">
             <Navbar />
-            <div style={{ flex: '1 0 auto', paddingTop: '80px' }}>
+            <div className="main-layout__content">
                 <Outlet />
             </div>
             <HomeFooter />

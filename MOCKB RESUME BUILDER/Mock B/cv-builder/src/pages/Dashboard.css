@@ -438,7 +438,32 @@
 }
 
 @media (max-width: 720px) {
+    .ud-page {
+        padding: 0 12px 48px;
+    }
+
+    .ud-top {
+        padding: 16px 0;
+        gap: 10px;
+    }
+
+    .ud-brand {
+        font-size: 1rem;
+    }
+
     .ud-user {
         display: none;
+    }
+
+    .ud-top-actions {
+        gap: 0.45rem;
+    }
+
+    .ud-work-row {
+        flex-wrap: wrap;
+    }
+
+    .ud-work-main {
+        flex: 1 1 100%;
     }
 }

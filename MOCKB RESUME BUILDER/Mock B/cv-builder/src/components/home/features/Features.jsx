@@ -11,11 +11,6 @@ export default function Features() {
           <p>Choose from one-page and two-page resume designs, plus matching cover letter layouts built for real hiring workflows.</p>
         </div>
         <div className="home-feature-card">
-          <div className="home-feature-icon"><i className="fa-solid fa-file-code"></i></div>
-          <h3>AI-ready JSON import</h3>
-          <p>Copy a live JSON schema from your resume, paste it into any AI with your details, then upload the result into the builder.</p>
-        </div>
-        <div className="home-feature-card">
           <div className="home-feature-icon"><i className="fa-solid fa-pen-ruler"></i></div>
           <h3>Live Resume Builder</h3>
           <p>Edit every section with a side-by-side preview. Reorder content, adjust fonts, colors, spacing, and page layout as you go.</p>

@@ -35,11 +35,17 @@ export default function Header() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    useEffect(() => {
+        document.body.classList.toggle('nav-mobile-lock', isMobileOpen);
+        return () => document.body.classList.remove('nav-mobile-lock');
+    }, [isMobileOpen]);
+
     // Close menus on Escape key
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
                 setActiveMenu(null);
+                setIsMobileOpen(false);
             }
         };
         document.addEventListener('keydown', handleKeyDown);
@@ -69,11 +75,17 @@ export default function Header() {
                         <span>MockB CV</span>
                     </Link>
 
-                    <div className="hamburger" onClick={() => setIsMobileOpen(!isMobileOpen)}>
-                        <span style={{ transform: isMobileOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></span>
+                    <button
+                        type="button"
+                        className="hamburger"
+                        aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isMobileOpen}
+                        onClick={() => setIsMobileOpen(!isMobileOpen)}
+                    >
+                        <span style={{ transform: isMobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }}></span>
                         <span style={{ opacity: isMobileOpen ? 0 : 1 }}></span>
-                        <span style={{ transform: isMobileOpen ? 'rotate(-45deg) translate(7px, -7px)' : 'none' }}></span>
-                    </div>
+                        <span style={{ transform: isMobileOpen ? 'translateY(-7px) rotate(-45deg)' : 'none' }}></span>
+                    </button>
 
                     <ul className={`nav-links ${isMobileOpen ? 'mobile-open' : ''}`}>
                         <li>

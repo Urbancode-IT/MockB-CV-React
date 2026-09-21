@@ -663,7 +663,7 @@ export default function ResumeBuilder() {
                 <div className="rb-nav-center">
                     <button
                         className={`rb-nav-tab ${activePanel === 'editor' ? 'rb-nav-tab--active' : ''}`}
-                        onClick={() => setActivePanel('editor')}
+                        onClick={() => { setActivePanel('editor'); setShowMobilePreview(false); }}
                         id="rb-tab-editor"
                     >
                         <i className="fa-solid fa-pen-to-square"></i>
@@ -671,7 +671,7 @@ export default function ResumeBuilder() {
                     </button>
                     <button
                         className={`rb-nav-tab ${activePanel === 'customize' ? 'rb-nav-tab--active' : ''}`}
-                        onClick={() => setActivePanel('customize')}
+                        onClick={() => { setActivePanel('customize'); setShowMobilePreview(false); }}
                         id="rb-tab-customize"
                     >
                         <i className="fa-solid fa-sliders"></i>
@@ -679,7 +679,7 @@ export default function ResumeBuilder() {
                     </button>
                     <button
                         className={`rb-nav-tab ${activePanel === 'templates' ? 'rb-nav-tab--active' : ''}`}
-                        onClick={() => setActivePanel('templates')}
+                        onClick={() => { setActivePanel('templates'); setShowMobilePreview(false); }}
                         id="rb-tab-templates"
                     >
                         <i className="fa-solid fa-table-cells-large"></i>
@@ -690,12 +690,13 @@ export default function ResumeBuilder() {
                 <div className="rb-nav-right">
                     {/* Mobile preview toggle */}
                     <button
-                        className="rb-nav-btn rb-nav-btn--icon"
+                        className={`rb-nav-btn rb-nav-btn--icon${showMobilePreview ? ' is-active' : ''}`}
                         onClick={() => setShowMobilePreview(p => !p)}
-                        title="Toggle Preview"
+                        title={showMobilePreview ? 'Back to editor' : 'Preview resume'}
+                        aria-pressed={showMobilePreview}
                         id="rb-toggle-preview"
                     >
-                        <i className="fa-solid fa-eye"></i>
+                        <i className={`fa-solid ${showMobilePreview ? 'fa-pen-to-square' : 'fa-eye'}`}></i>
                     </button>
 
                     {/* Upload JSON */}

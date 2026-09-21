@@ -1,8 +1,8 @@
 /* CoverLetterTemplates.css */
 .clt-page { background: var(--bg-dark); color: var(--text-white); min-height: 100vh; }
 .clt-hero { padding: 7rem 0 4rem; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(212, 199, 122,0.1) 0%, transparent 65%); }
-.clt-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; margin-bottom: 1rem; }
-.clt-hero h1 span { color: var(--primary-color); }
+.clt-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; margin-bottom: 1rem; color: var(--primary-color); }
+.clt-hero h1 span { color: var(--primary-gold-light, #F3E5A8); }
 .clt-hero p { color: var(--text-gray); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
 .clt-stats { display: flex; justify-content: center; align-items: center; gap: 0; }
 .cs { padding: 0 2rem; text-align: center; }

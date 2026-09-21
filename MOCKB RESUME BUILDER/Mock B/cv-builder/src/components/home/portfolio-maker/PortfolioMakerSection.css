@@ -190,5 +190,16 @@
 
   .pm-home-preview {
     justify-self: center;
+    width: min(100%, 360px);
+  }
+}
+
+@media (max-width: 560px) {
+  .pm-home-section {
+    padding-inline: 1rem;
+  }
+
+  .pm-home-copy h2 {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
   }
 }

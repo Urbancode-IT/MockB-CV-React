@@ -59,7 +59,7 @@
     letter-spacing: -1px;
     line-height: 1.2;
     margin-bottom: 1rem;
-    color: var(--text-white);
+    color: var(--primary-color);
 }
 
 .cover-guidelines-page .section-title-wrapper p {

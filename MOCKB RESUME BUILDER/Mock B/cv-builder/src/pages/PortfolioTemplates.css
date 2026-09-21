@@ -82,3 +82,36 @@
   overflow: auto;
   max-height: calc(100vh - 180px);
 }
+
+@media (max-width: 720px) {
+  .portfolio-templates-page .rt-hero {
+    padding: 5.5rem 1rem 2.5rem;
+  }
+
+  .pt-preview-modal {
+    padding: 0.5rem;
+    align-items: stretch;
+  }
+
+  .pt-preview-dialog {
+    max-height: calc(100dvh - 1rem);
+    border-radius: 12px;
+  }
+
+  .pt-preview-header,
+  .pt-preview-footer {
+    padding: 0.85rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .pt-preview-body {
+    max-height: calc(100dvh - 160px);
+  }
+
+  .pt-thumb-scale {
+    transform: scale(0.5);
+    width: 200%;
+    margin-left: -50%;
+  }
+}

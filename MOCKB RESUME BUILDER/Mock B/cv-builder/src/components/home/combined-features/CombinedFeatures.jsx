@@ -1,29 +1,68 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { sampleForTemplate } from '../../../data/sampleResumeData';
+import ResumeTemplateThumb from '../../resume/ResumeTemplateThumb';
 import './CombinedFeatures.css';
+import '../../../pages/ResumeTemplates.css';
+
+const SHOWCASE = [
+  { id: 'classic-professional', label: '1 page', caption: 'Classic Professional' },
+  { id: 'career-detail', label: '2 page', caption: 'Career Detail' },
+  { id: 'portrait-profile', label: '2 column', caption: 'Portrait Profile' },
+  { id: 'structured-split', label: 'Split', caption: 'Structured Split' },
+];
+
+function TemplateShowcase() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setActive((n) => (n + 1) % SHOWCASE.length);
+    }, 2800);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <div className="cf-thumbs-panel">
+      <div className="cf-thumbs-grid">
+        {SHOWCASE.map((item, index) => (
+          <button
+            key={item.id}
+            type="button"
+            className={`cf-thumb-card${active === index ? ' is-active' : ''}`}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onClick={() => setActive(index)}
+          >
+            <span className="cf-thumb-badge">{item.label}</span>
+            <div className="cf-thumb-frame rt-preview-box">
+              <ResumeTemplateThumb
+                template={item.id}
+                resumeData={sampleForTemplate(item.id)}
+              />
+            </div>
+            <span className="cf-thumb-caption">{item.caption}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function CombinedFeatures() {
   return (
     <section className="container">
       <div className="home-combined-features">
-        <div className="home-split-row">
-          <div className="home-split-content">
-            <h2>Build resumes with live preview</h2>
-            <p>Pick a template, fill in your details, and watch the resume update in real time. Customize fonts, colors, spacing, and section order before you download.</p>
-            <Link to="/resume/customizer" className="home-btn-white">Open resume builder</Link>
-          </div>
-          <div className="home-split-image">
-            <img src="/images/interface.png" alt="Resume builder interface" />
-          </div>
-        </div>
-
         <div className="home-split-row home-reverse-row">
-          <div className="home-split-image">
-            <img src="/images/templates.png" alt="Resume templates" />
+          <div className="home-split-image home-split-image--thumbs">
+            <TemplateShowcase />
           </div>
           <div className="home-split-content">
             <h2>One-page and two-page templates</h2>
-            <p>Browse professional resume and cover letter templates, preview them at full size, and start with sample content or a blank page.</p>
+            <p>
+              Browse resume and cover letter templates, preview them at full size,
+              then start with sample content or a blank page.
+            </p>
             <Link to="/resume/templates" className="home-btn-white">Browse templates</Link>
           </div>
         </div>
