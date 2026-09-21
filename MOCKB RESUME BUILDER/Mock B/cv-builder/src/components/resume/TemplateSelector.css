@@ -80,6 +80,17 @@
 .ts-preview-scale {
     width: 210mm;
     height: 297mm;
+    overflow: hidden;
+    transform-origin: top left;
+    transform: scale(calc(100cqi / 210mm));
+    pointer-events: none;
+}
+
+/* ResumeTemplateThumb uses this class inside the selector cards. */
+.ts-preview-wrap .rt-preview-scale-wrapper {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
     transform-origin: top left;
     transform: scale(calc(100cqi / 210mm));
     pointer-events: none;
@@ -89,7 +100,26 @@
 .ts-preview-scale .pp-resume,
 .ts-preview-scale .cp-resume,
 .ts-preview-scale .ss-resume,
-.ts-preview-scale .cm-resume {
+.ts-preview-scale .cm-resume,
+.ts-preview-scale .cd-resume,
+.ts-preview-scale .ns-resume,
+.ts-preview-scale .gr-resume,
+.ts-preview-scale .fg-resume,
+.ts-preview-scale .ce-resume,
+.ts-preview-scale .ib-resume,
+.ts-preview-scale .dr-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .resume-design-wrapper,
+.ts-preview-wrap .rt-preview-scale-wrapper .pp-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .cp-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .ss-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .cm-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .cd-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .ns-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .gr-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .fg-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .ce-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .ib-resume,
+.ts-preview-wrap .rt-preview-scale-wrapper .dr-resume {
     max-height: 297mm !important;
     min-height: 297mm !important;
     overflow: hidden !important;

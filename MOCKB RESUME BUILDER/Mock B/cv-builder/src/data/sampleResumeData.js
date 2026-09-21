@@ -7,7 +7,7 @@
 // ======================================
 
 import { ALL_BODY_SECTIONS } from '../config/pageLayout';
-import { getTemplateById, isTwoColumnTemplate } from '../config/templates';
+import { getTemplateById, isOnePageTemplate, isTwoColumnTemplate } from '../config/templates';
 
 const sampleResumeData = {
     personal: {
@@ -943,11 +943,8 @@ const TEMPLATE_SAMPLES = {
             },
         ],
         pageSections: {
-            page1: [
-                'summary', 'experience', 'education', 'skills', 'projects', 'certifications',
-                'languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references',
-            ],
-            page2: [],
+            page1: ['summary', 'experience', 'education', 'skills', 'projects', 'certifications'],
+            page2: ['languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references'],
         },
         sectionTitles: {
             summary: "About",
@@ -1142,11 +1139,8 @@ const TEMPLATE_SAMPLES = {
             },
         ],
         pageSections: {
-            page1: [
-                'summary', 'experience', 'education', 'skills', 'projects', 'certifications',
-                'languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references',
-            ],
-            page2: [],
+            page1: ['summary', 'experience', 'education', 'skills', 'projects', 'certifications'],
+            page2: ['languages', 'courses', 'awards', 'organisations', 'publications', 'interests', 'references'],
         },
         sectionTitles: {
             summary: "Profile",
@@ -1177,136 +1171,133 @@ const TEMPLATE_SAMPLES = {
     },
     "gold-rule": {
         personal: {
-            name: "Meera Krishnan",
-            jobTitle: "Power BI Developer – 6+ years",
-            email: "meera.krishnan@workmail.in",
-            phone: "+91 98401 22876",
-            location: "Bengaluru",
+            name: "Arjun Malhotra",
+            jobTitle: "Analytics Engineer – 7+ years",
+            email: "arjun.malhotra@workmail.in",
+            phone: "+91 98120 44765",
+            location: "Hyderabad",
             website: "",
-            linkedin: "linkedin.com/in/meerakrishnan",
+            linkedin: "linkedin.com/in/arjunmalhotra",
             github: "",
         },
         summary:
-            "Power BI developer who turns messy warehouse tables into reports that a manager can read without a walkthrough. I have built semantic models and service workspaces for finance, supply chain, and HR, and I look for teams that treat a dataset as a product.",
+            "Analytics engineer who builds warehouse-ready models and clear decision packs for product and finance. I have shipped dbt pipelines, Looker explores, and executive scorecards for growth and ops teams that need numbers they can defend.",
         profileBullets: [
-            "Owned semantic models used weekly by finance and operations leadership.",
-            "Built incremental refresh and row-level security for a 40-million-row fact table.",
-            "Trained analysts to self-serve in Power BI Service without opening a ticket.",
-            "Cut a 12-file Excel pack into one workspace with certified datasets.",
-            "Partnered with SQL and Snowflake owners so DAX stayed thin and correct.",
-            "Wrote deployment pipelines so a certified dataset reached UAT without a weekend copy.",
-            "Documented a model guide that new joiners could use without a live walkthrough.",
+            "Owned the core revenue mart used in weekly leadership reviews.",
+            "Cut ad-hoc SQL tickets by publishing certified Looker explores with tests.",
+            "Moved a brittle spreadsheet pack onto a scheduled warehouse job.",
+            "Partnered with finance so margin definitions stayed consistent across teams.",
+            "Added data tests that catch broken joins before the Monday pack goes out.",
+            "Documented a metrics dictionary new analysts can use without a live walkthrough.",
+            "Ran a small enablement clinic so PMs pull their own cohort views safely.",
         ],
         competencies: [
-            "Semantic modelling",
-            "DAX and Power Query",
-            "Row-level security",
-            "Power BI Service administration",
-            "SQL (Oracle, Snowflake)",
+            "Dimensional modelling",
+            "dbt and SQL",
+            "Looker / LookML",
+            "Warehouse performance",
+            "Metrics definitions",
             "Stakeholder workshops",
-            "Incremental refresh",
-            "Certified datasets",
+            "Data testing",
+            "Executive scorecards",
         ],
         education: [
             {
-                institution: "VIT University",
-                degree: "B.Tech",
-                field: "Computer Science & Engineering",
-                startYear: "2014",
-                endYear: "2018",
-                location: "Vellore",
+                institution: "BITS Pilani",
+                degree: "B.E.",
+                field: "Computer Science",
+                startYear: "2013",
+                endYear: "2017",
+                location: "Hyderabad",
             },
             {
-                institution: "Anna University",
-                degree: "M.E.",
-                field: "Computer Science",
-                startYear: "2018",
-                endYear: "2020",
-                location: "Chennai",
+                institution: "IIIT Hyderabad",
+                degree: "M.Tech",
+                field: "Data Science",
+                startYear: "2017",
+                endYear: "2019",
+                location: "Hyderabad",
             },
         ],
         skills: [
-            { name: "Power BI Desktop", detail: "Star-schema models, composite models, and performance analyser for large fact tables." },
-            { name: "Power Query Editor", detail: "Parameterized queries, incremental patterns, and clean staging before DAX." },
-            { name: "DAX Functions", detail: "Time intelligence, iterators, and calculation groups used in finance packs." },
-            { name: "Data Visualization", detail: "Executive pages that answer one question each, not a dashboard of charts." },
-            { name: "Power BI Service", detail: "Workspaces, apps, deployment pipelines, and certified datasets." },
-            { name: "SQL (Oracle, Snowflake)", detail: "Source queries that keep DAX thin and refresh times predictable." },
-            { name: "Microsoft Excel", detail: "Power Query and pivot packs used as a fallback for teams not yet on Service." },
-            { name: "Git / deployment pipelines", detail: "Promoting a dataset from Dev to Test without a weekend file copy." },
+            { name: "SQL & dbt", detail: "Marts, incremental models, and tests that keep leadership packs stable overnight." },
+            { name: "Looker / LookML", detail: "Explores and dashboards that answer one decision each, not a wall of charts." },
+            { name: "Python", detail: "Light ETL helpers and validation scripts around warehouse jobs." },
+            { name: "Data visualization", detail: "Scorecards for product and finance with clear owners and definitions." },
+            { name: "Snowflake / BigQuery", detail: "Cost-aware models and scheduled refreshes for weekly packs." },
+            { name: "Git & CI", detail: "Pull-request reviews and model tests before anything hits production." },
+            { name: "Excel / Sheets", detail: "Fallback packs for teams still moving off local files." },
+            { name: "Stakeholder enablement", detail: "Short clinics so PMs and analysts self-serve without breaking definitions." },
         ],
         experience: [
             {
-                company: "Lumen Analytics",
-                role: "Business Analyst",
-                startDate: "Jun 2024",
+                company: "Brightlane Commerce",
+                role: "Analytics Engineer",
+                startDate: "May 2023",
                 endDate: "Present",
-                location: "Bengaluru",
+                location: "Hyderabad",
                 description:
-                    "Own the weekly ops pack for a 90-person product org, from semantic model to Service app.\nRun a Monday review that finance and CS can sit through without a pre-read.\nKey Contribution: Cut first-response reporting from a 14-file Excel pack to one certified dataset.",
+                    "Own the revenue and funnel marts that feed the Monday leadership scorecard.\nPartner with product and finance on one set of margin and retention definitions.\nKey Contribution: Replaced a 10-file spreadsheet pack with a tested dbt project and Looker app.",
             },
             {
-                company: "Harbor Data, Bengaluru",
-                role: "Power BI Trainer",
-                startDate: "Aug 2020",
-                endDate: "Apr 2024",
+                company: "Orbit Payments",
+                role: "Data Analyst",
+                startDate: "Jul 2019",
+                endDate: "Apr 2023",
                 location: "Bengaluru",
                 description:
-                    "Designed a six-week clinic that took analysts from Excel dumps to a published app.\nCoached three cohorts on DAX that would still refresh overnight.\nKey Contribution: 40 analysts shipped a workspace without opening a developer ticket.",
+                    "Built payment success and settlement views used by ops and risk every morning.\nWrote SQL that survived source schema changes without a weekend fire drill.\nKey Contribution: Cut investigation time for failed batches from hours to a single explore.",
             },
             {
-                company: "Northline Tech, Bengaluru",
-                role: "Power BI Developer",
-                startDate: "Nov 2018",
-                endDate: "Aug 2020",
-                location: "Bengaluru",
+                company: "Cedar Retail Labs",
+                role: "Junior Data Analyst",
+                startDate: "Jun 2017",
+                endDate: "Jun 2019",
+                location: "Chennai",
                 description:
-                    "Built sales and inventory models on Oracle extracts for a regional retail desk.\nWrote Power Query that survived a source-column rename without a fire drill.\nPartnered with store ops so the pack landed before the Monday huddle.\nKey Contribution: Weekend stockout pack adopted by 28 stores as the Monday default.",
+                    "Supported store and category reporting for a regional retail desk.\nAutomated a weekly stock exception file that ops could read without a walkthrough.\nKey Contribution: Exception pack adopted by 22 stores as the Monday default.",
             },
         ],
         certifications: [
-            { name: "PL-300 Power BI Data Analyst", issuer: "Microsoft", date: "2022" },
-            { name: "DA-100 (legacy)", issuer: "Microsoft", date: "2021" },
-            { name: "Snowflake Hands-on Essentials", issuer: "Snowflake", date: "2023" },
+            { name: "dbt Analytics Engineering", issuer: "dbt Labs", date: "2023" },
+            { name: "Google Data Analytics", issuer: "Google", date: "2021" },
+            { name: "Snowflake Hands-on Essentials", issuer: "Snowflake", date: "2022" },
         ],
         projects: [
             {
-                name: "Finance certified dataset",
-                date: "2024 – Present",
-                description: "One semantic model for P&L and cash, published as a certified dataset so FP&A stopped maintaining a shadow Excel cube.",
+                name: "Leadership scorecard mart",
+                date: "2023 – Present",
+                description: "One tested revenue mart and Looker app so FP&A and product stopped maintaining shadow spreadsheets.",
             },
             {
-                name: "Store exception workspace",
-                date: "2019 – 2020",
-                description: "Inventory and stockout app for 28 stores, refreshed overnight from Oracle with a simple RLS map by region.",
+                name: "Settlement exception explore",
+                date: "2020 – 2022",
+                description: "Morning view of failed payment batches with owner and retry status for a 40-person ops desk.",
             },
         ],
         awards: [
             {
-                name: "Internal analytics prize",
-                issuer: "Lumen Analytics",
-                date: "2025",
-                description: "For replacing the 14-file ops pack with one Service app.",
+                name: "Data quality award",
+                issuer: "Brightlane Commerce",
+                date: "2024",
+                description: "For the tested mart that removed the spreadsheet pack from Monday reviews.",
             },
             {
-                name: "Trainer of the year",
-                issuer: "Harbor Data",
-                date: "2022",
-                description: "Clinic completion rate above 90 percent across three cohorts.",
+                name: "Ops partner award",
+                issuer: "Orbit Payments",
+                date: "2021",
+                description: "Given after settlement explores cut morning triage time in half.",
             },
         ],
         languages: [
             { name: "English", proficiency: "Professional" },
-            { name: "Tamil", proficiency: "Native" },
-            { name: "Kannada", proficiency: "Conversational" },
+            { name: "Hindi", proficiency: "Native" },
+            { name: "Telugu", proficiency: "Conversational" },
         ],
         courses: [],
         pageSections: {
-            page1: [
-                'summary', 'education', 'certifications', 'languages',
-                'skills', 'experience', 'projects', 'awards',
-            ],
-            page2: [],
+            page1: ['summary', 'education', 'certifications', 'languages'],
+            page2: ['skills', 'experience', 'projects', 'awards'],
         },
         sectionTitles: {
             summary: "Profile",
@@ -1330,6 +1321,823 @@ const TEMPLATE_SAMPLES = {
         },
         themeColor: "#C9A227",
     },
+    "role-frontend": {
+        personal: {
+            name: "Diya Menon",
+            jobTitle: "Frontend Developer",
+            email: "diya.menon@workmail.in",
+            phone: "+91 98765 44120",
+            location: "Bengaluru, India",
+            website: "diyamenon.dev",
+            linkedin: "linkedin.com/in/diyamenon",
+            github: "github.com/diyamenon",
+        },
+        summary:
+            "Frontend developer who ships accessible React interfaces and keeps design systems tidy. I partner with design and backend so product changes land without surprise regressions, and I care about measurable load times as much as clean components.",
+        experience: [
+            {
+                company: "PixelForge Labs",
+                role: "Frontend Developer",
+                startDate: "Mar 2022",
+                endDate: "Present",
+                location: "Bengaluru",
+                description:
+                    "Built React + TypeScript screens for a B2B dashboard used by 8k weekly active users.\nCut LCP on the home route by 32% with route-level code splitting and image budgets.\nOwned Storybook coverage for shared button, form, and table primitives across three squads.",
+            },
+            {
+                company: "Northwave Soft",
+                role: "UI Engineer",
+                startDate: "Jul 2020",
+                endDate: "Feb 2022",
+                location: "Kochi",
+                description:
+                    "Implemented design tokens and responsive layouts for a marketing site and app shell.\nStabilized visual regressions with Testing Library checks before each release train.\nMigrated class components to hooks without a customer-facing downtime window.",
+            },
+            {
+                company: "Campus Labs",
+                role: "Frontend Intern",
+                startDate: "Jan 2020",
+                endDate: "Jun 2020",
+                location: "Kochi",
+                description:
+                    "Shipped a student portal module in React and documented the handoff for full-time engineers.",
+            },
+        ],
+        education: [
+            {
+                institution: "NIT Calicut",
+                degree: "B.Tech",
+                field: "Computer Science",
+                startYear: "2016",
+                endYear: "2020",
+                location: "Kozhikode",
+            },
+        ],
+        skills: [
+            { name: "React / TypeScript", level: "Expert" },
+            { name: "HTML / CSS / Tailwind", level: "Expert" },
+            { name: "Next.js", level: "Proficient" },
+            { name: "Redux / Zustand", level: "Proficient" },
+            { name: "Testing Library / Jest", level: "Proficient" },
+            { name: "Figma handoff", level: "Proficient" },
+        ],
+        projects: [
+            {
+                name: "Design system kit",
+                description: "Shared React component library with tokens, docs, and Storybook examples for three product squads.",
+                technologies: ["React", "Storybook", "TypeScript"],
+            },
+            {
+                name: "Checkout polish",
+                description: "Rebuilt a multi-step checkout with clearer validation and keyboard flows; raised completion by 9%.",
+                technologies: ["React", "Zustand"],
+            },
+        ],
+        certifications: [
+            { name: "Meta Front-End Developer", issuer: "Coursera", date: "2023" },
+            { name: "Web Accessibility", issuer: "edX", date: "2022" },
+        ],
+        courses: [
+            { name: "Advanced React Patterns", institution: "Frontend Masters", date: "2023" },
+        ],
+        awards: [
+            { name: "Hack week winner", issuer: "PixelForge Labs", date: "2024", description: "For the checkout polish that raised completion." },
+        ],
+        interests: [
+            { name: "Open source UI kits" },
+            { name: "Web performance" },
+            { name: "Design systems" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Malayalam", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#2563EB",
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+        },
+        themeColor: "#2563EB",
+    },
+    "role-backend": {
+        personal: {
+            name: "Vikram Rao",
+            jobTitle: "Backend Developer",
+            email: "vikram.rao@workmail.in",
+            phone: "+91 98200 77341",
+            location: "Hyderabad, India",
+            website: "vikramrao.dev",
+            linkedin: "linkedin.com/in/vikramrao",
+            github: "github.com/vikramrao",
+        },
+        summary:
+            "Backend developer focused on reliable APIs, clear data models, and calm incident response. I ship services that stay readable when traffic and team size both grow, with tests and runbooks that on-call can trust.",
+        experience: [
+            {
+                company: "Ledgerly Systems",
+                role: "Backend Developer",
+                startDate: "Jan 2021",
+                endDate: "Present",
+                location: "Hyderabad",
+                description:
+                    "Owned Node.js / PostgreSQL services for billing events processing ~2M events/day.\nAdded idempotent consumers and dead-letter handling that cut retry storms during peaks.\nWrote runbooks so on-call engineers could recover without a senior on the call.",
+            },
+            {
+                company: "Cloudspan",
+                role: "Software Engineer",
+                startDate: "Jun 2018",
+                endDate: "Dec 2020",
+                location: "Pune",
+                description:
+                    "Built REST and gRPC APIs for partner integrations with contract tests.\nIntroduced schema reviews that caught breaking changes before staging.\nReduced p95 latency on the read path by adding Redis caching for hot keys.",
+            },
+            {
+                company: "SoftNest",
+                role: "Junior Backend Engineer",
+                startDate: "Jul 2017",
+                endDate: "May 2018",
+                location: "Hyderabad",
+                description:
+                    "Maintained internal auth services and added audit logs for admin actions.",
+            },
+        ],
+        education: [
+            {
+                institution: "IIIT Hyderabad",
+                degree: "B.Tech",
+                field: "Computer Science",
+                startYear: "2014",
+                endYear: "2018",
+                location: "Hyderabad",
+            },
+        ],
+        skills: [
+            { name: "Node.js / TypeScript", level: "Expert" },
+            { name: "PostgreSQL / Redis", level: "Expert" },
+            { name: "System design", level: "Proficient" },
+            { name: "Kafka / queues", level: "Proficient" },
+            { name: "Docker / Kubernetes", level: "Proficient" },
+            { name: "gRPC / OpenAPI", level: "Proficient" },
+        ],
+        projects: [
+            {
+                name: "Event settlement service",
+                description: "Idempotent billing pipeline with replay-safe consumers and clear owner alerts.",
+                technologies: ["Node.js", "PostgreSQL", "Kafka"],
+            },
+            {
+                name: "Partner API gateway",
+                description: "Rate-limited gateway with API keys, audit logs, and OpenAPI docs for three partners.",
+                technologies: ["Go", "Redis", "OpenAPI"],
+            },
+        ],
+        certifications: [
+            { name: "AWS Developer Associate", issuer: "Amazon", date: "2022" },
+            { name: "PostgreSQL for Developers", issuer: "Udemy", date: "2021" },
+        ],
+        courses: [
+            { name: "Designing Data-Intensive Applications (study group)", institution: "Internal", date: "2023" },
+        ],
+        awards: [
+            { name: "Reliability award", issuer: "Ledgerly Systems", date: "2023", description: "For the settlement pipeline that held SLA through peak season." },
+        ],
+        interests: [
+            { name: "Distributed systems" },
+            { name: "Database internals" },
+            { name: "On-call craft" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Hindi", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#0F766E",
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+        },
+        themeColor: "#0F766E",
+    },
+    "role-fullstack": {
+        personal: {
+            name: "Ananya Krish",
+            jobTitle: "Full Stack Developer",
+            email: "ananya.krish@workmail.in",
+            phone: "+91 97412 88031",
+            location: "Chennai, India",
+            website: "ananyakrish.dev",
+            linkedin: "linkedin.com/in/ananyakrish",
+            github: "github.com/ananyakrish",
+        },
+        summary:
+            "Full stack developer who owns features from schema to UI. I partner with product and design so releases ship with tests, feature flags, and clear owners — not surprise breakages on Monday.",
+        experience: [
+            {
+                company: "Harbor Apps",
+                role: "Full Stack Developer",
+                startDate: "Apr 2021",
+                endDate: "Present",
+                location: "Chennai",
+                description:
+                    "Shipped React + NestJS features for a B2B workspace used by 180+ teams.\nCut onboarding support tickets 28% with a clearer first-run flow and checklist.\nBuilt a shared component kit reused across web and admin.\nAdded feature flags so risky changes ship behind a toggle.",
+            },
+            {
+                company: "Softlane",
+                role: "Software Engineer",
+                startDate: "Aug 2018",
+                endDate: "Mar 2021",
+                location: "Bengaluru",
+                description:
+                    "Built dashboards and APIs for billing and usage analytics.\nAdded OpenAPI contract checks in CI before merge.\nMentored two juniors through their first production releases.",
+            },
+        ],
+        education: [
+            {
+                institution: "Anna University",
+                degree: "B.E.",
+                field: "Computer Science",
+                startYear: "2014",
+                endYear: "2018",
+                location: "Chennai",
+            },
+        ],
+        skills: [
+            { name: "React / TypeScript" },
+            { name: "Node.js / NestJS" },
+            { name: "PostgreSQL" },
+            { name: "REST / GraphQL" },
+            { name: "AWS" },
+            { name: "Docker" },
+            { name: "CI / CD" },
+            { name: "Testing" },
+        ],
+        projects: [
+            {
+                name: "Workspace onboarding",
+                date: "2023",
+                description: "First-run flow that raised activation 14% and cut week-1 support tickets.",
+                technologies: ["React", "NestJS", "Postgres"],
+            },
+            {
+                name: "Admin console",
+                date: "2022",
+                description: "Billing overrides and user impersonation with audit trails.",
+                technologies: ["React", "Node.js"],
+            },
+            {
+                name: "Notify hub",
+                date: "2022",
+                description: "Email and in-app notifications with preference center and quiet hours.",
+                technologies: ["NestJS", "Redis"],
+            },
+        ],
+        certifications: [
+            { name: "Full-Stack Web Development", issuer: "Udemy", date: "2020" },
+            { name: "GraphQL Developer", issuer: "Apollo", date: "2022" },
+        ],
+        courses: [],
+        awards: [
+            { name: "Ship award", issuer: "Harbor Apps", date: "2023", description: "Onboarding reboot that lifted activation." },
+        ],
+        interests: [
+            { name: "DX tooling" },
+            { name: "Product analytics" },
+            { name: "Mentoring" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Tamil", proficiency: "Native" },
+            { name: "Hindi", proficiency: "Conversational" },
+        ],
+        design: {
+            accentColor: "#0369A1",
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            applyAccentToDates: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+            fontSize: 9,
+            lineHeight: 1.32,
+            topMargin: 10,
+            bottomMargin: 9,
+            sideMargin: 14,
+        },
+        themeColor: "#0369A1",
+    },
+    "role-data-analyst": {
+        personal: {
+            name: "Isha Patel",
+            jobTitle: "Data Analyst",
+            email: "isha.patel@workmail.in",
+            phone: "+91 98112 55028",
+            location: "Ahmedabad, India",
+            website: "",
+            linkedin: "linkedin.com/in/ishapatel",
+            github: "",
+        },
+        summary:
+            "Data analyst who turns messy warehouse tables into decisions product and finance can defend. I build clear SQL models, tidy dashboards, and short write-ups that end with an owner — not a wall of charts.",
+        experience: [
+            {
+                company: "Brightlane Retail",
+                role: "Data Analyst",
+                startDate: "Feb 2022",
+                endDate: "Present",
+                location: "Ahmedabad",
+                description:
+                    "Owned weekly sales and margin packs for 40 stores using SQL and Looker.\nReplaced a 12-file spreadsheet pack with one certified dashboard.\nPartnered with category leads so definitions stayed consistent across reviews.",
+            },
+            {
+                company: "InsightWorks",
+                role: "Junior Analyst",
+                startDate: "Jun 2019",
+                endDate: "Jan 2022",
+                location: "Mumbai",
+                description:
+                    "Supported campaign reporting and A/B readouts for a growth team.\nAutomated recurring Excel extracts into scheduled SQL jobs.\nWrote a metrics dictionary new joiners could use without a live walkthrough.",
+            },
+        ],
+        education: [
+            {
+                institution: "Nirma University",
+                degree: "B.Tech",
+                field: "Information Technology",
+                startYear: "2015",
+                endYear: "2019",
+                location: "Ahmedabad",
+            },
+        ],
+        skills: [
+            { name: "SQL", level: "Expert", detail: "Warehouse extracts and marts" },
+            { name: "Looker / Tableau", level: "Proficient", detail: "Certified explores and packs" },
+            { name: "Python (pandas)", level: "Proficient", detail: "Cleanup and validation scripts" },
+            { name: "Excel / Sheets", level: "Expert", detail: "Fallback packs for ops" },
+            { name: "Statistics basics", level: "Competent", detail: "A/B readouts" },
+            { name: "Stakeholder workshops", level: "Proficient", detail: "Definitions and owners" },
+        ],
+        projects: [
+            {
+                name: "Store margin pack",
+                description: "One Looker explore that replaced the Monday spreadsheet pack for regional ops.",
+                technologies: ["SQL", "Looker"],
+            },
+            {
+                name: "Campaign readout kit",
+                description: "Reusable notebook and slide outline for growth experiments.",
+                technologies: ["Python", "Sheets"],
+            },
+        ],
+        certifications: [
+            { name: "Google Data Analytics", issuer: "Google", date: "2021" },
+            { name: "SQL for Data Science", issuer: "Coursera", date: "2020" },
+        ],
+        courses: [
+            { name: "Looker for Analysts", institution: "Google Cloud", date: "2022" },
+        ],
+        awards: [
+            { name: "Insight award", issuer: "Brightlane Retail", date: "2023", description: "For retiring the spreadsheet pack." },
+        ],
+        interests: [
+            { name: "Retail ops" },
+            { name: "Data storytelling" },
+            { name: "Metrics design" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Gujarati", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#B45309",
+            applyAccentToHeadings: true,
+            applyAccentToLines: false,
+            columns: "one",
+            headerPos: "top",
+            headerAlignment: "center",
+            sectionSpacing: 8,
+        },
+        themeColor: "#B45309",
+    },
+    "role-ux-designer": {
+        personal: {
+            name: "Tara Sethi",
+            jobTitle: "UX Designer",
+            email: "tara.sethi@workmail.in",
+            phone: "+91 98990 11234",
+            location: "Gurugram, India",
+            website: "tarasethi.design",
+            linkedin: "linkedin.com/in/tarasethi",
+            github: "",
+        },
+        summary:
+            "UX designer who turns messy product bets into clear flows and prototypes. I partner with PMs and engineers so research shows up in the shipped UI — with measurable activation and fewer support tickets.",
+        experience: [
+            {
+                company: "Brightpath Apps",
+                role: "UX Designer",
+                startDate: "May 2021",
+                endDate: "Present",
+                location: "Gurugram",
+                description:
+                    "Led discovery and UI for onboarding that lifted week-1 activation by 16%.\nRan moderated tests with 24 users and turned findings into a prioritized backlog.\nMaintained a Figma library used by three product squads.",
+            },
+            {
+                company: "Studio North",
+                role: "UI Designer",
+                startDate: "Jul 2018",
+                endDate: "Apr 2021",
+                location: "Delhi",
+                description:
+                    "Designed marketing and in-app screens for two SaaS clients.\nBuilt responsive prototypes that survived handoff without a redesign pass.\nRan weekly critique sessions that kept spacing and type consistent.",
+            },
+            {
+                company: "Freelance",
+                role: "Product Designer",
+                startDate: "Jan 2017",
+                endDate: "Jun 2018",
+                location: "Delhi",
+                description:
+                    "Delivered mobile and web wireframes for three early-stage startups.\nRan guerrilla tests in cafes to validate flows before build.",
+            },
+        ],
+        education: [
+            {
+                institution: "NID Ahmedabad",
+                degree: "B.Des",
+                field: "Interaction Design",
+                startYear: "2014",
+                endYear: "2018",
+                location: "Ahmedabad",
+            },
+        ],
+        skills: [
+            { name: "Figma" },
+            { name: "User research" },
+            { name: "Prototyping" },
+            { name: "Design systems" },
+            { name: "Usability testing" },
+            { name: "FigJam" },
+        ],
+        projects: [
+            {
+                name: "Onboard Lite",
+                date: "2023",
+                description: "Three-screen first-run flow with clearer empty states; +16% week-1 activation.",
+                technologies: ["Figma", "Maze"],
+            },
+            {
+                name: "Component kit",
+                date: "2022",
+                description: "Shared UI kit with tokens and docs adopted by three squads.",
+                technologies: ["Figma", "Storybook"],
+            },
+        ],
+        certifications: [
+            { name: "Google UX Design", issuer: "Coursera", date: "2020" },
+            { name: "NN/g UX Certification", issuer: "Nielsen Norman", date: "2022" },
+        ],
+        courses: [
+            { name: "Advanced Prototyping in Figma", institution: "IDF", date: "2023" },
+        ],
+        awards: [
+            { name: "Design craft award", issuer: "Brightpath Apps", date: "2023", description: "Onboarding lift." },
+        ],
+        interests: [
+            { name: "Service design" },
+            { name: "Inclusive design" },
+            { name: "Typography" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Hindi", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#9D174D",
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            applyAccentToDates: true,
+            applyAccentToJob: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+            fontSize: 9,
+        },
+        themeColor: "#9D174D",
+    },
+    "role-devops": {
+        personal: {
+            name: "Karan Mehta",
+            jobTitle: "DevOps / Cloud Engineer",
+            email: "karan.mehta@workmail.in",
+            phone: "+91 97654 20981",
+            location: "Pune, India",
+            website: "",
+            linkedin: "linkedin.com/in/karanmehta",
+            github: "github.com/karanmehta",
+        },
+        summary:
+            "DevOps engineer who keeps deploy pipelines boring and production recoverable. I own CI/CD, cloud cost hygiene, and runbooks that on-call can follow without a senior on the call.",
+        experience: [
+            {
+                company: "Nimbus Scale",
+                role: "DevOps Engineer",
+                startDate: "Mar 2020",
+                endDate: "Present",
+                location: "Pune",
+                description:
+                    "Moved release trains onto GitHub Actions with blue-green deploys on EKS.\nCut mean time to recover with clearer alerts and a shared incident checklist.\nOwned Terraform modules for VPC, RDS, and worker fleets.\nRan monthly cost reviews that trimmed idle spend without touching peak capacity.",
+            },
+            {
+                company: "Stacklane",
+                role: "SRE Associate",
+                startDate: "Jun 2017",
+                endDate: "Feb 2020",
+                location: "Bengaluru",
+                description:
+                    "Ran Jenkins pipelines and Docker builds for five product services.\nWrote the first on-call playbook for payment outages.\nAdded Prometheus dashboards that made error budgets visible to product.\nHardened staging so QA stopped losing environments mid-sprint.",
+            },
+        ],
+        education: [
+            {
+                institution: "VIT Vellore",
+                degree: "B.Tech",
+                field: "Information Technology",
+                startYear: "2013",
+                endYear: "2017",
+                location: "Vellore",
+            },
+        ],
+        skills: [
+            { name: "AWS" },
+            { name: "Kubernetes" },
+            { name: "Terraform" },
+            { name: "Docker" },
+            { name: "GitHub Actions" },
+            { name: "Prometheus / Grafana" },
+            { name: "Linux" },
+            { name: "Bash / Python" },
+            { name: "Helm" },
+            { name: "Argo CD" },
+        ],
+        projects: [
+            {
+                name: "Blue-green platform",
+                date: "2023",
+                description: "Zero-downtime deploy path for three APIs with automated rollback hooks.",
+                technologies: ["EKS", "Terraform", "Actions"],
+            },
+            {
+                name: "Cost guardrails",
+                date: "2022",
+                description: "Scheduled scale-down and budget alerts that cut idle spend safely.",
+                technologies: ["AWS", "Terraform"],
+            },
+            {
+                name: "On-call kit",
+                date: "2021",
+                description: "Shared incident checklist and Slack hooks used across five services.",
+                technologies: ["PagerDuty", "Grafana"],
+            },
+        ],
+        certifications: [
+            { name: "AWS Solutions Architect Associate", issuer: "Amazon", date: "2022" },
+            { name: "CKA", issuer: "CNCF", date: "2023" },
+        ],
+        courses: [
+            { name: "Kubernetes in Production", institution: "Linux Foundation", date: "2022" },
+            { name: "Terraform Deep Dive", institution: "HashiCorp", date: "2021" },
+        ],
+        awards: [
+            { name: "Ops excellence", issuer: "Nimbus Scale", date: "2024", description: "For the blue-green platform rollout." },
+        ],
+        interests: [
+            { name: "Platform engineering" },
+            { name: "Incident reviews" },
+            { name: "Home lab clusters" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Hindi", proficiency: "Native" },
+            { name: "Marathi", proficiency: "Conversational" },
+        ],
+        design: {
+            accentColor: "#334155",
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 10,
+            fontSize: 9.5,
+            lineHeight: 1.38,
+            topMargin: 11,
+            bottomMargin: 10,
+            sideMargin: 14,
+        },
+        themeColor: "#334155",
+    },
+    "role-ml-engineer": {
+        personal: {
+            name: "Nisha Varma",
+            jobTitle: "ML / AI Engineer",
+            email: "nisha.varma@workmail.in",
+            phone: "+91 98100 44567",
+            location: "Bengaluru, India",
+            website: "nishavarma.ai",
+            linkedin: "linkedin.com/in/nishavarma",
+            github: "github.com/nishavarma",
+        },
+        summary:
+            "ML engineer who ships models that stay maintainable in production. I work across feature pipelines, evaluation, and lightweight LLM apps with clear owners for drift, cost, and quality — not notebook demos that never leave research.",
+        experience: [
+            {
+                company: "Signal Labs",
+                role: "ML Engineer",
+                startDate: "Aug 2021",
+                endDate: "Present",
+                location: "Bengaluru",
+                description:
+                    "Built ranking and retrieval features for a B2B search product.\nCut inference cost 28% with batching and a distilled model.\nOwned evaluation notebooks that product could read without a stats walkthrough.",
+            },
+            {
+                company: "Datafold",
+                role: "Data Scientist",
+                startDate: "Jun 2018",
+                endDate: "Jul 2021",
+                location: "Hyderabad",
+                description:
+                    "Shipped churn models and weekly insight packs for CS leadership.\nMoved experiments from notebooks into scheduled training jobs.\nDocumented feature definitions so new joiners stopped reinventing labels.",
+            },
+        ],
+        education: [
+            {
+                institution: "IISc Bangalore",
+                degree: "M.Tech",
+                field: "Computational Data Science",
+                startYear: "2016",
+                endYear: "2018",
+                location: "Bengaluru",
+            },
+            {
+                institution: "BITS Pilani",
+                degree: "B.E.",
+                field: "Computer Science",
+                startYear: "2012",
+                endYear: "2016",
+                location: "Pilani",
+            },
+        ],
+        skills: [
+            { name: "Python", detail: "PyTorch, scikit-learn, pandas" },
+            { name: "LLM apps", detail: "RAG, evaluation, prompt tooling" },
+            { name: "Feature pipelines", detail: "Airflow / batch jobs" },
+            { name: "SQL", detail: "Warehouse extracts for training sets" },
+            { name: "MLOps basics", detail: "Model registry and monitoring" },
+            { name: "Experiment tracking", detail: "MLflow / lightweight logs" },
+        ],
+        projects: [
+            {
+                name: "Retrieval assistant",
+                description: "Internal RAG over support docs with cited answers and cost caps.",
+                technologies: ["Python", "OpenAI", "Postgres"],
+            },
+            {
+                name: "Ranking v2",
+                description: "Re-ranker that lifted top-3 relevance without growing latency budget.",
+                technologies: ["PyTorch", "Feast"],
+            },
+        ],
+        certifications: [
+            { name: "Deep Learning Specialization", issuer: "Coursera", date: "2019" },
+            { name: "MLOps Fundamentals", issuer: "Duke / Coursera", date: "2022" },
+        ],
+        courses: [
+            { name: "LLM Application Engineering", institution: "DeepLearning.AI", date: "2023" },
+        ],
+        awards: [
+            { name: "Applied ML prize", issuer: "Signal Labs", date: "2024", description: "For the cost cut on inference." },
+        ],
+        interests: [
+            { name: "Evaluation design" },
+            { name: "Open research notes" },
+            { name: "Teaching workshops" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Hindi", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#4C1D95",
+            applyAccentToHeadings: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+        },
+        themeColor: "#4C1D95",
+    },
+    "role-product": {
+        personal: {
+            name: "Rohan Desai",
+            jobTitle: "Product Manager",
+            email: "rohan.desai@workmail.in",
+            phone: "+91 98200 33410",
+            location: "Mumbai, India",
+            website: "",
+            linkedin: "linkedin.com/in/rohandesai",
+            github: "",
+        },
+        summary:
+            "Product manager who ships weekly bets with clear owners and measurable outcomes. I keep engineering, design, and GTM on one plan so launches do not need a slide deck to explain — and I write specs that survive handoff.",
+        experience: [
+            {
+                company: "Orbit SaaS",
+                role: "Product Manager",
+                startDate: "Jan 2021",
+                endDate: "Present",
+                location: "Mumbai",
+                description:
+                    "Owned activation and retention for a B2B workspace used by 12k accounts.\nCut time-to-value by rewriting onboarding with design and growth.\nRan a Monday review that replaced three status meetings.",
+            },
+            {
+                company: "Paylane",
+                role: "Associate PM",
+                startDate: "Jul 2018",
+                endDate: "Dec 2020",
+                location: "Bengaluru",
+                description:
+                    "Shipped billing self-serve flows that reduced support tickets by 22%.\nWrote PRDs that engineering could implement without a follow-up walkthrough.\nRan discovery interviews that killed two features before they wasted a quarter.",
+            },
+        ],
+        education: [
+            {
+                institution: "IIM Indore",
+                degree: "MBA",
+                field: "Product & Strategy",
+                startYear: "2016",
+                endYear: "2018",
+                location: "Indore",
+            },
+            {
+                institution: "Delhi University",
+                degree: "B.Com (Hons)",
+                field: "Commerce",
+                startYear: "2013",
+                endYear: "2016",
+                location: "Delhi",
+            },
+        ],
+        skills: [
+            { name: "Roadmapping", level: "Expert" },
+            { name: "Discovery / interviews", level: "Expert" },
+            { name: "SQL basics", level: "Proficient" },
+            { name: "Experiment design", level: "Proficient" },
+            { name: "Stakeholder management", level: "Expert" },
+            { name: "PRDs & specs", level: "Proficient" },
+        ],
+        projects: [
+            {
+                name: "Activation reboot",
+                description: "Onboarding redesign that lifted week-1 activation without adding a sales assist step.",
+                technologies: ["Amplitude", "Figma"],
+            },
+            {
+                name: "Experiment board",
+                description: "Shared board for hypothesis, owner, and outcome so growth stopped tracking wins in Slack.",
+                technologies: ["Amplitude", "Notion"],
+            },
+        ],
+        certifications: [
+            { name: "Product School PM Certificate", issuer: "Product School", date: "2019" },
+            { name: "Reforge Product Strategy", issuer: "Reforge", date: "2022" },
+        ],
+        courses: [
+            { name: "Behavioral Product Management", institution: "Reforge", date: "2021" },
+        ],
+        awards: [
+            { name: "Impact award", issuer: "Orbit SaaS", date: "2023", description: "For the activation reboot." },
+        ],
+        interests: [
+            { name: "Growth loops" },
+            { name: "Customer interviews" },
+            { name: "Writing specs" },
+        ],
+        languages: [
+            { name: "English", proficiency: "Professional" },
+            { name: "Hindi", proficiency: "Native" },
+        ],
+        design: {
+            accentColor: "#0E7490",
+            applyAccentToHeadings: true,
+            columns: "one",
+            headerPos: "top",
+            sectionSpacing: 8,
+        },
+        themeColor: "#0E7490",
+    },
 };
 
 export const sampleForTemplate = (templateId) => {
@@ -1343,20 +2151,48 @@ export const sampleForTemplate = (templateId) => {
             startBlank: false,
         };
     }
+    // One-page templates stay packed on page 1 (gallery + pre-edit).
+    // Multipage templates keep their designed page1/page2 split so thumbs show both sheets.
+    const pageSections = isOnePageTemplate(templateId)
+        ? { page1: [...ALL_BODY_SECTIONS], page2: [] }
+        : (overlay.pageSections || { page1: [...ALL_BODY_SECTIONS], page2: [] });
+
+    // Role samples must not inherit unused base lists (causes ExtraSections overflow).
+    const roleClean = String(templateId).startsWith('role-')
+        ? {
+            interests: overlay.interests || [],
+            courses: overlay.courses !== undefined ? overlay.courses : [],
+            awards: overlay.awards || [],
+            organisations: overlay.organisations || [],
+            publications: overlay.publications || [],
+            references: overlay.references || [],
+            declaration: overlay.declaration || [],
+            custom: overlay.custom || [],
+            columnSections: undefined,
+            design: {
+                ...(next.design || {}),
+                ...(overlay.design || {}),
+                columns: 'one',
+                headerPos: 'top',
+                sectionSpacing: overlay.design?.sectionSpacing ?? 8,
+                fontSize: overlay.design?.fontSize ?? 9,
+            },
+        }
+        : {};
+
     return {
         ...next,
         ...overlay,
         personal: { ...next.personal, ...(overlay.personal || {}) },
-        design: { ...(next.design || {}), ...(overlay.design || {}) },
-        // Always start example resumes packed on page 1 so two-column layouts
-        // match the gallery preview; auto-pagination then spills per column.
-        pageSections: { page1: [...ALL_BODY_SECTIONS], page2: [] },
+        design: { ...(next.design || {}), ...(overlay.design || {}), ...(roleClean.design || {}) },
+        pageSections,
         pageEntrySlices: {},
         columnSections: overlay.columnSections || next.columnSections,
         sectionTitles: { ...(next.sectionTitles || {}), ...(overlay.sectionTitles || {}) },
         profileBullets: overlay.profileBullets || next.profileBullets,
         competencies: overlay.competencies || next.competencies,
         courses: overlay.courses !== undefined ? overlay.courses : next.courses,
+        ...roleClean,
         startBlank: false,
     };
 };
@@ -1405,6 +2241,150 @@ export const blankForTemplate = (templateId) => {
             headerPos: twoCol ? 'left' : 'top',
         },
         columnSections: twoCol ? { left: [], right: [] } : undefined,
+    };
+};
+
+/**
+ * One-page Full Stack sample expanded into a true multipage resume (Career Detail).
+ * Used to seed "Your resumes" for page-break demos.
+ */
+export const buildMultipageDemoResume = () => {
+    const onePager = sampleForTemplate('role-fullstack');
+    const multipageShell = sampleForTemplate('career-detail');
+    return {
+        ...multipageShell,
+        personal: {
+            ...onePager.personal,
+            name: 'Ananya Krish',
+            jobTitle: 'Full Stack Developer',
+        },
+        summary:
+            `${onePager.summary} Across Harbor Apps and Softlane I have led schema design, API contracts, and UI delivery for workspace, billing, and admin surfaces — with runbooks the next engineer can follow.`,
+        experience: [
+            ...(onePager.experience || []),
+            {
+                company: 'Campus Works',
+                role: 'Junior Developer',
+                startDate: 'Jun 2017',
+                endDate: 'Jul 2018',
+                location: 'Chennai',
+                description:
+                    'Built internal tools in React and Express for campus booking.\nWrote integration tests that caught booking conflicts before go-live.\nDocumented the deploy checklist used by two student teams.',
+            },
+            {
+                company: 'Freelance',
+                role: 'Contract Engineer',
+                startDate: 'Jan 2017',
+                endDate: 'May 2017',
+                location: 'Remote',
+                description:
+                    'Delivered two small NestJS APIs for local retailers.\nSet up basic CI with lint and unit tests before handoff.',
+            },
+        ],
+        education: onePager.education,
+        skills: [
+            ...(onePager.skills || []),
+            { name: 'System design', level: 'Proficient' },
+            { name: 'Mentoring', level: 'Competent' },
+        ],
+        projects: [
+            ...(onePager.projects || []),
+            {
+                name: 'Contract test harness',
+                date: '2021',
+                description: 'Shared OpenAPI fixture pack that blocked breaking API changes in CI.',
+                technologies: ['Jest', 'OpenAPI'],
+            },
+            {
+                name: 'Design token sync',
+                date: '2023',
+                description: 'CLI that pushed Figma tokens into the React component kit.',
+                technologies: ['Node.js', 'Style Dictionary'],
+            },
+        ],
+        certifications: onePager.certifications,
+        courses: [
+            { name: 'System Design for Full Stack', institution: 'Educative', date: '2023' },
+            { name: 'Testing JavaScript Applications', institution: 'Frontend Masters', date: '2022' },
+        ],
+        awards: onePager.awards,
+        interests: onePager.interests,
+        languages: onePager.languages,
+        organisations: [
+            {
+                name: 'Chennai JS Meetup',
+                role: 'Volunteer organizer',
+                date: '2022 - Present',
+                description: 'Monthly talks on React testing and NestJS patterns.',
+            },
+            {
+                name: 'Women Who Code Chennai',
+                role: 'Mentor',
+                date: '2021 - 2023',
+                description: 'Pairing sessions for first production PRs.',
+            },
+        ],
+        publications: [
+            {
+                name: 'Ship behind a flag',
+                publisher: 'Harbor Eng Blog',
+                date: '2023',
+                description: 'How we rolled out risky billing changes without weekend fire drills.',
+            },
+            {
+                name: 'Contract tests that stick',
+                publisher: 'Softlane Notes',
+                date: '2020',
+                description: 'Why OpenAPI fixtures beat screenshot diffs for APIs.',
+            },
+        ],
+        references: [
+            {
+                name: 'Priya Sharma',
+                title: 'Engineering Manager',
+                company: 'Harbor Apps',
+                email: 'priya.sharma@harbor.example',
+            },
+            {
+                name: 'Rahul Iyer',
+                title: 'Staff Engineer',
+                company: 'Softlane',
+                email: 'rahul.iyer@softlane.example',
+            },
+        ],
+        pageSections: {
+            page1: ['summary', 'experience', 'education', 'skills'],
+            page2: ['projects', 'certifications', 'courses', 'awards', 'languages', 'interests', 'organisations', 'publications', 'references'],
+        },
+        sectionTitles: {
+            ...(multipageShell.sectionTitles || {}),
+            summary: 'Summary',
+            experience: 'Experience',
+            education: 'Education',
+            skills: 'Skills',
+            projects: 'Projects',
+            certifications: 'Certifications',
+            courses: 'Courses',
+            awards: 'Awards',
+            languages: 'Languages',
+            interests: 'Interests',
+            organisations: 'Organisations',
+            publications: 'Publications',
+            references: 'References',
+        },
+        design: {
+            ...(multipageShell.design || {}),
+            accentColor: '#0369A1',
+            applyAccentToHeadings: true,
+            applyAccentToLines: true,
+            columns: 'one',
+            headerPos: 'top',
+            footerPageNumbers: true,
+            sectionSpacing: 14,
+            fontSize: 10,
+        },
+        themeColor: '#0369A1',
+        selectedTemplate: 'career-detail',
     };
 };
 

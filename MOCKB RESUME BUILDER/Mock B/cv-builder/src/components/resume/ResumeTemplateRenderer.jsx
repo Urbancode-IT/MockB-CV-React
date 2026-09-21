@@ -10,6 +10,7 @@ import InternBanner from './templates/InternBanner';
 import CareerDetail from './templates/CareerDetail';
 import NorthShore from './templates/NorthShore';
 import GoldRule from './templates/GoldRule';
+import DomainResume from './templates/DomainResume';
 import { mergeDesign, fillFooterTemplate, hexToRgba, parseSectionSpacing } from '../../config/resumeDesign';
 import { resolveTemplateId, DEFAULT_TEMPLATE, getTemplateById, isOnePageTemplate } from '../../config/templates';
 import './resume-design.css';
@@ -25,6 +26,14 @@ const templateMap = {
     'career-detail': CareerDetail,
     'north-shore': NorthShore,
     'gold-rule': GoldRule,
+    'role-frontend': (props) => <DomainResume {...props} variant="frontend" />,
+    'role-backend': (props) => <DomainResume {...props} variant="backend" />,
+    'role-fullstack': (props) => <DomainResume {...props} variant="fullstack" />,
+    'role-data-analyst': (props) => <DomainResume {...props} variant="analyst" />,
+    'role-ux-designer': (props) => <DomainResume {...props} variant="ux" />,
+    'role-devops': (props) => <DomainResume {...props} variant="devops" />,
+    'role-ml-engineer': (props) => <DomainResume {...props} variant="ml" />,
+    'role-product': (props) => <DomainResume {...props} variant="product" />,
 };
 
 const NAME_SIZE = { xs: 16, s: 20, m: 24, l: 28, xl: 34 };
@@ -60,7 +69,7 @@ const ResumeTemplateRenderer = ({ template, resumeData = {}, preview = false, pr
     const headingPt = (design.headingSize || 12) + (design.headingSizeOffset - 2);
     const entryPt = (ENTRY_TITLE[design.titleSize] || 10.5) + design.entryHeaderOffset;
     const lockOnePage = true;
-    const lockOneCol = ['structured-split', 'centered-minimal', 'fresh-graduate', 'campus-entry', 'intern-banner', 'career-detail', 'north-shore', 'gold-rule'].includes(resolved);
+    const lockOneCol = ['structured-split', 'centered-minimal', 'fresh-graduate', 'campus-entry', 'intern-banner', 'career-detail', 'north-shore', 'gold-rule', 'role-frontend', 'role-backend', 'role-fullstack', 'role-data-analyst', 'role-ux-designer', 'role-devops', 'role-ml-engineer', 'role-product'].includes(resolved);
     const pageN = resumeData.pageMeta?.page || 1;
     const pageC = resumeData.pageMeta?.pages || 1;
     const sectionGap = parseSectionSpacing(design.sectionSpacing, 16);

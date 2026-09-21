@@ -243,6 +243,19 @@
     border-color: #555;
 }
 
+.rb-nav-btn--json {
+    background: rgba(212, 199, 122, 0.1);
+    color: #E8DFA8;
+    border: 1px solid rgba(212, 199, 122, 0.45);
+    gap: 6px;
+}
+
+.rb-nav-btn--json:hover {
+    background: rgba(212, 199, 122, 0.18);
+    color: #fff;
+    border-color: #D4C77A;
+}
+
 .rb-nav-btn--primary {
     background: #D4C77A;
     color: #000;

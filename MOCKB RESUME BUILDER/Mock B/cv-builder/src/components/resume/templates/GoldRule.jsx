@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './GoldRule.css';
 import {
     visibleList,
@@ -38,7 +38,11 @@ const GoldRule = ({ resumeData = {} }) => {
     const lists = getPageSectionLists(resumeData, 'gold-rule');
     const pageIdx = Math.max(0, (resumeData.pageMeta?.page || 1) - 1);
     const pageList = lists[`page${pageIdx + 1}`] || (continued ? lists.page2 : lists.page1);
-    const order = pageList;
+    const order = [];
+    (pageList || []).forEach((id) => {
+        order.push(id);
+        if (id === 'education' && competencies.length > 0) order.push('competencies');
+    });
 
     const Heading = ({ id, fallback }) => (
         <h2 className="gr-h">{t(id, fallback)}</h2>
@@ -60,26 +64,26 @@ const GoldRule = ({ resumeData = {} }) => {
         }
         if (id === 'education' && hasContent(education)) {
             return (
-                <>
-                    <section data-section="education">
-                        <Heading id="education" fallback="Education" />
-                        <ul className="gr-edu">
-                            {education.map((edu, i) => (
-                                <li key={i}>
-                                    {`${edu.endYear || edu.startYear || ''}: ${[edu.degree, edu.field].filter(Boolean).join(' | ')} | ${edu.institution || ''}${edu.location ? ` | ${edu.location}` : ''}`}
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                    {competencies.length > 0 && (
-                        <section>
-                            <h2 className="gr-h">Core Competencies</h2>
-                            <ul className="gr-list">
-                                {competencies.map((item, i) => <li key={i}>{item}</li>)}
-                            </ul>
-                        </section>
-                    )}
-                </>
+                <section data-section="education">
+                    <Heading id="education" fallback="Education" />
+                    <ul className="gr-edu">
+                        {education.map((edu, i) => (
+                            <li key={i}>
+                                {`${edu.endYear || edu.startYear || ''}: ${[edu.degree, edu.field].filter(Boolean).join(' | ')} | ${edu.institution || ''}${edu.location ? ` | ${edu.location}` : ''}`}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            );
+        }
+        if (id === 'competencies' && competencies.length > 0) {
+            return (
+                <section data-section="competencies">
+                    <h2 className="gr-h">Core Competencies</h2>
+                    <ul className="gr-list">
+                        {competencies.map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                </section>
             );
         }
         if (id === 'certifications' && hasContent(certifications)) {
@@ -132,7 +136,7 @@ const GoldRule = ({ resumeData = {} }) => {
                     {experience.map((exp, i) => {
                         const lines = exp.description ? toBullets(exp.description) : [];
                         return (
-                            <article key={i} className="gr-job">
+                            <article key={i} className="gr-job" data-entry="">
                                 <div className="gr-job-top">
                                     <h3>
                                         {[exp.role || exp.title, exp.company].filter(Boolean).join(' | ')}
@@ -170,7 +174,7 @@ const GoldRule = ({ resumeData = {} }) => {
                 <section data-section="projects">
                     <Heading id="projects" fallback="Projects" />
                     {projects.map((proj, i) => (
-                        <article key={i} className="gr-job">
+                        <article key={i} className="gr-job" data-entry="">
                             <div className="gr-job-top">
                                 <h3>{proj.name}</h3>
                                 {proj.date && <em>{proj.date}</em>}
@@ -231,11 +235,10 @@ const GoldRule = ({ resumeData = {} }) => {
                 </>
             )}
             <div className="gr-body">
-                {blocks.map((block, i) => (
-                    <Fragment key={block.id}>
-                        {i > 0 && <hr className="gr-rule" />}
+                {blocks.map((block) => (
+                    <div className="gr-block" key={block.id}>
                         {block.node}
-                    </Fragment>
+                    </div>
                 ))}
             </div>
         </div>

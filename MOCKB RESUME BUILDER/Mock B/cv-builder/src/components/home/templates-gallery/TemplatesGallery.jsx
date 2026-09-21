@@ -202,14 +202,41 @@ export default function TemplatesGallery() {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-        <Link
-          to={activeFilter === 'cover-letters' ? '/cover-letter/templates' : '/resume/templates'}
-          state={{ scrollToLibrary: true }}
-          className="btn btn-primary"
-        >
-          View All Templates
-        </Link>
+      <div className="gallery-view-all">
+        {activeFilter === 'cover-letters' ? (
+          <Link
+            to="/cover-letter/templates"
+            state={{ scrollToLibrary: true }}
+            className="btn btn-primary"
+          >
+            View all cover letters
+          </Link>
+        ) : activeFilter === 'resumes' ? (
+          <Link
+            to="/resume/templates"
+            state={{ scrollToLibrary: true }}
+            className="btn btn-primary"
+          >
+            View all resumes
+          </Link>
+        ) : (
+          <>
+            <Link
+              to="/resume/templates"
+              state={{ scrollToLibrary: true }}
+              className="btn btn-primary"
+            >
+              View all resumes
+            </Link>
+            <Link
+              to="/cover-letter/templates"
+              state={{ scrollToLibrary: true }}
+              className="btn btn-secondary"
+            >
+              View all cover letters
+            </Link>
+          </>
+        )}
       </div>
 
       {previewChoice && (

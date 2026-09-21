@@ -2,7 +2,7 @@
 .home-features-grid {
     padding: 6rem 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
 }
 
@@ -17,6 +17,7 @@
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
+    position: relative !important;
 }
 
 .home-feature-card:hover {
@@ -41,10 +42,6 @@
     color: #A0A0A0 !important;
     font-size: 0.95rem !important;
     line-height: 1.6 !important;
-}
-
-@media (max-width: 1024px) {
-    .home-features-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {

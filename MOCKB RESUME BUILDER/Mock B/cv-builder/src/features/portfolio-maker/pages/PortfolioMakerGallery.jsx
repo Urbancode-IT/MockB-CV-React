@@ -2,18 +2,30 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PORTFOLIO_MAKER_TEMPLATES } from '../config/catalog';
 import TemplateThumbShowcase from '../components/TemplateThumbShowcase';
+import TemplatesFilterBar from '../../../components/shared/TemplatesFilterBar';
 import '../../../pages/ResumeTemplates.css';
 import './PortfolioMakerGallery.css';
+
+const styleOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'developer', label: 'Developer' },
+  { id: 'designer', label: 'Designer' },
+];
 
 export default function PortfolioMakerGallery() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
+  const [styleFilter, setStyleFilter] = useState('all');
   const [hoveredId, setHoveredId] = useState(null);
 
   const filtered = PORTFOLIO_MAKER_TEMPLATES.filter((t) => {
     const q = search.trim().toLowerCase();
-    if (!q) return true;
-    return [t.name, t.description, t.tagline, ...(t.tags || [])].join(' ').toLowerCase().includes(q);
+    const matchSearch = !q || [t.name, t.description, t.tagline, ...(t.tags || [])].join(' ').toLowerCase().includes(q);
+    const matchStyle =
+      styleFilter === 'all'
+      || (t.tags || []).includes(styleFilter)
+      || String(t.name || '').toLowerCase().includes(styleFilter);
+    return matchSearch && matchStyle;
   });
 
   const openEditor = (templateId, mode = 'sample') => {
@@ -36,22 +48,15 @@ export default function PortfolioMakerGallery() {
         </div>
       </section>
 
-      <section className="rt-filters-bar" id="library-templates">
-        <div className="container">
-          <div className="filters-row">
-            <div className="search-box">
-              <i className="fa-solid fa-magnifying-glass" />
-              <input
-                type="search"
-                placeholder="Search templates..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-            <span className="pm-count">{filtered.length} template{filtered.length !== 1 ? 's' : ''}</span>
-          </div>
-        </div>
-      </section>
+      <TemplatesFilterBar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search portfolio templates..."
+        styleOptions={styleOptions}
+        styleValue={styleFilter}
+        onStyleChange={setStyleFilter}
+        resultCount={filtered.length}
+      />
 
       <section className="pm-container pm-gallery-section">
         <div className="pm-grid">
@@ -89,6 +94,12 @@ export default function PortfolioMakerGallery() {
             </article>
           ))}
         </div>
+        {filtered.length === 0 && (
+          <div className="no-results">
+            <i className="fa-solid fa-filter" />
+            <p>No portfolio templates match your filters.</p>
+          </div>
+        )}
       </section>
 
       <section className="pm-steps">

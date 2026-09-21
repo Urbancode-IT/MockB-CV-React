@@ -89,4 +89,38 @@
         break-after: auto;
         page-break-after: auto;
     }
+
+    /* Prefer keeping section titles with the first content block in print/PDF. */
+    .resume-sheet [data-section] > h2,
+    .resume-sheet [data-section] > .rx-title,
+    .resume-sheet [data-section] > .ss-title,
+    .resume-sheet [data-section] > .pp-title,
+    .resume-sheet [data-section] > .cp-section-title,
+    .resume-sheet [data-section] > .cm-title,
+    .resume-sheet [data-section] > .ib-title,
+    .resume-sheet [data-section] > .fg-title,
+    .resume-sheet [data-section] > .cd-title,
+    .resume-sheet [data-section] > .ns-title,
+    .resume-sheet [data-section] > .gr-title,
+    .resume-sheet [data-section] > .ce-title {
+        break-after: avoid-page;
+        page-break-after: avoid;
+    }
+
+    .resume-sheet .rx-entry,
+    .resume-sheet .pp-entry,
+    .resume-sheet .pp-side-entry,
+    .resume-sheet .ss-block,
+    .resume-sheet .cp-entry,
+    .resume-sheet .cm-entry,
+    .resume-sheet .ib-entry,
+    .resume-sheet .fg-entry,
+    .resume-sheet .cd-entry,
+    .resume-sheet .cd-job,
+    .resume-sheet .ns-job,
+    .resume-sheet .gr-job,
+    .resume-sheet .ce-entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
 }

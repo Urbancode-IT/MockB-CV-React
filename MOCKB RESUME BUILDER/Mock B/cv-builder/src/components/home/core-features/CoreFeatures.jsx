@@ -21,6 +21,14 @@ export default function CoreFeatures() {
 
         <div className="bento-item bento-medium group">
           <div className="bento-content">
+            <i className="fa-solid fa-file-code bento-icon"></i>
+            <h3>JSON + AI import</h3>
+            <p>Export a live schema from your resume, ask any AI to fill it with your details, then upload it back into the builder.</p>
+          </div>
+        </div>
+
+        <div className="bento-item bento-medium group">
+          <div className="bento-content">
             <i className="fa-solid fa-palette bento-icon"></i>
             <h3>Design Controls</h3>
             <p>Change accent color, fonts, heading style, margins, and section spacing.</p>

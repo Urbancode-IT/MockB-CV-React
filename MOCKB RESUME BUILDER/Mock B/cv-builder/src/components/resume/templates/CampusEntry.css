@@ -9,7 +9,6 @@
     box-sizing: border-box;
     overflow: visible;
     padding: var(--resume-pad-top, 14mm) var(--resume-pad-side, 16mm) var(--resume-pad-bottom, 14mm);
-    border-left: 10px solid var(--resume-accent, #1f4e5f);
     display: flex;
     flex-direction: column;
 }

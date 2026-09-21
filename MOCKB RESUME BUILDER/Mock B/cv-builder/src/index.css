@@ -63,3 +63,41 @@ body {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
+
+/* ── Global dark scrollbars (Firefox + WebKit) ── */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #3f3f3f;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #D4C77A;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}

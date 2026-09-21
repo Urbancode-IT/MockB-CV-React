@@ -107,8 +107,15 @@ export default function ResumePagedView({
             }
         };
 
-        const frame = requestAnimationFrame(run);
-        return () => cancelAnimationFrame(frame);
+        // Double rAF so layout/fonts settle before measuring overflow.
+        let frame2 = 0;
+        const frame1 = requestAnimationFrame(() => {
+            frame2 = requestAnimationFrame(run);
+        });
+        return () => {
+            cancelAnimationFrame(frame1);
+            if (frame2) cancelAnimationFrame(frame2);
+        };
     }, [fittedData, template, onAutoPaginate, pageCount, maxPages, autoPaginateEnabled]);
 
     return (

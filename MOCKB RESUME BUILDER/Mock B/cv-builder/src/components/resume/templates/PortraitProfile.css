@@ -106,7 +106,7 @@
 
 .pp-resume--right .pp-sidebar {
     border-right: none;
-    border-left: 1px solid #d5e8e2;
+    border-left: none;
 }
 
 .pp-identity {

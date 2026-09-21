@@ -122,15 +122,14 @@
 
 .ss-col--side {
     order: 1;
-    padding-right: 6px;
+    padding-right: 10px;
     padding-left: 0;
-    border-right: 1px solid #ead9d9;
+    border-right: none;
     border-left: none;
 }
 
 .ss-section {
     min-width: 0;
-    break-inside: avoid;
 }
 
 .ss-title {
@@ -143,11 +142,15 @@
     text-align: var(--resume-heading-align, left);
     color: var(--resume-heading-color, var(--accent-color, #8B3A3A));
     border-bottom: none;
+    break-after: avoid-page;
+    page-break-after: avoid;
 }
 
 .ss-block {
     margin-bottom: var(--resume-entry-gap, 8px);
     min-width: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
 }
 
 .ss-block:last-child {

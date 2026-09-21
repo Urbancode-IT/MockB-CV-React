@@ -303,8 +303,8 @@ function AddContentModal({ open, onClose, alreadyAdded, onAdd, onImport, twoColu
                                 className="ref-import-btn"
                                 onClick={() => { onClose(); onImport(); }}
                             >
-                                <i className="fa-solid fa-cloud-arrow-up"></i>
-                                Import Resume
+                                <i className="fa-solid fa-file-code"></i>
+                                Upload JSON
                             </button>
                         )}
                     </div>
@@ -545,6 +545,22 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
 
     const updateSummary = (val) =>
         setResumeData((prev) => ({ ...prev, summary: val }));
+
+    const updateStringListItem = (key, index, value) =>
+        setResumeData((prev) => {
+            const list = [...(prev[key] || [])];
+            list[index] = value;
+            return { ...prev, [key]: list };
+        });
+
+    const addStringListItem = (key) =>
+        setResumeData((prev) => ({ ...prev, [key]: [...(prev[key] || []), ''] }));
+
+    const removeStringListItem = (key, index) =>
+        setResumeData((prev) => ({
+            ...prev,
+            [key]: (prev[key] || []).filter((_, i) => i !== index),
+        }));
 
     const updateListItem = (section, index, field, val) =>
         setResumeData((prev) => {
@@ -858,6 +874,8 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
         references = [],
         declaration = [],
         courses = [],
+        profileBullets = [],
+        competencies = [],
     } = resumeData;
 
     const photo = resumeData.photo || personal.photo;
@@ -1012,14 +1030,48 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
                         onRemoveSection={() => removeSection('summary')}
                         hideAdd
                         renderForm={() => (
-                            <textarea
-                                id="summary-textarea"
-                                className="ref-textarea"
-                                rows={4}
-                                value={summary}
-                                onChange={(e) => updateSummary(e.target.value)}
-                                placeholder="Write 2–3 sentences about your professional background, key skills, and career goals..."
-                            />
+                            <>
+                                <textarea
+                                    id="summary-textarea"
+                                    className="ref-textarea"
+                                    rows={4}
+                                    value={summary}
+                                    onChange={(e) => updateSummary(e.target.value)}
+                                    placeholder="Write 2–3 sentences about your professional background, key skills, and career goals..."
+                                />
+                                {(Array.isArray(profileBullets) && (profileBullets.length > 0 || selectedTemplate === 'gold-rule')) && (
+                                    <div className="ref-extra-list" style={{ marginTop: '12px' }}>
+                                        <label className="ref-label">Profile bullets</label>
+                                        {(profileBullets.length ? profileBullets : ['']).map((item, i) => (
+                                            <div key={`pb-${i}`} className="ref-skill-row" style={{ marginBottom: '8px' }}>
+                                                <input
+                                                    className="ref-input ref-skill-name-input"
+                                                    value={item || ''}
+                                                    onChange={(e) => {
+                                                        if (!profileBullets.length) {
+                                                            setResumeData((prev) => ({ ...prev, profileBullets: [e.target.value] }));
+                                                            return;
+                                                        }
+                                                        updateStringListItem('profileBullets', i, e.target.value);
+                                                    }}
+                                                    placeholder="Highlight or achievement"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    className="ref-entry-icon ref-entry-icon--danger"
+                                                    onClick={() => removeStringListItem('profileBullets', i)}
+                                                    aria-label="Remove bullet"
+                                                >
+                                                    <i className="fa-solid fa-trash" />
+                                                </button>
+                                            </div>
+                                        ))}
+                                        <button type="button" className="ref-add-entry" onClick={() => addStringListItem('profileBullets')}>
+                                            <i className="fa-solid fa-plus" /> Add bullet
+                                        </button>
+                                    </div>
+                                )}
+                            </>
                         )}
                     />
                 </div>
@@ -1052,7 +1104,7 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
             ));
         }
         if (id === 'education') {
-            return renderListSection('education', education, (edu, i) => (
+            const eduBlock = renderListSection('education', education, (edu, i) => (
                 <div className="ref-grid-2">
                     <FormField label="Institution" id={`edu-inst-${i}`}>
                         <input id={`edu-inst-${i}`} className="ref-input" value={edu.institution || ''} onChange={(e) => updateListItem('education', i, 'institution', e.target.value)} placeholder="University / College name" />
@@ -1072,18 +1124,77 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
                     <FormField label="End Year" id={`edu-end-${i}`}>
                         <input id={`edu-end-${i}`} className="ref-input" value={edu.endYear || ''} onChange={(e) => updateListItem('education', i, 'endYear', e.target.value)} placeholder="e.g. 2023" />
                     </FormField>
+                    <FormField label="Location" id={`edu-loc-${i}`}>
+                        <input id={`edu-loc-${i}`} className="ref-input" value={edu.location || ''} onChange={(e) => updateListItem('education', i, 'location', e.target.value)} placeholder="City, Country" />
+                    </FormField>
                 </div>
             ));
+            const showCompetencies = selectedTemplate === 'gold-rule'
+                || (Array.isArray(competencies) && competencies.length > 0);
+            if (!showCompetencies) return eduBlock;
+            return (
+                <>
+                    {eduBlock}
+                    <div className="ref-content-card" data-section="competencies" style={{ marginTop: '12px' }}>
+                        <div className="ref-content-head">
+                            <div className="ref-content-head-left">
+                                <i className="fa-solid fa-list-check" />
+                                <h3>Core Competencies</h3>
+                            </div>
+                        </div>
+                        <div className="ref-entry-list" style={{ padding: '12px 14px 16px' }}>
+                            {(competencies.length ? competencies : ['']).map((item, i) => (
+                                <div key={`comp-${i}`} className="ref-skill-row" style={{ marginBottom: '8px' }}>
+                                    <input
+                                        className="ref-input ref-skill-name-input"
+                                        value={item || ''}
+                                        onChange={(e) => {
+                                            if (!competencies.length) {
+                                                setResumeData((prev) => ({ ...prev, competencies: [e.target.value] }));
+                                                return;
+                                            }
+                                            updateStringListItem('competencies', i, e.target.value);
+                                        }}
+                                        placeholder="e.g. Semantic modelling"
+                                    />
+                                    <button
+                                        type="button"
+                                        className="ref-entry-icon ref-entry-icon--danger"
+                                        onClick={() => removeStringListItem('competencies', i)}
+                                        aria-label="Remove competency"
+                                    >
+                                        <i className="fa-solid fa-trash" />
+                                    </button>
+                                </div>
+                            ))}
+                            <button type="button" className="ref-add-entry" onClick={() => addStringListItem('competencies')}>
+                                <i className="fa-solid fa-plus" /> Add competency
+                            </button>
+                        </div>
+                    </div>
+                </>
+            );
         }
         if (id === 'skills') {
             return renderListSection('skills', skills, (skill, i) => (
-                <div className="ref-skill-row">
-                    <input className="ref-input ref-skill-name-input" value={typeof skill === 'string' ? skill : skill.name || ''} onChange={(e) => updateListItem('skills', i, 'name', e.target.value)} placeholder="Skill name" id={`skill-name-${i}`} />
-                    <select className="ref-input ref-skill-level-select" value={typeof skill === 'string' ? '' : skill.level || ''} onChange={(e) => updateListItem('skills', i, 'level', e.target.value)} id={`skill-level-${i}`}>
-                        <option value="">Level</option>
-                        {SKILL_LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
-                    </select>
-                </div>
+                <>
+                    <div className="ref-skill-row">
+                        <input className="ref-input ref-skill-name-input" value={typeof skill === 'string' ? skill : skill.name || ''} onChange={(e) => updateListItem('skills', i, 'name', e.target.value)} placeholder="Skill name" id={`skill-name-${i}`} />
+                        <select className="ref-input ref-skill-level-select" value={typeof skill === 'string' ? '' : skill.level || ''} onChange={(e) => updateListItem('skills', i, 'level', e.target.value)} id={`skill-level-${i}`}>
+                            <option value="">Level</option>
+                            {SKILL_LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
+                        </select>
+                    </div>
+                    <FormField label="Detail (optional)" id={`skill-detail-${i}`}>
+                        <input
+                            id={`skill-detail-${i}`}
+                            className="ref-input"
+                            value={typeof skill === 'string' ? '' : skill.detail || ''}
+                            onChange={(e) => updateListItem('skills', i, 'detail', e.target.value)}
+                            placeholder="Short description shown on some templates"
+                        />
+                    </FormField>
+                </>
             ));
         }
         if (id === 'projects') {
@@ -1092,6 +1203,9 @@ const ResumeEditorForm = ({ resumeData, setResumeData, title, setTitle, onImport
                     <div className="ref-grid-2">
                         <FormField label="Project Name" id={`proj-name-${i}`}>
                             <input id={`proj-name-${i}`} className="ref-input" value={proj.name || ''} onChange={(e) => updateListItem('projects', i, 'name', e.target.value)} placeholder="Project title" />
+                        </FormField>
+                        <FormField label="Date" id={`proj-date-${i}`}>
+                            <input id={`proj-date-${i}`} className="ref-input" value={proj.date || ''} onChange={(e) => updateListItem('projects', i, 'date', e.target.value)} placeholder="e.g. 2023 – Present" />
                         </FormField>
                         <FormField label="Link / URL" id={`proj-link-${i}`}>
                             <input id={`proj-link-${i}`} className="ref-input" value={proj.link || ''} onChange={(e) => updateListItem('projects', i, 'link', e.target.value)} placeholder="https://" />

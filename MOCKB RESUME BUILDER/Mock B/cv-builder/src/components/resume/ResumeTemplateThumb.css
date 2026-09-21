@@ -17,6 +17,14 @@
     container-type: inline-size;
 }
 
+.rt-two-page-thumb__sheet .rt-preview-scale-wrapper {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    transform-origin: top left;
+    transform: scale(calc(100cqi / 210mm));
+}
+
 .rt-two-page-thumb__sheet--back {
     left: 8%;
     top: 8%;

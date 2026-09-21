@@ -80,16 +80,31 @@
 .gr-rule {
     border: 0;
     border-top: 1px solid var(--resume-line-color, #cfcfcf);
-    margin: 10px 0 12px;
+    margin: 12px 0;
     width: 100%;
+    display: block;
+    box-sizing: border-box;
+    flex: 0 0 auto;
 }
 
 .gr-body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--resume-section-spacing, 16px);
+    gap: 0;
     min-height: 0;
+}
+
+.gr-block {
+    flex: 0 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.gr-block + .gr-block {
+    border-top: 1px solid var(--resume-line-color, #cfcfcf);
+    margin-top: var(--resume-section-spacing, 16px);
+    padding-top: var(--resume-section-spacing, 16px);
 }
 
 .gr-h {

@@ -213,12 +213,12 @@ export const getEditorSectionIds = (templateId, data = {}) => {
         seen.add(id);
         next.push(id);
     });
+    // Include every active section so users can edit all resume content,
+    // even when a template's default body order is shorter.
     active.forEach((id) => {
         if (seen.has(id)) return;
-        if (id === 'custom' || String(id).startsWith('cs_')) {
-            seen.add(id);
-            next.push(id);
-        }
+        seen.add(id);
+        next.push(id);
     });
     return next;
 };

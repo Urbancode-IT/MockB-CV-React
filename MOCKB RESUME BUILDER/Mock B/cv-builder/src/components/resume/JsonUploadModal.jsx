@@ -1,21 +1,54 @@
-import React, { useState, useRef } from 'react';
-import sampleResumeData from '../../data/sampleResumeData';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+    buildAiResumeJsonPrompt,
+    mergeResumeImportJson,
+    resumeImportJsonString,
+} from '../../utils/resumeJson';
 import './JsonUploadModal.css';
 
-const JsonUploadModal = ({ isOpen, onClose, onApply }) => {
+const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
     const [jsonText, setJsonText] = useState('');
     const [error, setError] = useState(null);
-    const [showExample, setShowExample] = useState(false);
+    const [showExample, setShowExample] = useState(true);
+    const [copied, setCopied] = useState(null);
     const fileInputRef = useRef(null);
+
+    const exampleJson = useMemo(
+        () => resumeImportJsonString(resumeData || {}, 2),
+        [resumeData],
+    );
+    const aiPrompt = useMemo(
+        () => buildAiResumeJsonPrompt(resumeData || {}),
+        [resumeData],
+    );
+    const personLabel = (resumeData?.personal?.name || '').trim() || 'your resume';
+
+    useEffect(() => {
+        if (!isOpen) return undefined;
+        setError(null);
+        setCopied(null);
+        setShowExample(true);
+        return undefined;
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
+    const copyText = async (text, key) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(key);
+            window.setTimeout(() => setCopied(null), 1800);
+        } catch {
+            setError('Could not copy. Select the text and copy manually.');
+        }
+    };
+
     const handleFileChange = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files?.[0];
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (event) => {
-            setJsonText(event.target.result);
+            setJsonText(String(event.target?.result || ''));
             setError(null);
         };
         reader.readAsText(file);
@@ -25,19 +58,22 @@ const JsonUploadModal = ({ isOpen, onClose, onApply }) => {
     const handleApply = () => {
         try {
             const parsed = JSON.parse(jsonText);
+            if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+                setError('JSON must be an object with resume fields (personal, experience, …).');
+                return;
+            }
             onApply(parsed);
             onClose();
             setJsonText('');
             setError(null);
-        } catch (err) {
+        } catch {
             setError('Invalid JSON format. Please check your syntax and try again.');
         }
     };
 
     const handleLoadExample = () => {
-        setJsonText(JSON.stringify(sampleResumeData, null, 2));
+        setJsonText(exampleJson);
         setError(null);
-        setShowExample(false);
     };
 
     const handleOverlayClick = (e) => {
@@ -50,57 +86,100 @@ const JsonUploadModal = ({ isOpen, onClose, onApply }) => {
                 <div className="jm-header">
                     <div className="jm-header-left">
                         <i className="fa-solid fa-file-code jm-header-icon"></i>
-                        <h3>Upload Resume Data</h3>
+                        <div>
+                            <h3>Upload Resume JSON</h3>
+                        </div>
                     </div>
-                    <button className="jm-close" onClick={onClose}>
+                    <button type="button" className="jm-close" onClick={onClose} aria-label="Close">
                         <i className="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
                 <div className="jm-body">
                     <p className="jm-desc">
-                        Import your resume content from a <code>.json</code> file or paste JSON text directly below.
-                        This will <strong>only</strong> update the form fields — your current template stays unchanged.
+                        Import content from a <code>.json</code> file or paste JSON below.
+                        This updates <strong>form fields only</strong> — your template and design stay the same.
+                        The example below matches <strong>{personLabel}</strong> exactly as edited in this resume.
                     </p>
 
                     <div className="jm-input-row">
-                        <button className="jm-action-btn jm-action-file" onClick={() => fileInputRef.current?.click()}>
+                        <button
+                            type="button"
+                            className="jm-action-btn jm-action-file"
+                            onClick={() => fileInputRef.current?.click()}
+                        >
                             <i className="fa-solid fa-file-arrow-up"></i>
                             <span>Select .json File</span>
                         </button>
                         <input
                             type="file"
-                            accept=".json"
+                            accept=".json,application/json"
                             style={{ display: 'none' }}
                             ref={fileInputRef}
                             onChange={handleFileChange}
                         />
 
-                        <button className="jm-action-btn jm-action-example" onClick={() => setShowExample(!showExample)}>
+                        <button
+                            type="button"
+                            className="jm-action-btn jm-action-example"
+                            onClick={() => setShowExample((v) => !v)}
+                        >
                             <i className="fa-solid fa-eye"></i>
-                            <span>{showExample ? 'Hide Example' : 'View Example Schema'}</span>
+                            <span>{showExample ? 'Hide live JSON' : 'Show live JSON'}</span>
                         </button>
                     </div>
 
                     {showExample && (
                         <div className="jm-example-block">
                             <div className="jm-example-bar">
-                                <span><i className="fa-solid fa-circle-info"></i> Expected JSON structure (Alex Morgan sample)</span>
-                                <button onClick={handleLoadExample}>
-                                    <i className="fa-solid fa-check"></i> Use This Example
-                                </button>
+                                <span>
+                                    <i className="fa-solid fa-circle-info"></i>
+                                    Live schema from this resume
+                                </span>
+                                <div className="jm-example-actions">
+                                    <button type="button" onClick={() => copyText(exampleJson, 'json')}>
+                                        <i className="fa-solid fa-copy"></i>
+                                        {copied === 'json' ? 'Copied' : 'Copy JSON'}
+                                    </button>
+                                    <button type="button" onClick={handleLoadExample}>
+                                        <i className="fa-solid fa-check"></i>
+                                        Use in editor
+                                    </button>
+                                </div>
                             </div>
-                            <pre className="jm-example-pre">{JSON.stringify(sampleResumeData, null, 2)}</pre>
+                            <pre className="jm-example-pre">{exampleJson}</pre>
                         </div>
                     )}
 
+                    <div className="jm-ai-block">
+                        <div className="jm-ai-bar">
+                            <div>
+                                <strong>AI fill prompt</strong>
+                                <p>
+                                    Copy this into ChatGPT, Claude, or any AI. It includes your current JSON pattern
+                                    so the model returns the same structure with your details.
+                                </p>
+                            </div>
+                            <button type="button" className="jm-ai-copy" onClick={() => copyText(aiPrompt, 'ai')}>
+                                <i className="fa-solid fa-wand-magic-sparkles"></i>
+                                {copied === 'ai' ? 'Copied prompt' : 'Copy AI prompt'}
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="jm-textarea-section">
-                        <label className="jm-textarea-label">Paste JSON text here:</label>
+                        <label className="jm-textarea-label" htmlFor="jm-json-paste">
+                            Paste JSON text here
+                        </label>
                         <textarea
+                            id="jm-json-paste"
                             className="jm-textarea"
                             value={jsonText}
-                            onChange={(e) => { setJsonText(e.target.value); setError(null); }}
-                            placeholder={'{\n  "personal": {\n    "name": "Alex Morgan",\n    "jobTitle": "Senior Product Manager",\n    ...\n  },\n  "summary": "...",\n  "experience": [...],\n  ...\n}'}
+                            onChange={(e) => {
+                                setJsonText(e.target.value);
+                                setError(null);
+                            }}
+                            placeholder={exampleJson.slice(0, 280) + (exampleJson.length > 280 ? '\n…' : '')}
                         />
                         {error && (
                             <div className="jm-error">
@@ -111,8 +190,9 @@ const JsonUploadModal = ({ isOpen, onClose, onApply }) => {
                 </div>
 
                 <div className="jm-footer">
-                    <button className="jm-cancel" onClick={onClose}>Cancel</button>
+                    <button type="button" className="jm-cancel" onClick={onClose}>Cancel</button>
                     <button
+                        type="button"
                         className="jm-apply"
                         onClick={handleApply}
                         disabled={!jsonText.trim()}

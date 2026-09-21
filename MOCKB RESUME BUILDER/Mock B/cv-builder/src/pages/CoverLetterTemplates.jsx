@@ -5,6 +5,7 @@ import { sampleForCoverLetter } from '../data/sampleCoverLetterData';
 import CoverLetterRenderer from '../components/cover-letter/CoverLetterRenderer';
 import TemplatePreviewModal from '../components/resume/TemplatePreviewModal';
 import StartModeModal from '../components/resume/StartModeModal';
+import TemplatesFilterBar from '../components/shared/TemplatesFilterBar';
 import {
     listUserCoverLetters,
     deleteUserCoverLetter,
@@ -12,6 +13,12 @@ import {
     deleteUserCoverLetterTemplate,
 } from '../utils/coverLetterLibrary';
 import './ResumeTemplates.css';
+
+const styleOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'professional', label: 'Professional' },
+  { id: 'modern', label: 'Modern' },
+];
 
 export default function CoverLetterTemplates() {
   const navigate = useNavigate();
@@ -22,6 +29,8 @@ export default function CoverLetterTemplates() {
   const [userTemplates, setUserTemplates] = useState(() => listUserCoverLetterTemplates());
   const [userLetters, setUserLetters] = useState(() => listUserCoverLetters());
   const [libraryView, setLibraryView] = useState('library');
+  const [search, setSearch] = useState('');
+  const [catFilter, setCatFilter] = useState('all');
 
   useLayoutEffect(() => {
     const prev = window.history.scrollRestoration;
@@ -55,6 +64,13 @@ export default function CoverLetterTemplates() {
       window.history.scrollRestoration = prev;
     };
   }, [location.hash, location.state]);
+
+  const filteredLibrary = COVER_LETTER_TEMPLATES.filter((t) => {
+    const q = search.trim().toLowerCase();
+    const matchSearch = !q || [t.name, t.description, t.category, t.fontFamily].join(' ').toLowerCase().includes(q);
+    const matchCat = catFilter === 'all' || t.category === catFilter;
+    return matchSearch && matchCat;
+  });
 
   const openStartChoice = (templateId) => setStartTemplate(templateId);
 
@@ -99,35 +115,22 @@ export default function CoverLetterTemplates() {
         </div>
       </section>
 
-      <section className="rt-filters-bar" id="library-templates">
-        <div className="container">
-          <div className="filters-row">
-            <div className="filter-group rt-view-switch" style={{ marginLeft: 0 }}>
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'library' ? 'active' : ''}`}
-                onClick={() => setLibraryView('library')}
-              >
-                Library templates
-              </button>
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'letters' ? 'active' : ''}`}
-                onClick={() => setLibraryView('letters')}
-              >
-                Your cover letters{userLetters.length ? ` (${userLetters.length})` : ''}
-              </button>
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'templates' ? 'active' : ''}`}
-                onClick={() => setLibraryView('templates')}
-              >
-                Your cover letter templates{userTemplates.length ? ` (${userTemplates.length})` : ''}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TemplatesFilterBar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search cover letters..."
+        styleOptions={styleOptions}
+        styleValue={catFilter}
+        onStyleChange={setCatFilter}
+        resultCount={libraryView === 'library' ? filteredLibrary.length : null}
+        viewValue={libraryView}
+        onViewChange={setLibraryView}
+        viewOptions={[
+          { id: 'library', label: 'Library templates' },
+          { id: 'letters', label: `Your cover letters${userLetters.length ? ` (${userLetters.length})` : ''}` },
+          { id: 'templates', label: `Your cover letter templates${userTemplates.length ? ` (${userTemplates.length})` : ''}` },
+        ]}
+      />
 
       <section className="rt-grid-section">
         <div className="container">
@@ -215,34 +218,43 @@ export default function CoverLetterTemplates() {
           )}
 
           {libraryView === 'library' && (
-            <div className="rt-grid">
-              {COVER_LETTER_TEMPLATES.map((t) => (
-                <div
-                  key={t.id}
-                  className={`rt-card ${hoveredId === t.id ? 'rt-card--hovered' : ''}`}
-                  onMouseEnter={() => setHoveredId(t.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                >
-                  <div className="rt-preview-box" onClick={() => setPreviewTemplate(t.id)}>
-                    <div className="rt-preview-scale-wrapper">
-                      <CoverLetterRenderer template={t.id} letterData={sampleForCoverLetter(t.id)} preview />
-                    </div>
-                    <div className="rt-overlay">
-                      <button
-                        className="rt-btn-preview"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setPreviewTemplate(t.id);
-                        }}
-                      >
-                        <i className="fa-solid fa-eye"></i> Preview
-                      </button>
-                    </div>
-                  </div>
-                  <h4 className="rt-card-name" onClick={() => openStartChoice(t.id)}>{t.name}</h4>
+            <>
+              {filteredLibrary.length === 0 ? (
+                <div className="no-results">
+                  <i className="fa-solid fa-filter"></i>
+                  <p>No cover letter templates match your filters.</p>
                 </div>
-              ))}
-            </div>
+              ) : (
+                <div className="rt-grid">
+                  {filteredLibrary.map((t) => (
+                    <div
+                      key={t.id}
+                      className={`rt-card ${hoveredId === t.id ? 'rt-card--hovered' : ''}`}
+                      onMouseEnter={() => setHoveredId(t.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                    >
+                      <div className="rt-preview-box" onClick={() => setPreviewTemplate(t.id)}>
+                        <div className="rt-preview-scale-wrapper">
+                          <CoverLetterRenderer template={t.id} letterData={sampleForCoverLetter(t.id)} preview />
+                        </div>
+                        <div className="rt-overlay">
+                          <button
+                            className="rt-btn-preview"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setPreviewTemplate(t.id);
+                            }}
+                          >
+                            <i className="fa-solid fa-eye"></i> Preview
+                          </button>
+                        </div>
+                      </div>
+                      <h4 className="rt-card-name" onClick={() => openStartChoice(t.id)}>{t.name}</h4>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>

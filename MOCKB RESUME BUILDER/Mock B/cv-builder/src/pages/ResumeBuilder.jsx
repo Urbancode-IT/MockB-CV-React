@@ -16,6 +16,7 @@ import { listCustomSections } from '../config/customSections';
 import { sampleForTemplate, blankForTemplate } from '../data/sampleResumeData';
 import { saveResumeDraft, loadResumeDraft, clearResumeDraft, saveUserTemplate, updateUserTemplate, upsertUserResume, getUserResume } from '../utils/userLibrary';
 import { captureDesignSnapshot } from '../config/resumeDesign';
+import { mergeResumeImportJson } from '../utils/resumeJson';
 
 import './ResumeBuilder.css';
 
@@ -533,7 +534,7 @@ export default function ResumeBuilder() {
 
     // ── Handle JSON Upload (from modal) ──
     const handleJsonApply = (parsedData) => {
-        setResumeData((prev) => ({ ...prev, ...parsedData }));
+        setResumeData((prev) => mergeResumeImportJson(prev, parsedData));
     };
 
     const design = resumeData.design || {};
@@ -697,13 +698,13 @@ export default function ResumeBuilder() {
                         <i className="fa-solid fa-eye"></i>
                     </button>
 
-                    {/* Upload JSON - opens modal */}
+                    {/* Upload JSON */}
                     <button
-                        className="rb-nav-btn rb-nav-btn--outline"
+                        className="rb-nav-btn rb-nav-btn--json"
                         onClick={() => setShowJsonModal(true)}
-                        title="Import resume data from JSON"
+                        title="Import resume content from JSON"
                     >
-                        <i className="fa-solid fa-file-import"></i>
+                        <i className="fa-solid fa-file-code"></i>
                         <span>Upload JSON</span>
                     </button>
 
@@ -816,6 +817,7 @@ export default function ResumeBuilder() {
                 isOpen={showJsonModal}
                 onClose={() => setShowJsonModal(false)}
                 onApply={handleJsonApply}
+                resumeData={resumeData}
             />
 
             {leaveOpen && (

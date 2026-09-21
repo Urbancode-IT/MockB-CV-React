@@ -4,16 +4,34 @@ import { PORTFOLIO_TEMPLATES } from '../config/portfolioTemplates';
 import { sampleForPortfolioTemplate } from '../data/samplePortfolioData';
 import AtlasMinimalPreview from '../components/portfolio/AtlasMinimalPreview';
 import StartModeModal from '../components/resume/StartModeModal';
+import TemplatesFilterBar from '../components/shared/TemplatesFilterBar';
 import './PortfolioTemplates.css';
 import './ResumeTemplates.css';
+
+const styleOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'developer', label: 'Developer' },
+  { id: 'designer', label: 'Designer' },
+];
 
 export default function PortfolioTemplates() {
   const navigate = useNavigate();
   const [hoveredId, setHoveredId] = useState(null);
   const [previewId, setPreviewId] = useState(null);
   const [startTemplate, setStartTemplate] = useState(null);
+  const [search, setSearch] = useState('');
+  const [styleFilter, setStyleFilter] = useState('all');
 
   const previewTemplate = PORTFOLIO_TEMPLATES.find((t) => t.id === previewId);
+
+  const filtered = PORTFOLIO_TEMPLATES.filter((t) => {
+    const q = search.trim().toLowerCase();
+    const matchSearch = !q || [t.name, t.description, ...(t.tags || [])].join(' ').toLowerCase().includes(q);
+    const matchStyle =
+      styleFilter === 'all'
+      || (t.tags || []).includes(styleFilter);
+    return matchSearch && matchStyle;
+  });
 
   const beginCustomizer = (mode) => {
     if (!startTemplate) return;
@@ -34,9 +52,19 @@ export default function PortfolioTemplates() {
         </div>
       </section>
 
+      <TemplatesFilterBar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search portfolio templates..."
+        styleOptions={styleOptions}
+        styleValue={styleFilter}
+        onStyleChange={setStyleFilter}
+        resultCount={filtered.length}
+      />
+
       <section className="container rt-grid-section">
         <div className="rt-grid">
-          {PORTFOLIO_TEMPLATES.map((template) => (
+          {filtered.map((template) => (
             <article
               key={template.id}
               className={`rt-card${hoveredId === template.id ? ' rt-card--hovered' : ''}`}
@@ -75,6 +103,12 @@ export default function PortfolioTemplates() {
             </article>
           ))}
         </div>
+        {filtered.length === 0 && (
+          <div className="no-results">
+            <i className="fa-solid fa-filter" />
+            <p>No portfolio templates match your filters.</p>
+          </div>
+        )}
       </section>
 
       {previewTemplate && (

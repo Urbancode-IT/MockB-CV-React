@@ -171,10 +171,12 @@ export const upsertUserResume = ({
     userTemplateId,
     userTemplateName,
     baseName,
+    kind,
 }) => {
     const list = listUserResumes();
     const existing = list.find((item) => (id && item.id === id)
-        || (resumeId && item.resumeId && item.resumeId === resumeId));
+        || (resumeId && item.resumeId && item.resumeId === resumeId)
+        || (kind && item.kind === kind));
     const entry = {
         id: existing?.id || `resume-${Date.now()}`,
         resumeId: resumeId || existing?.resumeId || null,
@@ -184,6 +186,7 @@ export const upsertUserResume = ({
         resumeData: resumeData ? JSON.parse(JSON.stringify(resumeData)) : {},
         userTemplateId: userTemplateId || existing?.userTemplateId || null,
         userTemplateName: userTemplateName || existing?.userTemplateName || '',
+        kind: kind || existing?.kind || 'saved',
         createdAt: existing?.createdAt || new Date().toISOString(),
         updatedAt: new Date().toISOString(),
     };
@@ -192,6 +195,23 @@ export const upsertUserResume = ({
         : [entry, ...list];
     localStorage.setItem(RESUMES_KEY, JSON.stringify(next));
     return entry;
+};
+
+/** Seed / refresh a multipage demo resume in Your resumes for page-break checks. */
+export const ensureDemoMultipageResume = (resumeDataFactory) => {
+    const resumeData = typeof resumeDataFactory === 'function'
+        ? resumeDataFactory()
+        : (resumeDataFactory || {});
+    return upsertUserResume({
+        kind: 'demo-multipage',
+        title: 'Multipage Demo Resume',
+        baseName: 'Multipage Demo',
+        selectedTemplate: resumeData.selectedTemplate || 'career-detail',
+        resumeData: {
+            ...resumeData,
+            selectedTemplate: undefined,
+        },
+    });
 };
 
 export const deleteUserResume = (id) => {

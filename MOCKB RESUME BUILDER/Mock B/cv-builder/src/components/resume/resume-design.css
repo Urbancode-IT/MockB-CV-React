@@ -674,7 +674,8 @@
 .resume-design-wrapper--preview .ib-resume,
 .resume-design-wrapper--preview .gr-resume,
 .resume-design-wrapper--preview .cd-resume,
-.resume-design-wrapper--preview .ns-resume {
+.resume-design-wrapper--preview .ns-resume,
+.resume-design-wrapper--preview .dr-resume {
     height: var(--resume-page-h, 297mm) !important;
     min-height: var(--resume-page-h, 297mm) !important;
     max-height: var(--resume-page-h, 297mm) !important;

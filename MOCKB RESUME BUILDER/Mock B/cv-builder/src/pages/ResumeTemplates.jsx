@@ -1,18 +1,36 @@
 import { useState, useLayoutEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RESUME_TEMPLATES, getTemplateById, isOnePageTemplate } from '../config/templates';
-import { sampleForTemplate } from '../data/sampleResumeData';
+import { sampleForTemplate, buildMultipageDemoResume } from '../data/sampleResumeData';
 import ResumeTemplateThumb from '../components/resume/ResumeTemplateThumb';
 import TemplatePreviewModal from '../components/resume/TemplatePreviewModal';
 import StartModeModal from '../components/resume/StartModeModal';
-import { listUserTemplates, deleteUserTemplate, listUserResumes, deleteUserResume } from '../utils/userLibrary';
+import TemplatesFilterBar from '../components/shared/TemplatesFilterBar';
+import {
+  listUserTemplates,
+  deleteUserTemplate,
+  listUserResumes,
+  deleteUserResume,
+  ensureDemoMultipageResume,
+} from '../utils/userLibrary';
 import './ResumeTemplates.css';
 
-const categories = ['all', 'professional', 'modern', 'fresher'];
+const categories = ['all', 'professional', 'modern', 'fresher', 'role'];
 const pageFilters = [
   { id: 'all', label: 'All lengths' },
   { id: 'one', label: 'Single page' },
   { id: 'two', label: 'Multiple pages' },
+];
+const roleFilters = [
+  { id: 'all', label: 'All roles' },
+  { id: 'frontend', label: 'Frontend', match: /frontend/ },
+  { id: 'backend', label: 'Backend', match: /backend/ },
+  { id: 'fullstack', label: 'Full Stack', match: /fullstack|full-stack|full stack/ },
+  { id: 'ux', label: 'UX Designer', match: /ux|figma/ },
+  { id: 'devops', label: 'DevOps', match: /devops|cloud/ },
+  { id: 'ml', label: 'ML / AI', match: /\bml\b|ai engineer|role-ml/ },
+  { id: 'product', label: 'Product', match: /product|role-product/ },
+  { id: 'analyst', label: 'Data Analyst', match: /analyst|role-data/ },
 ];
 
 const matchesSearch = (template, query) => {
@@ -28,11 +46,20 @@ const matchesSearch = (template, query) => {
   return haystack.includes(q);
 };
 
+const matchesRole = (template, roleId) => {
+  if (!roleId || roleId === 'all') return true;
+  const role = roleFilters.find((r) => r.id === roleId);
+  if (!role?.match) return true;
+  const hay = [template.id, template.name, ...(template.tags || [])].join(' ').toLowerCase();
+  return role.match.test(hay);
+};
+
 export default function ResumeTemplates() {
   const navigate = useNavigate();
   const location = useLocation();
   const [catFilter, setCatFilter] = useState('all');
   const [pageFilter, setPageFilter] = useState('all');
+  const [roleFilter, setRoleFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [hoveredId, setHoveredId] = useState(null);
   const [previewTemplate, setPreviewTemplate] = useState(null);
@@ -40,6 +67,11 @@ export default function ResumeTemplates() {
   const [userTemplates, setUserTemplates] = useState(() => listUserTemplates());
   const [userResumes, setUserResumes] = useState(() => listUserResumes());
   const [libraryView, setLibraryView] = useState('library'); // 'library' | 'resumes' | 'templates'
+
+  useLayoutEffect(() => {
+    ensureDemoMultipageResume(buildMultipageDemoResume);
+    setUserResumes(listUserResumes());
+  }, []);
 
   useLayoutEffect(() => {
     const prev = window.history.scrollRestoration;
@@ -78,13 +110,19 @@ export default function ResumeTemplates() {
   }, [location.hash, location.state]);
 
   const filtered = RESUME_TEMPLATES.filter((t) => {
-    const matchCat = catFilter === 'all' || t.category === catFilter;
+    if (!matchesSearch(t, search)) return false;
     const twoPage = !isOnePageTemplate(t.id);
     const matchPages =
       pageFilter === 'all'
       || (pageFilter === 'one' && !twoPage)
       || (pageFilter === 'two' && twoPage);
-    return matchCat && matchPages && matchesSearch(t, search);
+    if (!matchPages) return false;
+
+    if (roleFilter !== 'all') {
+      return t.category === 'role' && matchesRole(t, roleFilter);
+    }
+    if (catFilter === 'role') return t.category === 'role';
+    return catFilter === 'all' || t.category === catFilter;
   });
 
   const openStartChoice = (templateId) => {
@@ -126,6 +164,16 @@ export default function ResumeTemplates() {
     navigate('/resume/customizer', { state: { template, startMode: mode } });
   };
 
+  const handleStyleChange = (id) => {
+    setCatFilter(id);
+    if (id !== 'role') setRoleFilter('all');
+  };
+
+  const handleRoleChange = (id) => {
+    setRoleFilter(id);
+    if (id !== 'all') setCatFilter('role');
+  };
+
   return (
     <main className="rt-page">
       {/* Hero */}
@@ -136,65 +184,28 @@ export default function ResumeTemplates() {
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="rt-filters-bar" id="library-templates">
-        <div className="container">
-          <div className="filters-row">
-            <div className="search-box">
-              <i className="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Search templates..." value={search} onChange={(e) => setSearch(e.target.value)} />
-            </div>
-            {libraryView === 'library' && (
-              <>
-                <div className="filter-group">
-                  <span className="filter-label">Style:</span>
-                  {categories.map(c => (
-                    <button key={c} className={`filter-btn ${catFilter === c ? 'active' : ''}`} onClick={() => setCatFilter(c)}>
-                      {c.charAt(0).toUpperCase() + c.slice(1)}
-                    </button>
-                  ))}
-                </div>
-                <div className="filter-group">
-                  <span className="filter-label">Pages:</span>
-                  {pageFilters.map((p) => (
-                    <button
-                      key={p.id}
-                      type="button"
-                      className={`filter-btn ${pageFilter === p.id ? 'active' : ''}`}
-                      onClick={() => setPageFilter(p.id)}
-                    >
-                      {p.label}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-            <div className="filter-group rt-view-switch">
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'library' ? 'active' : ''}`}
-                onClick={() => setLibraryView('library')}
-              >
-                Library templates
-              </button>
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'resumes' ? 'active' : ''}`}
-                onClick={() => setLibraryView('resumes')}
-              >
-                Your resumes{userResumes.length ? ` (${userResumes.length})` : ''}
-              </button>
-              <button
-                type="button"
-                className={`rt-view-btn ${libraryView === 'templates' ? 'active' : ''}`}
-                onClick={() => setLibraryView('templates')}
-              >
-                Your templates{userTemplates.length ? ` (${userTemplates.length})` : ''}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TemplatesFilterBar
+        search={search}
+        onSearchChange={setSearch}
+        styleOptions={categories}
+        styleValue={catFilter}
+        onStyleChange={handleStyleChange}
+        pageOptions={pageFilters}
+        pageValue={pageFilter}
+        onPageChange={setPageFilter}
+        roleOptions={roleFilters}
+        roleValue={roleFilter}
+        onRoleChange={handleRoleChange}
+        showRoleRow
+        resultCount={libraryView === 'library' ? filtered.length : null}
+        viewValue={libraryView}
+        onViewChange={setLibraryView}
+        viewOptions={[
+          { id: 'library', label: 'Library templates' },
+          { id: 'resumes', label: `Your resumes${userResumes.length ? ` (${userResumes.length})` : ''}` },
+          { id: 'templates', label: `Your templates${userTemplates.length ? ` (${userTemplates.length})` : ''}` },
+        ]}
+      />
 
       {/* Template Grid */}
       <section className="rt-grid-section">

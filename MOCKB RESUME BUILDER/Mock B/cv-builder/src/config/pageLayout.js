@@ -351,21 +351,30 @@ const ENTRY_SELECTORS = [
     '[data-entry]',
     '.cp-entry',
     '.cd-job',
+    '.cd-entry',
     '.ns-job',
     '.gr-job',
     '.fg-entry',
     '.pp-entry',
+    '.pp-side-entry',
+    '.pp-skill-list > li',
+    '.pp-lang-list > li',
     '.ss-entry',
     '.ss-block',
+    '.ss-skill-list > li',
     '.cm-entry',
     '.ib-entry',
     '.ce-entry',
+    '.dr-entry',
     '.ex-split-entry',
     '.rx-entry',
 ].join(',');
 
 /** Two-column roots — overflow must be measured per column, not document order. */
 const COLUMN_ROOT_SELECTORS = '.ss-col, .pp-sidebar, .pp-main';
+
+/** Don't leave a heading (or heading + tiny stub) alone at the bottom of a page. */
+const MIN_ROOM_FOR_SECTION = 64;
 
 const pagesToMap = (pages) => {
     const map = {};
@@ -386,8 +395,11 @@ const sectionNodes = (root) =>
 /**
  * Decide which sections in one vertical flow must move past limitY.
  * Returns { moveIds: Set, splits: { [id]: keepEntryCount } }.
+ *
+ * Orphan-heading rule: if there isn't enough room for the section title plus at
+ * least one full entry, move the entire section to the next page.
  */
-const planColumnOverflow = (sections, limitY) => {
+export const planColumnOverflow = (sections, limitY) => {
     const moveIds = new Set();
     const splits = {};
 
@@ -402,10 +414,20 @@ const planColumnOverflow = (sections, limitY) => {
 
     const overflowSection = sections[overflowAt];
     const overflowId = overflowSection.getAttribute('data-section');
-    const startsOnPage = overflowSection.getBoundingClientRect().top < limitY - 8;
-    const entries = startsOnPage
-        ? [...overflowSection.querySelectorAll(ENTRY_SELECTORS)]
-        : [];
+    const sectionRect = overflowSection.getBoundingClientRect();
+    const roomLeft = limitY - sectionRect.top;
+    const startsOnPage = sectionRect.top < limitY - 8;
+
+    // Heading near the bottom with no room for content → move wholly (no orphan title).
+    if (!startsOnPage || roomLeft < MIN_ROOM_FOR_SECTION) {
+        for (let i = overflowAt; i < sections.length; i += 1) {
+            const id = sections[i].getAttribute('data-section');
+            if (id) moveIds.add(id);
+        }
+        return { moveIds, splits };
+    }
+
+    const entries = [...overflowSection.querySelectorAll(ENTRY_SELECTORS)];
 
     let keepEntryCount = 0;
     if (entries.length > 1) {
@@ -415,6 +437,14 @@ const planColumnOverflow = (sections, limitY) => {
             } else {
                 break;
             }
+        }
+        // Title alone (0 entries fit) → move the whole section to keep heading with content.
+        if (keepEntryCount === 0) {
+            for (let i = overflowAt; i < sections.length; i += 1) {
+                const id = sections[i].getAttribute('data-section');
+                if (id) moveIds.add(id);
+            }
+            return { moveIds, splits };
         }
     }
 
@@ -456,7 +486,8 @@ export const computeOverflowPagination = (sheetEl, data = {}, templateId = '', p
 
     const current = pages[pageIndex] || [];
     const sheetRect = sheetEl.getBoundingClientRect();
-    const limitY = sheetRect.bottom - 2;
+    // Leave a small bottom safety margin so content is not clipped by page chrome.
+    const limitY = sheetRect.bottom - 6;
 
     const columnRoots = [...sheetEl.querySelectorAll(COLUMN_ROOT_SELECTORS)];
     const groups = columnRoots.length >= 2
@@ -555,10 +586,9 @@ export const computeOverflowPagination = (sheetEl, data = {}, templateId = '', p
         moveToNext.push(id);
     });
 
-    // Never leave the measured page empty of body sections.
-    if (!stayOnPage.length && moveToNext.length) {
-        stayOnPage.push(moveToNext.shift());
-    }
+    // Do NOT force an overflowing section back onto this page — that causes
+    // clipped / "behind next page" content and orphan headings.
+    // Page 1 may legitimately contain only the header until the first section fits.
 
     pages[pageIndex] = stayOnPage;
 

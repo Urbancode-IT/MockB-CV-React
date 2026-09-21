@@ -27,7 +27,7 @@
     border: 1px solid #2a2a2a;
     border-radius: 14px;
     width: 100%;
-    max-width: 640px;
+    max-width: 720px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -205,8 +205,82 @@
     transition: background 0.15s;
 }
 
+.jm-example-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.jm-example-actions button:first-child {
+    background: #1f1f1f;
+    color: #D4C77A;
+    border: 1px solid #3a3a3a;
+}
+
+.jm-example-actions button:first-child:hover {
+    border-color: #D4C77A;
+    background: #252525;
+}
+
 .jm-example-bar button:hover {
     background: #d4ad0b;
+}
+
+.jm-ai-block {
+    border: 1px solid rgba(212, 199, 122, 0.28);
+    border-radius: 10px;
+    background: linear-gradient(145deg, rgba(212, 199, 122, 0.08), rgba(20, 20, 20, 0.9));
+    padding: 12px 14px;
+}
+
+.jm-ai-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.jm-ai-bar strong {
+    display: block;
+    color: #f0e6b0;
+    font-size: 0.84rem;
+    margin-bottom: 4px;
+}
+
+.jm-ai-bar p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #9a9a9a;
+    line-height: 1.5;
+    max-width: 420px;
+}
+
+.jm-ai-copy {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 199, 122, 0.45);
+    background: #D4C77A;
+    color: #111;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.jm-ai-copy:hover {
+    background: #d4ad0b;
+}
+
+@media (max-width: 560px) {
+    .jm-ai-bar {
+        flex-direction: column;
+    }
 }
 
 .jm-example-pre {

@@ -1,4 +1,14 @@
-.rx-section { break-inside: avoid; }
+/* Keep title with the first entry; allow large sections to split across pages. */
+.rx-section > .rx-title,
+.rx-section > h2 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+}
+.rx-entry,
+.rx-chips {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
 .rx-title {
     font-size: var(--resume-heading-size, 10.5pt);
     font-weight: 700;

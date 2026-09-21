@@ -11,7 +11,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border-left: 7px solid var(--resume-accent, #0F4C5C);
+    border-left: none;
 }
 
 .ns-header {
