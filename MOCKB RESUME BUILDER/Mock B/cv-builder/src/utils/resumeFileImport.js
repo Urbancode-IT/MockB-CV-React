@@ -39,7 +39,14 @@ const normalizeOcrText = (text) => text
     .join('\n');
 
 const createOcr = async (onProgress) => {
-    const { createWorker } = await import('tesseract.js');
+    let createWorker;
+    try {
+        const pkg = 'tesseract.js';
+        const tesseract = await import(/* @vite-ignore */ pkg);
+        createWorker = tesseract.createWorker;
+    } catch (e) {
+        throw new Error('OCR library (tesseract.js) failed to load. Please try uploading a text PDF, Word doc (.docx), or JSON resume instead.');
+    }
     let label = '';
     const worker = await createWorker('eng', 1, {
         logger: (m) => {
@@ -94,8 +101,7 @@ const extractImageText = async (file, onProgress) => {
 
 const extractPdfText = async (file, onProgress) => {
     const pdfjs = await import('pdfjs-dist');
-    const { default: workerUrl } = await import('pdfjs-dist/build/pdf.worker.min.mjs?url');
-    pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
+    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version || '3.11.174'}/pdf.worker.min.js`;
 
     const doc = await pdfjs.getDocument({ data: await file.arrayBuffer() }).promise;
     const text = await extractPdfTextLayer(doc);

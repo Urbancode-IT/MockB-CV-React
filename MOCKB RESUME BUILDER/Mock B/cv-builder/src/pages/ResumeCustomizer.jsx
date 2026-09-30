@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import JsonUploadModal from '../components/resume/JsonUploadModal';
 import './ResumeCustomizer.css';
 
 // 10 templates available in the catalog with real mockup previews
@@ -1312,6 +1313,7 @@ export default function ResumeCustomizer() {
   const [activeEditIndex, setActiveEditIndex] = useState({}); // Stores which entry index is in edit mode per section ID
   const [signatureModal, setSignatureModal] = useState({ isOpen: false, sectionId: null, entryIndex: null });
   const [showAddSectionModal, setShowAddSectionModal] = useState(false);
+  const [showJsonModal, setShowJsonModal] = useState(false);
   const [sectionHeadingEditMode, setSectionHeadingEditMode] = useState({}); // Stores { [sectionId]: true/false }
   const [hiddenItems, setHiddenItems] = useState({}); // { [sectionId]: { [idx]: true } } for hidden entries
   const [sectionIcons, setSectionIcons] = useState({}); // { [sectionId]: iconClass }
@@ -4880,6 +4882,15 @@ export default function ResumeCustomizer() {
             </div>
 
             <div className="header-right">
+              <button 
+                className="btn btn-secondary" 
+                onClick={() => setShowJsonModal(true)} 
+                title="Import/Export JSON or Resume File"
+                style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                <i className="fa-solid fa-file-code" style={{ color: '#D4C77A' }}></i> Import JSON
+              </button>
+
               <select
                 className="resume-select"
                 value={selectedResumeVersion}
@@ -7734,6 +7745,7 @@ export default function ResumeCustomizer() {
                             >
                               <i className="fa-solid fa-arrow-down"></i>
                             </button>
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -8181,7 +8193,9 @@ export default function ResumeCustomizer() {
               <div className="modal-header">
                 <div className="modal-header-left">
                   <h2>Add content</h2>
-                  <button className="btn-modal-import"><i className="fa-solid fa-cloud-arrow-up"></i> Import Resume</button>
+                  <button className="btn-modal-import" onClick={() => { setShowAddSectionModal(false); setShowJsonModal(true); }}>
+                    <i className="fa-solid fa-cloud-arrow-up"></i> Import Resume / JSON
+                  </button>
                 </div>
                 <button className="btn-modal-close" onClick={() => setShowAddSectionModal(false)}><i className="fa-solid fa-xmark"></i></button>
               </div>
@@ -8380,6 +8394,17 @@ export default function ResumeCustomizer() {
           handleUpdateEntryValue(signatureModal.sectionId, signatureModal.entryIndex, 'signature', dataUrl);
           setSignatureModal({ isOpen: false, sectionId: null, entryIndex: null });
         }} 
+      />
+
+      <JsonUploadModal
+        isOpen={showJsonModal}
+        onClose={() => setShowJsonModal(false)}
+        onApply={(data) => {
+          updateResumeData(data);
+          setShowJsonModal(false);
+        }}
+        resumeData={resumeData}
+        template={selectedTemplate?.id}
       />
 
     </main>
