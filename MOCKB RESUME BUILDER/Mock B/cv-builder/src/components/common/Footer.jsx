@@ -1,64 +1,80 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 export default function Footer() {
+    const navigate = useNavigate();
+
     return (
         <footer className="main-footer">
             <div className="container">
                 <div className="footer-cta">
                     <h2>Land what's next</h2>
-                    <p>Job hunters use MockBee's AI-powered tools to land full-time jobs, part-time gigs, side hustles, freelance work, internships, and more. Land what's next with MockBee.</p>
-                    <button className="btn btn-dark">Get started today</button>
+                    <p>
+                        Job hunters use MockB CV to land full-time jobs, part-time gigs, side hustles,
+                        freelance work, internships, and more. Land what&apos;s next with MockB CV.
+                    </p>
+                    <button type="button" className="btn btn-dark" onClick={() => navigate('/resume/templates')}>
+                        Get started today
+                    </button>
                 </div>
 
                 <div className="footer-grid">
                     <div className="footer-col">
                         <h4>Platform</h4>
                         <ul>
-                            <li><a href="#">Plans and Pricing</a></li>
-                            <li><a href="#">AI Cover Letters</a></li>
-                            <li><a href="#">AI Resume Checker</a></li>
-                            <li><a href="#">Resume Templates</a></li>
-                            <li><a href="#">Affiliate Program</a></li>
-                            <li><a href="#">Sell Templates</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><Link to="/resume/templates">Resume Templates</Link></li>
+                            <li><Link to="/cover-letter/templates">Cover Letter Templates</Link></li>
+                            <li><Link to="/portfolio-maker">Portfolio Maker</Link></li>
+                            <li><Link to="/about">About</Link></li>
                         </ul>
                     </div>
                     <div className="footer-col">
                         <h4>Features</h4>
                         <ul>
-                            <li><a href="#">AI Cover Letter Generator</a></li>
-                            <li><a href="#">Resume Keyword Optimizer</a></li>
-                            <li><a href="#">ATS Resume Checker</a></li>
-                            <li><a href="#">Resume Design Templates</a></li>
-                            <li><a href="#">AI Connection Request Writer</a></li>
-                            <li><a href="#">AI Resignation Letter Writer</a></li>
+                            <li><Link to="/resume/customizer">Resume Builder</Link></li>
+                            <li><Link to="/cover-letter/customizer">Cover Letter Builder</Link></li>
+                            <li><Link to="/resume/templates">Design Templates</Link></li>
                         </ul>
                     </div>
                     <div className="footer-col">
                         <h4>Resources</h4>
                         <ul>
-                            <li><a href="#">4 AI Tools for Applying to Jobs</a></li>
-                            <li><a href="#">How to Optimize Your Resume Keywords</a></li>
-                            <li><a href="#">Why You Shouldn't Use ChatGPT for Cover Letters</a></li>
-                            <li><a href="#">4 Reasons You Aren't Getting Job Interviews</a></li>
-                            <li><a href="#">Does Anyone Actually Read Cover Letters?</a></li>
+                            <li><Link to="/terms">Terms of Use</Link></li>
+                            <li><Link to="/privacy">Privacy</Link></li>
+                            <li><Link to="/about">About MockB CV</Link></li>
                         </ul>
                     </div>
                     <div className="footer-col">
                         <h4>Support</h4>
-                        <p style={{ color: '#000', fontWeight: '500', marginBottom: '1rem' }}>support@mockbee.com</p>
+                        <p style={{ color: '#000', fontWeight: '500', marginBottom: '1rem' }}>
+                            <a href="mailto:support@mockb.cv">support@mockb.cv</a>
+                        </p>
                         <div className="social-links">
-                            <a href="#"><i className="fa-brands fa-linkedin"></i></a>
-                            <a href="#"><i className="fa-brands fa-twitter"></i></a>
-                            <a href="#"><i className="fa-brands fa-facebook"></i></a>
-                            <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i className="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+                                <i className="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i className="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i className="fa-brands fa-instagram"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div className="footer-bottom">
-                    <p>© 2026 MockBee. All rights reserved. | <a href="#">Terms of Use</a> | <a href="#">Privacy</a> | <a href="#">Template Licenses</a></p>
+                    <p>
+                        © {new Date().getFullYear()} MockB CV. All rights reserved.
+                        {' | '}
+                        <Link to="/terms">Terms of Use</Link>
+                        {' | '}
+                        <Link to="/privacy">Privacy</Link>
+                    </p>
                 </div>
             </div>
         </footer>

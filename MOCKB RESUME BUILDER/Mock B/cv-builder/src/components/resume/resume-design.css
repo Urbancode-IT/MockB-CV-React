@@ -6,6 +6,8 @@
     color: #111;
     box-sizing: border-box;
     position: relative;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .resume-design-wrapper,

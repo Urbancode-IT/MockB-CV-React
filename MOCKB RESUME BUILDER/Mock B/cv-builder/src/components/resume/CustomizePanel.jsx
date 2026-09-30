@@ -123,7 +123,7 @@ export default function CustomizePanel({
                     <div>
                         <div className="cz-label">Resume Size</div>
                         <div className="cz-grid-3">
-                            {[{ id: 'a4', label: 'A4' }, { id: 'letter', label: 'US Letter' }].map((f) => (
+                            {[{ id: 'a4', label: 'A4' }].map((f) => (
                                 <Opt key={f.id} active={d.pageSize === f.id} onClick={() => set('pageSize', f.id)}>{f.label}</Opt>
                             ))}
                         </div>

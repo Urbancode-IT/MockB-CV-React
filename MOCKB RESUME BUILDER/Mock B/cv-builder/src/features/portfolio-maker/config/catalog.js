@@ -37,6 +37,24 @@ export const PORTFOLIO_MAKER_TEMPLATES = [
       'ZIP with README run guide',
     ],
   },
+  {
+    id: 'folio-three',
+    name: 'Editorial Cut',
+    tagline: 'Black & cream layered typography portfolio',
+    description: 'Editorial one-page portfolio with a cinematic hero — oversized PORTFOLIO type layered through a portrait, hover project previews, experience path, and a large-type contact section.',
+    category: 'one-page',
+    framework: 'React + Vite',
+    accentColor: '#E8E4DC',
+    tags: ['editorial', 'minimal', 'dark', 'animated', 'typography'],
+    features: [
+      'Layered hero typography + portrait',
+      'Corner meta (role, name, site)',
+      'Project list with hover previews',
+      'Experience path & skill chips',
+      'Large-type contact section',
+      'ZIP with README run guide',
+    ],
+  },
 ];
 
 export const getMakerTemplate = (id) =>

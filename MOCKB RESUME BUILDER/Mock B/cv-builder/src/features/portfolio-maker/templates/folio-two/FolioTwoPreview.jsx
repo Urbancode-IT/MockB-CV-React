@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { normalizeContent } from '../folio-one/buildZip';
 import { buildThemeVars, folioTwoCssVars, resolveFolioTwoDesign } from '../../config/design';
 import { scrollToSection, downloadResumeFile, openExternal, openTalkChannel } from '../../utils/portfolioActions';
+import { imgFingerprint } from '../../utils/fileHelpers';
 import './FolioTwoPreview.css';
 
 const NAV_ITEMS = [
@@ -150,7 +151,11 @@ export default function FolioTwoPreview({ content, accentColor, design, compact 
           <div className="ft-hero-visual">
             <div className="ft-blob" aria-hidden="true" />
             <div className="ft-portrait">
-              <img src={d.profileImage} alt={d.name} />
+              <img
+                key={`ft-profile-${imgFingerprint(content?.profileImage || d.profileImage)}`}
+                src={content?.profileImage || d.profileImage}
+                alt={content?.name || d.name}
+              />
             </div>
           </div>
         </div>
@@ -199,7 +204,11 @@ export default function FolioTwoPreview({ content, accentColor, design, compact 
                   </button>
                 </div>
                 <div className="ft-project-media">
-                  <img src={project.image} alt={project.name} />
+                  <img
+                    key={`ft-project-${index}-${imgFingerprint(project.image)}`}
+                    src={project.image}
+                    alt={project.name}
+                  />
                 </div>
               </article>
             ))}

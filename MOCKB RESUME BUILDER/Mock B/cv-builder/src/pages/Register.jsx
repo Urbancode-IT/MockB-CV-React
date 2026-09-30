@@ -1,8 +1,15 @@
 import { useState } from 'react';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
 import PageLoader from '../components/common/PageLoader';
 import './Auth.css';
+
+const resolveReturnTo = (from) => {
+    if (!from) return { path: '/dashboard', state: undefined };
+    if (typeof from === 'string') return { path: from || '/dashboard', state: undefined };
+    const path = `${from.pathname || ''}${from.search || ''}${from.hash || ''}` || '/dashboard';
+    return { path, state: from.state };
+};
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -13,10 +20,12 @@ const Register = () => {
     const [success, setSuccess] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
     const { register, user, loading } = useAuth();
+    const returnTo = resolveReturnTo(location.state?.from);
 
     if (loading) return <PageLoader label="Checking session…" />;
-    if (user) return <Navigate to="/" replace />;
+    if (user) return <Navigate to={returnTo.path} replace state={returnTo.state} />;
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -40,8 +49,8 @@ const Register = () => {
         try {
             const res = await register({ name: normalizedName, email: normalizedEmail, password });
             if (res?.success) {
-                setSuccess('Account created. Taking you home…');
-                setTimeout(() => navigate('/'), 500);
+                setSuccess('Account created. Continuing…');
+                setTimeout(() => navigate(returnTo.path, { replace: true, state: returnTo.state }), 500);
             } else {
                 setError(res?.message || 'Registration failed. Please try again.');
             }
@@ -68,7 +77,7 @@ const Register = () => {
                         <h1>Create your <span>account</span></h1>
                         <p>
                             Already have an account?{' '}
-                            <Link to="/login">Sign in</Link>
+                            <Link to="/login" state={location.state}>Sign in</Link>
                         </p>
                     </div>
 
@@ -161,7 +170,7 @@ const Register = () => {
 
                     <p className="auth-footer-link">
                         Already have an account?{' '}
-                        <Link to="/login">Sign in</Link>
+                        <Link to="/login" state={location.state}>Sign in</Link>
                     </p>
                 </div>
             </div>

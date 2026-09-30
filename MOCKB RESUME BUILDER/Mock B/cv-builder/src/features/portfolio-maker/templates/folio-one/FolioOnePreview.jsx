@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { normalizeContent } from './buildZip';
 import { buildThemeVars, themeToCssVars } from '../../config/design';
 import { scrollToSection, downloadResumeFile, openExternal, openTalkChannel } from '../../utils/portfolioActions';
+import { imgFingerprint } from '../../utils/fileHelpers';
 import './FolioOnePreview.css';
 
 const NAV_ITEMS = [
@@ -151,10 +152,10 @@ export default function FolioOnePreview({ content, accentColor, design, compact 
               <div className="fo-portrait-grid" aria-hidden="true" />
               <div className="fo-portrait-glow" aria-hidden="true" />
               <img
-                src={d.profileImage}
-                alt={`Portrait of ${d.name}`}
+                key={`fo-profile-${imgFingerprint(content?.profileImage || d.profileImage)}`}
+                src={content?.profileImage || d.profileImage}
+                alt={`Portrait of ${content?.name || d.name}`}
                 className="fo-portrait-img"
-                loading="lazy"
               />
             </div>
           </div>
@@ -210,7 +211,11 @@ export default function FolioOnePreview({ content, accentColor, design, compact 
                 <div className="fo-work-media">
                   <div className="fo-work-media-bg" aria-hidden="true" />
                   <div className="fo-work-shot">
-                    <img src={p.image} alt={p.name} loading="lazy" />
+                    <img
+                      key={`fo-project-${imgFingerprint(p.image)}-${p.name}`}
+                      src={p.image}
+                      alt={p.name}
+                    />
                   </div>
                 </div>
                 <div className="fo-work-body">

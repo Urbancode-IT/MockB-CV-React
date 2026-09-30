@@ -47,7 +47,7 @@ export default function CoverLetterBuilder() {
     const [activePanel, setActivePanel] = useState('editor');
     const [saving, setSaving] = useState(false);
     const [saveStatus, setSaveStatus] = useState(null);
-    const [showMobilePreview, setShowMobilePreview] = useState(() => typeof window !== 'undefined' && window.innerWidth < 900);
+    const [showMobilePreview, setShowMobilePreview] = useState(false);
     const [showDownloadPreview, setShowDownloadPreview] = useState(false);
     const [downloading, setDownloading] = useState(false);
     const [leaveOpen, setLeaveOpen] = useState(false);
@@ -213,7 +213,7 @@ export default function CoverLetterBuilder() {
                 <div className="rb-nav-left">
                     <button type="button" className="rb-nav-logo" onClick={() => navigate('/')}>
                         <i className="fa-solid fa-envelope-open-text"></i>
-                        MockB-CV
+                        <span className="rb-nav-logo-text">MockB CV</span>
                     </button>
                     <div className="rb-nav-divider"></div>
                     <input
@@ -244,11 +244,13 @@ export default function CoverLetterBuilder() {
 
                 <div className="rb-nav-right">
                     <button
-                        className="rb-nav-btn rb-nav-btn--icon"
+                        className={`rb-nav-btn rb-nav-btn--icon rb-nav-btn--preview-toggle${showMobilePreview ? ' is-active' : ''}`}
                         onClick={() => setShowMobilePreview((p) => !p)}
-                        title="Toggle Preview"
+                        title={showMobilePreview ? 'Back to editor' : 'Preview cover letter'}
+                        aria-pressed={showMobilePreview}
                     >
-                        <i className="fa-solid fa-eye"></i>
+                        <i className={`fa-solid ${showMobilePreview ? 'fa-pen-to-square' : 'fa-eye'}`}></i>
+                        <span className="rb-preview-toggle-label">{showMobilePreview ? 'Edit' : 'Preview'}</span>
                     </button>
                     <button className="rb-nav-btn rb-nav-btn--outline" onClick={() => setShowDownloadPreview(true)}>
                         <i className="fa-solid fa-download"></i>
@@ -260,13 +262,13 @@ export default function CoverLetterBuilder() {
                         disabled={saving}
                     >
                         {saving ? (
-                            <><i className="fa-solid fa-spinner fa-spin"></i> Saving...</>
+                            <><i className="fa-solid fa-spinner fa-spin"></i><span className="rb-save-label">Saving...</span></>
                         ) : saveStatus === 'saved' ? (
-                            <><i className="fa-solid fa-check"></i> Saved!</>
+                            <><i className="fa-solid fa-check"></i><span className="rb-save-label">Saved!</span></>
                         ) : saveStatus === 'error' ? (
-                            <><i className="fa-solid fa-triangle-exclamation"></i> Error</>
+                            <><i className="fa-solid fa-triangle-exclamation"></i><span className="rb-save-label">Error</span></>
                         ) : (
-                            <><i className="fa-solid fa-floppy-disk"></i> Save</>
+                            <><i className="fa-solid fa-floppy-disk"></i><span className="rb-save-label">Save</span></>
                         )}
                     </button>
                 </div>

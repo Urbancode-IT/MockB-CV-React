@@ -217,6 +217,80 @@ export const folioTwoSample = {
   ],
 };
 
+export const folioThreeSample = {
+  name: 'Arnold N Unson',
+  initials: 'AU',
+  role: 'GHL Specialist',
+  headlineSegments: [{ text: 'PORTFOLIO', bold: true }],
+  tagline: 'Systems, funnels, and digital presence built with quiet precision.',
+  bio: 'I help operators and founders ship clear Go High Level systems — automations, funnels, and brand-facing sites that feel intentional instead of loud.',
+  introQuote: 'Quiet systems. Sharp delivery. No noise.',
+  email: 'hello@proskills.digital',
+  phone: '+1 (310) 555-0142',
+  whatsapp: '+1 (310) 555-0142',
+  location: 'Los Angeles, California',
+  linkedin: 'https://linkedin.com',
+  github: '',
+  website: 'https://www.proskills.digital',
+  profileImage:
+    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=1100&fit=crop&q=85',
+  techStack: ['Go High Level', 'Funnels', 'Automation', 'CRM', 'Web Design'],
+  skills: ['Go High Level', 'Funnels', 'Automation', 'CRM', 'Web Design'],
+  stats: { years: '7', projects: '120', clients: '40', satisfaction: '98%' },
+  features: [],
+  philosophy: { label: 'PORTFOLIO', title: 'Selected work' },
+  services: [],
+  projects: [
+    {
+      name: 'Operator OS',
+      category: 'Systems',
+      year: '2025',
+      roleTag: 'GHL Build',
+      description: 'End-to-end CRM and automation stack for a multi-location service brand.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1100&h=720&fit=crop&q=85',
+      tech: ['GHL', 'Automation'],
+      live: 'https://example.com',
+      github: '#',
+    },
+    {
+      name: 'Launch Lattice',
+      category: 'Funnels',
+      year: '2024',
+      roleTag: 'Funnel Design',
+      description: 'High-converting launch funnel with calendar booking and nurture sequences.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1100&h=720&fit=crop&q=85',
+      tech: ['Funnels', 'Copy'],
+      live: 'https://example.com',
+      github: '#',
+    },
+    {
+      name: 'Quiet Presence',
+      category: 'Brand Site',
+      year: '2024',
+      roleTag: 'Web Design',
+      description: 'Minimal brand site with editorial type and a focused lead capture path.',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1100&h=720&fit=crop&q=85',
+      tech: ['Web', 'Brand'],
+      live: 'https://example.com',
+      github: '#',
+    },
+  ],
+  experience: [
+    {
+      role: 'Lead GHL Specialist',
+      company: 'ProSkills Digital',
+      period: '2022 – Present',
+      description: 'Own funnel architecture, CRM hygiene, and client training for growth teams.',
+    },
+    {
+      role: 'Automation Consultant',
+      company: 'Studio Frame',
+      period: '2019 – 2022',
+      description: 'Built intake-to-invoice workflows and reporting dashboards for service businesses.',
+    },
+  ],
+};
+
 export const folioOneBlank = () => ({
   name: '',
   initials: '',
@@ -251,5 +325,6 @@ export const folioOneBlank = () => ({
 export const contentForTemplate = (templateId, mode = 'sample') => {
   if (mode === 'blank') return folioOneBlank();
   if (templateId === 'folio-two') return { ...folioTwoSample };
+  if (templateId === 'folio-three') return { ...folioThreeSample };
   return { ...folioOneSample };
 };

@@ -9,6 +9,13 @@ import {
     listUserResumes,
     listUserTemplates,
 } from '../utils/userLibrary';
+import {
+    listUserPortfolios,
+    deleteUserPortfolio,
+    listUserPortfolioTemplates,
+    deleteUserPortfolioTemplate,
+} from '../features/portfolio-maker/utils/portfolioLibrary';
+import { getMakerTemplate } from '../features/portfolio-maker/config/catalog';
 import { fileToDataUrl, getLocalProfile, saveLocalProfile } from '../utils/userProfile';
 import './Dashboard.css';
 
@@ -49,6 +56,8 @@ export default function Dashboard() {
 
     const [resumes, setResumes] = useState(() => listUserResumes());
     const [templates, setTemplates] = useState(() => listUserTemplates());
+    const [portfolios, setPortfolios] = useState(() => listUserPortfolios());
+    const [portfolioTemplates, setPortfolioTemplates] = useState(() => listUserPortfolioTemplates());
     const [editing, setEditing] = useState(false);
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState('');
@@ -158,6 +167,31 @@ export default function Dashboard() {
                 themeColor: item.themeColor,
                 sectionOrder: item.sectionOrder,
                 columnSections: item.columnSections,
+            },
+        });
+    };
+
+    const openPortfolio = (item) => {
+        navigate(`/portfolio-maker/edit/${item.selectedTemplate}`, {
+            state: {
+                restoreUserPortfolio: item,
+                userPortfolioId: item.id,
+                userTemplateId: item.userTemplateId,
+                userTemplateName: item.userTemplateName,
+                content: item.content,
+                design: item.design,
+                startMode: 'sample',
+            },
+        });
+    };
+
+    const openPortfolioTemplate = (item) => {
+        navigate(`/portfolio-maker/edit/${item.baseTemplate}`, {
+            state: {
+                startMode: 'sample',
+                userTemplateId: item.id,
+                userTemplateName: item.name,
+                design: item.design,
             },
         });
     };
@@ -389,6 +423,66 @@ export default function Dashboard() {
                                         className="ud-work-delete"
                                         aria-label={`Delete ${item.name}`}
                                         onClick={() => setTemplates(deleteUserTemplate(item.id))}
+                                    >
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+
+                <h3 className="ud-subhead">Saved portfolios</h3>
+                {portfolios.length === 0 ? (
+                    <p className="ud-empty">No saved portfolios yet. Customize one and click Save in the editor.</p>
+                ) : (
+                    <div className="ud-work-list">
+                        {portfolios.map((item) => {
+                            const base = getMakerTemplate(item.selectedTemplate);
+                            return (
+                                <div key={item.id} className="ud-work-row">
+                                    <button type="button" className="ud-work-main" onClick={() => openPortfolio(item)}>
+                                        <strong>{item.name}</strong>
+                                        <span>
+                                            {base?.name || item.selectedTemplate}
+                                            {item.updatedAt ? ` · ${formatWhen(item.updatedAt)}` : ''}
+                                        </span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="ud-work-delete"
+                                        aria-label={`Delete ${item.name}`}
+                                        onClick={() => setPortfolios(deleteUserPortfolio(item.id))}
+                                    >
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+
+                <h3 className="ud-subhead">Your portfolio templates</h3>
+                {portfolioTemplates.length === 0 ? (
+                    <p className="ud-empty">No portfolio design templates yet. Use Save as template in the portfolio editor.</p>
+                ) : (
+                    <div className="ud-work-list">
+                        {portfolioTemplates.map((item) => {
+                            const base = getMakerTemplate(item.baseTemplate);
+                            return (
+                                <div key={item.id} className="ud-work-row">
+                                    <button type="button" className="ud-work-main" onClick={() => openPortfolioTemplate(item)}>
+                                        <strong>{item.name}</strong>
+                                        <span>
+                                            Based on {base?.name || item.baseTemplate}
+                                            {item.updatedAt ? ` · ${formatWhen(item.updatedAt)}` : ''}
+                                        </span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="ud-work-delete"
+                                        aria-label={`Delete ${item.name}`}
+                                        onClick={() => setPortfolioTemplates(deleteUserPortfolioTemplate(item.id))}
                                     >
                                         <i className="fa-solid fa-trash"></i>
                                     </button>

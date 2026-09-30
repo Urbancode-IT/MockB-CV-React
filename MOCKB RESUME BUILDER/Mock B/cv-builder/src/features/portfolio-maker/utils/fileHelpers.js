@@ -7,6 +7,13 @@ export function readFileAsDataUrl(file) {
   });
 }
 
+/** Lean key for img remounts — never put full data-URLs in React keys/props. */
+export function imgFingerprint(src) {
+  if (!src) return '0';
+  const s = String(src);
+  return `${s.length}:${s.slice(-32)}`;
+}
+
 export function dataUrlToUint8Array(dataUrl) {
   const [meta, base64] = dataUrl.split(',');
   if (!base64) return null;

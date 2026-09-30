@@ -18,6 +18,8 @@
     height: var(--page-h, 297mm);
     max-height: var(--page-h, 297mm);
     overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     background: #fff;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
     position: relative;

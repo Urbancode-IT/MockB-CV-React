@@ -23,6 +23,23 @@ const contentFingerprint = (data = {}) => {
     return JSON.stringify(rest);
 };
 
+/** Sections whose entries started on an earlier page — their heading is hidden on this sheet. */
+const continuedSectionsForPage = (data = {}, pageIndex = 0) => {
+    if (pageIndex === 0) return [];
+    const slices = data.pageEntrySlices || {};
+    return Object.keys(slices).filter((id) => {
+        const slice = slices[id]?.[pageIndex] ?? slices[id]?.[String(pageIndex)];
+        return Array.isArray(slice) && slice[0] > 0;
+    });
+};
+
+const continuedHeadingCss = (pageIndex, ids) => ids
+    .map((id) => {
+        const scope = `.resume-sheet[data-sheet-index="${pageIndex}"] [data-section="${CSS.escape(id)}"]`;
+        return `${scope} > h2:first-child, ${scope} > h3:first-child, ${scope} > [class*="title"]:first-child { display: none !important; }`;
+    })
+    .join('\n');
+
 export default function ResumePagedView({
     template,
     resumeData,
@@ -107,12 +124,22 @@ export default function ResumePagedView({
             }
         };
 
-        // Double rAF so layout/fonts settle before measuring overflow.
         let frame2 = 0;
+        let cancelled = false;
         const frame1 = requestAnimationFrame(() => {
-            frame2 = requestAnimationFrame(run);
+            frame2 = requestAnimationFrame(() => {
+                if (cancelled) return;
+                if (document.fonts?.ready) {
+                    document.fonts.ready.then(() => {
+                        if (!cancelled) run();
+                    });
+                } else {
+                    run();
+                }
+            });
         });
         return () => {
+            cancelled = true;
             cancelAnimationFrame(frame1);
             if (frame2) cancelAnimationFrame(frame2);
         };
@@ -121,15 +148,19 @@ export default function ResumePagedView({
     return (
         <div className="resume-paged" style={{ '--page-w': `${pageW}mm`, '--page-h': `${pageH}mm` }}>
             <div className="resume-sheets">
-                {pages.map((pageIndex) => (
+                {pages.map((pageIndex) => {
+                    const continued = continuedSectionsForPage(fittedData, pageIndex);
+                    return (
                     <div
                         className="resume-sheet"
                         data-resume-capture=""
+                        data-sheet-index={pageIndex}
                         key={pageIndex}
                         ref={(el) => {
                             sheetRefs.current[pageIndex] = el;
                         }}
                     >
+                        {continued.length > 0 && <style>{continuedHeadingCss(pageIndex, continued)}</style>}
                         <div className="resume-sheet-inner">
                             <ResumeTemplateRenderer
                                 template={template}
@@ -138,7 +169,8 @@ export default function ResumePagedView({
                             />
                         </div>
                     </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );

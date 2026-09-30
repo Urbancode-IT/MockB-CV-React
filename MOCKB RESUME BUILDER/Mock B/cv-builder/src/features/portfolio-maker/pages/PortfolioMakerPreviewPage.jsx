@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { getMakerTemplate } from '../config/catalog';
-import { DEFAULT_DESIGN, MODE_PRESETS, resolveDesign, FOLIO_TWO_DEFAULT_DESIGN, resolveFolioTwoDesign } from '../config/design';
+import { DEFAULT_DESIGN, MODE_PRESETS, resolveDesign, FOLIO_TWO_DEFAULT_DESIGN, resolveFolioTwoDesign, FOLIO_THREE_DEFAULT_DESIGN, resolveFolioThreeDesign } from '../config/design';
 import { contentForTemplate } from '../data/defaultContent';
 import { renderMakerPreview } from '../components/renderPreview.jsx';
 import { loadPreviewState, savePreviewState } from '../utils/previewSession';
@@ -19,6 +19,9 @@ export default function PortfolioMakerPreviewPage() {
     const incoming = location.state?.design || session?.design || null;
     if (template.id === 'folio-two') {
       return resolveFolioTwoDesign(incoming || FOLIO_TWO_DEFAULT_DESIGN);
+    }
+    if (template.id === 'folio-three') {
+      return resolveFolioThreeDesign(incoming || FOLIO_THREE_DEFAULT_DESIGN);
     }
     return resolveDesign(incoming || DEFAULT_DESIGN);
   });

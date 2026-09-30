@@ -191,7 +191,8 @@
 }
 
 .auth-error,
-.auth-success {
+.auth-success,
+.auth-info {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -205,6 +206,12 @@
     background: rgba(239, 68, 68, 0.08);
     border: 1px solid rgba(239, 68, 68, 0.2);
     color: #fca5a5;
+}
+
+.auth-info {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    color: #f5e6a8;
 }
 
 .auth-success {

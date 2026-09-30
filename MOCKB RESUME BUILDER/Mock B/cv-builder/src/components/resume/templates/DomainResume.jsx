@@ -191,6 +191,7 @@ const DomainResume = ({ resumeData = {}, variant = 'frontend' }) => {
                             key={id}
                             resumeData={resumeData}
                             compact
+                            titleClassName="dr-title"
                             only={[id]}
                             preserveDomOrder
                         />

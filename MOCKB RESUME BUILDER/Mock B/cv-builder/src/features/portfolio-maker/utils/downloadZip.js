@@ -1,13 +1,16 @@
 import JSZip from 'jszip';
 import { buildFolioOneZipFiles } from '../templates/folio-one/buildZip';
 import { buildFolioTwoZipFiles } from '../templates/folio-two/buildZip';
+import { buildFolioThreeZipFiles } from '../templates/folio-three/buildZip';
 import { resolveDesign } from '../config/design';
 
 export async function downloadPortfolioMakerZip({ templateId = 'folio-one', content, design }) {
   const resolvedDesign = resolveDesign(design);
-  const files = templateId === 'folio-two'
-    ? buildFolioTwoZipFiles(content, resolvedDesign)
-    : buildFolioOneZipFiles(content, resolvedDesign);
+  const files = templateId === 'folio-three'
+    ? buildFolioThreeZipFiles(content, resolvedDesign)
+    : templateId === 'folio-two'
+      ? buildFolioTwoZipFiles(content, resolvedDesign)
+      : buildFolioOneZipFiles(content, resolvedDesign);
 
   const zip = new JSZip();
   Object.entries(files).forEach(([path, fileContent]) => zip.file(path, fileContent));

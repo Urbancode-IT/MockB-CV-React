@@ -1912,9 +1912,6 @@ const TEMPLATE_SAMPLES = {
             { name: "Kubernetes in Production", institution: "Linux Foundation", date: "2022" },
             { name: "Terraform Deep Dive", institution: "HashiCorp", date: "2021" },
         ],
-        awards: [
-            { name: "Ops excellence", issuer: "Nimbus Scale", date: "2024", description: "For the blue-green platform rollout." },
-        ],
         interests: [
             { name: "Platform engineering" },
             { name: "Incident reviews" },

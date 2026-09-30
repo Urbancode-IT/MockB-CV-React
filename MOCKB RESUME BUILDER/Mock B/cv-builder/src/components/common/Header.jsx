@@ -100,29 +100,6 @@ export default function Header() {
                         <li>
                             <Link to="/portfolio-maker" onClick={handleLinkClick}>Portfolio maker</Link>
                         </li>
-                        <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`}>
-                            <button className="nav-toggle-btn" onClick={() => toggleMenu('languages')}>
-                                Languages <i className="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div className={`mega-menu ${activeMenu === 'languages' ? 'active' : ''}`}>
-                                <div className="container">
-                                    <div className="mega-menu-grid">
-                                        <button className="mega-menu-item" onClick={() => { handleLinkClick(); if (window.changeLanguage) window.changeLanguage('en'); }}>
-                                            <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                                            <div className="item-text"><h4>English</h4></div>
-                                        </button>
-                                        <button className="mega-menu-item" onClick={() => { handleLinkClick(); if (window.changeLanguage) window.changeLanguage('fr'); }}>
-                                            <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                                            <div className="item-text"><h4>French</h4></div>
-                                        </button>
-                                        <button className="mega-menu-item" onClick={() => { handleLinkClick(); if (window.changeLanguage) window.changeLanguage('es'); }}>
-                                            <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                                            <div className="item-text"><h4>Spanish</h4></div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                         <li>
                             <Link to="/about" onClick={handleLinkClick}>About</Link>
                         </li>

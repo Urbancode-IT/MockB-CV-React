@@ -11,7 +11,7 @@ export default function DetailedFeatures() {
         <div className="detailed-feature-card">
           <div className="detailed-feature-icon"><i className="fa-solid fa-file-lines"></i></div>
           <h3>Cover Letters</h3>
-          <p>Use MockBee's AI cover letter generator to write your cover letters in seconds, personalized for the specific job you want.</p>
+          <p>Use MockB CV&apos;s AI cover letter generator to write your cover letters in seconds, personalized for the specific job you want.</p>
         </div>
         <div className="detailed-feature-card">
           <div className="detailed-feature-icon"><i className="fa-solid fa-signature"></i></div>

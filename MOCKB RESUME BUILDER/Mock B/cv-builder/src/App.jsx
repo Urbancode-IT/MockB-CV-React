@@ -34,6 +34,8 @@ import ResumeTemplates from "./pages/ResumeTemplates";
 import CoverLetterTemplates from "./pages/CoverLetterTemplates";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import CoverLetterBuilder from "./pages/CoverLetterBuilder";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 const router = createBrowserRouter([
     {
@@ -41,8 +43,12 @@ const router = createBrowserRouter([
         children: [
             { path: "/", element: <Home /> },
             { path: "/about", element: <About /> },
+            { path: "/terms", element: <Terms /> },
+            { path: "/privacy", element: <Privacy /> },
             { path: "/login", element: <Login /> },
             { path: "/register", element: <Register /> },
+            { path: "/resume/templates", element: <ResumeTemplates /> },
+            { path: "/cover-letter/templates", element: <CoverLetterTemplates /> },
             { path: "/portfolio-maker", element: <PortfolioMakerGallery /> },
             { path: "/portfolio-maker/preview/:templateId", element: <PortfolioMakerPreviewPage /> },
             { path: "/portfolio-maker/edit/:templateId", element: <PortfolioMakerEditor /> },
@@ -58,7 +64,6 @@ const router = createBrowserRouter([
                     { path: "/resume/guidelines", element: <ResumeGuidelines /> },
                     { path: "/resume/customizer", element: <ResumeBuilder /> },
                     { path: "/resume/customizer/:id", element: <ResumeBuilder /> },
-                    { path: "/resume/templates", element: <ResumeTemplates /> },
                     { path: "/cover-letter/ai-builder", element: <AICoverLetterBuilder /> },
                     { path: "/cover-letter/ats-checker", element: <CoverLetterATSScoreChecker /> },
                     { path: "/cover-letter/ats_checker", element: <CoverLetterATSScoreChecker /> },
@@ -67,7 +72,6 @@ const router = createBrowserRouter([
                     { path: "/cover-letter/guidelines", element: <CoverLetterGuidelines /> },
                     { path: "/cover-letter/upgrader", element: <CoverLetterUpgrader /> },
                     { path: "/cover-letter/customizer", element: <CoverLetterBuilder /> },
-                    { path: "/cover-letter/templates", element: <CoverLetterTemplates /> },
                     { path: "/portfolio-builder", element: <PortfolioBuilder /> },
                     { path: "/why-portfolio", element: <WhyPortfolio /> },
                     { path: "/ai-resume-builder", element: <AIResumeBuilder /> },

@@ -2,6 +2,8 @@
     margin: 0 auto;
     background: #fff;
     box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .cl-render-wrap .cl-classic,

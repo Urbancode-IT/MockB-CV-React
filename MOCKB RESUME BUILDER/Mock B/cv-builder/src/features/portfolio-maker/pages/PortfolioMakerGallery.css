@@ -229,6 +229,42 @@
   line-height: 1.5;
 }
 
+.pm-mine-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.pm-mine-name {
+  margin: 0;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.pm-mine-name:hover {
+  color: var(--primary-color, #d4af37);
+}
+
+.pm-mine-delete {
+  border: 0;
+  background: transparent;
+  color: #9a9a9a;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.pm-mine-delete:hover {
+  color: #ef4444;
+}
+
+.pm-mine-base {
+  margin: 0 0 0.85rem;
+  color: var(--text-gray, #a0a0a0);
+  font-size: 0.82rem;
+}
+
 @media (max-width: 800px) {
   .pm-steps-grid {
     grid-template-columns: 1fr;

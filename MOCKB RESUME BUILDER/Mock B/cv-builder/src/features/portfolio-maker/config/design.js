@@ -38,6 +38,7 @@ export const BRAND_GRADIENT = 'linear-gradient(90deg, #00B56F, #004F30)';
 export const COLOR_PRESETS = [
   { id: 'brand', color: '#00B56F', gradient: BRAND_GRADIENT, label: 'Brand Green' },
   { id: 'crimson', color: '#DC2626', gradient: 'linear-gradient(90deg, #EF4444, #7F1D1D)', label: 'Crimson' },
+  { id: 'cream', color: '#E8E4DC', gradient: 'linear-gradient(90deg, #E8E4DC, #B8B2A6)', label: 'Cream' },
   { id: 'mint', color: '#64ffda', label: 'Mint' },
   { id: 'gold', color: '#D4AF37', label: 'Gold' },
   { id: 'indigo', color: '#4F46E5', label: 'Indigo' },
@@ -68,10 +69,26 @@ export const FOLIO_TWO_DEFAULT_DESIGN = {
   mode: 'dark',
 };
 
+/** Folio Three — editorial black / cream cutout look. */
+export const FOLIO_THREE_DEFAULT_DESIGN = {
+  colorId: 'cream',
+  accentColor: '#E8E4DC',
+  accentGradient: 'linear-gradient(90deg, #E8E4DC, #B8B2A6)',
+  fontId: 'space-grotesk',
+  mode: 'dark',
+};
+
 /** Apply Folio Two defaults, then let any explicit user picks win. */
 export function resolveFolioTwoDesign(partial = {}) {
   return resolveDesign({
     ...FOLIO_TWO_DEFAULT_DESIGN,
+    ...partial,
+  });
+}
+
+export function resolveFolioThreeDesign(partial = {}) {
+  return resolveDesign({
+    ...FOLIO_THREE_DEFAULT_DESIGN,
     ...partial,
   });
 }

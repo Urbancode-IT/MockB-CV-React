@@ -374,7 +374,7 @@ const ENTRY_SELECTORS = [
 const COLUMN_ROOT_SELECTORS = '.ss-col, .pp-sidebar, .pp-main';
 
 /** Don't leave a heading (or heading + tiny stub) alone at the bottom of a page. */
-const MIN_ROOM_FOR_SECTION = 64;
+const MIN_ROOM_FOR_SECTION = 48;
 
 const pagesToMap = (pages) => {
     const map = {};
@@ -487,7 +487,7 @@ export const computeOverflowPagination = (sheetEl, data = {}, templateId = '', p
     const current = pages[pageIndex] || [];
     const sheetRect = sheetEl.getBoundingClientRect();
     // Leave a small bottom safety margin so content is not clipped by page chrome.
-    const limitY = sheetRect.bottom - 6;
+    const limitY = sheetRect.bottom - 12;
 
     const columnRoots = [...sheetEl.querySelectorAll(COLUMN_ROOT_SELECTORS)];
     const groups = columnRoots.length >= 2

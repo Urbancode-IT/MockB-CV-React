@@ -1,6 +1,7 @@
 import FolioOnePreview from '../templates/folio-one/FolioOnePreview.jsx';
 import FolioTwoPreview from '../templates/folio-two/FolioTwoPreview.jsx';
-import { resolveFolioTwoDesign } from '../config/design';
+import FolioThreePreview from '../templates/folio-three/FolioThreePreview.jsx';
+import { resolveFolioTwoDesign, resolveFolioThreeDesign } from '../config/design';
 
 export function renderMakerPreview(templateId, content, accentOrDesign, compact = false) {
   const isDesignObject = accentOrDesign && typeof accentOrDesign === 'object';
@@ -10,6 +11,18 @@ export function renderMakerPreview(templateId, content, accentOrDesign, compact 
     const resolved = resolveFolioTwoDesign(design);
     return (
       <FolioTwoPreview
+        content={content}
+        accentColor={resolved.accentColor}
+        design={resolved}
+        compact={compact}
+      />
+    );
+  }
+
+  if (templateId === 'folio-three') {
+    const resolved = resolveFolioThreeDesign(design);
+    return (
+      <FolioThreePreview
         content={content}
         accentColor={resolved.accentColor}
         design={resolved}

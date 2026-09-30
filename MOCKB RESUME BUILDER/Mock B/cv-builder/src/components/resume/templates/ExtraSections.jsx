@@ -9,7 +9,7 @@ const titleOf = (resumeData, id, fallback) =>
 const visible = (list, hidden = []) =>
     (list || []).filter((_, i) => !hidden.includes(i));
 
-const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = false, preserveDomOrder = false }) => {
+const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = false, preserveDomOrder = false, titleClassName = null }) => {
     const hidden = resumeData.hiddenEntries || {};
     const {
         interests = [],
@@ -30,7 +30,7 @@ const ExtraSections = ({ resumeData = {}, exclude = [], only = null, compact = f
         return { order: index >= 0 ? index : 80 };
     };
     const sectionClass = compact ? 'rx-section' : 'cp-section rx-section';
-    const titleClass = compact ? 'rx-title' : 'cp-section-title rx-title';
+    const titleClass = titleClassName || (compact ? 'rx-title' : 'cp-section-title rx-title');
     const show = (id) => {
         if (Array.isArray(only)) {
             if (only.includes(id)) return !exclude.includes(id);

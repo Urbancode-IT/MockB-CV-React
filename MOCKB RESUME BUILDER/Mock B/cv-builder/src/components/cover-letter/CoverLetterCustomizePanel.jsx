@@ -46,7 +46,6 @@ export default function CoverLetterCustomizePanel({ design = {}, updateDesign, o
                         <p className="cz-label">Size</p>
                         <div className="cz-row">
                             <Opt active={(design.pageSize || 'a4') === 'a4'} onClick={() => updateDesign('pageSize', 'a4')}>A4</Opt>
-                            <Opt active={design.pageSize === 'letter'} onClick={() => updateDesign('pageSize', 'letter')}>US Letter</Opt>
                         </div>
                     </div>
                     <div>

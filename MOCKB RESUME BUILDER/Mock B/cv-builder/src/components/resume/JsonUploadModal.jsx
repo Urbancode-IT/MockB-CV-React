@@ -4,22 +4,44 @@ import {
     mergeResumeImportJson,
     resumeImportJsonString,
 } from '../../utils/resumeJson';
+import { sampleForTemplate } from '../../data/sampleResumeData';
+import { getTemplateById } from '../../config/templates';
+import { RESUME_FILE_ACCEPT, describeSections, importResumeFile } from '../../utils/resumeFileImport';
 import './JsonUploadModal.css';
 
-const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
+const EMPTY_JSON = '{}';
+
+const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData, template }) => {
     const [jsonText, setJsonText] = useState('');
     const [error, setError] = useState(null);
     const [showExample, setShowExample] = useState(true);
     const [copied, setCopied] = useState(null);
+    const [source, setSource] = useState('current');
+    const [importing, setImporting] = useState(false);
+    const [importInfo, setImportInfo] = useState(null);
+    const [importProgress, setImportProgress] = useState('');
     const fileInputRef = useRef(null);
+    const resumeFileRef = useRef(null);
 
-    const exampleJson = useMemo(
+    const currentJson = useMemo(
         () => resumeImportJsonString(resumeData || {}, 2),
         [resumeData],
     );
+    const templateSample = useMemo(
+        () => (template ? sampleForTemplate(template) : null),
+        [template],
+    );
+    const templateJson = useMemo(
+        () => (templateSample ? resumeImportJsonString(templateSample, 2) : EMPTY_JSON),
+        [templateSample],
+    );
+    const templateName = template ? getTemplateById(template)?.name || 'this template' : 'this template';
+    const currentIsEmpty = currentJson === EMPTY_JSON;
+    const activeSource = source === 'template' || currentIsEmpty ? 'template' : 'current';
+    const exampleJson = activeSource === 'template' ? templateJson : currentJson;
     const aiPrompt = useMemo(
-        () => buildAiResumeJsonPrompt(resumeData || {}),
-        [resumeData],
+        () => buildAiResumeJsonPrompt(activeSource === 'template' ? templateSample || {} : resumeData || {}),
+        [activeSource, templateSample, resumeData],
     );
     const personLabel = (resumeData?.personal?.name || '').trim() || 'your resume';
 
@@ -28,7 +50,10 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
         setError(null);
         setCopied(null);
         setShowExample(true);
+        setImportInfo(null);
+        setSource(resumeData?.startBlank || currentIsEmpty ? 'template' : 'current');
         return undefined;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
     if (!isOpen) return null;
@@ -53,6 +78,30 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
         };
         reader.readAsText(file);
         e.target.value = null;
+        setImportInfo(null);
+    };
+
+    const handleResumeFile = async (e) => {
+        const file = e.target.files?.[0];
+        e.target.value = null;
+        if (!file) return;
+        setImporting(true);
+        setError(null);
+        setImportInfo(null);
+        try {
+            const result = await importResumeFile(file, templateSample, setImportProgress);
+            if (!result.found.length && !Object.keys(result.data.personal || {}).length) {
+                throw new Error('Could not recognise any resume sections in this file.');
+            }
+            setJsonText(JSON.stringify(result.data, null, 2));
+            setImportInfo({ ...result, fileName: file.name });
+            setShowExample(false);
+        } catch (err) {
+            setError(err?.message || 'Could not read this resume file.');
+        } finally {
+            setImporting(false);
+            setImportProgress('');
+        }
     };
 
     const handleApply = () => {
@@ -62,9 +111,10 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                 setError('JSON must be an object with resume fields (personal, experience, …).');
                 return;
             }
-            onApply(parsed);
+            onApply(parsed, importInfo ? { filled: importInfo.filled, filledPersonal: importInfo.filledPersonal, fileName: importInfo.fileName } : null);
             onClose();
             setJsonText('');
+            setImportInfo(null);
             setError(null);
         } catch {
             setError('Invalid JSON format. Please check your syntax and try again.');
@@ -73,6 +123,7 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
 
     const handleLoadExample = () => {
         setJsonText(exampleJson);
+        setImportInfo(null);
         setError(null);
     };
 
@@ -87,7 +138,7 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                     <div className="jm-header-left">
                         <i className="fa-solid fa-file-code jm-header-icon"></i>
                         <div>
-                            <h3>Upload Resume JSON</h3>
+                            <h3>Import Resume</h3>
                         </div>
                     </div>
                     <button type="button" className="jm-close" onClick={onClose} aria-label="Close">
@@ -96,11 +147,86 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                 </div>
 
                 <div className="jm-body">
+                    <div className="jm-import-block">
+                        <div className="jm-import-copy">
+                            <strong>
+                                <i className="fa-solid fa-file-import"></i> Import your existing resume
+                            </strong>
+                            <p>
+                                Upload a PDF, DOCX, TXT, or image of your resume — scanned or image-only PDFs are read with text recognition. We convert it to JSON for{' '}
+                                <strong>{templateName}</strong>, and fill any section your resume doesn&apos;t have with sample content.
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            className="jm-import-btn"
+                            onClick={() => resumeFileRef.current?.click()}
+                            disabled={importing}
+                        >
+                            <i className={`fa-solid ${importing ? 'fa-spinner fa-spin' : 'fa-upload'}`}></i>
+                            {importing ? importProgress || 'Reading resume…' : 'Upload resume'}
+                        </button>
+                        <input
+                            type="file"
+                            accept={RESUME_FILE_ACCEPT}
+                            style={{ display: 'none' }}
+                            ref={resumeFileRef}
+                            onChange={handleResumeFile}
+                        />
+                    </div>
+
+                    {importInfo && (
+                        <div className="jm-import-result" role="status">
+                            <p>
+                                <i className="fa-solid fa-circle-check"></i>
+                                Read <strong>{importInfo.fileName}</strong>
+                                {importInfo.found.length > 0 && <> — found {describeSections(importInfo.found).join(', ')}.</>}
+                            </p>
+                            {importInfo.filled.length > 0 && (
+                                <p className="jm-import-warn">
+                                    <i className="fa-solid fa-triangle-exclamation"></i>
+                                    Not found in your resume, filled with sample content — replace or hide these after applying:{' '}
+                                    <strong>{describeSections(importInfo.filled).join(', ')}</strong>
+                                </p>
+                            )}
+                            <p className="jm-import-hint">Review the JSON below, then click <strong>Apply to Template</strong>.</p>
+                        </div>
+                    )}
+
                     <p className="jm-desc">
                         Import content from a <code>.json</code> file or paste JSON below.
                         This updates <strong>form fields only</strong> — your template and design stay the same.
-                        The example below matches <strong>{personLabel}</strong> exactly as edited in this resume.
+                        {activeSource === 'template' ? (
+                            <> The example below is sample content for <strong>{templateName}</strong> — replace it with your details.</>
+                        ) : (
+                            <> The example below matches <strong>{personLabel}</strong> exactly as edited in this resume.</>
+                        )}
                     </p>
+
+                    <div className="jm-source-switch" role="tablist" aria-label="Example JSON source">
+                        <button
+                            type="button"
+                            role="tab"
+                            aria-selected={activeSource === 'template'}
+                            className={activeSource === 'template' ? 'is-active' : ''}
+                            onClick={() => setSource('template')}
+                        >
+                            <i className="fa-solid fa-table-columns"></i>
+                            {templateName} example
+                        </button>
+                        <button
+                            type="button"
+                            role="tab"
+                            aria-selected={activeSource === 'current'}
+                            className={activeSource === 'current' ? 'is-active' : ''}
+                            onClick={() => setSource('current')}
+                            disabled={currentIsEmpty}
+                            title={currentIsEmpty ? 'Fill in some fields first' : undefined}
+                        >
+                            <i className="fa-solid fa-user-pen"></i>
+                            My resume
+                        </button>
+                    </div>
 
                     <div className="jm-input-row">
                         <button
@@ -125,7 +251,7 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                             onClick={() => setShowExample((v) => !v)}
                         >
                             <i className="fa-solid fa-eye"></i>
-                            <span>{showExample ? 'Hide live JSON' : 'Show live JSON'}</span>
+                            <span>{showExample ? 'Hide example JSON' : 'Show example JSON'}</span>
                         </button>
                     </div>
 
@@ -134,7 +260,7 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                             <div className="jm-example-bar">
                                 <span>
                                     <i className="fa-solid fa-circle-info"></i>
-                                    Live schema from this resume
+                                    {activeSource === 'template' ? `Sample for ${templateName}` : 'Live schema from this resume'}
                                 </span>
                                 <div className="jm-example-actions">
                                     <button type="button" onClick={() => copyText(exampleJson, 'json')}>
@@ -156,7 +282,7 @@ const JsonUploadModal = ({ isOpen, onClose, onApply, resumeData }) => {
                             <div>
                                 <strong>AI fill prompt</strong>
                                 <p>
-                                    Copy this into ChatGPT, Claude, or any AI. It includes your current JSON pattern
+                                    Copy this into ChatGPT, Claude, or any AI. It includes the JSON pattern above
                                     so the model returns the same structure with your details.
                                 </p>
                             </div>

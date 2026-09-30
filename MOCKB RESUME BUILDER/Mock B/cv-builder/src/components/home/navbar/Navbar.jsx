@@ -130,29 +130,6 @@ export default function Navbar() {
             <li>
               <Link to="/portfolio-maker" onClick={closeAll}>Portfolio maker</Link>
             </li>
-            <li className={`has-mega-menu ${activeMenu === 'languages' ? 'active' : ''}`} id="lang-menu-parent">
-              <a href="#!" id="languages-trigger" onClick={(e) => toggleMenu(e, 'languages')}>
-                Languages <i className="fa-solid fa-chevron-down"></i>
-              </a>
-              <div className={`mega-menu ${activeMenu === 'languages' ? 'active' : ''}`} id="languages-mega-menu">
-                <div className="container">
-                  <div className="mega-menu-grid">
-                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('en'); }} className="mega-menu-item">
-                      <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                      <div className="item-text"><h4>English</h4></div>
-                    </a>
-                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('fr'); }} className="mega-menu-item">
-                      <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                      <div className="item-text"><h4>French</h4></div>
-                    </a>
-                    <a href="#!" onClick={(e) => { e.preventDefault(); closeAll(); if (window.changeLanguage) window.changeLanguage('es'); }} className="mega-menu-item">
-                      <div className="item-icon"><i className="fa-solid fa-language"></i></div>
-                      <div className="item-text"><h4>Spanish</h4></div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
             <li><Link to="/about" onClick={closeAll}>About</Link></li>
 
             <li className="nav-mobile-auth">

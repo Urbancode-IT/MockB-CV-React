@@ -72,6 +72,8 @@
     padding: 1.5rem 0;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
 }
 
 .gallery-slider::-webkit-scrollbar {
@@ -94,6 +96,24 @@
 
 .template-card-wrap .card-image {
     position: relative;
+    cursor: pointer;
+}
+
+.tg-use-btn {
+    margin-top: 0.75rem;
+    width: 100%;
+    padding: 0.55rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: rgba(212, 175, 55, 0.12);
+    color: #f5e6a8;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+
+.tg-use-btn:hover {
+    background: rgba(212, 175, 55, 0.22);
 }
 
 .template-card-wrap--hovered .rt-overlay,
@@ -111,14 +131,12 @@
     scroll-snap-stop: always;
     text-align: left;
     padding: 0;
-    cursor: pointer;
+    cursor: default;
     font-family: inherit;
     color: inherit;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    appearance: none;
-    -webkit-appearance: none;
 }
 
 .template-card:hover {
@@ -347,12 +365,21 @@
         padding: 2rem 0 3.5rem;
     }
 
+    .gallery-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+        padding: 0 1rem;
+    }
+
     .gallery-tabs {
         width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        justify-content: flex-start;
     }
 
     .gallery-tabs::-webkit-scrollbar { display: none; }
@@ -361,6 +388,7 @@
         flex: 0 0 auto;
         padding: 0.45rem 1rem;
         font-size: 0.82rem;
+        white-space: nowrap;
     }
 
     .gallery-view-all {

@@ -75,6 +75,8 @@ export default function TemplatesGallery() {
     if (sliderElement) {
       sliderElement.addEventListener('mouseenter', stopAutoPlay);
       sliderElement.addEventListener('mouseleave', startAutoPlay);
+      sliderElement.addEventListener('touchstart', stopAutoPlay, { passive: true });
+      sliderElement.addEventListener('pointerdown', stopAutoPlay);
     }
 
     return () => {
@@ -82,6 +84,8 @@ export default function TemplatesGallery() {
       if (sliderElement) {
         sliderElement.removeEventListener('mouseenter', stopAutoPlay);
         sliderElement.removeEventListener('mouseleave', startAutoPlay);
+        sliderElement.removeEventListener('touchstart', stopAutoPlay);
+        sliderElement.removeEventListener('pointerdown', stopAutoPlay);
       }
     };
   }, [activeFilter]);
@@ -157,8 +161,20 @@ export default function TemplatesGallery() {
                 onMouseEnter={() => setHoveredId(templateId)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                <button type="button" className="template-card" onClick={useTemplate}>
-                  <div className="card-image">
+                <article className="template-card">
+                  <div
+                    className="card-image"
+                    role="button"
+                    tabIndex={0}
+                    onClick={previewTemplate}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openPreview(kind, templateId, card.title);
+                      }
+                    }}
+                    aria-label={`Preview ${card.title}`}
+                  >
                     {card.templateId ? (
                       <div className="rt-preview-box">
                         <ResumeTemplateThumb
@@ -189,8 +205,11 @@ export default function TemplatesGallery() {
                     <span className="card-tag">{tagLabel(card.category)}</span>
                     <h3>{card.title}</h3>
                     <p>{card.description}</p>
+                    <button type="button" className="tg-use-btn" onClick={useTemplate}>
+                      Use template
+                    </button>
                   </div>
-                </button>
+                </article>
               </div>
             );
           })}

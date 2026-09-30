@@ -1,8 +1,15 @@
 import { useState } from 'react';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
 import PageLoader from '../components/common/PageLoader';
 import './Auth.css';
+
+const resolveReturnTo = (from) => {
+    if (!from) return { path: '/dashboard', state: undefined };
+    if (typeof from === 'string') return { path: from || '/dashboard', state: undefined };
+    const path = `${from.pathname || ''}${from.search || ''}${from.hash || ''}` || '/dashboard';
+    return { path, state: from.state };
+};
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,10 +18,16 @@ const Login = () => {
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
     const { login, user, loading } = useAuth();
 
+    const returnTo = resolveReturnTo(location.state?.from);
+    const reason = location.state?.reason || (location.state?.from ? 'Sign in to continue where you left off.' : '');
+
     if (loading) return <PageLoader label="Checking session…" />;
-    if (user) return <Navigate to="/" replace />;
+    if (user) {
+        return <Navigate to={returnTo.path} replace state={returnTo.state} />;
+    }
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -28,7 +41,7 @@ const Login = () => {
         try {
             const res = await login({ email: normalizedEmail, password });
             if (res?.success) {
-                navigate('/');
+                navigate(returnTo.path, { replace: true, state: returnTo.state });
             } else {
                 setError(res?.message || 'Login failed. Please try again.');
             }
@@ -55,9 +68,16 @@ const Login = () => {
                         <h1>Welcome <span>back</span></h1>
                         <p>
                             Don&apos;t have an account?{' '}
-                            <Link to="/register">Create one free</Link>
+                            <Link to="/register" state={location.state}>Create one free</Link>
                         </p>
                     </div>
+
+                    {reason ? (
+                        <div className="auth-info" role="status">
+                            <i className="fa-solid fa-circle-info"></i>
+                            {reason}
+                        </div>
+                    ) : null}
 
                     {error && (
                         <div className="auth-error" role="alert">
@@ -125,7 +145,7 @@ const Login = () => {
 
                     <p className="auth-footer-link">
                         Don&apos;t have an account?{' '}
-                        <Link to="/register">Register here</Link>
+                        <Link to="/register" state={location.state}>Register here</Link>
                     </p>
                 </div>
             </div>

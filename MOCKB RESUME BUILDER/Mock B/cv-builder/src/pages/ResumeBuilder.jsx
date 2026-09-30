@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate, useLocation, useBlocker } from 'react-router-dom';
+import { Link, useParams, useNavigate, useLocation, useBlocker } from 'react-router-dom';
 
 import ResumeEditorForm from '../components/resume/ResumeEditorForm';
 import ResumePagedView from '../components/resume/ResumePagedView';
@@ -11,14 +11,24 @@ import { createResume, getResumeById, updateResume } from '../services/resumeSer
 import { DEFAULT_TEMPLATE, resolveTemplateId, getTemplateById, isTwoColumnTemplate } from '../config/templates';
 import { withPortraitDefaults } from '../config/portraitDefaults';
 import { flattenColumnSections, moveColumnSection as moveColumn, normalizeColumnSections, columnsWithActiveSections } from '../config/columnLayout';
-import { movePageSection as movePage } from '../config/pageLayout';
+import { movePageSection as movePage, bodySectionsForData } from '../config/pageLayout';
 import { listCustomSections } from '../config/customSections';
 import { sampleForTemplate, blankForTemplate } from '../data/sampleResumeData';
 import { saveResumeDraft, loadResumeDraft, clearResumeDraft, saveUserTemplate, updateUserTemplate, upsertUserResume, getUserResume } from '../utils/userLibrary';
 import { captureDesignSnapshot } from '../config/resumeDesign';
 import { mergeResumeImportJson } from '../utils/resumeJson';
+import { describeSections } from '../utils/resumeFileImport';
+import Swal from 'sweetalert2';
 
 import './ResumeBuilder.css';
+
+const PERSONAL_FIELD_LABELS = {
+    name: 'Name',
+    jobTitle: 'Job title',
+    email: 'Email',
+    phone: 'Phone',
+    location: 'Location',
+};
 
 // ======================================
 // Default empty resume data structure
@@ -131,7 +141,7 @@ export default function ResumeBuilder() {
     const [saveStatus, setSaveStatus] = useState(null); // null | 'saved' | 'error'
     const [loading, setLoading] = useState(!!id);
     const [error, setError] = useState(null);
-    const [showMobilePreview, setShowMobilePreview] = useState(() => typeof window !== 'undefined' && window.innerWidth < 900);
+    const [showMobilePreview, setShowMobilePreview] = useState(false);
     const [showJsonModal, setShowJsonModal] = useState(false);
     const [showDownloadPreview, setShowDownloadPreview] = useState(false);
     const [downloading, setDownloading] = useState(false);
@@ -223,8 +233,7 @@ export default function ResumeBuilder() {
         loadResume();
     }, [id, location.state?.restoreUserResume]);
 
-    // ── Handle template change
-    // IMPORTANT: Only the template changes — resumeData stays intact ──
+    // ── Handle template change — keep content, re-balance pages for the new layout ──
     const handleTemplateSelect = useCallback(async (templateId) => {
         const nextTemplate = resolveTemplateId(templateId);
         setSelectedTemplate(nextTemplate);
@@ -232,7 +241,7 @@ export default function ResumeBuilder() {
         if (nextTemplate === 'portrait-profile') {
             setResumeData((prev) => {
                 if (prev.startBlank) {
-                    return {
+                    const next = {
                         ...prev,
                         columnSections: prev.columnSections || { left: [], right: [] },
                         design: {
@@ -243,9 +252,14 @@ export default function ResumeBuilder() {
                             accentColor: prev.design?.accentColor || getTemplateById(nextTemplate).accentColor,
                         },
                     };
+                    return {
+                        ...next,
+                        pageSections: { page1: bodySectionsForData(next), page2: [] },
+                        pageEntrySlices: {},
+                    };
                 }
                 const next = withPortraitDefaults(prev);
-                return {
+                const shaped = {
                     ...next,
                     columnSections: normalizeColumnSections(next),
                     design: {
@@ -257,18 +271,30 @@ export default function ResumeBuilder() {
                     },
                     themeColor: prev.themeColor || next.design?.accentColor || getTemplateById(nextTemplate).accentColor,
                 };
+                return {
+                    ...shaped,
+                    pageSections: { page1: bodySectionsForData(shaped), page2: [] },
+                    pageEntrySlices: {},
+                };
             });
         } else {
-            setResumeData((prev) => ({
-                ...prev,
-                sectionOrder: flattenColumnSections(prev),
-                design: {
-                    ...(prev.design || {}),
-                    columns: 'one',
-                    headerPos: 'top',
-                    accentColor: prev.design?.accentColor || getTemplateById(nextTemplate).accentColor,
-                },
-            }));
+            setResumeData((prev) => {
+                const next = {
+                    ...prev,
+                    sectionOrder: flattenColumnSections(prev),
+                    design: {
+                        ...(prev.design || {}),
+                        columns: 'one',
+                        headerPos: 'top',
+                        accentColor: prev.design?.accentColor || getTemplateById(nextTemplate).accentColor,
+                    },
+                };
+                return {
+                    ...next,
+                    pageSections: { page1: bodySectionsForData(next), page2: [] },
+                    pageEntrySlices: {},
+                };
+            });
         }
 
         if (resumeId) {
@@ -533,8 +559,40 @@ export default function ResumeBuilder() {
     };
 
     // ── Handle JSON Upload (from modal) ──
-    const handleJsonApply = (parsedData) => {
-        setResumeData((prev) => mergeResumeImportJson(prev, parsedData));
+    const handleJsonApply = (parsedData, importMeta = null) => {
+        if (!importMeta) {
+            setResumeData((prev) => mergeResumeImportJson(prev, parsedData));
+            return;
+        }
+
+        setResumeData((prev) => {
+            const next = { ...mergeResumeImportJson(prev, parsedData), startBlank: false };
+            if (isTwoColumnTemplate(selectedTemplate)) next.columnSections = columnsWithActiveSections(next);
+            return {
+                ...next,
+                pageSections: { page1: bodySectionsForData(next), page2: [] },
+                pageEntrySlices: {},
+            };
+        });
+
+        const templateName = getTemplateById(selectedTemplate).name;
+        const filledSections = describeSections(importMeta.filled.filter((key) => key !== 'personal'));
+        const filledPersonal = (importMeta.filledPersonal || []).map((field) => PERSONAL_FIELD_LABELS[field] || field);
+        const list = (items) => `<ul style="text-align:left;margin:8px 0 0;padding-left:20px">${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+        const hasDummy = filledSections.length > 0 || filledPersonal.length > 0;
+
+        Swal.fire({
+            icon: hasDummy ? 'info' : 'success',
+            title: `Imported into ${templateName}`,
+            html: hasDummy
+                ? `<p style="margin:0">Your resume content was moved into this template. These were missing, so we added sample content — please replace or hide them:</p>${filledSections.length ? list(filledSections) : ''}${filledPersonal.length ? `<p style="margin:10px 0 0;text-align:left"><strong>Contact details:</strong> ${filledPersonal.join(', ')}</p>` : ''}`
+                : '<p style="margin:0">All sections came from your resume. Review the preview and fine-tune anything that looks off.</p>',
+            confirmButtonText: 'Got it',
+            confirmButtonColor: '#D4C77A',
+            background: '#18181b',
+            color: '#e5e7eb',
+            width: 440,
+        });
     };
 
     const design = resumeData.design || {};
@@ -647,7 +705,7 @@ export default function ResumeBuilder() {
                 <div className="rb-nav-left">
                     <button type="button" className="rb-nav-logo" onClick={() => navigate('/')}>
                         <i className="fa-solid fa-file-lines"></i>
-                        MockB-CV
+                        <span className="rb-nav-logo-text">MockB CV</span>
                     </button>
                     <div className="rb-nav-divider"></div>
                     <input
@@ -690,23 +748,24 @@ export default function ResumeBuilder() {
                 <div className="rb-nav-right">
                     {/* Mobile preview toggle */}
                     <button
-                        className={`rb-nav-btn rb-nav-btn--icon${showMobilePreview ? ' is-active' : ''}`}
-                        onClick={() => setShowMobilePreview(p => !p)}
+                        className={`rb-nav-btn rb-nav-btn--icon rb-nav-btn--preview-toggle${showMobilePreview ? ' is-active' : ''}`}
+                        onClick={() => setShowMobilePreview((p) => !p)}
                         title={showMobilePreview ? 'Back to editor' : 'Preview resume'}
                         aria-pressed={showMobilePreview}
                         id="rb-toggle-preview"
                     >
                         <i className={`fa-solid ${showMobilePreview ? 'fa-pen-to-square' : 'fa-eye'}`}></i>
+                        <span className="rb-preview-toggle-label">{showMobilePreview ? 'Edit' : 'Preview'}</span>
                     </button>
 
                     {/* Upload JSON */}
                     <button
                         className="rb-nav-btn rb-nav-btn--json"
                         onClick={() => setShowJsonModal(true)}
-                        title="Import resume content from JSON"
+                        title="Import your existing resume (PDF / DOCX) or JSON"
                     >
-                        <i className="fa-solid fa-file-code"></i>
-                        <span>Upload JSON</span>
+                        <i className="fa-solid fa-file-import"></i>
+                        <span>Import</span>
                     </button>
 
                     {/* Download */}
@@ -727,13 +786,13 @@ export default function ResumeBuilder() {
                         id="rb-save-btn"
                     >
                         {saving ? (
-                            <><i className="fa-solid fa-spinner fa-spin"></i> Saving...</>
+                            <><i className="fa-solid fa-spinner fa-spin"></i><span className="rb-save-label">Saving...</span></>
                         ) : saveStatus === 'saved' ? (
-                            <><i className="fa-solid fa-check"></i> Saved!</>
+                            <><i className="fa-solid fa-check"></i><span className="rb-save-label">Saved!</span></>
                         ) : saveStatus === 'error' ? (
-                            <><i className="fa-solid fa-triangle-exclamation"></i> Error</>
+                            <><i className="fa-solid fa-triangle-exclamation"></i><span className="rb-save-label">Error</span></>
                         ) : (
-                            <><i className="fa-solid fa-floppy-disk"></i> Save</>
+                            <><i className="fa-solid fa-floppy-disk"></i><span className="rb-save-label">Save</span></>
                         )}
                     </button>
                 </div>
@@ -819,6 +878,7 @@ export default function ResumeBuilder() {
                 onClose={() => setShowJsonModal(false)}
                 onApply={handleJsonApply}
                 resumeData={resumeData}
+                template={selectedTemplate}
             />
 
             {leaveOpen && (

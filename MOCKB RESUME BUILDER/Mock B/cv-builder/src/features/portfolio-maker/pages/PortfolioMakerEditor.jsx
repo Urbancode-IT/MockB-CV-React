@@ -1,14 +1,43 @@
-import { useState, useRef } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useParams, useLocation, useBlocker } from 'react-router-dom';
 import { getMakerTemplate } from '../config/catalog';
-import { COLOR_PRESETS, FONT_PRESETS, MODE_PRESETS, DEFAULT_DESIGN, resolveDesign, buildAccentGradient, FOLIO_TWO_DEFAULT_DESIGN, resolveFolioTwoDesign } from '../config/design';
+import { COLOR_PRESETS, FONT_PRESETS, MODE_PRESETS, DEFAULT_DESIGN, resolveDesign, buildAccentGradient, FOLIO_TWO_DEFAULT_DESIGN, resolveFolioTwoDesign, FOLIO_THREE_DEFAULT_DESIGN, resolveFolioThreeDesign } from '../config/design';
 import { contentForTemplate } from '../data/defaultContent';
 import { renderMakerPreview } from '../components/renderPreview.jsx';
 import { downloadPortfolioMakerZip } from '../utils/downloadZip';
 import { savePreviewState } from '../utils/previewSession';
 import ImageField from '../components/ImageField';
 import { readFileAsDataUrl } from '../utils/fileHelpers';
+import PortfolioJsonModal from '../components/PortfolioJsonModal';
+import ScaledDesktopPreview from '../components/ScaledDesktopPreview';
+import {
+  upsertUserPortfolio,
+  saveUserPortfolioTemplate,
+  updateUserPortfolioTemplate,
+} from '../utils/portfolioLibrary';
 import './PortfolioMakerEditor.css';
+
+function resolveDesignForTemplate(templateId, base) {
+  if (templateId === 'folio-two') return resolveFolioTwoDesign(base);
+  if (templateId === 'folio-three') return resolveFolioThreeDesign(base);
+  return resolveDesign(base);
+}
+
+const snapshotOf = (content, design, title) => JSON.stringify({
+  title: title || '',
+  design,
+  // Keep snapshot lean — compare image fingerprints, not full data-URLs
+  content: {
+    ...content,
+    profileImage: content?.profileImage
+      ? `img:${String(content.profileImage).length}:${String(content.profileImage).slice(-24)}`
+      : '',
+    projects: (content?.projects || []).map((p) => ({
+      ...p,
+      image: p?.image ? `img:${String(p.image).length}:${String(p.image).slice(-24)}` : '',
+    })),
+  },
+});
 
 export default function PortfolioMakerEditor() {
   const { templateId } = useParams();
@@ -16,6 +45,7 @@ export default function PortfolioMakerEditor() {
   const location = useLocation();
   const template = getMakerTemplate(templateId);
   const startMode = location.state?.startMode || 'sample';
+  const restored = location.state?.restoreUserPortfolio || null;
   const initialContent = location.state?.content || contentForTemplate(template.id, startMode);
 
   const [content, setContent] = useState(() => initialContent);
@@ -24,24 +54,77 @@ export default function PortfolioMakerEditor() {
     const base = {
       ...DEFAULT_DESIGN,
       ...(templateId === 'folio-two' ? FOLIO_TWO_DEFAULT_DESIGN : {}),
+      ...(templateId === 'folio-three' ? FOLIO_THREE_DEFAULT_DESIGN : {}),
       ...location.state?.design,
+      ...restored?.design,
     };
-    return templateId === 'folio-two' ? resolveFolioTwoDesign(base) : base;
+    return resolveDesignForTemplate(templateId, base);
   });
   const [downloading, setDownloading] = useState(false);
+  const [jsonOpen, setJsonOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState(null);
+  const [userPortfolioId, setUserPortfolioId] = useState(
+    () => restored?.id || location.state?.userPortfolioId || null,
+  );
+  const [userTemplateId, setUserTemplateId] = useState(
+    () => restored?.userTemplateId || location.state?.userTemplateId || null,
+  );
+  const [userTemplateName, setUserTemplateName] = useState(
+    () => restored?.userTemplateName || location.state?.userTemplateName || '',
+  );
+  const [portfolioTitle, setPortfolioTitle] = useState(
+    () => restored?.title || restored?.name || location.state?.portfolioTitle || '',
+  );
+  const [templateNameOpen, setTemplateNameOpen] = useState(false);
+  const [templateName, setTemplateName] = useState('');
+  const [templateSaved, setTemplateSaved] = useState(false);
+  const [leaveOpen, setLeaveOpen] = useState(false);
   const resumeInputRef = useRef(null);
+  const saveStatusTimer = useRef(null);
+  const skipBlockRef = useRef(false);
 
-  const resolvedDesign = templateId === 'folio-two' ? resolveFolioTwoDesign(design) : resolveDesign(design);
+  const resolvedDesign = resolveDesignForTemplate(templateId, design);
+
+  const previewContent = {
+    ...content,
+    techStack: techStackText.split(',').map((s) => s.trim()).filter(Boolean),
+  };
+
+  const currentSnap = snapshotOf(previewContent, resolvedDesign, portfolioTitle);
+  const lastSavedRef = useRef(currentSnap);
+  const currentSnapRef = useRef(currentSnap);
+  currentSnapRef.current = currentSnap;
+
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+    if (skipBlockRef.current) return false;
+    const stayingInEditor = nextLocation.pathname.startsWith(`/portfolio-maker/edit/${templateId}`);
+    const goingToPreview = nextLocation.pathname.startsWith(`/portfolio-maker/preview/${templateId}`);
+    if (stayingInEditor || goingToPreview) return false;
+    return currentSnapRef.current !== lastSavedRef.current;
+  });
+
+  useEffect(() => {
+    if (blocker.state === 'blocked') setLeaveOpen(true);
+    else setLeaveOpen(false);
+  }, [blocker.state]);
+
+  useEffect(() => {
+    const onBeforeUnload = (event) => {
+      if (currentSnapRef.current === lastSavedRef.current) return;
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, []);
 
   const updateField = (field, value) => {
     setContent((prev) => ({ ...prev, [field]: value }));
   };
 
   const updateDesign = (patch) => {
-    setDesign((prev) => {
-      const next = { ...prev, ...patch };
-      return templateId === 'folio-two' ? resolveFolioTwoDesign(next) : resolveDesign(next);
-    });
+    setDesign((prev) => resolveDesignForTemplate(templateId, { ...prev, ...patch }));
   };
 
   const selectColorPreset = (preset) => {
@@ -50,11 +133,6 @@ export default function PortfolioMakerEditor() {
       accentColor: preset.color,
       accentGradient: preset.gradient || buildAccentGradient(preset.color),
     });
-  };
-
-  const commitTechStack = () => {
-    const techStack = techStackText.split(',').map((s) => s.trim()).filter(Boolean);
-    setContent((prev) => ({ ...prev, techStack }));
   };
 
   const handleResumeUpload = async (e) => {
@@ -149,9 +227,88 @@ export default function PortfolioMakerEditor() {
     });
   };
 
-  const previewContent = {
-    ...content,
-    techStack: splitList(techStackText),
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const saved = upsertUserPortfolio({
+        id: userPortfolioId,
+        title: portfolioTitle || content.name || 'Untitled Portfolio',
+        selectedTemplate: template.id,
+        content: previewContent,
+        design: resolvedDesign,
+        baseName: template.name,
+        userTemplateId,
+        userTemplateName,
+      });
+      setUserPortfolioId(saved.id);
+      setPortfolioTitle(saved.title);
+      lastSavedRef.current = snapshotOf(previewContent, resolvedDesign, saved.title);
+      setSaveStatus('saved');
+      return true;
+    } catch (err) {
+      console.error(err);
+      setSaveStatus('error');
+      return false;
+    } finally {
+      setSaving(false);
+      if (saveStatusTimer.current) clearTimeout(saveStatusTimer.current);
+      saveStatusTimer.current = setTimeout(() => setSaveStatus(null), 2800);
+    }
+  };
+
+  const goToBlockedLocation = (next) => {
+    setLeaveOpen(false);
+    if (!next) return;
+    navigate(next.pathname + next.search + next.hash, {
+      state: next.state,
+      replace: Boolean(next.replace),
+    });
+  };
+
+  const closeLeavePrompt = () => {
+    setLeaveOpen(false);
+    skipBlockRef.current = false;
+    if (blocker.state === 'blocked') blocker.reset();
+  };
+
+  const leaveWithoutSaving = () => {
+    skipBlockRef.current = true;
+    const next = blocker.location;
+    if (blocker.state === 'blocked') blocker.reset();
+    lastSavedRef.current = currentSnapRef.current;
+    goToBlockedLocation(next);
+  };
+
+  const saveAndLeave = async () => {
+    skipBlockRef.current = true;
+    const next = blocker.location;
+    if (blocker.state === 'blocked') blocker.reset();
+    await handleSave();
+    goToBlockedLocation(next);
+  };
+
+  const handleSaveAsTemplate = () => {
+    setTemplateName(userTemplateName || `${template.name} – Your work`);
+    setTemplateNameOpen(true);
+    setTemplateSaved(false);
+  };
+
+  const confirmSaveAsTemplate = () => {
+    const payload = {
+      name: templateName,
+      baseTemplate: template.id,
+      design: resolvedDesign,
+    };
+    const saved = userTemplateId
+      ? (updateUserPortfolioTemplate(userTemplateId, payload) || saveUserPortfolioTemplate(payload))
+      : saveUserPortfolioTemplate(payload);
+    setUserTemplateId(saved.id);
+    setUserTemplateName(saved.name);
+    setTemplateSaved(true);
+    setTimeout(() => {
+      setTemplateNameOpen(false);
+      setTemplateSaved(false);
+    }, 900);
   };
 
   const handleDownload = async () => {
@@ -170,8 +327,27 @@ export default function PortfolioMakerEditor() {
   const openFullPreview = () => {
     savePreviewState({ templateId: template.id, content: previewContent, design: resolvedDesign });
     navigate(`/portfolio-maker/preview/${template.id}`, {
-      state: { content: previewContent, design: resolvedDesign, startMode },
+      state: {
+        content: previewContent,
+        design: resolvedDesign,
+        startMode,
+        userPortfolioId,
+        userTemplateId,
+        userTemplateName,
+      },
     });
+  };
+
+  const applyPortfolioJson = (next) => {
+    setContent(next);
+    setTechStackText((next.techStack || next.skills || []).join(', '));
+  };
+
+  const updateStat = (key, value) => {
+    setContent((prev) => ({
+      ...prev,
+      stats: { ...(prev.stats || {}), [key]: value },
+    }));
   };
 
   return (
@@ -182,11 +358,29 @@ export default function PortfolioMakerEditor() {
         </button>
         <div className="pm-editor-title">
           <i className="fa-solid fa-laptop-code" />
-          <span>{template.name}</span>
+          <span>{userTemplateName || template.name}</span>
+          {userPortfolioId ? <em className="pm-editor-saved-tag">Saved</em> : null}
         </div>
         <div className="pm-editor-actions">
+          <button type="button" className="pm-btn pm-btn-ghost" onClick={() => setJsonOpen(true)}>
+            <i className="fa-solid fa-file-code" /> Portfolio JSON
+          </button>
           <button type="button" className="pm-btn pm-btn-ghost" onClick={openFullPreview}>
             <i className="fa-solid fa-up-right-from-square" /> Full preview
+          </button>
+          <button
+            type="button"
+            className={`pm-btn pm-btn-ghost${saveStatus === 'saved' ? ' pm-btn--saved' : ''}${saveStatus === 'error' ? ' pm-btn--error' : ''}`}
+            onClick={handleSave}
+            disabled={saving}
+          >
+            {saving ? (
+              <><i className="fa-solid fa-circle-notch fa-spin" /> Saving…</>
+            ) : saveStatus === 'saved' ? (
+              <><i className="fa-solid fa-check" /> Saved</>
+            ) : (
+              <><i className="fa-solid fa-floppy-disk" /> Save</>
+            )}
           </button>
           <button type="button" className="pm-btn pm-btn-primary" onClick={handleDownload} disabled={downloading}>
             {downloading ? (
@@ -198,6 +392,60 @@ export default function PortfolioMakerEditor() {
         </div>
       </header>
 
+      <PortfolioJsonModal
+        isOpen={jsonOpen}
+        onClose={() => setJsonOpen(false)}
+        onApply={applyPortfolioJson}
+        content={previewContent}
+      />
+
+      {templateNameOpen ? (
+        <div className="pm-modal" role="dialog" aria-modal="true" aria-labelledby="pm-template-save-title">
+          <div className="pm-modal__dialog">
+            <h2 id="pm-template-save-title">Save to Your templates</h2>
+            <p>Keeps your fonts, colors, and theme so you can reuse this look later.</p>
+            <input
+              className="pm-modal__input"
+              value={templateName}
+              onChange={(e) => setTemplateName(e.target.value)}
+              placeholder="Template name"
+              autoFocus
+            />
+            <div className="pm-modal__actions">
+              <button type="button" className="pm-btn pm-btn-ghost" onClick={() => setTemplateNameOpen(false)}>
+                Cancel
+              </button>
+              <button type="button" className="pm-btn pm-btn-primary" onClick={confirmSaveAsTemplate}>
+                {templateSaved ? 'Saved' : 'Save template'}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {leaveOpen ? (
+        <div className="pm-modal" role="dialog" aria-modal="true" aria-labelledby="pm-leave-title">
+          <div className="pm-modal__dialog">
+            <h2 id="pm-leave-title">Save your progress?</h2>
+            <p>
+              If you save, this portfolio is stored under Templates → Your portfolios.
+              The library template stays unchanged.
+            </p>
+            <div className="pm-modal__actions">
+              <button type="button" className="pm-btn pm-btn-ghost" onClick={closeLeavePrompt}>
+                Stay
+              </button>
+              <button type="button" className="pm-btn pm-btn-ghost" onClick={leaveWithoutSaving}>
+                Leave without saving
+              </button>
+              <button type="button" className="pm-btn pm-btn-primary" onClick={saveAndLeave} disabled={saving}>
+                {saving ? 'Saving…' : 'Save and leave'}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="pm-editor-layout">
         <aside className="pm-editor-sidebar">
           <h2>Customize your portfolio</h2>
@@ -205,6 +453,9 @@ export default function PortfolioMakerEditor() {
 
           <div className="pm-sidebar-group">
             <h3><i className="fa-solid fa-palette" /> Design</h3>
+            <button type="button" className="pm-btn pm-btn-ghost pm-save-template-btn" onClick={handleSaveAsTemplate}>
+              <i className="fa-solid fa-bookmark" /> Save as template
+            </button>
 
             <div className="pm-design-block">
               <span className="pm-design-label">Accent color</span>
@@ -306,7 +557,54 @@ export default function PortfolioMakerEditor() {
             </label>
             <label className="pm-field">
               <span>Tagline</span>
-              <input value={content.tagline} onChange={(e) => updateField('tagline', e.target.value)} autoComplete="off" />
+              <input value={content.tagline || ''} onChange={(e) => updateField('tagline', e.target.value)} autoComplete="off" />
+            </label>
+            <label className="pm-field">
+              <span>Bio / about text</span>
+              <textarea
+                rows={3}
+                value={content.bio || ''}
+                onChange={(e) => updateField('bio', e.target.value)}
+                placeholder="Short paragraph about you…"
+              />
+            </label>
+            {template.id === 'folio-three' ? (
+              <>
+                <label className="pm-field">
+                  <span>About quote</span>
+                  <input
+                    value={content.introQuote || ''}
+                    onChange={(e) => updateField('introQuote', e.target.value)}
+                    autoComplete="off"
+                    placeholder="Quiet systems. Sharp delivery."
+                  />
+                </label>
+                <label className="pm-field">
+                  <span>Hero word</span>
+                  <input
+                    value={content.philosophy?.label || ''}
+                    onChange={(e) => updateField('philosophy', { ...(content.philosophy || {}), label: e.target.value })}
+                    autoComplete="off"
+                    placeholder="PORTFOLIO"
+                  />
+                </label>
+              </>
+            ) : null}
+          </div>
+
+          <div className="pm-sidebar-group">
+            <h3><i className="fa-solid fa-chart-simple" /> Stats</h3>
+            <label className="pm-field">
+              <span>Years</span>
+              <input value={content.stats?.years || ''} onChange={(e) => updateStat('years', e.target.value)} autoComplete="off" />
+            </label>
+            <label className="pm-field">
+              <span>Projects</span>
+              <input value={content.stats?.projects || ''} onChange={(e) => updateStat('projects', e.target.value)} autoComplete="off" />
+            </label>
+            <label className="pm-field">
+              <span>Clients</span>
+              <input value={content.stats?.clients || ''} onChange={(e) => updateStat('clients', e.target.value)} autoComplete="off" />
             </label>
           </div>
 
@@ -323,19 +621,27 @@ export default function PortfolioMakerEditor() {
             </label>
             <label className="pm-field">
               <span>Email</span>
-              <input value={content.email} onChange={(e) => updateField('email', e.target.value)} autoComplete="off" />
+              <input value={content.email || ''} onChange={(e) => updateField('email', e.target.value)} autoComplete="off" />
             </label>
             <label className="pm-field">
               <span>Phone</span>
-              <input value={content.phone} onChange={(e) => updateField('phone', e.target.value)} autoComplete="off" />
+              <input value={content.phone || ''} onChange={(e) => updateField('phone', e.target.value)} autoComplete="off" />
             </label>
             <label className="pm-field">
               <span>Location</span>
-              <input value={content.location} onChange={(e) => updateField('location', e.target.value)} autoComplete="off" />
+              <input value={content.location || ''} onChange={(e) => updateField('location', e.target.value)} autoComplete="off" />
+            </label>
+            <label className="pm-field">
+              <span>Website URL</span>
+              <input value={content.website || ''} onChange={(e) => updateField('website', e.target.value)} autoComplete="off" placeholder="https://..." />
             </label>
             <label className="pm-field">
               <span>LinkedIn URL</span>
               <input value={content.linkedin || ''} onChange={(e) => updateField('linkedin', e.target.value)} autoComplete="off" />
+            </label>
+            <label className="pm-field">
+              <span>GitHub URL</span>
+              <input value={content.github || ''} onChange={(e) => updateField('github', e.target.value)} autoComplete="off" />
             </label>
             <label className="pm-field">
               <span>Resume file (Download Resume button)</span>
@@ -370,8 +676,10 @@ export default function PortfolioMakerEditor() {
               <span>Technologies (marquee loop, comma separated)</span>
               <input
                 value={techStackText}
-                onChange={(e) => setTechStackText(e.target.value)}
-                onBlur={commitTechStack}
+                onChange={(e) => {
+                  setTechStackText(e.target.value);
+                  setContent((prev) => ({ ...prev, techStack: splitList(e.target.value) }));
+                }}
                 autoComplete="off"
                 placeholder="Node.js, Redis, Next.js, AWS"
               />
@@ -399,6 +707,14 @@ export default function PortfolioMakerEditor() {
                 <label className="pm-field">
                   <span>Role tag</span>
                   <input value={project.roleTag || ''} onChange={(e) => updateProject(index, 'roleTag', e.target.value)} autoComplete="off" placeholder="Lead Engineer" />
+                </label>
+                <label className="pm-field">
+                  <span>Year</span>
+                  <input value={project.year || ''} onChange={(e) => updateProject(index, 'year', e.target.value)} autoComplete="off" placeholder="2025" />
+                </label>
+                <label className="pm-field">
+                  <span>Category</span>
+                  <input value={project.category || ''} onChange={(e) => updateProject(index, 'category', e.target.value)} autoComplete="off" placeholder="Systems" />
                 </label>
                 <label className="pm-field">
                   <span>Tech stack (comma separated)</span>
@@ -462,49 +778,53 @@ export default function PortfolioMakerEditor() {
             </button>
           </div>
 
-          <div className="pm-sidebar-group">
-            <h3><i className="fa-solid fa-grip" /> Solution cards</h3>
-            {(content.features || []).map((feature, index) => (
-              <div className="pm-repeat-card" key={`feature-${index}`}>
-                <div className="pm-repeat-card__head">
-                  <strong>Card {index + 1}</strong>
+          {template.id === 'folio-one' ? (
+            <div className="pm-sidebar-group">
+              <h3><i className="fa-solid fa-grip" /> Solution cards</h3>
+              {(content.features || []).map((feature, index) => (
+                <div className="pm-repeat-card" key={`feature-${index}`}>
+                  <div className="pm-repeat-card__head">
+                    <strong>Card {index + 1}</strong>
+                  </div>
+                  <label className="pm-field">
+                    <span>Title</span>
+                    <input value={feature.title || ''} onChange={(e) => updateFeature(index, 'title', e.target.value)} autoComplete="off" />
+                  </label>
+                  <label className="pm-field">
+                    <span>Description</span>
+                    <textarea rows={2} value={feature.description || ''} onChange={(e) => updateFeature(index, 'description', e.target.value)} />
+                  </label>
                 </div>
-                <label className="pm-field">
-                  <span>Title</span>
-                  <input value={feature.title || ''} onChange={(e) => updateFeature(index, 'title', e.target.value)} autoComplete="off" />
-                </label>
-                <label className="pm-field">
-                  <span>Description</span>
-                  <textarea rows={2} value={feature.description || ''} onChange={(e) => updateFeature(index, 'description', e.target.value)} />
-                </label>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : null}
 
-          <div className="pm-sidebar-group">
-            <h3><i className="fa-solid fa-film" /> Philosophy section</h3>
-            <label className="pm-field">
-              <span>Section label</span>
-              <input
-                value={content.philosophy?.label || ''}
-                onChange={(e) => updateField('philosophy', { ...(content.philosophy || {}), label: e.target.value })}
-                autoComplete="off"
+          {template.id === 'folio-one' ? (
+            <div className="pm-sidebar-group">
+              <h3><i className="fa-solid fa-film" /> Philosophy section</h3>
+              <label className="pm-field">
+                <span>Section label</span>
+                <input
+                  value={content.philosophy?.label || ''}
+                  onChange={(e) => updateField('philosophy', { ...(content.philosophy || {}), label: e.target.value })}
+                  autoComplete="off"
+                />
+              </label>
+              <label className="pm-field">
+                <span>Section title</span>
+                <input
+                  value={content.philosophy?.title || ''}
+                  onChange={(e) => updateField('philosophy', { ...(content.philosophy || {}), title: e.target.value })}
+                  autoComplete="off"
+                />
+              </label>
+              <ImageField
+                label="Video thumbnail"
+                value={content.philosophyVideo || ''}
+                onChange={(v) => updateField('philosophyVideo', v)}
               />
-            </label>
-            <label className="pm-field">
-              <span>Section title</span>
-              <input
-                value={content.philosophy?.title || ''}
-                onChange={(e) => updateField('philosophy', { ...(content.philosophy || {}), title: e.target.value })}
-                autoComplete="off"
-              />
-            </label>
-            <ImageField
-              label="Video thumbnail"
-              value={content.philosophyVideo || ''}
-              onChange={(v) => updateField('philosophyVideo', v)}
-            />
-          </div>
+            </div>
+          ) : null}
 
           <div className="pm-zip-note">
             <i className="fa-solid fa-box-archive" />
@@ -518,7 +838,9 @@ export default function PortfolioMakerEditor() {
         <section className="pm-editor-preview">
           <div className="pm-preview-label"><span className="pm-live-dot" /> Live preview</div>
           <div className="pm-preview-frame">
-            {renderMakerPreview(template.id, previewContent, resolvedDesign)}
+            <ScaledDesktopPreview revision={currentSnap}>
+              {renderMakerPreview(template.id, previewContent, resolvedDesign, true)}
+            </ScaledDesktopPreview>
           </div>
         </section>
       </div>
